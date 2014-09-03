@@ -105,7 +105,11 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.shuntian.portlet.intranet.model.BasicInformation"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.BasicInformation"),
+			true);
+	public static long USERID_COLUMN_BITMASK = 1L;
+	public static long CREATEDATE_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.BasicInformation"));
 
@@ -380,6 +384,14 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 
 	@Override
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -391,6 +403,10 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	@Override
@@ -742,6 +758,8 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 
 	@Override
 	public void setCreateDate(Date createDate) {
+		_columnBitmask = -1L;
+
 		_createDate = createDate;
 	}
 
@@ -774,6 +792,10 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -883,6 +905,13 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 
 	@Override
 	public void resetOriginalValues() {
+		BasicInformationModelImpl basicInformationModelImpl = this;
+
+		basicInformationModelImpl._originalUserId = basicInformationModelImpl._userId;
+
+		basicInformationModelImpl._setOriginalUserId = false;
+
+		basicInformationModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -1288,6 +1317,8 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 	private long _id;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _name;
 	private int _sex;
 	private String _idNumber;
@@ -1317,5 +1348,6 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 	private long _modifiedUserId;
 	private String _modifiedUserUuid;
 	private Date _modifiedDate;
+	private long _columnBitmask;
 	private BasicInformation _escapedModel;
 }

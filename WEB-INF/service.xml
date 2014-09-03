@@ -50,6 +50,12 @@
 		<order>
 			<order-column name="createDate" order-by="desc" />
 		</order>
+		
+		<!-- Finder methods -->
+
+		<finder name="UserId" return-type="BasicInformation">
+			<finder-column name="userId" />
+		</finder>
 	</entity>
 	
 	<entity name="ExtInformation" local-service="true" remote-service="false">
@@ -85,6 +91,12 @@
 		<order>
 			<order-column name="createDate" order-by="desc" />
 		</order>
+		
+		<!-- Finder methods -->
+
+		<finder name="UserId" return-type="BasicInformation">
+			<finder-column name="userId" />
+		</finder>
 	</entity>
 	
 	<entity name="Education" local-service="true" remote-service="false">
@@ -117,6 +129,12 @@
 		<order>
 			<order-column name="createDate" order-by="desc" />
 		</order>
+		
+		<!-- Finder methods -->
+
+		<finder name="UserId" return-type="BasicInformation">
+			<finder-column name="userId" />
+		</finder>
 	</entity>
 	
 	<entity name="WorkExperience" local-service="true" remote-service="false">
@@ -149,6 +167,12 @@
 		<order>
 			<order-column name="createDate" order-by="desc" />
 		</order>
+		
+		<!-- Finder methods -->
+
+		<finder name="UserId" return-type="BasicInformation">
+			<finder-column name="userId" />
+		</finder>
 	</entity>
 	
 	<entity name="FamilyRelationship" local-service="true" remote-service="false">
@@ -180,5 +204,11 @@
 		<order>
 			<order-column name="createDate" order-by="desc" />
 		</order>
+		
+		<!-- Finder methods -->
+
+		<finder name="UserId" return-type="BasicInformation">
+			<finder-column name="userId" />
+		</finder>
 	</entity>
 </service-builder>

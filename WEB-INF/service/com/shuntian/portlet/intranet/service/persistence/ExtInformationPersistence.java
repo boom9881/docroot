@@ -38,6 +38,63 @@ public interface ExtInformationPersistence extends BasePersistence<ExtInformatio
 	 */
 
 	/**
+	* Returns the ext information where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchExtInformationException} if it could not be found.
+	*
+	* @param userId the user ID
+	* @return the matching ext information
+	* @throws com.shuntian.portlet.intranet.NoSuchExtInformationException if a matching ext information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.ExtInformation findByUserId(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchExtInformationException;
+
+	/**
+	* Returns the ext information where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user ID
+	* @return the matching ext information, or <code>null</code> if a matching ext information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.ExtInformation fetchByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the ext information where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching ext information, or <code>null</code> if a matching ext information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.ExtInformation fetchByUserId(
+		long userId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the ext information where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @return the ext information that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.ExtInformation removeByUserId(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchExtInformationException;
+
+	/**
+	* Returns the number of ext informations where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching ext informations
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Caches the ext information in the entity cache if it is enabled.
 	*
 	* @param extInformation the ext information

@@ -1,8 +1,9 @@
-<%@ include file="/html/init.jsp" %>
+<%@ include file="/html/satff/init-ext.jsp" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%
+/**
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	PortletURL randerURL = renderResponse.createRenderURL();
@@ -32,7 +33,7 @@
 
 	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, null);
 
-	int total = SatffLocalServiceUtil.getSatffsCount();;
+	int total = BasicInformationLocalServiceUtil.getSatffsCount();;
 
 	searchContainer.setTotal(total);
 
@@ -69,6 +70,7 @@
 		resultRows.add(row);
 
 	}
+	*/
 %>
 
 <portlet:actionURL var="deleteUserActionURL">
@@ -97,9 +99,9 @@
 
 	<aui:button value="添加员工" onClick="<%= addUserURL %>" />
 </aui:form>
-
+<%--
 <liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
-
+--%>
 <aui:script>
 	function <portlet:namespace />onSub(url){
 		document.<portlet:namespace />fm.action = url;

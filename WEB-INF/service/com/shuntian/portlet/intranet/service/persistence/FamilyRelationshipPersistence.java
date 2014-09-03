@@ -38,6 +38,63 @@ public interface FamilyRelationshipPersistence extends BasePersistence<FamilyRel
 	 */
 
 	/**
+	* Returns the family relationship where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException} if it could not be found.
+	*
+	* @param userId the user ID
+	* @return the matching family relationship
+	* @throws com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException if a matching family relationship could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.FamilyRelationship findByUserId(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException;
+
+	/**
+	* Returns the family relationship where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user ID
+	* @return the matching family relationship, or <code>null</code> if a matching family relationship could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.FamilyRelationship fetchByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the family relationship where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching family relationship, or <code>null</code> if a matching family relationship could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.FamilyRelationship fetchByUserId(
+		long userId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the family relationship where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @return the family relationship that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.FamilyRelationship removeByUserId(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException;
+
+	/**
+	* Returns the number of family relationships where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching family relationships
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Caches the family relationship in the entity cache if it is enabled.
 	*
 	* @param familyRelationship the family relationship

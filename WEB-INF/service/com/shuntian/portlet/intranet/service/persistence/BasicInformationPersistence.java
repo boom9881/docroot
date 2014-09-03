@@ -38,6 +38,63 @@ public interface BasicInformationPersistence extends BasePersistence<BasicInform
 	 */
 
 	/**
+	* Returns the basic information where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchBasicInformationException} if it could not be found.
+	*
+	* @param userId the user ID
+	* @return the matching basic information
+	* @throws com.shuntian.portlet.intranet.NoSuchBasicInformationException if a matching basic information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.BasicInformation findByUserId(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchBasicInformationException;
+
+	/**
+	* Returns the basic information where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user ID
+	* @return the matching basic information, or <code>null</code> if a matching basic information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.BasicInformation fetchByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the basic information where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching basic information, or <code>null</code> if a matching basic information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.BasicInformation fetchByUserId(
+		long userId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the basic information where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @return the basic information that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.BasicInformation removeByUserId(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchBasicInformationException;
+
+	/**
+	* Returns the number of basic informations where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching basic informations
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Caches the basic information in the entity cache if it is enabled.
 	*
 	* @param basicInformation the basic information

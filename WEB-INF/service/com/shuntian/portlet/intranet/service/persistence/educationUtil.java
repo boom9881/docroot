@@ -111,6 +111,73 @@ public class EducationUtil {
 	}
 
 	/**
+	* Returns the education where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchEducationException} if it could not be found.
+	*
+	* @param userId the user ID
+	* @return the matching education
+	* @throws com.shuntian.portlet.intranet.NoSuchEducationException if a matching education could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Education findByUserId(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchEducationException {
+		return getPersistence().findByUserId(userId);
+	}
+
+	/**
+	* Returns the education where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user ID
+	* @return the matching education, or <code>null</code> if a matching education could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Education fetchByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId(userId);
+	}
+
+	/**
+	* Returns the education where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching education, or <code>null</code> if a matching education could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Education fetchByUserId(
+		long userId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId(userId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the education where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @return the education that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Education removeByUserId(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchEducationException {
+		return getPersistence().removeByUserId(userId);
+	}
+
+	/**
+	* Returns the number of educations where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching educations
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUserId(userId);
+	}
+
+	/**
 	* Caches the education in the entity cache if it is enabled.
 	*
 	* @param education the education

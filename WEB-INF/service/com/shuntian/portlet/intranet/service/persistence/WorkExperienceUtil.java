@@ -111,6 +111,73 @@ public class WorkExperienceUtil {
 	}
 
 	/**
+	* Returns the work experience where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchWorkExperienceException} if it could not be found.
+	*
+	* @param userId the user ID
+	* @return the matching work experience
+	* @throws com.shuntian.portlet.intranet.NoSuchWorkExperienceException if a matching work experience could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.WorkExperience findByUserId(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchWorkExperienceException {
+		return getPersistence().findByUserId(userId);
+	}
+
+	/**
+	* Returns the work experience where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user ID
+	* @return the matching work experience, or <code>null</code> if a matching work experience could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.WorkExperience fetchByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId(userId);
+	}
+
+	/**
+	* Returns the work experience where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching work experience, or <code>null</code> if a matching work experience could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.WorkExperience fetchByUserId(
+		long userId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId(userId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the work experience where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @return the work experience that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.WorkExperience removeByUserId(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchWorkExperienceException {
+		return getPersistence().removeByUserId(userId);
+	}
+
+	/**
+	* Returns the number of work experiences where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching work experiences
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUserId(userId);
+	}
+
+	/**
 	* Caches the work experience in the entity cache if it is enabled.
 	*
 	* @param workExperience the work experience

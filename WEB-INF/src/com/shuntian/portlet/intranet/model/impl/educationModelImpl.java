@@ -88,7 +88,11 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.shuntian.portlet.intranet.model.Education"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.Education"),
+			true);
+	public static long USERID_COLUMN_BITMASK = 1L;
+	public static long CREATEDATE_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.Education"));
 
@@ -237,6 +241,14 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 
 	@Override
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -248,6 +260,10 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	@Override
@@ -358,6 +374,8 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 
 	@Override
 	public void setCreateDate(Date createDate) {
+		_columnBitmask = -1L;
+
 		_createDate = createDate;
 	}
 
@@ -390,6 +408,10 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -481,6 +503,13 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 
 	@Override
 	public void resetOriginalValues() {
+		EducationModelImpl educationModelImpl = this;
+
+		educationModelImpl._originalUserId = educationModelImpl._userId;
+
+		educationModelImpl._setOriginalUserId = false;
+
+		educationModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -668,6 +697,8 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 	private long _id;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _witness;
 	private String _professional;
 	private String _university;
@@ -680,5 +711,6 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 	private long _modifiedUserId;
 	private String _modifiedUserUuid;
 	private Date _modifiedDate;
+	private long _columnBitmask;
 	private Education _escapedModel;
 }

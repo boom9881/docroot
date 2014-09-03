@@ -88,7 +88,11 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.shuntian.portlet.intranet.model.WorkExperience"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.WorkExperience"),
+			true);
+	public static long USERID_COLUMN_BITMASK = 1L;
+	public static long CREATEDATE_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.WorkExperience"));
 
@@ -237,6 +241,14 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 
 	@Override
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -248,6 +260,10 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	@Override
@@ -358,6 +374,8 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 
 	@Override
 	public void setCreateDate(Date createDate) {
+		_columnBitmask = -1L;
+
 		_createDate = createDate;
 	}
 
@@ -390,6 +408,10 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -482,6 +504,13 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 
 	@Override
 	public void resetOriginalValues() {
+		WorkExperienceModelImpl workExperienceModelImpl = this;
+
+		workExperienceModelImpl._originalUserId = workExperienceModelImpl._userId;
+
+		workExperienceModelImpl._setOriginalUserId = false;
+
+		workExperienceModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -669,6 +698,8 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 	private long _id;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _witness;
 	private String _onceJob;
 	private String _workUnit;
@@ -681,5 +712,6 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 	private long _modifiedUserId;
 	private String _modifiedUserUuid;
 	private Date _modifiedDate;
+	private long _columnBitmask;
 	private WorkExperience _escapedModel;
 }

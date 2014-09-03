@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -31,6 +32,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
@@ -84,6 +86,223 @@ public class WorkExperiencePersistenceImpl extends BasePersistenceImpl<WorkExper
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(WorkExperienceModelImpl.ENTITY_CACHE_ENABLED,
 			WorkExperienceModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+	public static final FinderPath FINDER_PATH_FETCH_BY_USERID = new FinderPath(WorkExperienceModelImpl.ENTITY_CACHE_ENABLED,
+			WorkExperienceModelImpl.FINDER_CACHE_ENABLED,
+			WorkExperienceImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByUserId", new String[] { Long.class.getName() },
+			WorkExperienceModelImpl.USERID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(WorkExperienceModelImpl.ENTITY_CACHE_ENABLED,
+			WorkExperienceModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
+			new String[] { Long.class.getName() });
+
+	/**
+	 * Returns the work experience where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchWorkExperienceException} if it could not be found.
+	 *
+	 * @param userId the user ID
+	 * @return the matching work experience
+	 * @throws com.shuntian.portlet.intranet.NoSuchWorkExperienceException if a matching work experience could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public WorkExperience findByUserId(long userId)
+		throws NoSuchWorkExperienceException, SystemException {
+		WorkExperience workExperience = fetchByUserId(userId);
+
+		if (workExperience == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchWorkExperienceException(msg.toString());
+		}
+
+		return workExperience;
+	}
+
+	/**
+	 * Returns the work experience where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @return the matching work experience, or <code>null</code> if a matching work experience could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public WorkExperience fetchByUserId(long userId) throws SystemException {
+		return fetchByUserId(userId, true);
+	}
+
+	/**
+	 * Returns the work experience where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching work experience, or <code>null</code> if a matching work experience could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public WorkExperience fetchByUserId(long userId, boolean retrieveFromCache)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { userId };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_USERID,
+					finderArgs, this);
+		}
+
+		if (result instanceof WorkExperience) {
+			WorkExperience workExperience = (WorkExperience)result;
+
+			if ((userId != workExperience.getUserId())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_WORKEXPERIENCE_WHERE);
+
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				List<WorkExperience> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"WorkExperiencePersistenceImpl.fetchByUserId(long, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					WorkExperience workExperience = list.get(0);
+
+					result = workExperience;
+
+					cacheResult(workExperience);
+
+					if ((workExperience.getUserId() != userId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+							finderArgs, workExperience);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (WorkExperience)result;
+		}
+	}
+
+	/**
+	 * Removes the work experience where userId = &#63; from the database.
+	 *
+	 * @param userId the user ID
+	 * @return the work experience that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public WorkExperience removeByUserId(long userId)
+		throws NoSuchWorkExperienceException, SystemException {
+		WorkExperience workExperience = findByUserId(userId);
+
+		return remove(workExperience);
+	}
+
+	/**
+	 * Returns the number of work experiences where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @return the number of matching work experiences
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByUserId(long userId) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_USERID;
+
+		Object[] finderArgs = new Object[] { userId };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_WORKEXPERIENCE_WHERE);
+
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_USERID_USERID_2 = "workExperience.userId = ?";
 
 	public WorkExperiencePersistenceImpl() {
 		setModelClass(WorkExperience.class);
@@ -99,6 +318,9 @@ public class WorkExperiencePersistenceImpl extends BasePersistenceImpl<WorkExper
 		EntityCacheUtil.putResult(WorkExperienceModelImpl.ENTITY_CACHE_ENABLED,
 			WorkExperienceImpl.class, workExperience.getPrimaryKey(),
 			workExperience);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+			new Object[] { workExperience.getUserId() }, workExperience);
 
 		workExperience.resetOriginalValues();
 	}
@@ -156,6 +378,8 @@ public class WorkExperiencePersistenceImpl extends BasePersistenceImpl<WorkExper
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache(workExperience);
 	}
 
 	@Override
@@ -166,6 +390,49 @@ public class WorkExperiencePersistenceImpl extends BasePersistenceImpl<WorkExper
 		for (WorkExperience workExperience : workExperiences) {
 			EntityCacheUtil.removeResult(WorkExperienceModelImpl.ENTITY_CACHE_ENABLED,
 				WorkExperienceImpl.class, workExperience.getPrimaryKey());
+
+			clearUniqueFindersCache(workExperience);
+		}
+	}
+
+	protected void cacheUniqueFindersCache(WorkExperience workExperience) {
+		if (workExperience.isNew()) {
+			Object[] args = new Object[] { workExperience.getUserId() };
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
+				workExperience);
+		}
+		else {
+			WorkExperienceModelImpl workExperienceModelImpl = (WorkExperienceModelImpl)workExperience;
+
+			if ((workExperienceModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { workExperience.getUserId() };
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
+					workExperience);
+			}
+		}
+	}
+
+	protected void clearUniqueFindersCache(WorkExperience workExperience) {
+		WorkExperienceModelImpl workExperienceModelImpl = (WorkExperienceModelImpl)workExperience;
+
+		Object[] args = new Object[] { workExperience.getUserId() };
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
+
+		if ((workExperienceModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
+			args = new Object[] { workExperienceModelImpl.getOriginalUserId() };
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
 		}
 	}
 
@@ -304,13 +571,16 @@ public class WorkExperiencePersistenceImpl extends BasePersistenceImpl<WorkExper
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !WorkExperienceModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		EntityCacheUtil.putResult(WorkExperienceModelImpl.ENTITY_CACHE_ENABLED,
 			WorkExperienceImpl.class, workExperience.getPrimaryKey(),
 			workExperience);
+
+		clearUniqueFindersCache(workExperience);
+		cacheUniqueFindersCache(workExperience);
 
 		return workExperience;
 	}
@@ -652,9 +922,12 @@ public class WorkExperiencePersistenceImpl extends BasePersistenceImpl<WorkExper
 	}
 
 	private static final String _SQL_SELECT_WORKEXPERIENCE = "SELECT workExperience FROM WorkExperience workExperience";
+	private static final String _SQL_SELECT_WORKEXPERIENCE_WHERE = "SELECT workExperience FROM WorkExperience workExperience WHERE ";
 	private static final String _SQL_COUNT_WORKEXPERIENCE = "SELECT COUNT(workExperience) FROM WorkExperience workExperience";
+	private static final String _SQL_COUNT_WORKEXPERIENCE_WHERE = "SELECT COUNT(workExperience) FROM WorkExperience workExperience WHERE ";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "workExperience.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No WorkExperience exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No WorkExperience exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(WorkExperiencePersistenceImpl.class);

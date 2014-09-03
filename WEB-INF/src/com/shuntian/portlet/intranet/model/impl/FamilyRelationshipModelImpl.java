@@ -87,7 +87,11 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.shuntian.portlet.intranet.model.FamilyRelationship"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.FamilyRelationship"),
+			true);
+	public static long USERID_COLUMN_BITMASK = 1L;
+	public static long CREATEDATE_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.FamilyRelationship"));
 
@@ -229,6 +233,14 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 
 	@Override
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -240,6 +252,10 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	@Override
@@ -345,6 +361,8 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 
 	@Override
 	public void setCreateDate(Date createDate) {
+		_columnBitmask = -1L;
+
 		_createDate = createDate;
 	}
 
@@ -377,6 +395,10 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -468,6 +490,13 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 
 	@Override
 	public void resetOriginalValues() {
+		FamilyRelationshipModelImpl familyRelationshipModelImpl = this;
+
+		familyRelationshipModelImpl._originalUserId = familyRelationshipModelImpl._userId;
+
+		familyRelationshipModelImpl._setOriginalUserId = false;
+
+		familyRelationshipModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -639,6 +668,8 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 	private long _id;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _name;
 	private String _relationship;
 	private String _workUnit;
@@ -650,5 +681,6 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 	private long _modifiedUserId;
 	private String _modifiedUserUuid;
 	private Date _modifiedDate;
+	private long _columnBitmask;
 	private FamilyRelationship _escapedModel;
 }

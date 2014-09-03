@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -31,6 +32,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
@@ -84,6 +86,224 @@ public class BasicInformationPersistenceImpl extends BasePersistenceImpl<BasicIn
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(BasicInformationModelImpl.ENTITY_CACHE_ENABLED,
 			BasicInformationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+	public static final FinderPath FINDER_PATH_FETCH_BY_USERID = new FinderPath(BasicInformationModelImpl.ENTITY_CACHE_ENABLED,
+			BasicInformationModelImpl.FINDER_CACHE_ENABLED,
+			BasicInformationImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByUserId", new String[] { Long.class.getName() },
+			BasicInformationModelImpl.USERID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(BasicInformationModelImpl.ENTITY_CACHE_ENABLED,
+			BasicInformationModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
+			new String[] { Long.class.getName() });
+
+	/**
+	 * Returns the basic information where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchBasicInformationException} if it could not be found.
+	 *
+	 * @param userId the user ID
+	 * @return the matching basic information
+	 * @throws com.shuntian.portlet.intranet.NoSuchBasicInformationException if a matching basic information could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public BasicInformation findByUserId(long userId)
+		throws NoSuchBasicInformationException, SystemException {
+		BasicInformation basicInformation = fetchByUserId(userId);
+
+		if (basicInformation == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchBasicInformationException(msg.toString());
+		}
+
+		return basicInformation;
+	}
+
+	/**
+	 * Returns the basic information where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @return the matching basic information, or <code>null</code> if a matching basic information could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public BasicInformation fetchByUserId(long userId)
+		throws SystemException {
+		return fetchByUserId(userId, true);
+	}
+
+	/**
+	 * Returns the basic information where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching basic information, or <code>null</code> if a matching basic information could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public BasicInformation fetchByUserId(long userId, boolean retrieveFromCache)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { userId };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_USERID,
+					finderArgs, this);
+		}
+
+		if (result instanceof BasicInformation) {
+			BasicInformation basicInformation = (BasicInformation)result;
+
+			if ((userId != basicInformation.getUserId())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_BASICINFORMATION_WHERE);
+
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				List<BasicInformation> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"BasicInformationPersistenceImpl.fetchByUserId(long, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					BasicInformation basicInformation = list.get(0);
+
+					result = basicInformation;
+
+					cacheResult(basicInformation);
+
+					if ((basicInformation.getUserId() != userId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+							finderArgs, basicInformation);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (BasicInformation)result;
+		}
+	}
+
+	/**
+	 * Removes the basic information where userId = &#63; from the database.
+	 *
+	 * @param userId the user ID
+	 * @return the basic information that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public BasicInformation removeByUserId(long userId)
+		throws NoSuchBasicInformationException, SystemException {
+		BasicInformation basicInformation = findByUserId(userId);
+
+		return remove(basicInformation);
+	}
+
+	/**
+	 * Returns the number of basic informations where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @return the number of matching basic informations
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByUserId(long userId) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_USERID;
+
+		Object[] finderArgs = new Object[] { userId };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_BASICINFORMATION_WHERE);
+
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_USERID_USERID_2 = "basicInformation.userId = ?";
 
 	public BasicInformationPersistenceImpl() {
 		setModelClass(BasicInformation.class);
@@ -99,6 +319,9 @@ public class BasicInformationPersistenceImpl extends BasePersistenceImpl<BasicIn
 		EntityCacheUtil.putResult(BasicInformationModelImpl.ENTITY_CACHE_ENABLED,
 			BasicInformationImpl.class, basicInformation.getPrimaryKey(),
 			basicInformation);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+			new Object[] { basicInformation.getUserId() }, basicInformation);
 
 		basicInformation.resetOriginalValues();
 	}
@@ -157,6 +380,8 @@ public class BasicInformationPersistenceImpl extends BasePersistenceImpl<BasicIn
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache(basicInformation);
 	}
 
 	@Override
@@ -167,6 +392,49 @@ public class BasicInformationPersistenceImpl extends BasePersistenceImpl<BasicIn
 		for (BasicInformation basicInformation : basicInformations) {
 			EntityCacheUtil.removeResult(BasicInformationModelImpl.ENTITY_CACHE_ENABLED,
 				BasicInformationImpl.class, basicInformation.getPrimaryKey());
+
+			clearUniqueFindersCache(basicInformation);
+		}
+	}
+
+	protected void cacheUniqueFindersCache(BasicInformation basicInformation) {
+		if (basicInformation.isNew()) {
+			Object[] args = new Object[] { basicInformation.getUserId() };
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
+				basicInformation);
+		}
+		else {
+			BasicInformationModelImpl basicInformationModelImpl = (BasicInformationModelImpl)basicInformation;
+
+			if ((basicInformationModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { basicInformation.getUserId() };
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
+					basicInformation);
+			}
+		}
+	}
+
+	protected void clearUniqueFindersCache(BasicInformation basicInformation) {
+		BasicInformationModelImpl basicInformationModelImpl = (BasicInformationModelImpl)basicInformation;
+
+		Object[] args = new Object[] { basicInformation.getUserId() };
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
+
+		if ((basicInformationModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
+			args = new Object[] { basicInformationModelImpl.getOriginalUserId() };
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
 		}
 	}
 
@@ -305,13 +573,16 @@ public class BasicInformationPersistenceImpl extends BasePersistenceImpl<BasicIn
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !BasicInformationModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		EntityCacheUtil.putResult(BasicInformationModelImpl.ENTITY_CACHE_ENABLED,
 			BasicInformationImpl.class, basicInformation.getPrimaryKey(),
 			basicInformation);
+
+		clearUniqueFindersCache(basicInformation);
+		cacheUniqueFindersCache(basicInformation);
 
 		return basicInformation;
 	}
@@ -672,9 +943,12 @@ public class BasicInformationPersistenceImpl extends BasePersistenceImpl<BasicIn
 	}
 
 	private static final String _SQL_SELECT_BASICINFORMATION = "SELECT basicInformation FROM BasicInformation basicInformation";
+	private static final String _SQL_SELECT_BASICINFORMATION_WHERE = "SELECT basicInformation FROM BasicInformation basicInformation WHERE ";
 	private static final String _SQL_COUNT_BASICINFORMATION = "SELECT COUNT(basicInformation) FROM BasicInformation basicInformation";
+	private static final String _SQL_COUNT_BASICINFORMATION_WHERE = "SELECT COUNT(basicInformation) FROM BasicInformation basicInformation WHERE ";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "basicInformation.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No BasicInformation exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No BasicInformation exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(BasicInformationPersistenceImpl.class);

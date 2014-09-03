@@ -1,18 +1,18 @@
-<%@ include file="/html/init.jsp" %>
+<%@ include file="/html/satff/init-ext.jsp" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <% 
-long satffId = ParamUtil.getLong(request, "satffId");
+long userId = ParamUtil.getLong(request, "userId");
 
-Satff satff = null;
+BasicInformation basicInformation = null;
 
-if(Validator.isNotNull(satffId)){
-		
+if(Validator.isNotNull(userId)){
+	basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(userId);
 }
 %>
 
-<portlet:actionURL var="editUserActionURL">
+<portlet:actionURL var="editUserActionURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 	<portlet:param name="action" value="editUser" />
 </portlet:actionURL>
 
@@ -21,14 +21,25 @@ if(Validator.isNotNull(satffId)){
 </portlet:renderURL>
 
 <liferay-ui:header
-	backURL="<%= backURL %>"
-	title='<%= (satff == null) ? "员工信息登记" : "员工信息： " + satff.getName() %>'
+	backURL="<%= backURL.toString() %>"
+	title='<%= (basicInformation == null) ? "员工信息登记" : "员工信息： " + basicInformation.getName() %>'
 />
 
-<aui:form action="<%= backURL.toString() %>" method="post" name="fm">
+<aui:form action="<%= editUserActionURL.toString() %>" method="post" name="fm">
 	<aui:input name="name" label="姓名" value="" />
-	<aui:input name="name" label="姓名" value="" />
+	<aui:input name="sex" label="性别" value="" />
+	<aui:input name="name" label="民族" value="" />
+	<aui:input name="sex" label="婚姻状况" value=""/>
+	<aui:input name="name" label="健康状况" value="" />
+	<aui:input name="sex" label="籍贯" value="" />
+	<aui:input name="name" label="出生年月" value="" />
+	<aui:input name="name" label="身份证号" value="" />
+	<aui:input name="sex" label="户口性质" value="" />
+	<aui:input name="name" label="最高学历" value="" />
+	<aui:input name="sex" label="政治面貌" value="" />
+	<aui:input name="sex" label="存档地点" value="" />
 	
-	<input type="submit" value="submit" />
 	
+	<aui:button type="submit" value="保存" />
+	<aui:button value="取消" />
 </aui:form>

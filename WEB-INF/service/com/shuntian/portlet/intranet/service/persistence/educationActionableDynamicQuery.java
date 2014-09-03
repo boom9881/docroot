@@ -17,21 +17,21 @@ package com.shuntian.portlet.intranet.service.persistence;
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 
-import com.shuntian.portlet.intranet.model.education;
-import com.shuntian.portlet.intranet.service.educationLocalServiceUtil;
+import com.shuntian.portlet.intranet.model.Education;
+import com.shuntian.portlet.intranet.service.EducationLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
-public abstract class educationActionableDynamicQuery
+public abstract class EducationActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public educationActionableDynamicQuery() throws SystemException {
-		setBaseLocalService(educationLocalServiceUtil.getService());
-		setClass(education.class);
+	public EducationActionableDynamicQuery() throws SystemException {
+		setBaseLocalService(EducationLocalServiceUtil.getService());
+		setClass(Education.class);
 
 		setClassLoader(com.shuntian.portlet.intranet.service.ClpSerializer.class.getClassLoader());
 
-		setPrimaryKeyPropertyName("educationId");
+		setPrimaryKeyPropertyName("id");
 	}
 }

@@ -19,21 +19,21 @@ import com.liferay.portal.NoSuchModelException;
 /**
  * @author Brian Wing Shun Chan
  */
-public class NoSucheducationException extends NoSuchModelException {
+public class NoSuchEducationException extends NoSuchModelException {
 
-	public NoSucheducationException() {
+	public NoSuchEducationException() {
 		super();
 	}
 
-	public NoSucheducationException(String msg) {
+	public NoSuchEducationException(String msg) {
 		super(msg);
 	}
 
-	public NoSucheducationException(String msg, Throwable cause) {
+	public NoSuchEducationException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NoSucheducationException(Throwable cause) {
+	public NoSuchEducationException(Throwable cause) {
 		super(cause);
 	}
 

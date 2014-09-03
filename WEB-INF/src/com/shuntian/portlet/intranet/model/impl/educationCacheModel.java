@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
-import com.shuntian.portlet.intranet.model.education;
+import com.shuntian.portlet.intranet.model.Education;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -28,42 +28,40 @@ import java.io.ObjectOutput;
 import java.util.Date;
 
 /**
- * The cache model class for representing education in entity cache.
+ * The cache model class for representing Education in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see education
+ * @see Education
  * @generated
  */
-public class educationCacheModel implements CacheModel<education>,
+public class EducationCacheModel implements CacheModel<Education>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(25);
 
-		sb.append("{uuid=");
-		sb.append(uuid);
-		sb.append(", educationId=");
-		sb.append(educationId);
-		sb.append(", satffId=");
-		sb.append(satffId);
+		sb.append("{id=");
+		sb.append(id);
+		sb.append(", userId=");
+		sb.append(userId);
 		sb.append(", witness=");
 		sb.append(witness);
 		sb.append(", professional=");
 		sb.append(professional);
 		sb.append(", university=");
 		sb.append(university);
-		sb.append(", contact_phone=");
-		sb.append(contact_phone);
-		sb.append(", start_stop_time=");
-		sb.append(start_stop_time);
-		sb.append(", companyId=");
-		sb.append(companyId);
-		sb.append(", createuser=");
-		sb.append(createuser);
+		sb.append(", contactPhone=");
+		sb.append(contactPhone);
+		sb.append(", startTime=");
+		sb.append(startTime);
+		sb.append(", stopTime=");
+		sb.append(stopTime);
+		sb.append(", createUserId=");
+		sb.append(createUserId);
 		sb.append(", createDate=");
 		sb.append(createDate);
-		sb.append(", modifieduser=");
-		sb.append(modifieduser);
+		sb.append(", modifiedUserId=");
+		sb.append(modifiedUserId);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
 		sb.append("}");
@@ -72,18 +70,11 @@ public class educationCacheModel implements CacheModel<education>,
 	}
 
 	@Override
-	public education toEntityModel() {
-		educationImpl educationImpl = new educationImpl();
+	public Education toEntityModel() {
+		EducationImpl educationImpl = new EducationImpl();
 
-		if (uuid == null) {
-			educationImpl.setUuid(StringPool.BLANK);
-		}
-		else {
-			educationImpl.setUuid(uuid);
-		}
-
-		educationImpl.setEducationId(educationId);
-		educationImpl.setSatffId(satffId);
+		educationImpl.setId(id);
+		educationImpl.setUserId(userId);
 
 		if (witness == null) {
 			educationImpl.setWitness(StringPool.BLANK);
@@ -106,22 +97,28 @@ public class educationCacheModel implements CacheModel<education>,
 			educationImpl.setUniversity(university);
 		}
 
-		if (contact_phone == null) {
-			educationImpl.setContact_phone(StringPool.BLANK);
+		if (contactPhone == null) {
+			educationImpl.setContactPhone(StringPool.BLANK);
 		}
 		else {
-			educationImpl.setContact_phone(contact_phone);
+			educationImpl.setContactPhone(contactPhone);
 		}
 
-		if (start_stop_time == Long.MIN_VALUE) {
-			educationImpl.setStart_stop_time(null);
+		if (startTime == Long.MIN_VALUE) {
+			educationImpl.setStartTime(null);
 		}
 		else {
-			educationImpl.setStart_stop_time(new Date(start_stop_time));
+			educationImpl.setStartTime(new Date(startTime));
 		}
 
-		educationImpl.setCompanyId(companyId);
-		educationImpl.setCreateuser(createuser);
+		if (stopTime == Long.MIN_VALUE) {
+			educationImpl.setStopTime(null);
+		}
+		else {
+			educationImpl.setStopTime(new Date(stopTime));
+		}
+
+		educationImpl.setCreateUserId(createUserId);
 
 		if (createDate == Long.MIN_VALUE) {
 			educationImpl.setCreateDate(null);
@@ -130,7 +127,7 @@ public class educationCacheModel implements CacheModel<education>,
 			educationImpl.setCreateDate(new Date(createDate));
 		}
 
-		educationImpl.setModifieduser(modifieduser);
+		educationImpl.setModifiedUserId(modifiedUserId);
 
 		if (modifiedDate == Long.MIN_VALUE) {
 			educationImpl.setModifiedDate(null);
@@ -146,33 +143,25 @@ public class educationCacheModel implements CacheModel<education>,
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		uuid = objectInput.readUTF();
-		educationId = objectInput.readLong();
-		satffId = objectInput.readLong();
+		id = objectInput.readLong();
+		userId = objectInput.readLong();
 		witness = objectInput.readUTF();
 		professional = objectInput.readUTF();
 		university = objectInput.readUTF();
-		contact_phone = objectInput.readUTF();
-		start_stop_time = objectInput.readLong();
-		companyId = objectInput.readLong();
-		createuser = objectInput.readLong();
+		contactPhone = objectInput.readUTF();
+		startTime = objectInput.readLong();
+		stopTime = objectInput.readLong();
+		createUserId = objectInput.readLong();
 		createDate = objectInput.readLong();
-		modifieduser = objectInput.readLong();
+		modifiedUserId = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		if (uuid == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(uuid);
-		}
-
-		objectOutput.writeLong(educationId);
-		objectOutput.writeLong(satffId);
+		objectOutput.writeLong(id);
+		objectOutput.writeLong(userId);
 
 		if (witness == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -195,32 +184,31 @@ public class educationCacheModel implements CacheModel<education>,
 			objectOutput.writeUTF(university);
 		}
 
-		if (contact_phone == null) {
+		if (contactPhone == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(contact_phone);
+			objectOutput.writeUTF(contactPhone);
 		}
 
-		objectOutput.writeLong(start_stop_time);
-		objectOutput.writeLong(companyId);
-		objectOutput.writeLong(createuser);
+		objectOutput.writeLong(startTime);
+		objectOutput.writeLong(stopTime);
+		objectOutput.writeLong(createUserId);
 		objectOutput.writeLong(createDate);
-		objectOutput.writeLong(modifieduser);
+		objectOutput.writeLong(modifiedUserId);
 		objectOutput.writeLong(modifiedDate);
 	}
 
-	public String uuid;
-	public long educationId;
-	public long satffId;
+	public long id;
+	public long userId;
 	public String witness;
 	public String professional;
 	public String university;
-	public String contact_phone;
-	public long start_stop_time;
-	public long companyId;
-	public long createuser;
+	public String contactPhone;
+	public long startTime;
+	public long stopTime;
+	public long createUserId;
 	public long createDate;
-	public long modifieduser;
+	public long modifiedUserId;
 	public long modifiedDate;
 }

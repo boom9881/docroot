@@ -1,130 +1,94 @@
 <?xml version="1.0"?>
 
 <model-hints>
-	<model name="com.shuntian.portlet.intranet.model.basic_information">
-		<field name="uuid" type="String" />
-		<field name="staffId" type="long" />
+	<model name="com.shuntian.portlet.intranet.model.BasicInformation">
+		<field name="id" type="long" />
 		<field name="userId" type="long" />
 		<field name="name" type="String" />
-		<field name="sex" type="String" />
-		<field name="id_number" type="String" />
+		<field name="sex" type="int" />
+		<field name="idNumber" type="String" />
 		<field name="nation" type="String" />
-		<field name="place_of_origin" type="String" />
-		<field name="account_properties" type="String" />
-		<field name="birth" type="Date" />
-		<field name="marital_status" type="String" />
-		<field name="highest_degree" type="String" />
-		<field name="political_background" type="String" />
-		<field name="file_location" type="String" />
-		<field name="base_pay" type="double" />
-		<field name="performance_pay" type="double" />
-		<field name="health" type="String" />
-		<field name="contact_phone" type="String" />
+		<field name="placeOfOrigin" type="String" />
+		<field name="accountProperties" type="String" />
+		<field name="birthDate" type="Date" />
+		<field name="maritalStatus" type="String" />
+		<field name="highestDegree" type="String" />
+		<field name="politicalBackground" type="String" />
+		<field name="fileLocation" type="String" />
+		<field name="basePay" type="double" />
+		<field name="performancePay" type="double" />
+		<field name="health" type="int" />
+		<field name="contactPhone" type="String" />
 		<field name="mail" type="String" />
 		<field name="domicile" type="String" />
-		<field name="residence_phone" type="String" />
-		<field name="current_residential_address" type="String" />
-		<field name="current_residential_address_phone" type="String" />
-		<field name="emergency_contact" type="String" />
-		<field name="emergency_contact_relation" type="String" />
-		<field name="emergency_contact_phone" type="String" />
-		<field name="companyId" type="long" />
-		<field name="createuser" type="long" />
+		<field name="residencePhone" type="String" />
+		<field name="currentResidentialAddress" type="String" />
+		<field name="currentResidentialAddressPhone" type="String" />
+		<field name="emergencyContact" type="String" />
+		<field name="emergencyContactRelation" type="String" />
+		<field name="emergencyContactPhone" type="String" />
+		<field name="createUserId" type="long" />
 		<field name="createDate" type="Date" />
-		<field name="modifieduser" type="long" />
+		<field name="modifiedUserId" type="long" />
 		<field name="modifiedDate" type="Date" />
 	</model>
-	<model name="com.shuntian.portlet.intranet.model.education">
-		<field name="uuid" type="String" />
-		<field name="educationId" type="long" />
-		<field name="satffId" type="long" />
+	<model name="com.shuntian.portlet.intranet.model.Education">
+		<field name="id" type="long" />
+		<field name="userId" type="long" />
 		<field name="witness" type="String" />
 		<field name="professional" type="String" />
 		<field name="university" type="String" />
-		<field name="contact_phone" type="String" />
-		<field name="start_stop_time" type="Date" />
-		<field name="companyId" type="long" />
-		<field name="createuser" type="long" />
+		<field name="contactPhone" type="String" />
+		<field name="startTime" type="Date" />
+		<field name="stopTime" type="Date" />
+		<field name="createUserId" type="long" />
 		<field name="createDate" type="Date" />
-		<field name="modifieduser" type="long" />
+		<field name="modifiedUserId" type="long" />
 		<field name="modifiedDate" type="Date" />
 	</model>
-	<model name="com.shuntian.portlet.intranet.model.ext_information">
-		<field name="uuid" type="String" />
-		<field name="extId" type="long" />
-		<field name="staffId" type="long" />
-		<field name="open_city" type="String" />
-		<field name="bank_name" type="String" />
-		<field name="bankid" type="String" />
-		<field name="labor_contract_start" type="Date" />
-		<field name="labor_contract_end" type="Date" />
-		<field name="probation_period_start" type="Date" />
-		<field name="probation_period_end" type="Date" />
-		<field name="indured_location" type="String" />
-		<field name="frist_insured" type="Date" />
-		<field name="is_insured" type="String" />
-		<field name="companyId" type="long" />
-		<field name="createuser" type="long" />
+	<model name="com.shuntian.portlet.intranet.model.ExtInformation">
+		<field name="id" type="long" />
+		<field name="userId" type="long" />
+		<field name="openCity" type="String" />
+		<field name="bankName" type="String" />
+		<field name="bankId" type="String" />
+		<field name="laborContractStart" type="Date" />
+		<field name="laborContractEnd" type="Date" />
+		<field name="probationPeriodStart" type="Date" />
+		<field name="probationPeriodEnd" type="Date" />
+		<field name="induredLocation" type="String" />
+		<field name="fristInsured" type="Date" />
+		<field name="isInsured" type="String" />
+		<field name="createUserId" type="long" />
 		<field name="createDate" type="Date" />
-		<field name="modifieduser" type="long" />
+		<field name="modifiedUserId" type="long" />
 		<field name="modifiedDate" type="Date" />
 	</model>
-	<model name="com.shuntian.portlet.intranet.model.family">
-		<field name="uuid" type="String" />
-		<field name="familyId" type="long" />
-		<field name="satffId" type="long" />
+	<model name="com.shuntian.portlet.intranet.model.FamilyRelationship">
+		<field name="id" type="long" />
+		<field name="userId" type="long" />
 		<field name="name" type="String" />
 		<field name="relationship" type="String" />
-		<field name="work_unit" type="String" />
-		<field name="contact_phone" type="String" />
-		<field name="once_job" type="String" />
-		<field name="companyId" type="long" />
-		<field name="createuser" type="long" />
+		<field name="workUnit" type="String" />
+		<field name="contactPhone" type="String" />
+		<field name="onceJob" type="String" />
+		<field name="createUserId" type="long" />
 		<field name="createDate" type="Date" />
-		<field name="modifieduser" type="long" />
+		<field name="modifiedUserId" type="long" />
 		<field name="modifiedDate" type="Date" />
 	</model>
-	<model name="com.shuntian.portlet.intranet.model.Satff">
-		<field name="uuid" type="String" />
+	<model name="com.shuntian.portlet.intranet.model.WorkExperience">
 		<field name="id" type="long" />
-		<field name="user_id" type="long" />
-		<field name="city" type="String" />
-		<field name="name" type="String" />
-		<field name="turnover_time" type="Date" />
-		<field name="entry_time" type="Date" />
-		<field name="base_pay" type="double" />
-		<field name="performance_pay" type="double" />
-		<field name="wage_subtotal" type="double" />
-		<field name="insurance_base" type="double" />
-		<field name="endowment_insurance" type="double" />
-		<field name="unemployment_insurance" type="double" />
-		<field name="work_injury_insurance" type="double" />
-		<field name="birth_insurance" type="double" />
-		<field name="medical_insurance" type="double" />
-		<field name="individual_insurance" type="double" />
-		<field name="housing_accumulation_fund_base" type="double" />
-		<field name="individual_pay" type="double" />
-		<field name="amount_payable" type="double" />
-		<field name="people_together" type="double" />
-		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
-		<field name="createDate" type="Date" />
-		<field name="modifiedDate" type="Date" />
-	</model>
-	<model name="com.shuntian.portlet.intranet.model.work">
-		<field name="uuid" type="String" />
-		<field name="workId" type="long" />
-		<field name="satffId" type="long" />
 		<field name="witness" type="String" />
-		<field name="once_job" type="String" />
-		<field name="work_unit" type="String" />
-		<field name="contact_phone" type="String" />
-		<field name="start_stop_time" type="Date" />
-		<field name="companyId" type="long" />
-		<field name="createuser" type="long" />
+		<field name="onceJob" type="String" />
+		<field name="workUnit" type="String" />
+		<field name="contactPhone" type="String" />
+		<field name="startTime" type="Date" />
+		<field name="stopTime" type="Date" />
+		<field name="createUserId" type="long" />
 		<field name="createDate" type="Date" />
-		<field name="modifieduser" type="long" />
+		<field name="modifiedUserId" type="long" />
 		<field name="modifiedDate" type="Date" />
 	</model>
 </model-hints>

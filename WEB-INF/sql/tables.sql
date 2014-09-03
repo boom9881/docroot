@@ -1,3 +1,83 @@
+create table Intranet_BasicInformation (
+	id_ LONG not null primary key,
+	userId LONG,
+	name VARCHAR(75) null,
+	sex INTEGER,
+	idNumber VARCHAR(75) null,
+	nation VARCHAR(75) null,
+	placeOfOrigin VARCHAR(75) null,
+	accountProperties VARCHAR(75) null,
+	birthDate DATE null,
+	maritalStatus VARCHAR(75) null,
+	highestDegree VARCHAR(75) null,
+	politicalBackground VARCHAR(75) null,
+	fileLocation VARCHAR(75) null,
+	basePay DOUBLE,
+	performancePay DOUBLE,
+	health INTEGER,
+	contactPhone VARCHAR(75) null,
+	mail VARCHAR(75) null,
+	domicile VARCHAR(75) null,
+	residencePhone VARCHAR(75) null,
+	currentResidentialAddress VARCHAR(75) null,
+	currentResidentialAddressPhone VARCHAR(75) null,
+	emergencyContact VARCHAR(75) null,
+	emergencyContactRelation VARCHAR(75) null,
+	emergencyContactPhone VARCHAR(75) null,
+	createUserId LONG,
+	createDate DATE null,
+	modifiedUserId LONG,
+	modifiedDate DATE null
+);
+
+create table Intranet_Education (
+	id_ LONG not null primary key,
+	userId LONG,
+	witness VARCHAR(75) null,
+	professional VARCHAR(75) null,
+	university VARCHAR(75) null,
+	contactPhone VARCHAR(75) null,
+	startTime DATE null,
+	stopTime DATE null,
+	createUserId LONG,
+	createDate DATE null,
+	modifiedUserId LONG,
+	modifiedDate DATE null
+);
+
+create table Intranet_ExtInformation (
+	id_ LONG not null primary key,
+	userId LONG,
+	openCity VARCHAR(75) null,
+	bankName VARCHAR(75) null,
+	bankId VARCHAR(75) null,
+	laborContractStart DATE null,
+	laborContractEnd DATE null,
+	probationPeriodStart DATE null,
+	probationPeriodEnd DATE null,
+	induredLocation VARCHAR(75) null,
+	fristInsured DATE null,
+	isInsured VARCHAR(75) null,
+	createUserId LONG,
+	createDate DATE null,
+	modifiedUserId LONG,
+	modifiedDate DATE null
+);
+
+create table Intranet_FamilyRelationship (
+	id_ LONG not null primary key,
+	userId LONG,
+	name VARCHAR(75) null,
+	relationship VARCHAR(75) null,
+	workUnit VARCHAR(75) null,
+	contactPhone VARCHAR(75) null,
+	onceJob VARCHAR(75) null,
+	createUserId LONG,
+	createDate DATE null,
+	modifiedUserId LONG,
+	modifiedDate DATE null
+);
+
 create table Intranet_Satff (
 	uuid_ VARCHAR(75) null,
 	id_ LONG not null primary key,
@@ -24,6 +104,21 @@ create table Intranet_Satff (
 	userId LONG,
 	userName VARCHAR(75) null,
 	createDate DATE null,
+	modifiedDate DATE null
+);
+
+create table Intranet_WorkExperience (
+	id_ LONG not null primary key,
+	userId LONG,
+	witness VARCHAR(75) null,
+	onceJob VARCHAR(75) null,
+	workUnit VARCHAR(75) null,
+	contactPhone VARCHAR(75) null,
+	startTime DATE null,
+	stopTime DATE null,
+	createUserId LONG,
+	createDate DATE null,
+	modifiedUserId LONG,
 	modifiedDate DATE null
 );
 

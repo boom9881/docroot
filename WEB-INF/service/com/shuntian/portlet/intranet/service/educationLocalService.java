@@ -24,25 +24,25 @@ import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
 
 /**
- * Provides the local service interface for education. Methods of this
+ * Provides the local service interface for Education. Methods of this
  * service will not have security checks based on the propagated JAAS
  * credentials because this service can only be accessed from within the same
  * VM.
  *
  * @author Brian Wing Shun Chan
- * @see educationLocalServiceUtil
- * @see com.shuntian.portlet.intranet.service.base.educationLocalServiceBaseImpl
- * @see com.shuntian.portlet.intranet.service.impl.educationLocalServiceImpl
+ * @see EducationLocalServiceUtil
+ * @see com.shuntian.portlet.intranet.service.base.EducationLocalServiceBaseImpl
+ * @see com.shuntian.portlet.intranet.service.impl.EducationLocalServiceImpl
  * @generated
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface educationLocalService extends BaseLocalService,
+public interface EducationLocalService extends BaseLocalService,
 	InvokableLocalService, PersistedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link educationLocalServiceUtil} to access the education local service. Add custom service methods to {@link com.shuntian.portlet.intranet.service.impl.educationLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link EducationLocalServiceUtil} to access the education local service. Add custom service methods to {@link com.shuntian.portlet.intranet.service.impl.EducationLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**
@@ -52,29 +52,29 @@ public interface educationLocalService extends BaseLocalService,
 	* @return the education that was added
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.shuntian.portlet.intranet.model.education addeducation(
-		com.shuntian.portlet.intranet.model.education education)
+	public com.shuntian.portlet.intranet.model.Education addEducation(
+		com.shuntian.portlet.intranet.model.Education education)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Creates a new education with the primary key. Does not add the education to the database.
 	*
-	* @param educationId the primary key for the new education
+	* @param id the primary key for the new education
 	* @return the new education
 	*/
-	public com.shuntian.portlet.intranet.model.education createeducation(
-		long educationId);
+	public com.shuntian.portlet.intranet.model.Education createEducation(
+		long id);
 
 	/**
 	* Deletes the education with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param educationId the primary key of the education
+	* @param id the primary key of the education
 	* @return the education that was removed
 	* @throws PortalException if a education with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.shuntian.portlet.intranet.model.education deleteeducation(
-		long educationId)
+	public com.shuntian.portlet.intranet.model.Education deleteEducation(
+		long id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -85,8 +85,8 @@ public interface educationLocalService extends BaseLocalService,
 	* @return the education that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.shuntian.portlet.intranet.model.education deleteeducation(
-		com.shuntian.portlet.intranet.model.education education)
+	public com.shuntian.portlet.intranet.model.Education deleteEducation(
+		com.shuntian.portlet.intranet.model.Education education)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
@@ -107,7 +107,7 @@ public interface educationLocalService extends BaseLocalService,
 	* Performs a dynamic query on the database and returns a range of the matching rows.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.educationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.EducationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param dynamicQuery the dynamic query
@@ -125,7 +125,7 @@ public interface educationLocalService extends BaseLocalService,
 	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.educationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.EducationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param dynamicQuery the dynamic query
@@ -167,34 +167,19 @@ public interface educationLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.shuntian.portlet.intranet.model.education fetcheducation(
-		long educationId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the education with the matching UUID and company.
-	*
-	* @param uuid the education's UUID
-	* @param companyId the primary key of the company
-	* @return the matching education, or <code>null</code> if a matching education could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.shuntian.portlet.intranet.model.education fetcheducationByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
+	public com.shuntian.portlet.intranet.model.Education fetchEducation(long id)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the education with the primary key.
 	*
-	* @param educationId the primary key of the education
+	* @param id the primary key of the education
 	* @return the education
 	* @throws PortalException if a education with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.shuntian.portlet.intranet.model.education geteducation(
-		long educationId)
+	public com.shuntian.portlet.intranet.model.Education getEducation(long id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -206,25 +191,10 @@ public interface educationLocalService extends BaseLocalService,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the education with the matching UUID and company.
-	*
-	* @param uuid the education's UUID
-	* @param companyId the primary key of the company
-	* @return the matching education
-	* @throws PortalException if a matching education could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.shuntian.portlet.intranet.model.education geteducationByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns a range of all the educations.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.educationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.EducationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of educations
@@ -233,7 +203,7 @@ public interface educationLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.shuntian.portlet.intranet.model.education> geteducations(
+	public java.util.List<com.shuntian.portlet.intranet.model.Education> getEducations(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -244,7 +214,7 @@ public interface educationLocalService extends BaseLocalService,
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int geteducationsCount()
+	public int getEducationsCount()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -254,8 +224,8 @@ public interface educationLocalService extends BaseLocalService,
 	* @return the education that was updated
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.shuntian.portlet.intranet.model.education updateeducation(
-		com.shuntian.portlet.intranet.model.education education)
+	public com.shuntian.portlet.intranet.model.Education updateEducation(
+		com.shuntian.portlet.intranet.model.Education education)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

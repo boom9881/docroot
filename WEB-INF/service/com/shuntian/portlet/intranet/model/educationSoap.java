@@ -26,29 +26,28 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class educationSoap implements Serializable {
-	public static educationSoap toSoapModel(education model) {
-		educationSoap soapModel = new educationSoap();
+public class EducationSoap implements Serializable {
+	public static EducationSoap toSoapModel(Education model) {
+		EducationSoap soapModel = new EducationSoap();
 
-		soapModel.setUuid(model.getUuid());
-		soapModel.setEducationId(model.getEducationId());
-		soapModel.setSatffId(model.getSatffId());
+		soapModel.setId(model.getId());
+		soapModel.setUserId(model.getUserId());
 		soapModel.setWitness(model.getWitness());
 		soapModel.setProfessional(model.getProfessional());
 		soapModel.setUniversity(model.getUniversity());
-		soapModel.setContact_phone(model.getContact_phone());
-		soapModel.setStart_stop_time(model.getStart_stop_time());
-		soapModel.setCompanyId(model.getCompanyId());
-		soapModel.setCreateuser(model.getCreateuser());
+		soapModel.setContactPhone(model.getContactPhone());
+		soapModel.setStartTime(model.getStartTime());
+		soapModel.setStopTime(model.getStopTime());
+		soapModel.setCreateUserId(model.getCreateUserId());
 		soapModel.setCreateDate(model.getCreateDate());
-		soapModel.setModifieduser(model.getModifieduser());
+		soapModel.setModifiedUserId(model.getModifiedUserId());
 		soapModel.setModifiedDate(model.getModifiedDate());
 
 		return soapModel;
 	}
 
-	public static educationSoap[] toSoapModels(education[] models) {
-		educationSoap[] soapModels = new educationSoap[models.length];
+	public static EducationSoap[] toSoapModels(Education[] models) {
+		EducationSoap[] soapModels = new EducationSoap[models.length];
 
 		for (int i = 0; i < models.length; i++) {
 			soapModels[i] = toSoapModel(models[i]);
@@ -57,14 +56,14 @@ public class educationSoap implements Serializable {
 		return soapModels;
 	}
 
-	public static educationSoap[][] toSoapModels(education[][] models) {
-		educationSoap[][] soapModels = null;
+	public static EducationSoap[][] toSoapModels(Education[][] models) {
+		EducationSoap[][] soapModels = null;
 
 		if (models.length > 0) {
-			soapModels = new educationSoap[models.length][models[0].length];
+			soapModels = new EducationSoap[models.length][models[0].length];
 		}
 		else {
-			soapModels = new educationSoap[0][0];
+			soapModels = new EducationSoap[0][0];
 		}
 
 		for (int i = 0; i < models.length; i++) {
@@ -74,49 +73,41 @@ public class educationSoap implements Serializable {
 		return soapModels;
 	}
 
-	public static educationSoap[] toSoapModels(List<education> models) {
-		List<educationSoap> soapModels = new ArrayList<educationSoap>(models.size());
+	public static EducationSoap[] toSoapModels(List<Education> models) {
+		List<EducationSoap> soapModels = new ArrayList<EducationSoap>(models.size());
 
-		for (education model : models) {
+		for (Education model : models) {
 			soapModels.add(toSoapModel(model));
 		}
 
-		return soapModels.toArray(new educationSoap[soapModels.size()]);
+		return soapModels.toArray(new EducationSoap[soapModels.size()]);
 	}
 
-	public educationSoap() {
+	public EducationSoap() {
 	}
 
 	public long getPrimaryKey() {
-		return _educationId;
+		return _id;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setEducationId(pk);
+		setId(pk);
 	}
 
-	public String getUuid() {
-		return _uuid;
+	public long getId() {
+		return _id;
 	}
 
-	public void setUuid(String uuid) {
-		_uuid = uuid;
+	public void setId(long id) {
+		_id = id;
 	}
 
-	public long getEducationId() {
-		return _educationId;
+	public long getUserId() {
+		return _userId;
 	}
 
-	public void setEducationId(long educationId) {
-		_educationId = educationId;
-	}
-
-	public long getSatffId() {
-		return _satffId;
-	}
-
-	public void setSatffId(long satffId) {
-		_satffId = satffId;
+	public void setUserId(long userId) {
+		_userId = userId;
 	}
 
 	public String getWitness() {
@@ -143,36 +134,36 @@ public class educationSoap implements Serializable {
 		_university = university;
 	}
 
-	public String getContact_phone() {
-		return _contact_phone;
+	public String getContactPhone() {
+		return _contactPhone;
 	}
 
-	public void setContact_phone(String contact_phone) {
-		_contact_phone = contact_phone;
+	public void setContactPhone(String contactPhone) {
+		_contactPhone = contactPhone;
 	}
 
-	public Date getStart_stop_time() {
-		return _start_stop_time;
+	public Date getStartTime() {
+		return _startTime;
 	}
 
-	public void setStart_stop_time(Date start_stop_time) {
-		_start_stop_time = start_stop_time;
+	public void setStartTime(Date startTime) {
+		_startTime = startTime;
 	}
 
-	public long getCompanyId() {
-		return _companyId;
+	public Date getStopTime() {
+		return _stopTime;
 	}
 
-	public void setCompanyId(long companyId) {
-		_companyId = companyId;
+	public void setStopTime(Date stopTime) {
+		_stopTime = stopTime;
 	}
 
-	public long getCreateuser() {
-		return _createuser;
+	public long getCreateUserId() {
+		return _createUserId;
 	}
 
-	public void setCreateuser(long createuser) {
-		_createuser = createuser;
+	public void setCreateUserId(long createUserId) {
+		_createUserId = createUserId;
 	}
 
 	public Date getCreateDate() {
@@ -183,12 +174,12 @@ public class educationSoap implements Serializable {
 		_createDate = createDate;
 	}
 
-	public long getModifieduser() {
-		return _modifieduser;
+	public long getModifiedUserId() {
+		return _modifiedUserId;
 	}
 
-	public void setModifieduser(long modifieduser) {
-		_modifieduser = modifieduser;
+	public void setModifiedUserId(long modifiedUserId) {
+		_modifiedUserId = modifiedUserId;
 	}
 
 	public Date getModifiedDate() {
@@ -199,17 +190,16 @@ public class educationSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	private String _uuid;
-	private long _educationId;
-	private long _satffId;
+	private long _id;
+	private long _userId;
 	private String _witness;
 	private String _professional;
 	private String _university;
-	private String _contact_phone;
-	private Date _start_stop_time;
-	private long _companyId;
-	private long _createuser;
+	private String _contactPhone;
+	private Date _startTime;
+	private Date _stopTime;
+	private long _createUserId;
 	private Date _createDate;
-	private long _modifieduser;
+	private long _modifiedUserId;
 	private Date _modifiedDate;
 }

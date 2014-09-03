@@ -7,244 +7,204 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.basic_informationModelImpl">
-		<attributes>
-			<id name="staffId" />
-			<basic name="uuid">
-				<column name="UUID_" />
-			</basic>
-			<basic name="userId" />
-			<basic name="name" />
-			<basic name="sex" />
-			<basic name="id_number" />
-			<basic name="nation" />
-			<basic name="place_of_origin" />
-			<basic name="account_properties" />
-			<basic name="birth">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="marital_status" />
-			<basic name="highest_degree" />
-			<basic name="political_background" />
-			<basic name="file_location" />
-			<basic name="base_pay" />
-			<basic name="performance_pay" />
-			<basic name="health" />
-			<basic name="contact_phone" />
-			<basic name="mail" />
-			<basic name="domicile" />
-			<basic name="residence_phone" />
-			<basic name="current_residential_address" />
-			<basic name="current_residential_address_phone" />
-			<basic name="emergency_contact" />
-			<basic name="emergency_contact_relation" />
-			<basic name="emergency_contact_phone" />
-			<basic name="companyId" />
-			<basic name="createuser" />
-			<basic name="createDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="modifieduser" />
-			<basic name="modifiedDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<transient name="modelAttributes" />
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-			<transient name="userUuid" />
-		</attributes>
-	</mapped-superclass>
-	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.educationModelImpl">
-		<attributes>
-			<id name="educationId" />
-			<basic name="uuid">
-				<column name="UUID_" />
-			</basic>
-			<basic name="satffId" />
-			<basic name="witness" />
-			<basic name="professional" />
-			<basic name="university" />
-			<basic name="contact_phone" />
-			<basic name="start_stop_time">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="companyId" />
-			<basic name="createuser" />
-			<basic name="createDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="modifieduser" />
-			<basic name="modifiedDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<transient name="modelAttributes" />
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-		</attributes>
-	</mapped-superclass>
-	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.ext_informationModelImpl">
-		<attributes>
-			<id name="extId" />
-			<basic name="uuid">
-				<column name="UUID_" />
-			</basic>
-			<basic name="staffId" />
-			<basic name="open_city" />
-			<basic name="bank_name" />
-			<basic name="bankid" />
-			<basic name="labor_contract_start">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="labor_contract_end">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="probation_period_start">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="probation_period_end">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="indured_location" />
-			<basic name="frist_insured">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="is_insured" />
-			<basic name="companyId" />
-			<basic name="createuser" />
-			<basic name="createDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="modifieduser" />
-			<basic name="modifiedDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<transient name="modelAttributes" />
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-		</attributes>
-	</mapped-superclass>
-	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.familyModelImpl">
-		<attributes>
-			<id name="familyId" />
-			<basic name="uuid">
-				<column name="UUID_" />
-			</basic>
-			<basic name="satffId" />
-			<basic name="name" />
-			<basic name="relationship" />
-			<basic name="work_unit" />
-			<basic name="contact_phone" />
-			<basic name="once_job" />
-			<basic name="companyId" />
-			<basic name="createuser" />
-			<basic name="createDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="modifieduser" />
-			<basic name="modifiedDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<transient name="modelAttributes" />
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-		</attributes>
-	</mapped-superclass>
-	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.SatffModelImpl">
+	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.BasicInformationModelImpl">
 		<attributes>
 			<id name="id">
 				<column name="ID_" />
 			</id>
-			<basic name="uuid">
-				<column name="UUID_" />
-			</basic>
-			<basic name="user_id" />
-			<basic name="city" />
-			<basic name="name" />
-			<basic name="turnover_time">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="entry_time">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="base_pay" />
-			<basic name="performance_pay" />
-			<basic name="wage_subtotal" />
-			<basic name="insurance_base" />
-			<basic name="endowment_insurance" />
-			<basic name="unemployment_insurance" />
-			<basic name="work_injury_insurance" />
-			<basic name="birth_insurance" />
-			<basic name="medical_insurance" />
-			<basic name="individual_insurance" />
-			<basic name="housing_accumulation_fund_base" />
-			<basic name="individual_pay" />
-			<basic name="amount_payable" />
-			<basic name="people_together" />
-			<basic name="companyId" />
 			<basic name="userId" />
-			<basic name="userName" />
+			<basic name="name" />
+			<basic name="sex" />
+			<basic name="idNumber" />
+			<basic name="nation" />
+			<basic name="placeOfOrigin" />
+			<basic name="accountProperties" />
+			<basic name="birthDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="maritalStatus" />
+			<basic name="highestDegree" />
+			<basic name="politicalBackground" />
+			<basic name="fileLocation" />
+			<basic name="basePay" />
+			<basic name="performancePay" />
+			<basic name="health" />
+			<basic name="contactPhone" />
+			<basic name="mail" />
+			<basic name="domicile" />
+			<basic name="residencePhone" />
+			<basic name="currentResidentialAddress" />
+			<basic name="currentResidentialAddressPhone" />
+			<basic name="emergencyContact" />
+			<basic name="emergencyContactRelation" />
+			<basic name="emergencyContactPhone" />
+			<basic name="createUserId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="modifiedUserId" />
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<transient name="createUserUuid" />
 			<transient name="modelAttributes" />
+			<transient name="modifiedUserUuid" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.workModelImpl">
+	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.EducationModelImpl">
 		<attributes>
-			<id name="workId" />
-			<basic name="uuid">
-				<column name="UUID_" />
-			</basic>
-			<basic name="satffId" />
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="userId" />
 			<basic name="witness" />
-			<basic name="once_job" />
-			<basic name="work_unit" />
-			<basic name="contact_phone" />
-			<basic name="start_stop_time">
+			<basic name="professional" />
+			<basic name="university" />
+			<basic name="contactPhone" />
+			<basic name="startTime">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="companyId" />
-			<basic name="createuser" />
+			<basic name="stopTime">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createUserId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="modifieduser" />
+			<basic name="modifiedUserId" />
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<transient name="createUserUuid" />
 			<transient name="modelAttributes" />
+			<transient name="modifiedUserUuid" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<entity class="com.shuntian.portlet.intranet.model.impl.basic_informationImpl" name="basic_information">
-		<table name="Intranet_basic_information" />
+	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.ExtInformationModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="userId" />
+			<basic name="openCity" />
+			<basic name="bankName" />
+			<basic name="bankId" />
+			<basic name="laborContractStart">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="laborContractEnd">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="probationPeriodStart">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="probationPeriodEnd">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="induredLocation" />
+			<basic name="fristInsured">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="isInsured" />
+			<basic name="createUserId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedUserId" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="createUserUuid" />
+			<transient name="modelAttributes" />
+			<transient name="modifiedUserUuid" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.FamilyRelationshipModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="userId" />
+			<basic name="name" />
+			<basic name="relationship" />
+			<basic name="workUnit" />
+			<basic name="contactPhone" />
+			<basic name="onceJob" />
+			<basic name="createUserId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedUserId" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="createUserUuid" />
+			<transient name="modelAttributes" />
+			<transient name="modifiedUserUuid" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.WorkExperienceModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="userId" />
+			<basic name="witness" />
+			<basic name="onceJob" />
+			<basic name="workUnit" />
+			<basic name="contactPhone" />
+			<basic name="startTime">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="stopTime">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createUserId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedUserId" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="createUserUuid" />
+			<transient name="modelAttributes" />
+			<transient name="modifiedUserUuid" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.shuntian.portlet.intranet.model.impl.BasicInformationImpl" name="BasicInformation">
+		<table name="Intranet_BasicInformation" />
 		<attributes />
 	</entity>
-	<entity class="com.shuntian.portlet.intranet.model.impl.educationImpl" name="education">
-		<table name="Intranet_education" />
+	<entity class="com.shuntian.portlet.intranet.model.impl.EducationImpl" name="Education">
+		<table name="Intranet_Education" />
 		<attributes />
 	</entity>
-	<entity class="com.shuntian.portlet.intranet.model.impl.ext_informationImpl" name="ext_information">
-		<table name="Intranet_ext_information" />
+	<entity class="com.shuntian.portlet.intranet.model.impl.ExtInformationImpl" name="ExtInformation">
+		<table name="Intranet_ExtInformation" />
 		<attributes />
 	</entity>
-	<entity class="com.shuntian.portlet.intranet.model.impl.familyImpl" name="family">
-		<table name="Intranet_family" />
+	<entity class="com.shuntian.portlet.intranet.model.impl.FamilyRelationshipImpl" name="FamilyRelationship">
+		<table name="Intranet_FamilyRelationship" />
 		<attributes />
 	</entity>
-	<entity class="com.shuntian.portlet.intranet.model.impl.SatffImpl" name="Satff">
-		<table name="Intranet_Satff" />
-		<attributes />
-	</entity>
-	<entity class="com.shuntian.portlet.intranet.model.impl.workImpl" name="work">
-		<table name="Intranet_work" />
+	<entity class="com.shuntian.portlet.intranet.model.impl.WorkExperienceImpl" name="WorkExperience">
+		<table name="Intranet_WorkExperience" />
 		<attributes />
 	</entity>
 </entity-mappings>

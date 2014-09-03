@@ -99,9 +99,6 @@
 <%@ page import="com.liferay.portal.service.OrganizationServiceUtil" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
 
-<%@ page import="com.shuntian.portlet.intranet.model.Satff" %>
-<%@ page import="com.shuntian.portlet.intranet.service.SatffLocalServiceUtil" %>
-
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />

@@ -2,154 +2,114 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
-	<import class="com.shuntian.portlet.intranet.model.basic_information" />
-	<import class="com.shuntian.portlet.intranet.model.education" />
-	<import class="com.shuntian.portlet.intranet.model.ext_information" />
-	<import class="com.shuntian.portlet.intranet.model.family" />
-	<import class="com.shuntian.portlet.intranet.model.Satff" />
-	<import class="com.shuntian.portlet.intranet.model.work" />
-	<class name="com.shuntian.portlet.intranet.model.impl.basic_informationImpl" table="Intranet_basic_information">
-		<cache usage="read-write" />
-		<id name="staffId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
-		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="sex" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="id_number" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="nation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="place_of_origin" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="account_properties" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="birth" type="org.hibernate.type.TimestampType" />
-		<property name="marital_status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="highest_degree" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="political_background" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="file_location" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="base_pay" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="performance_pay" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="health" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="contact_phone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="mail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="domicile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="residence_phone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="current_residential_address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="current_residential_address_phone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="emergency_contact" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="emergency_contact_relation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="emergency_contact_phone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createuser" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createDate" type="org.hibernate.type.TimestampType" />
-		<property name="modifieduser" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.shuntian.portlet.intranet.model.impl.educationImpl" table="Intranet_education">
-		<cache usage="read-write" />
-		<id name="educationId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
-		<property name="satffId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="witness" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="professional" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="university" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="contact_phone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="start_stop_time" type="org.hibernate.type.TimestampType" />
-		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createuser" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createDate" type="org.hibernate.type.TimestampType" />
-		<property name="modifieduser" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.shuntian.portlet.intranet.model.impl.ext_informationImpl" table="Intranet_ext_information">
-		<cache usage="read-write" />
-		<id name="extId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
-		<property name="staffId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="open_city" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="bank_name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="bankid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="labor_contract_start" type="org.hibernate.type.TimestampType" />
-		<property name="labor_contract_end" type="org.hibernate.type.TimestampType" />
-		<property name="probation_period_start" type="org.hibernate.type.TimestampType" />
-		<property name="probation_period_end" type="org.hibernate.type.TimestampType" />
-		<property name="indured_location" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="frist_insured" type="org.hibernate.type.TimestampType" />
-		<property name="is_insured" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createuser" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createDate" type="org.hibernate.type.TimestampType" />
-		<property name="modifieduser" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.shuntian.portlet.intranet.model.impl.familyImpl" table="Intranet_family">
-		<cache usage="read-write" />
-		<id name="familyId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
-		<property name="satffId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="relationship" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="work_unit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="contact_phone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="once_job" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createuser" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createDate" type="org.hibernate.type.TimestampType" />
-		<property name="modifieduser" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.shuntian.portlet.intranet.model.impl.SatffImpl" table="Intranet_Satff">
+	<import class="com.shuntian.portlet.intranet.model.BasicInformation" />
+	<import class="com.shuntian.portlet.intranet.model.Education" />
+	<import class="com.shuntian.portlet.intranet.model.ExtInformation" />
+	<import class="com.shuntian.portlet.intranet.model.FamilyRelationship" />
+	<import class="com.shuntian.portlet.intranet.model.WorkExperience" />
+	<class name="com.shuntian.portlet.intranet.model.impl.BasicInformationImpl" table="Intranet_BasicInformation">
 		<cache usage="read-write" />
 		<id name="id" column="id_" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
-		<property name="user_id" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="city" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="turnover_time" type="org.hibernate.type.TimestampType" />
-		<property name="entry_time" type="org.hibernate.type.TimestampType" />
-		<property name="base_pay" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="performance_pay" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="wage_subtotal" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="insurance_base" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="endowment_insurance" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="unemployment_insurance" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="work_injury_insurance" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="birth_insurance" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="medical_insurance" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="individual_insurance" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="housing_accumulation_fund_base" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="individual_pay" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="amount_payable" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="people_together" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="sex" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="idNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="nation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="placeOfOrigin" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="accountProperties" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="birthDate" type="org.hibernate.type.TimestampType" />
+		<property name="maritalStatus" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="highestDegree" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="politicalBackground" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="fileLocation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="basePay" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="performancePay" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="health" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="contactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="mail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="domicile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="residencePhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="currentResidentialAddress" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="currentResidentialAddressPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="emergencyContact" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="emergencyContactRelation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="emergencyContactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 	</class>
-	<class name="com.shuntian.portlet.intranet.model.impl.workImpl" table="Intranet_work">
+	<class name="com.shuntian.portlet.intranet.model.impl.EducationImpl" table="Intranet_Education">
 		<cache usage="read-write" />
-		<id name="workId" type="long">
+		<id name="id" column="id_" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
-		<property name="satffId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="witness" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="once_job" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="work_unit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="contact_phone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="start_stop_time" type="org.hibernate.type.TimestampType" />
-		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createuser" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="professional" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="university" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="startTime" type="org.hibernate.type.TimestampType" />
+		<property name="stopTime" type="org.hibernate.type.TimestampType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
-		<property name="modifieduser" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.shuntian.portlet.intranet.model.impl.ExtInformationImpl" table="Intranet_ExtInformation">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="openCity" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="bankName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="bankId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="laborContractStart" type="org.hibernate.type.TimestampType" />
+		<property name="laborContractEnd" type="org.hibernate.type.TimestampType" />
+		<property name="probationPeriodStart" type="org.hibernate.type.TimestampType" />
+		<property name="probationPeriodEnd" type="org.hibernate.type.TimestampType" />
+		<property name="induredLocation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="fristInsured" type="org.hibernate.type.TimestampType" />
+		<property name="isInsured" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.shuntian.portlet.intranet.model.impl.FamilyRelationshipImpl" table="Intranet_FamilyRelationship">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="relationship" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workUnit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="onceJob" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.shuntian.portlet.intranet.model.impl.WorkExperienceImpl" table="Intranet_WorkExperience">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="witness" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="onceJob" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workUnit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="startTime" type="org.hibernate.type.TimestampType" />
+		<property name="stopTime" type="org.hibernate.type.TimestampType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 	</class>
 </hibernate-mapping>

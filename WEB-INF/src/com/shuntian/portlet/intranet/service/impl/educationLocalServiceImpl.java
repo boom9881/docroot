@@ -14,26 +14,26 @@
 
 package com.shuntian.portlet.intranet.service.impl;
 
-import com.shuntian.portlet.intranet.service.base.educationLocalServiceBaseImpl;
+import com.shuntian.portlet.intranet.service.base.EducationLocalServiceBaseImpl;
 
 /**
  * The implementation of the education local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.shuntian.portlet.intranet.service.educationLocalService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.shuntian.portlet.intranet.service.EducationLocalService} interface.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see com.shuntian.portlet.intranet.service.base.educationLocalServiceBaseImpl
- * @see com.shuntian.portlet.intranet.service.educationLocalServiceUtil
+ * @see com.shuntian.portlet.intranet.service.base.EducationLocalServiceBaseImpl
+ * @see com.shuntian.portlet.intranet.service.EducationLocalServiceUtil
  */
-public class educationLocalServiceImpl extends educationLocalServiceBaseImpl {
+public class EducationLocalServiceImpl extends EducationLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link com.shuntian.portlet.intranet.service.educationLocalServiceUtil} to access the education local service.
+	 * Never reference this interface directly. Always use {@link com.shuntian.portlet.intranet.service.EducationLocalServiceUtil} to access the education local service.
 	 */
 }

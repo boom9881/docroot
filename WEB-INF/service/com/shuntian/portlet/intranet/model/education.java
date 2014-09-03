@@ -17,18 +17,18 @@ package com.shuntian.portlet.intranet.model;
 import com.liferay.portal.model.PersistedModel;
 
 /**
- * The extended model interface for the education service. Represents a row in the &quot;Intranet_education&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Education service. Represents a row in the &quot;Intranet_Education&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
- * @see educationModel
- * @see com.shuntian.portlet.intranet.model.impl.educationImpl
- * @see com.shuntian.portlet.intranet.model.impl.educationModelImpl
+ * @see EducationModel
+ * @see com.shuntian.portlet.intranet.model.impl.EducationImpl
+ * @see com.shuntian.portlet.intranet.model.impl.EducationModelImpl
  * @generated
  */
-public interface education extends educationModel, PersistedModel {
+public interface Education extends EducationModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.shuntian.portlet.intranet.model.impl.educationImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to {@link com.shuntian.portlet.intranet.model.impl.EducationImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

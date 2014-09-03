@@ -15,27 +15,16 @@
 package com.shuntian.portlet.intranet.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.lar.StagedModelType;
-import com.liferay.portal.kernel.trash.TrashHandler;
-import com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.BaseModel;
-import com.liferay.portal.model.ContainerModel;
-import com.liferay.portal.model.TrashedModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
-import com.liferay.portlet.trash.model.TrashEntry;
-import com.liferay.portlet.trash.service.TrashEntryLocalServiceUtil;
-
 import com.shuntian.portlet.intranet.service.ClpSerializer;
-import com.shuntian.portlet.intranet.service.educationLocalServiceUtil;
+import com.shuntian.portlet.intranet.service.EducationLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -48,33 +37,33 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
-public class educationClp extends BaseModelImpl<education> implements education {
-	public educationClp() {
+public class EducationClp extends BaseModelImpl<Education> implements Education {
+	public EducationClp() {
 	}
 
 	@Override
 	public Class<?> getModelClass() {
-		return education.class;
+		return Education.class;
 	}
 
 	@Override
 	public String getModelClassName() {
-		return education.class.getName();
+		return Education.class.getName();
 	}
 
 	@Override
 	public long getPrimaryKey() {
-		return _educationId;
+		return _id;
 	}
 
 	@Override
 	public void setPrimaryKey(long primaryKey) {
-		setEducationId(primaryKey);
+		setId(primaryKey);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _educationId;
+		return _id;
 	}
 
 	@Override
@@ -86,18 +75,17 @@ public class educationClp extends BaseModelImpl<education> implements education 
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("educationId", getEducationId());
-		attributes.put("satffId", getSatffId());
+		attributes.put("id", getId());
+		attributes.put("userId", getUserId());
 		attributes.put("witness", getWitness());
 		attributes.put("professional", getProfessional());
 		attributes.put("university", getUniversity());
-		attributes.put("contact_phone", getContact_phone());
-		attributes.put("start_stop_time", getStart_stop_time());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("createuser", getCreateuser());
+		attributes.put("contactPhone", getContactPhone());
+		attributes.put("startTime", getStartTime());
+		attributes.put("stopTime", getStopTime());
+		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
-		attributes.put("modifieduser", getModifieduser());
+		attributes.put("modifiedUserId", getModifiedUserId());
 		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
@@ -105,22 +93,16 @@ public class educationClp extends BaseModelImpl<education> implements education 
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Long id = (Long)attributes.get("id");
 
-		if (uuid != null) {
-			setUuid(uuid);
+		if (id != null) {
+			setId(id);
 		}
 
-		Long educationId = (Long)attributes.get("educationId");
+		Long userId = (Long)attributes.get("userId");
 
-		if (educationId != null) {
-			setEducationId(educationId);
-		}
-
-		Long satffId = (Long)attributes.get("satffId");
-
-		if (satffId != null) {
-			setSatffId(satffId);
+		if (userId != null) {
+			setUserId(userId);
 		}
 
 		String witness = (String)attributes.get("witness");
@@ -141,28 +123,28 @@ public class educationClp extends BaseModelImpl<education> implements education 
 			setUniversity(university);
 		}
 
-		String contact_phone = (String)attributes.get("contact_phone");
+		String contactPhone = (String)attributes.get("contactPhone");
 
-		if (contact_phone != null) {
-			setContact_phone(contact_phone);
+		if (contactPhone != null) {
+			setContactPhone(contactPhone);
 		}
 
-		Date start_stop_time = (Date)attributes.get("start_stop_time");
+		Date startTime = (Date)attributes.get("startTime");
 
-		if (start_stop_time != null) {
-			setStart_stop_time(start_stop_time);
+		if (startTime != null) {
+			setStartTime(startTime);
 		}
 
-		Long companyId = (Long)attributes.get("companyId");
+		Date stopTime = (Date)attributes.get("stopTime");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
+		if (stopTime != null) {
+			setStopTime(stopTime);
 		}
 
-		Long createuser = (Long)attributes.get("createuser");
+		Long createUserId = (Long)attributes.get("createUserId");
 
-		if (createuser != null) {
-			setCreateuser(createuser);
+		if (createUserId != null) {
+			setCreateUserId(createUserId);
 		}
 
 		Date createDate = (Date)attributes.get("createDate");
@@ -171,10 +153,10 @@ public class educationClp extends BaseModelImpl<education> implements education 
 			setCreateDate(createDate);
 		}
 
-		Long modifieduser = (Long)attributes.get("modifieduser");
+		Long modifiedUserId = (Long)attributes.get("modifiedUserId");
 
-		if (modifieduser != null) {
-			setModifieduser(modifieduser);
+		if (modifiedUserId != null) {
+			setModifiedUserId(modifiedUserId);
 		}
 
 		Date modifiedDate = (Date)attributes.get("modifiedDate");
@@ -185,21 +167,21 @@ public class educationClp extends BaseModelImpl<education> implements education 
 	}
 
 	@Override
-	public String getUuid() {
-		return _uuid;
+	public long getId() {
+		return _id;
 	}
 
 	@Override
-	public void setUuid(String uuid) {
-		_uuid = uuid;
+	public void setId(long id) {
+		_id = id;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setUuid", String.class);
+				Method method = clazz.getMethod("setId", long.class);
 
-				method.invoke(_educationRemoteModel, uuid);
+				method.invoke(_educationRemoteModel, id);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -208,21 +190,21 @@ public class educationClp extends BaseModelImpl<education> implements education 
 	}
 
 	@Override
-	public long getEducationId() {
-		return _educationId;
+	public long getUserId() {
+		return _userId;
 	}
 
 	@Override
-	public void setEducationId(long educationId) {
-		_educationId = educationId;
+	public void setUserId(long userId) {
+		_userId = userId;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setEducationId", long.class);
+				Method method = clazz.getMethod("setUserId", long.class);
 
-				method.invoke(_educationRemoteModel, educationId);
+				method.invoke(_educationRemoteModel, userId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -231,26 +213,13 @@ public class educationClp extends BaseModelImpl<education> implements education 
 	}
 
 	@Override
-	public long getSatffId() {
-		return _satffId;
+	public String getUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
 	@Override
-	public void setSatffId(long satffId) {
-		_satffId = satffId;
-
-		if (_educationRemoteModel != null) {
-			try {
-				Class<?> clazz = _educationRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setSatffId", long.class);
-
-				method.invoke(_educationRemoteModel, satffId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
+	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
 	}
 
 	@Override
@@ -323,21 +292,21 @@ public class educationClp extends BaseModelImpl<education> implements education 
 	}
 
 	@Override
-	public String getContact_phone() {
-		return _contact_phone;
+	public String getContactPhone() {
+		return _contactPhone;
 	}
 
 	@Override
-	public void setContact_phone(String contact_phone) {
-		_contact_phone = contact_phone;
+	public void setContactPhone(String contactPhone) {
+		_contactPhone = contactPhone;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setContact_phone", String.class);
+				Method method = clazz.getMethod("setContactPhone", String.class);
 
-				method.invoke(_educationRemoteModel, contact_phone);
+				method.invoke(_educationRemoteModel, contactPhone);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -346,21 +315,21 @@ public class educationClp extends BaseModelImpl<education> implements education 
 	}
 
 	@Override
-	public Date getStart_stop_time() {
-		return _start_stop_time;
+	public Date getStartTime() {
+		return _startTime;
 	}
 
 	@Override
-	public void setStart_stop_time(Date start_stop_time) {
-		_start_stop_time = start_stop_time;
+	public void setStartTime(Date startTime) {
+		_startTime = startTime;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setStart_stop_time", Date.class);
+				Method method = clazz.getMethod("setStartTime", Date.class);
 
-				method.invoke(_educationRemoteModel, start_stop_time);
+				method.invoke(_educationRemoteModel, startTime);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -369,21 +338,21 @@ public class educationClp extends BaseModelImpl<education> implements education 
 	}
 
 	@Override
-	public long getCompanyId() {
-		return _companyId;
+	public Date getStopTime() {
+		return _stopTime;
 	}
 
 	@Override
-	public void setCompanyId(long companyId) {
-		_companyId = companyId;
+	public void setStopTime(Date stopTime) {
+		_stopTime = stopTime;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setCompanyId", long.class);
+				Method method = clazz.getMethod("setStopTime", Date.class);
 
-				method.invoke(_educationRemoteModel, companyId);
+				method.invoke(_educationRemoteModel, stopTime);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -392,26 +361,37 @@ public class educationClp extends BaseModelImpl<education> implements education 
 	}
 
 	@Override
-	public long getCreateuser() {
-		return _createuser;
+	public long getCreateUserId() {
+		return _createUserId;
 	}
 
 	@Override
-	public void setCreateuser(long createuser) {
-		_createuser = createuser;
+	public void setCreateUserId(long createUserId) {
+		_createUserId = createUserId;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setCreateuser", long.class);
+				Method method = clazz.getMethod("setCreateUserId", long.class);
 
-				method.invoke(_educationRemoteModel, createuser);
+				method.invoke(_educationRemoteModel, createUserId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
 			}
 		}
+	}
+
+	@Override
+	public String getCreateUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getCreateUserId(), "uuid",
+			_createUserUuid);
+	}
+
+	@Override
+	public void setCreateUserUuid(String createUserUuid) {
+		_createUserUuid = createUserUuid;
 	}
 
 	@Override
@@ -438,26 +418,37 @@ public class educationClp extends BaseModelImpl<education> implements education 
 	}
 
 	@Override
-	public long getModifieduser() {
-		return _modifieduser;
+	public long getModifiedUserId() {
+		return _modifiedUserId;
 	}
 
 	@Override
-	public void setModifieduser(long modifieduser) {
-		_modifieduser = modifieduser;
+	public void setModifiedUserId(long modifiedUserId) {
+		_modifiedUserId = modifiedUserId;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setModifieduser", long.class);
+				Method method = clazz.getMethod("setModifiedUserId", long.class);
 
-				method.invoke(_educationRemoteModel, modifieduser);
+				method.invoke(_educationRemoteModel, modifiedUserId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
 			}
 		}
+	}
+
+	@Override
+	public String getModifiedUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getModifiedUserId(), "uuid",
+			_modifiedUserUuid);
+	}
+
+	@Override
+	public void setModifiedUserUuid(String modifiedUserUuid) {
+		_modifiedUserUuid = modifiedUserUuid;
 	}
 
 	@Override
@@ -483,106 +474,11 @@ public class educationClp extends BaseModelImpl<education> implements education 
 		}
 	}
 
-	@Override
-	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				education.class.getName()));
-	}
-
-	@Override
-	public int getStatus() {
-		return 0;
-	}
-
-	@Override
-	public TrashEntry getTrashEntry() throws PortalException, SystemException {
-		if (!isInTrash()) {
-			return null;
-		}
-
-		TrashEntry trashEntry = TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
-
-		if (trashEntry != null) {
-			return trashEntry;
-		}
-
-		TrashHandler trashHandler = getTrashHandler();
-
-		if (!Validator.isNull(trashHandler.getContainerModelClassName())) {
-			ContainerModel containerModel = trashHandler.getParentContainerModel(this);
-
-			while (containerModel != null) {
-				if (containerModel instanceof TrashedModel) {
-					TrashedModel trashedModel = (TrashedModel)containerModel;
-
-					return trashedModel.getTrashEntry();
-				}
-
-				trashHandler = TrashHandlerRegistryUtil.getTrashHandler(trashHandler.getContainerModelClassName());
-
-				if (trashHandler == null) {
-					return null;
-				}
-
-				containerModel = trashHandler.getContainerModel(containerModel.getParentContainerModelId());
-			}
-		}
-
-		return null;
-	}
-
-	@Override
-	public long getTrashEntryClassPK() {
-		return getPrimaryKey();
-	}
-
-	@Override
-	public TrashHandler getTrashHandler() {
-		return TrashHandlerRegistryUtil.getTrashHandler(getModelClassName());
-	}
-
-	@Override
-	public boolean isInTrash() {
-		if (getStatus() == WorkflowConstants.STATUS_IN_TRASH) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	@Override
-	public boolean isInTrashContainer() {
-		TrashHandler trashHandler = getTrashHandler();
-
-		if ((trashHandler == null) ||
-				Validator.isNull(trashHandler.getContainerModelClassName())) {
-			return false;
-		}
-
-		try {
-			ContainerModel containerModel = trashHandler.getParentContainerModel(this);
-
-			if (containerModel == null) {
-				return false;
-			}
-
-			if (containerModel instanceof TrashedModel) {
-				return ((TrashedModel)containerModel).isInTrash();
-			}
-		}
-		catch (Exception e) {
-		}
-
-		return false;
-	}
-
-	public BaseModel<?> geteducationRemoteModel() {
+	public BaseModel<?> getEducationRemoteModel() {
 		return _educationRemoteModel;
 	}
 
-	public void seteducationRemoteModel(BaseModel<?> educationRemoteModel) {
+	public void setEducationRemoteModel(BaseModel<?> educationRemoteModel) {
 		_educationRemoteModel = educationRemoteModel;
 	}
 
@@ -630,45 +526,46 @@ public class educationClp extends BaseModelImpl<education> implements education 
 	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
-			educationLocalServiceUtil.addeducation(this);
+			EducationLocalServiceUtil.addEducation(this);
 		}
 		else {
-			educationLocalServiceUtil.updateeducation(this);
+			EducationLocalServiceUtil.updateEducation(this);
 		}
 	}
 
 	@Override
-	public education toEscapedModel() {
-		return (education)ProxyUtil.newProxyInstance(education.class.getClassLoader(),
-			new Class[] { education.class }, new AutoEscapeBeanHandler(this));
+	public Education toEscapedModel() {
+		return (Education)ProxyUtil.newProxyInstance(Education.class.getClassLoader(),
+			new Class[] { Education.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override
 	public Object clone() {
-		educationClp clone = new educationClp();
+		EducationClp clone = new EducationClp();
 
-		clone.setUuid(getUuid());
-		clone.setEducationId(getEducationId());
-		clone.setSatffId(getSatffId());
+		clone.setId(getId());
+		clone.setUserId(getUserId());
 		clone.setWitness(getWitness());
 		clone.setProfessional(getProfessional());
 		clone.setUniversity(getUniversity());
-		clone.setContact_phone(getContact_phone());
-		clone.setStart_stop_time(getStart_stop_time());
-		clone.setCompanyId(getCompanyId());
-		clone.setCreateuser(getCreateuser());
+		clone.setContactPhone(getContactPhone());
+		clone.setStartTime(getStartTime());
+		clone.setStopTime(getStopTime());
+		clone.setCreateUserId(getCreateUserId());
 		clone.setCreateDate(getCreateDate());
-		clone.setModifieduser(getModifieduser());
+		clone.setModifiedUserId(getModifiedUserId());
 		clone.setModifiedDate(getModifiedDate());
 
 		return clone;
 	}
 
 	@Override
-	public int compareTo(education education) {
+	public int compareTo(Education education) {
 		int value = 0;
 
 		value = DateUtil.compareTo(getCreateDate(), education.getCreateDate());
+
+		value = value * -1;
 
 		if (value != 0) {
 			return value;
@@ -683,11 +580,11 @@ public class educationClp extends BaseModelImpl<education> implements education 
 			return true;
 		}
 
-		if (!(obj instanceof educationClp)) {
+		if (!(obj instanceof EducationClp)) {
 			return false;
 		}
 
-		educationClp education = (educationClp)obj;
+		EducationClp education = (EducationClp)obj;
 
 		long primaryKey = education.getPrimaryKey();
 
@@ -706,32 +603,30 @@ public class educationClp extends BaseModelImpl<education> implements education 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(25);
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", educationId=");
-		sb.append(getEducationId());
-		sb.append(", satffId=");
-		sb.append(getSatffId());
+		sb.append("{id=");
+		sb.append(getId());
+		sb.append(", userId=");
+		sb.append(getUserId());
 		sb.append(", witness=");
 		sb.append(getWitness());
 		sb.append(", professional=");
 		sb.append(getProfessional());
 		sb.append(", university=");
 		sb.append(getUniversity());
-		sb.append(", contact_phone=");
-		sb.append(getContact_phone());
-		sb.append(", start_stop_time=");
-		sb.append(getStart_stop_time());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", createuser=");
-		sb.append(getCreateuser());
+		sb.append(", contactPhone=");
+		sb.append(getContactPhone());
+		sb.append(", startTime=");
+		sb.append(getStartTime());
+		sb.append(", stopTime=");
+		sb.append(getStopTime());
+		sb.append(", createUserId=");
+		sb.append(getCreateUserId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
-		sb.append(", modifieduser=");
-		sb.append(getModifieduser());
+		sb.append(", modifiedUserId=");
+		sb.append(getModifiedUserId());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
 		sb.append("}");
@@ -741,23 +636,19 @@ public class educationClp extends BaseModelImpl<education> implements education 
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
-		sb.append("com.shuntian.portlet.intranet.model.education");
+		sb.append("com.shuntian.portlet.intranet.model.Education");
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
+			"<column><column-name>id</column-name><column-value><![CDATA[");
+		sb.append(getId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>educationId</column-name><column-value><![CDATA[");
-		sb.append(getEducationId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>satffId</column-name><column-value><![CDATA[");
-		sb.append(getSatffId());
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>witness</column-name><column-value><![CDATA[");
@@ -772,28 +663,28 @@ public class educationClp extends BaseModelImpl<education> implements education 
 		sb.append(getUniversity());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>contact_phone</column-name><column-value><![CDATA[");
-		sb.append(getContact_phone());
+			"<column><column-name>contactPhone</column-name><column-value><![CDATA[");
+		sb.append(getContactPhone());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>start_stop_time</column-name><column-value><![CDATA[");
-		sb.append(getStart_stop_time());
+			"<column><column-name>startTime</column-name><column-value><![CDATA[");
+		sb.append(getStartTime());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
+			"<column><column-name>stopTime</column-name><column-value><![CDATA[");
+		sb.append(getStopTime());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>createuser</column-name><column-value><![CDATA[");
-		sb.append(getCreateuser());
+			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
+		sb.append(getCreateUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>modifieduser</column-name><column-value><![CDATA[");
-		sb.append(getModifieduser());
+			"<column><column-name>modifiedUserId</column-name><column-value><![CDATA[");
+		sb.append(getModifiedUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
@@ -805,18 +696,20 @@ public class educationClp extends BaseModelImpl<education> implements education 
 		return sb.toString();
 	}
 
-	private String _uuid;
-	private long _educationId;
-	private long _satffId;
+	private long _id;
+	private long _userId;
+	private String _userUuid;
 	private String _witness;
 	private String _professional;
 	private String _university;
-	private String _contact_phone;
-	private Date _start_stop_time;
-	private long _companyId;
-	private long _createuser;
+	private String _contactPhone;
+	private Date _startTime;
+	private Date _stopTime;
+	private long _createUserId;
+	private String _createUserUuid;
 	private Date _createDate;
-	private long _modifieduser;
+	private long _modifiedUserId;
+	private String _modifiedUserUuid;
 	private Date _modifiedDate;
 	private BaseModel<?> _educationRemoteModel;
 }

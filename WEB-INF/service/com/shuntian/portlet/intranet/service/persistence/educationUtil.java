@@ -21,23 +21,23 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
-import com.shuntian.portlet.intranet.model.education;
+import com.shuntian.portlet.intranet.model.Education;
 
 import java.util.List;
 
 /**
- * The persistence utility for the education service. This utility wraps {@link educationPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
+ * The persistence utility for the education service. This utility wraps {@link EducationPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
  *
  * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see educationPersistence
- * @see educationPersistenceImpl
+ * @see EducationPersistence
+ * @see EducationPersistenceImpl
  * @generated
  */
-public class educationUtil {
+public class EducationUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -54,7 +54,7 @@ public class educationUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
 	 */
-	public static void clearCache(education education) {
+	public static void clearCache(Education education) {
 		getPersistence().clearCache(education);
 	}
 
@@ -69,7 +69,7 @@ public class educationUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
-	public static List<education> findWithDynamicQuery(
+	public static List<Education> findWithDynamicQuery(
 		DynamicQuery dynamicQuery) throws SystemException {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
@@ -77,7 +77,7 @@ public class educationUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
-	public static List<education> findWithDynamicQuery(
+	public static List<Education> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
@@ -86,7 +86,7 @@ public class educationUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
-	public static List<education> findWithDynamicQuery(
+	public static List<Education> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		return getPersistence()
@@ -97,7 +97,7 @@ public class educationUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static education update(education education)
+	public static Education update(Education education)
 		throws SystemException {
 		return getPersistence().update(education);
 	}
@@ -105,343 +105,9 @@ public class educationUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static education update(education education,
+	public static Education update(Education education,
 		ServiceContext serviceContext) throws SystemException {
 		return getPersistence().update(education, serviceContext);
-	}
-
-	/**
-	* Returns all the educations where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the matching educations
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.shuntian.portlet.intranet.model.education> findByUuid(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByUuid(uuid);
-	}
-
-	/**
-	* Returns a range of all the educations where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.educationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param start the lower bound of the range of educations
-	* @param end the upper bound of the range of educations (not inclusive)
-	* @return the range of matching educations
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.shuntian.portlet.intranet.model.education> findByUuid(
-		java.lang.String uuid, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByUuid(uuid, start, end);
-	}
-
-	/**
-	* Returns an ordered range of all the educations where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.educationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param start the lower bound of the range of educations
-	* @param end the upper bound of the range of educations (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching educations
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.shuntian.portlet.intranet.model.education> findByUuid(
-		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
-	}
-
-	/**
-	* Returns the first education in the ordered set where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching education
-	* @throws com.shuntian.portlet.intranet.NoSucheducationException if a matching education could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.education findByUuid_First(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSucheducationException {
-		return getPersistence().findByUuid_First(uuid, orderByComparator);
-	}
-
-	/**
-	* Returns the first education in the ordered set where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching education, or <code>null</code> if a matching education could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.education fetchByUuid_First(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
-	}
-
-	/**
-	* Returns the last education in the ordered set where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching education
-	* @throws com.shuntian.portlet.intranet.NoSucheducationException if a matching education could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.education findByUuid_Last(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSucheducationException {
-		return getPersistence().findByUuid_Last(uuid, orderByComparator);
-	}
-
-	/**
-	* Returns the last education in the ordered set where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching education, or <code>null</code> if a matching education could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.education fetchByUuid_Last(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
-	}
-
-	/**
-	* Returns the educations before and after the current education in the ordered set where uuid = &#63;.
-	*
-	* @param educationId the primary key of the current education
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next education
-	* @throws com.shuntian.portlet.intranet.NoSucheducationException if a education with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.education[] findByUuid_PrevAndNext(
-		long educationId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSucheducationException {
-		return getPersistence()
-				   .findByUuid_PrevAndNext(educationId, uuid, orderByComparator);
-	}
-
-	/**
-	* Removes all the educations where uuid = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUuid(uuid);
-	}
-
-	/**
-	* Returns the number of educations where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the number of matching educations
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUuid(uuid);
-	}
-
-	/**
-	* Returns all the educations where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @return the matching educations
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.shuntian.portlet.intranet.model.education> findByUuid_C(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByUuid_C(uuid, companyId);
-	}
-
-	/**
-	* Returns a range of all the educations where uuid = &#63; and companyId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.educationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param start the lower bound of the range of educations
-	* @param end the upper bound of the range of educations (not inclusive)
-	* @return the range of matching educations
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.shuntian.portlet.intranet.model.education> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByUuid_C(uuid, companyId, start, end);
-	}
-
-	/**
-	* Returns an ordered range of all the educations where uuid = &#63; and companyId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.educationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param start the lower bound of the range of educations
-	* @param end the upper bound of the range of educations (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching educations
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.shuntian.portlet.intranet.model.education> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
-	}
-
-	/**
-	* Returns the first education in the ordered set where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching education
-	* @throws com.shuntian.portlet.intranet.NoSucheducationException if a matching education could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.education findByUuid_C_First(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSucheducationException {
-		return getPersistence()
-				   .findByUuid_C_First(uuid, companyId, orderByComparator);
-	}
-
-	/**
-	* Returns the first education in the ordered set where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching education, or <code>null</code> if a matching education could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.education fetchByUuid_C_First(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
-	}
-
-	/**
-	* Returns the last education in the ordered set where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching education
-	* @throws com.shuntian.portlet.intranet.NoSucheducationException if a matching education could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.education findByUuid_C_Last(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSucheducationException {
-		return getPersistence()
-				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
-	}
-
-	/**
-	* Returns the last education in the ordered set where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching education, or <code>null</code> if a matching education could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.education fetchByUuid_C_Last(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
-	}
-
-	/**
-	* Returns the educations before and after the current education in the ordered set where uuid = &#63; and companyId = &#63;.
-	*
-	* @param educationId the primary key of the current education
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next education
-	* @throws com.shuntian.portlet.intranet.NoSucheducationException if a education with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.education[] findByUuid_C_PrevAndNext(
-		long educationId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSucheducationException {
-		return getPersistence()
-				   .findByUuid_C_PrevAndNext(educationId, uuid, companyId,
-			orderByComparator);
-	}
-
-	/**
-	* Removes all the educations where uuid = &#63; and companyId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUuid_C(uuid, companyId);
-	}
-
-	/**
-	* Returns the number of educations where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @return the number of matching educations
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUuid_C(uuid, companyId);
 	}
 
 	/**
@@ -450,7 +116,7 @@ public class educationUtil {
 	* @param education the education
 	*/
 	public static void cacheResult(
-		com.shuntian.portlet.intranet.model.education education) {
+		com.shuntian.portlet.intranet.model.Education education) {
 		getPersistence().cacheResult(education);
 	}
 
@@ -460,68 +126,65 @@ public class educationUtil {
 	* @param educations the educations
 	*/
 	public static void cacheResult(
-		java.util.List<com.shuntian.portlet.intranet.model.education> educations) {
+		java.util.List<com.shuntian.portlet.intranet.model.Education> educations) {
 		getPersistence().cacheResult(educations);
 	}
 
 	/**
 	* Creates a new education with the primary key. Does not add the education to the database.
 	*
-	* @param educationId the primary key for the new education
+	* @param id the primary key for the new education
 	* @return the new education
 	*/
-	public static com.shuntian.portlet.intranet.model.education create(
-		long educationId) {
-		return getPersistence().create(educationId);
+	public static com.shuntian.portlet.intranet.model.Education create(long id) {
+		return getPersistence().create(id);
 	}
 
 	/**
 	* Removes the education with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param educationId the primary key of the education
+	* @param id the primary key of the education
 	* @return the education that was removed
-	* @throws com.shuntian.portlet.intranet.NoSucheducationException if a education with the primary key could not be found
+	* @throws com.shuntian.portlet.intranet.NoSuchEducationException if a education with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.shuntian.portlet.intranet.model.education remove(
-		long educationId)
+	public static com.shuntian.portlet.intranet.model.Education remove(long id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSucheducationException {
-		return getPersistence().remove(educationId);
+			com.shuntian.portlet.intranet.NoSuchEducationException {
+		return getPersistence().remove(id);
 	}
 
-	public static com.shuntian.portlet.intranet.model.education updateImpl(
-		com.shuntian.portlet.intranet.model.education education)
+	public static com.shuntian.portlet.intranet.model.Education updateImpl(
+		com.shuntian.portlet.intranet.model.Education education)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().updateImpl(education);
 	}
 
 	/**
-	* Returns the education with the primary key or throws a {@link com.shuntian.portlet.intranet.NoSucheducationException} if it could not be found.
+	* Returns the education with the primary key or throws a {@link com.shuntian.portlet.intranet.NoSuchEducationException} if it could not be found.
 	*
-	* @param educationId the primary key of the education
+	* @param id the primary key of the education
 	* @return the education
-	* @throws com.shuntian.portlet.intranet.NoSucheducationException if a education with the primary key could not be found
+	* @throws com.shuntian.portlet.intranet.NoSuchEducationException if a education with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.shuntian.portlet.intranet.model.education findByPrimaryKey(
-		long educationId)
+	public static com.shuntian.portlet.intranet.model.Education findByPrimaryKey(
+		long id)
 		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSucheducationException {
-		return getPersistence().findByPrimaryKey(educationId);
+			com.shuntian.portlet.intranet.NoSuchEducationException {
+		return getPersistence().findByPrimaryKey(id);
 	}
 
 	/**
 	* Returns the education with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param educationId the primary key of the education
+	* @param id the primary key of the education
 	* @return the education, or <code>null</code> if a education with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.shuntian.portlet.intranet.model.education fetchByPrimaryKey(
-		long educationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(educationId);
+	public static com.shuntian.portlet.intranet.model.Education fetchByPrimaryKey(
+		long id) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(id);
 	}
 
 	/**
@@ -530,7 +193,7 @@ public class educationUtil {
 	* @return the educations
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.shuntian.portlet.intranet.model.education> findAll()
+	public static java.util.List<com.shuntian.portlet.intranet.model.Education> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
@@ -539,7 +202,7 @@ public class educationUtil {
 	* Returns a range of all the educations.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.educationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.EducationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of educations
@@ -547,7 +210,7 @@ public class educationUtil {
 	* @return the range of educations
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.shuntian.portlet.intranet.model.education> findAll(
+	public static java.util.List<com.shuntian.portlet.intranet.model.Education> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
@@ -557,7 +220,7 @@ public class educationUtil {
 	* Returns an ordered range of all the educations.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.educationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.EducationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of educations
@@ -566,7 +229,7 @@ public class educationUtil {
 	* @return the ordered range of educations
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.shuntian.portlet.intranet.model.education> findAll(
+	public static java.util.List<com.shuntian.portlet.intranet.model.Education> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -594,12 +257,12 @@ public class educationUtil {
 		return getPersistence().countAll();
 	}
 
-	public static educationPersistence getPersistence() {
+	public static EducationPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (educationPersistence)PortletBeanLocatorUtil.locate(com.shuntian.portlet.intranet.service.ClpSerializer.getServletContextName(),
-					educationPersistence.class.getName());
+			_persistence = (EducationPersistence)PortletBeanLocatorUtil.locate(com.shuntian.portlet.intranet.service.ClpSerializer.getServletContextName(),
+					EducationPersistence.class.getName());
 
-			ReferenceRegistry.registerReference(educationUtil.class,
+			ReferenceRegistry.registerReference(EducationUtil.class,
 				"_persistence");
 		}
 
@@ -609,8 +272,8 @@ public class educationUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
-	public void setPersistence(educationPersistence persistence) {
+	public void setPersistence(EducationPersistence persistence) {
 	}
 
-	private static educationPersistence _persistence;
+	private static EducationPersistence _persistence;
 }

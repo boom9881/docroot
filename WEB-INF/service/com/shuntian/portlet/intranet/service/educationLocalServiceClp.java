@@ -20,28 +20,28 @@ import com.liferay.portal.service.InvokableLocalService;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class educationLocalServiceClp implements educationLocalService {
-	public educationLocalServiceClp(InvokableLocalService invokableLocalService) {
+public class EducationLocalServiceClp implements EducationLocalService {
+	public EducationLocalServiceClp(InvokableLocalService invokableLocalService) {
 		_invokableLocalService = invokableLocalService;
 
-		_methodName0 = "addeducation";
+		_methodName0 = "addEducation";
 
 		_methodParameterTypes0 = new String[] {
-				"com.shuntian.portlet.intranet.model.education"
+				"com.shuntian.portlet.intranet.model.Education"
 			};
 
-		_methodName1 = "createeducation";
+		_methodName1 = "createEducation";
 
 		_methodParameterTypes1 = new String[] { "long" };
 
-		_methodName2 = "deleteeducation";
+		_methodName2 = "deleteEducation";
 
 		_methodParameterTypes2 = new String[] { "long" };
 
-		_methodName3 = "deleteeducation";
+		_methodName3 = "deleteEducation";
 
 		_methodParameterTypes3 = new String[] {
-				"com.shuntian.portlet.intranet.model.education"
+				"com.shuntian.portlet.intranet.model.Education"
 			};
 
 		_methodName4 = "dynamicQuery";
@@ -80,52 +80,44 @@ public class educationLocalServiceClp implements educationLocalService {
 				"com.liferay.portal.kernel.dao.orm.Projection"
 			};
 
-		_methodName10 = "fetcheducation";
+		_methodName10 = "fetchEducation";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "fetcheducationByUuidAndCompanyId";
+		_methodName11 = "getEducation";
 
-		_methodParameterTypes11 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "geteducation";
+		_methodName12 = "getPersistedModel";
 
-		_methodParameterTypes12 = new String[] { "long" };
+		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-		_methodName13 = "getPersistedModel";
+		_methodName13 = "getEducations";
 
-		_methodParameterTypes13 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes13 = new String[] { "int", "int" };
 
-		_methodName14 = "geteducationByUuidAndCompanyId";
+		_methodName14 = "getEducationsCount";
 
-		_methodParameterTypes14 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes14 = new String[] {  };
 
-		_methodName15 = "geteducations";
+		_methodName15 = "updateEducation";
 
-		_methodParameterTypes15 = new String[] { "int", "int" };
+		_methodParameterTypes15 = new String[] {
+				"com.shuntian.portlet.intranet.model.Education"
+			};
 
-		_methodName16 = "geteducationsCount";
+		_methodName16 = "getBeanIdentifier";
 
 		_methodParameterTypes16 = new String[] {  };
 
-		_methodName17 = "updateeducation";
+		_methodName17 = "setBeanIdentifier";
 
-		_methodParameterTypes17 = new String[] {
-				"com.shuntian.portlet.intranet.model.education"
-			};
-
-		_methodName18 = "getBeanIdentifier";
-
-		_methodParameterTypes18 = new String[] {  };
-
-		_methodName19 = "setBeanIdentifier";
-
-		_methodParameterTypes19 = new String[] { "java.lang.String" };
+		_methodParameterTypes17 = new String[] { "java.lang.String" };
 	}
 
 	@Override
-	public com.shuntian.portlet.intranet.model.education addeducation(
-		com.shuntian.portlet.intranet.model.education education)
+	public com.shuntian.portlet.intranet.model.Education addEducation(
+		com.shuntian.portlet.intranet.model.Education education)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -150,17 +142,17 @@ public class educationLocalServiceClp implements educationLocalService {
 			}
 		}
 
-		return (com.shuntian.portlet.intranet.model.education)ClpSerializer.translateOutput(returnObj);
+		return (com.shuntian.portlet.intranet.model.Education)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.shuntian.portlet.intranet.model.education createeducation(
-		long educationId) {
+	public com.shuntian.portlet.intranet.model.Education createEducation(
+		long id) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { educationId });
+					_methodParameterTypes1, new Object[] { id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -174,19 +166,19 @@ public class educationLocalServiceClp implements educationLocalService {
 			}
 		}
 
-		return (com.shuntian.portlet.intranet.model.education)ClpSerializer.translateOutput(returnObj);
+		return (com.shuntian.portlet.intranet.model.Education)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.shuntian.portlet.intranet.model.education deleteeducation(
-		long educationId)
+	public com.shuntian.portlet.intranet.model.Education deleteEducation(
+		long id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { educationId });
+					_methodParameterTypes2, new Object[] { id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -208,12 +200,12 @@ public class educationLocalServiceClp implements educationLocalService {
 			}
 		}
 
-		return (com.shuntian.portlet.intranet.model.education)ClpSerializer.translateOutput(returnObj);
+		return (com.shuntian.portlet.intranet.model.Education)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.shuntian.portlet.intranet.model.education deleteeducation(
-		com.shuntian.portlet.intranet.model.education education)
+	public com.shuntian.portlet.intranet.model.Education deleteEducation(
+		com.shuntian.portlet.intranet.model.Education education)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -238,7 +230,7 @@ public class educationLocalServiceClp implements educationLocalService {
 			}
 		}
 
-		return (com.shuntian.portlet.intranet.model.education)ClpSerializer.translateOutput(returnObj);
+		return (com.shuntian.portlet.intranet.model.Education)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -439,14 +431,13 @@ public class educationLocalServiceClp implements educationLocalService {
 	}
 
 	@Override
-	public com.shuntian.portlet.intranet.model.education fetcheducation(
-		long educationId)
+	public com.shuntian.portlet.intranet.model.Education fetchEducation(long id)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { educationId });
+					_methodParameterTypes10, new Object[] { id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -464,49 +455,18 @@ public class educationLocalServiceClp implements educationLocalService {
 			}
 		}
 
-		return (com.shuntian.portlet.intranet.model.education)ClpSerializer.translateOutput(returnObj);
+		return (com.shuntian.portlet.intranet.model.Education)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.shuntian.portlet.intranet.model.education fetcheducationByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11,
-					new Object[] { ClpSerializer.translateInput(uuid), companyId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.shuntian.portlet.intranet.model.education)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public com.shuntian.portlet.intranet.model.education geteducation(
-		long educationId)
+	public com.shuntian.portlet.intranet.model.Education getEducation(long id)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName12,
-					_methodParameterTypes12, new Object[] { educationId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName11,
+					_methodParameterTypes11, new Object[] { id });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -528,7 +488,7 @@ public class educationLocalServiceClp implements educationLocalService {
 			}
 		}
 
-		return (com.shuntian.portlet.intranet.model.education)ClpSerializer.translateOutput(returnObj);
+		return (com.shuntian.portlet.intranet.model.Education)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -539,8 +499,8 @@ public class educationLocalServiceClp implements educationLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13,
+			returnObj = _invokableLocalService.invokeMethod(_methodName12,
+					_methodParameterTypes12,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -567,49 +527,14 @@ public class educationLocalServiceClp implements educationLocalService {
 	}
 
 	@Override
-	public com.shuntian.portlet.intranet.model.education geteducationByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14,
-					new Object[] { ClpSerializer.translateInput(uuid), companyId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.shuntian.portlet.intranet.model.education)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.util.List<com.shuntian.portlet.intranet.model.education> geteducations(
+	public java.util.List<com.shuntian.portlet.intranet.model.Education> getEducations(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -627,17 +552,17 @@ public class educationLocalServiceClp implements educationLocalService {
 			}
 		}
 
-		return (java.util.List<com.shuntian.portlet.intranet.model.education>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.shuntian.portlet.intranet.model.Education>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public int geteducationsCount()
+	public int getEducationsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -659,14 +584,14 @@ public class educationLocalServiceClp implements educationLocalService {
 	}
 
 	@Override
-	public com.shuntian.portlet.intranet.model.education updateeducation(
-		com.shuntian.portlet.intranet.model.education education)
+	public com.shuntian.portlet.intranet.model.Education updateEducation(
+		com.shuntian.portlet.intranet.model.Education education)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17,
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15,
 					new Object[] { ClpSerializer.translateInput(education) });
 		}
 		catch (Throwable t) {
@@ -685,7 +610,7 @@ public class educationLocalServiceClp implements educationLocalService {
 			}
 		}
 
-		return (com.shuntian.portlet.intranet.model.education)ClpSerializer.translateOutput(returnObj);
+		return (com.shuntian.portlet.intranet.model.Education)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -693,8 +618,8 @@ public class educationLocalServiceClp implements educationLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -714,8 +639,8 @@ public class educationLocalServiceClp implements educationLocalService {
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName19,
-				_methodParameterTypes19,
+			_invokableLocalService.invokeMethod(_methodName17,
+				_methodParameterTypes17,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -775,8 +700,4 @@ public class educationLocalServiceClp implements educationLocalService {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
-	private String _methodName18;
-	private String[] _methodParameterTypes18;
-	private String _methodName19;
-	private String[] _methodParameterTypes19;
 }

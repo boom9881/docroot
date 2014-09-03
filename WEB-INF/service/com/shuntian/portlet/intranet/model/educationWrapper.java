@@ -14,7 +14,6 @@
 
 package com.shuntian.portlet.intranet.model;
 
-import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -24,44 +23,43 @@ import java.util.Map;
 
 /**
  * <p>
- * This class is a wrapper for {@link education}.
+ * This class is a wrapper for {@link Education}.
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see education
+ * @see Education
  * @generated
  */
-public class educationWrapper implements education, ModelWrapper<education> {
-	public educationWrapper(education education) {
+public class EducationWrapper implements Education, ModelWrapper<Education> {
+	public EducationWrapper(Education education) {
 		_education = education;
 	}
 
 	@Override
 	public Class<?> getModelClass() {
-		return education.class;
+		return Education.class;
 	}
 
 	@Override
 	public String getModelClassName() {
-		return education.class.getName();
+		return Education.class.getName();
 	}
 
 	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("educationId", getEducationId());
-		attributes.put("satffId", getSatffId());
+		attributes.put("id", getId());
+		attributes.put("userId", getUserId());
 		attributes.put("witness", getWitness());
 		attributes.put("professional", getProfessional());
 		attributes.put("university", getUniversity());
-		attributes.put("contact_phone", getContact_phone());
-		attributes.put("start_stop_time", getStart_stop_time());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("createuser", getCreateuser());
+		attributes.put("contactPhone", getContactPhone());
+		attributes.put("startTime", getStartTime());
+		attributes.put("stopTime", getStopTime());
+		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
-		attributes.put("modifieduser", getModifieduser());
+		attributes.put("modifiedUserId", getModifiedUserId());
 		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
@@ -69,22 +67,16 @@ public class educationWrapper implements education, ModelWrapper<education> {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Long id = (Long)attributes.get("id");
 
-		if (uuid != null) {
-			setUuid(uuid);
+		if (id != null) {
+			setId(id);
 		}
 
-		Long educationId = (Long)attributes.get("educationId");
+		Long userId = (Long)attributes.get("userId");
 
-		if (educationId != null) {
-			setEducationId(educationId);
-		}
-
-		Long satffId = (Long)attributes.get("satffId");
-
-		if (satffId != null) {
-			setSatffId(satffId);
+		if (userId != null) {
+			setUserId(userId);
 		}
 
 		String witness = (String)attributes.get("witness");
@@ -105,28 +97,28 @@ public class educationWrapper implements education, ModelWrapper<education> {
 			setUniversity(university);
 		}
 
-		String contact_phone = (String)attributes.get("contact_phone");
+		String contactPhone = (String)attributes.get("contactPhone");
 
-		if (contact_phone != null) {
-			setContact_phone(contact_phone);
+		if (contactPhone != null) {
+			setContactPhone(contactPhone);
 		}
 
-		Date start_stop_time = (Date)attributes.get("start_stop_time");
+		Date startTime = (Date)attributes.get("startTime");
 
-		if (start_stop_time != null) {
-			setStart_stop_time(start_stop_time);
+		if (startTime != null) {
+			setStartTime(startTime);
 		}
 
-		Long companyId = (Long)attributes.get("companyId");
+		Date stopTime = (Date)attributes.get("stopTime");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
+		if (stopTime != null) {
+			setStopTime(stopTime);
 		}
 
-		Long createuser = (Long)attributes.get("createuser");
+		Long createUserId = (Long)attributes.get("createUserId");
 
-		if (createuser != null) {
-			setCreateuser(createuser);
+		if (createUserId != null) {
+			setCreateUserId(createUserId);
 		}
 
 		Date createDate = (Date)attributes.get("createDate");
@@ -135,10 +127,10 @@ public class educationWrapper implements education, ModelWrapper<education> {
 			setCreateDate(createDate);
 		}
 
-		Long modifieduser = (Long)attributes.get("modifieduser");
+		Long modifiedUserId = (Long)attributes.get("modifiedUserId");
 
-		if (modifieduser != null) {
-			setModifieduser(modifieduser);
+		if (modifiedUserId != null) {
+			setModifiedUserId(modifiedUserId);
 		}
 
 		Date modifiedDate = (Date)attributes.get("modifiedDate");
@@ -169,63 +161,65 @@ public class educationWrapper implements education, ModelWrapper<education> {
 	}
 
 	/**
-	* Returns the uuid of this education.
+	* Returns the ID of this education.
 	*
-	* @return the uuid of this education
+	* @return the ID of this education
 	*/
 	@Override
-	public java.lang.String getUuid() {
-		return _education.getUuid();
+	public long getId() {
+		return _education.getId();
 	}
 
 	/**
-	* Sets the uuid of this education.
+	* Sets the ID of this education.
 	*
-	* @param uuid the uuid of this education
+	* @param id the ID of this education
 	*/
 	@Override
-	public void setUuid(java.lang.String uuid) {
-		_education.setUuid(uuid);
+	public void setId(long id) {
+		_education.setId(id);
 	}
 
 	/**
-	* Returns the education ID of this education.
+	* Returns the user ID of this education.
 	*
-	* @return the education ID of this education
+	* @return the user ID of this education
 	*/
 	@Override
-	public long getEducationId() {
-		return _education.getEducationId();
+	public long getUserId() {
+		return _education.getUserId();
 	}
 
 	/**
-	* Sets the education ID of this education.
+	* Sets the user ID of this education.
 	*
-	* @param educationId the education ID of this education
+	* @param userId the user ID of this education
 	*/
 	@Override
-	public void setEducationId(long educationId) {
-		_education.setEducationId(educationId);
+	public void setUserId(long userId) {
+		_education.setUserId(userId);
 	}
 
 	/**
-	* Returns the satff ID of this education.
+	* Returns the user uuid of this education.
 	*
-	* @return the satff ID of this education
+	* @return the user uuid of this education
+	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public long getSatffId() {
-		return _education.getSatffId();
+	public java.lang.String getUserUuid()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _education.getUserUuid();
 	}
 
 	/**
-	* Sets the satff ID of this education.
+	* Sets the user uuid of this education.
 	*
-	* @param satffId the satff ID of this education
+	* @param userUuid the user uuid of this education
 	*/
 	@Override
-	public void setSatffId(long satffId) {
-		_education.setSatffId(satffId);
+	public void setUserUuid(java.lang.String userUuid) {
+		_education.setUserUuid(userUuid);
 	}
 
 	/**
@@ -289,83 +283,105 @@ public class educationWrapper implements education, ModelWrapper<education> {
 	}
 
 	/**
-	* Returns the contact_phone of this education.
+	* Returns the contact phone of this education.
 	*
-	* @return the contact_phone of this education
+	* @return the contact phone of this education
 	*/
 	@Override
-	public java.lang.String getContact_phone() {
-		return _education.getContact_phone();
+	public java.lang.String getContactPhone() {
+		return _education.getContactPhone();
 	}
 
 	/**
-	* Sets the contact_phone of this education.
+	* Sets the contact phone of this education.
 	*
-	* @param contact_phone the contact_phone of this education
+	* @param contactPhone the contact phone of this education
 	*/
 	@Override
-	public void setContact_phone(java.lang.String contact_phone) {
-		_education.setContact_phone(contact_phone);
+	public void setContactPhone(java.lang.String contactPhone) {
+		_education.setContactPhone(contactPhone);
 	}
 
 	/**
-	* Returns the start_stop_time of this education.
+	* Returns the start time of this education.
 	*
-	* @return the start_stop_time of this education
+	* @return the start time of this education
 	*/
 	@Override
-	public java.util.Date getStart_stop_time() {
-		return _education.getStart_stop_time();
+	public java.util.Date getStartTime() {
+		return _education.getStartTime();
 	}
 
 	/**
-	* Sets the start_stop_time of this education.
+	* Sets the start time of this education.
 	*
-	* @param start_stop_time the start_stop_time of this education
+	* @param startTime the start time of this education
 	*/
 	@Override
-	public void setStart_stop_time(java.util.Date start_stop_time) {
-		_education.setStart_stop_time(start_stop_time);
+	public void setStartTime(java.util.Date startTime) {
+		_education.setStartTime(startTime);
 	}
 
 	/**
-	* Returns the company ID of this education.
+	* Returns the stop time of this education.
 	*
-	* @return the company ID of this education
+	* @return the stop time of this education
 	*/
 	@Override
-	public long getCompanyId() {
-		return _education.getCompanyId();
+	public java.util.Date getStopTime() {
+		return _education.getStopTime();
 	}
 
 	/**
-	* Sets the company ID of this education.
+	* Sets the stop time of this education.
 	*
-	* @param companyId the company ID of this education
+	* @param stopTime the stop time of this education
 	*/
 	@Override
-	public void setCompanyId(long companyId) {
-		_education.setCompanyId(companyId);
+	public void setStopTime(java.util.Date stopTime) {
+		_education.setStopTime(stopTime);
 	}
 
 	/**
-	* Returns the createuser of this education.
+	* Returns the create user ID of this education.
 	*
-	* @return the createuser of this education
+	* @return the create user ID of this education
 	*/
 	@Override
-	public long getCreateuser() {
-		return _education.getCreateuser();
+	public long getCreateUserId() {
+		return _education.getCreateUserId();
 	}
 
 	/**
-	* Sets the createuser of this education.
+	* Sets the create user ID of this education.
 	*
-	* @param createuser the createuser of this education
+	* @param createUserId the create user ID of this education
 	*/
 	@Override
-	public void setCreateuser(long createuser) {
-		_education.setCreateuser(createuser);
+	public void setCreateUserId(long createUserId) {
+		_education.setCreateUserId(createUserId);
+	}
+
+	/**
+	* Returns the create user uuid of this education.
+	*
+	* @return the create user uuid of this education
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public java.lang.String getCreateUserUuid()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _education.getCreateUserUuid();
+	}
+
+	/**
+	* Sets the create user uuid of this education.
+	*
+	* @param createUserUuid the create user uuid of this education
+	*/
+	@Override
+	public void setCreateUserUuid(java.lang.String createUserUuid) {
+		_education.setCreateUserUuid(createUserUuid);
 	}
 
 	/**
@@ -389,23 +405,45 @@ public class educationWrapper implements education, ModelWrapper<education> {
 	}
 
 	/**
-	* Returns the modifieduser of this education.
+	* Returns the modified user ID of this education.
 	*
-	* @return the modifieduser of this education
+	* @return the modified user ID of this education
 	*/
 	@Override
-	public long getModifieduser() {
-		return _education.getModifieduser();
+	public long getModifiedUserId() {
+		return _education.getModifiedUserId();
 	}
 
 	/**
-	* Sets the modifieduser of this education.
+	* Sets the modified user ID of this education.
 	*
-	* @param modifieduser the modifieduser of this education
+	* @param modifiedUserId the modified user ID of this education
 	*/
 	@Override
-	public void setModifieduser(long modifieduser) {
-		_education.setModifieduser(modifieduser);
+	public void setModifiedUserId(long modifiedUserId) {
+		_education.setModifiedUserId(modifiedUserId);
+	}
+
+	/**
+	* Returns the modified user uuid of this education.
+	*
+	* @return the modified user uuid of this education
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public java.lang.String getModifiedUserUuid()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _education.getModifiedUserUuid();
+	}
+
+	/**
+	* Sets the modified user uuid of this education.
+	*
+	* @param modifiedUserUuid the modified user uuid of this education
+	*/
+	@Override
+	public void setModifiedUserUuid(java.lang.String modifiedUserUuid) {
+		_education.setModifiedUserUuid(modifiedUserUuid);
 	}
 
 	/**
@@ -426,70 +464,6 @@ public class educationWrapper implements education, ModelWrapper<education> {
 	@Override
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_education.setModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the status of this education.
-	*
-	* @return the status of this education
-	*/
-	@Override
-	public int getStatus() {
-		return _education.getStatus();
-	}
-
-	/**
-	* Returns the trash entry created when this education was moved to the Recycle Bin. The trash entry may belong to one of the ancestors of this education.
-	*
-	* @return the trash entry created when this education was moved to the Recycle Bin
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public com.liferay.portlet.trash.model.TrashEntry getTrashEntry()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _education.getTrashEntry();
-	}
-
-	/**
-	* Returns the class primary key of the trash entry for this education.
-	*
-	* @return the class primary key of the trash entry for this education
-	*/
-	@Override
-	public long getTrashEntryClassPK() {
-		return _education.getTrashEntryClassPK();
-	}
-
-	/**
-	* Returns the trash handler for this education.
-	*
-	* @return the trash handler for this education
-	*/
-	@Override
-	public com.liferay.portal.kernel.trash.TrashHandler getTrashHandler() {
-		return _education.getTrashHandler();
-	}
-
-	/**
-	* Returns <code>true</code> if this education is in the Recycle Bin.
-	*
-	* @return <code>true</code> if this education is in the Recycle Bin; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isInTrash() {
-		return _education.isInTrash();
-	}
-
-	/**
-	* Returns <code>true</code> if the parent of this education is in the Recycle Bin.
-	*
-	* @return <code>true</code> if the parent of this education is in the Recycle Bin; <code>false</code> otherwise
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public boolean isInTrashContainer() {
-		return _education.isInTrashContainer();
 	}
 
 	@Override
@@ -552,11 +526,12 @@ public class educationWrapper implements education, ModelWrapper<education> {
 
 	@Override
 	public java.lang.Object clone() {
-		return new educationWrapper((education)_education.clone());
+		return new EducationWrapper((Education)_education.clone());
 	}
 
 	@Override
-	public int compareTo(education education) {
+	public int compareTo(
+		com.shuntian.portlet.intranet.model.Education education) {
 		return _education.compareTo(education);
 	}
 
@@ -566,18 +541,18 @@ public class educationWrapper implements education, ModelWrapper<education> {
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<education> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.shuntian.portlet.intranet.model.Education> toCacheModel() {
 		return _education.toCacheModel();
 	}
 
 	@Override
-	public education toEscapedModel() {
-		return new educationWrapper(_education.toEscapedModel());
+	public com.shuntian.portlet.intranet.model.Education toEscapedModel() {
+		return new EducationWrapper(_education.toEscapedModel());
 	}
 
 	@Override
-	public education toUnescapedModel() {
-		return new educationWrapper(_education.toUnescapedModel());
+	public com.shuntian.portlet.intranet.model.Education toUnescapedModel() {
+		return new EducationWrapper(_education.toUnescapedModel());
 	}
 
 	@Override
@@ -602,11 +577,11 @@ public class educationWrapper implements education, ModelWrapper<education> {
 			return true;
 		}
 
-		if (!(obj instanceof educationWrapper)) {
+		if (!(obj instanceof EducationWrapper)) {
 			return false;
 		}
 
-		educationWrapper educationWrapper = (educationWrapper)obj;
+		EducationWrapper educationWrapper = (EducationWrapper)obj;
 
 		if (Validator.equals(_education, educationWrapper._education)) {
 			return true;
@@ -615,20 +590,15 @@ public class educationWrapper implements education, ModelWrapper<education> {
 		return false;
 	}
 
-	@Override
-	public StagedModelType getStagedModelType() {
-		return _education.getStagedModelType();
-	}
-
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
-	public education getWrappededucation() {
+	public Education getWrappedEducation() {
 		return _education;
 	}
 
 	@Override
-	public education getWrappedModel() {
+	public Education getWrappedModel() {
 		return _education;
 	}
 
@@ -637,5 +607,5 @@ public class educationWrapper implements education, ModelWrapper<education> {
 		_education.resetOriginalValues();
 	}
 
-	private education _education;
+	private Education _education;
 }

@@ -17,14 +17,12 @@ package com.shuntian.portlet.intranet.service.messaging;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
+import com.shuntian.portlet.intranet.service.BasicInformationLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.ClpSerializer;
-import com.shuntian.portlet.intranet.service.SatffLocalServiceUtil;
-import com.shuntian.portlet.intranet.service.SatffServiceUtil;
-import com.shuntian.portlet.intranet.service.basic_informationLocalServiceUtil;
-import com.shuntian.portlet.intranet.service.educationLocalServiceUtil;
-import com.shuntian.portlet.intranet.service.ext_informationLocalServiceUtil;
-import com.shuntian.portlet.intranet.service.familyLocalServiceUtil;
-import com.shuntian.portlet.intranet.service.workLocalServiceUtil;
+import com.shuntian.portlet.intranet.service.EducationLocalServiceUtil;
+import com.shuntian.portlet.intranet.service.ExtInformationLocalServiceUtil;
+import com.shuntian.portlet.intranet.service.FamilyRelationshipLocalServiceUtil;
+import com.shuntian.portlet.intranet.service.WorkExperienceLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -41,18 +39,15 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
-			basic_informationLocalServiceUtil.clearService();
+			BasicInformationLocalServiceUtil.clearService();
 
-			educationLocalServiceUtil.clearService();
+			EducationLocalServiceUtil.clearService();
 
-			ext_informationLocalServiceUtil.clearService();
+			ExtInformationLocalServiceUtil.clearService();
 
-			familyLocalServiceUtil.clearService();
+			FamilyRelationshipLocalServiceUtil.clearService();
 
-			SatffLocalServiceUtil.clearService();
-
-			SatffServiceUtil.clearService();
-			workLocalServiceUtil.clearService();
+			WorkExperienceLocalServiceUtil.clearService();
 		}
 	}
 }

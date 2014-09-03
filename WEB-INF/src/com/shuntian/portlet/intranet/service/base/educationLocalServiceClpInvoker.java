@@ -14,7 +14,7 @@
 
 package com.shuntian.portlet.intranet.service.base;
 
-import com.shuntian.portlet.intranet.service.educationLocalServiceUtil;
+import com.shuntian.portlet.intranet.service.EducationLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -22,26 +22,26 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class educationLocalServiceClpInvoker {
-	public educationLocalServiceClpInvoker() {
-		_methodName0 = "addeducation";
+public class EducationLocalServiceClpInvoker {
+	public EducationLocalServiceClpInvoker() {
+		_methodName0 = "addEducation";
 
 		_methodParameterTypes0 = new String[] {
-				"com.shuntian.portlet.intranet.model.education"
+				"com.shuntian.portlet.intranet.model.Education"
 			};
 
-		_methodName1 = "createeducation";
+		_methodName1 = "createEducation";
 
 		_methodParameterTypes1 = new String[] { "long" };
 
-		_methodName2 = "deleteeducation";
+		_methodName2 = "deleteEducation";
 
 		_methodParameterTypes2 = new String[] { "long" };
 
-		_methodName3 = "deleteeducation";
+		_methodName3 = "deleteEducation";
 
 		_methodParameterTypes3 = new String[] {
-				"com.shuntian.portlet.intranet.model.education"
+				"com.shuntian.portlet.intranet.model.Education"
 			};
 
 		_methodName4 = "dynamicQuery";
@@ -80,91 +80,83 @@ public class educationLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.dao.orm.Projection"
 			};
 
-		_methodName10 = "fetcheducation";
+		_methodName10 = "fetchEducation";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "fetcheducationByUuidAndCompanyId";
+		_methodName11 = "getEducation";
 
-		_methodParameterTypes11 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "geteducation";
+		_methodName12 = "getPersistedModel";
 
-		_methodParameterTypes12 = new String[] { "long" };
+		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-		_methodName13 = "getPersistedModel";
+		_methodName13 = "getEducations";
 
-		_methodParameterTypes13 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes13 = new String[] { "int", "int" };
 
-		_methodName14 = "geteducationByUuidAndCompanyId";
+		_methodName14 = "getEducationsCount";
 
-		_methodParameterTypes14 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes14 = new String[] {  };
 
-		_methodName15 = "geteducations";
+		_methodName15 = "updateEducation";
 
-		_methodParameterTypes15 = new String[] { "int", "int" };
-
-		_methodName16 = "geteducationsCount";
-
-		_methodParameterTypes16 = new String[] {  };
-
-		_methodName17 = "updateeducation";
-
-		_methodParameterTypes17 = new String[] {
-				"com.shuntian.portlet.intranet.model.education"
+		_methodParameterTypes15 = new String[] {
+				"com.shuntian.portlet.intranet.model.Education"
 			};
 
-		_methodName58 = "getBeanIdentifier";
+		_methodName48 = "getBeanIdentifier";
 
-		_methodParameterTypes58 = new String[] {  };
+		_methodParameterTypes48 = new String[] {  };
 
-		_methodName59 = "setBeanIdentifier";
+		_methodName49 = "setBeanIdentifier";
 
-		_methodParameterTypes59 = new String[] { "java.lang.String" };
+		_methodParameterTypes49 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return educationLocalServiceUtil.addeducation((com.shuntian.portlet.intranet.model.education)arguments[0]);
+			return EducationLocalServiceUtil.addEducation((com.shuntian.portlet.intranet.model.Education)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return educationLocalServiceUtil.createeducation(((Long)arguments[0]).longValue());
+			return EducationLocalServiceUtil.createEducation(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return educationLocalServiceUtil.deleteeducation(((Long)arguments[0]).longValue());
+			return EducationLocalServiceUtil.deleteEducation(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return educationLocalServiceUtil.deleteeducation((com.shuntian.portlet.intranet.model.education)arguments[0]);
+			return EducationLocalServiceUtil.deleteEducation((com.shuntian.portlet.intranet.model.Education)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes4, parameterTypes)) {
-			return educationLocalServiceUtil.dynamicQuery();
+			return EducationLocalServiceUtil.dynamicQuery();
 		}
 
 		if (_methodName5.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes5, parameterTypes)) {
-			return educationLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
+			return EducationLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
 		}
 
 		if (_methodName6.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes6, parameterTypes)) {
-			return educationLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return EducationLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName7.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes7, parameterTypes)) {
-			return educationLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return EducationLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
@@ -172,66 +164,54 @@ public class educationLocalServiceClpInvoker {
 
 		if (_methodName8.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes8, parameterTypes)) {
-			return educationLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
+			return EducationLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
 		}
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return educationLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return EducationLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				(com.liferay.portal.kernel.dao.orm.Projection)arguments[1]);
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return educationLocalServiceUtil.fetcheducation(((Long)arguments[0]).longValue());
+			return EducationLocalServiceUtil.fetchEducation(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return educationLocalServiceUtil.fetcheducationByUuidAndCompanyId((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue());
+			return EducationLocalServiceUtil.getEducation(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return educationLocalServiceUtil.geteducation(((Long)arguments[0]).longValue());
+			return EducationLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return educationLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return EducationLocalServiceUtil.getEducations(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return educationLocalServiceUtil.geteducationByUuidAndCompanyId((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue());
+			return EducationLocalServiceUtil.getEducationsCount();
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return educationLocalServiceUtil.geteducations(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
+			return EducationLocalServiceUtil.updateEducation((com.shuntian.portlet.intranet.model.Education)arguments[0]);
 		}
 
-		if (_methodName16.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
-			return educationLocalServiceUtil.geteducationsCount();
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+			return EducationLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName17.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return educationLocalServiceUtil.updateeducation((com.shuntian.portlet.intranet.model.education)arguments[0]);
-		}
-
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return educationLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			educationLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+			EducationLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
@@ -271,12 +251,8 @@ public class educationLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName16;
-	private String[] _methodParameterTypes16;
-	private String _methodName17;
-	private String[] _methodParameterTypes17;
-	private String _methodName58;
-	private String[] _methodParameterTypes58;
-	private String _methodName59;
-	private String[] _methodParameterTypes59;
+	private String _methodName48;
+	private String[] _methodParameterTypes48;
+	private String _methodName49;
+	private String[] _methodParameterTypes49;
 }

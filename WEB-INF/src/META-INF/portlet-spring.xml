@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.shuntian.portlet.intranet.service.basic_informationLocalService" class="com.shuntian.portlet.intranet.service.impl.basic_informationLocalServiceImpl" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.basic_informationPersistence" class="com.shuntian.portlet.intranet.service.persistence.basic_informationPersistenceImpl" parent="basePersistence" />
+	<bean id="com.shuntian.portlet.intranet.service.educationLocalService" class="com.shuntian.portlet.intranet.service.impl.educationLocalServiceImpl" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.educationPersistence" class="com.shuntian.portlet.intranet.service.persistence.educationPersistenceImpl" parent="basePersistence" />
+	<bean id="com.shuntian.portlet.intranet.service.ext_informationLocalService" class="com.shuntian.portlet.intranet.service.impl.ext_informationLocalServiceImpl" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.ext_informationPersistence" class="com.shuntian.portlet.intranet.service.persistence.ext_informationPersistenceImpl" parent="basePersistence" />
+	<bean id="com.shuntian.portlet.intranet.service.familyLocalService" class="com.shuntian.portlet.intranet.service.impl.familyLocalServiceImpl" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.familyPersistence" class="com.shuntian.portlet.intranet.service.persistence.familyPersistenceImpl" parent="basePersistence" />
+	<bean id="com.shuntian.portlet.intranet.service.SatffLocalService" class="com.shuntian.portlet.intranet.service.impl.SatffLocalServiceImpl" />
+	<bean id="com.shuntian.portlet.intranet.service.SatffService" class="com.shuntian.portlet.intranet.service.impl.SatffServiceImpl" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.SatffPersistence" class="com.shuntian.portlet.intranet.service.persistence.SatffPersistenceImpl" parent="basePersistence" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.SatffFinder" class="com.shuntian.portlet.intranet.service.persistence.SatffFinderImpl" parent="basePersistence" />
+	<bean id="com.shuntian.portlet.intranet.service.workLocalService" class="com.shuntian.portlet.intranet.service.impl.workLocalServiceImpl" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.workPersistence" class="com.shuntian.portlet.intranet.service.persistence.workPersistenceImpl" parent="basePersistence" />
+</beans>

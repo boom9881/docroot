@@ -3,231 +3,182 @@
 
 <service-builder package-path="com.shuntian.portlet.intranet">
 	<namespace>Intranet</namespace>
-	<entity name="Satff" uuid="true" local-service="true" remote-service="true" trash-enabled="true">
+	
+	<entity name="BasicInformation" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
-
+		
 		<column name="id" type="long" primary="true" />
 
 		<!-- Resource -->
-
-		<column name="user_id" type="long" />
+		<column name="userId" type="long" />
 
 		<!-- Other fields -->
-		<column name="city" type="String" />
 		<column name="name" type="String" />
-		<column name="turnover_time" type="Date" />
-		<column name="entry_time" type="Date" />
-		<column name="base_pay" type="double" />
-		<column name="performance_pay" type="double" />
-		<column name="wage_subtotal" type="double" />
-		<column name="insurance_base" type="double" />
-		<column name="endowment_insurance" type="double" />
-		<column name="unemployment_insurance" type="double" />
-		<column name="work_injury_insurance" type="double" />
-		<column name="birth_insurance" type="double" />
-		<column name="medical_insurance" type="double" />
-		<column name="individual_insurance" type="double" />
-		<column name="housing_accumulation_fund_base" type="double" />
-		<column name="individual_pay" type="double" />
-		<column name="amount_payable" type="double" />
-		<column name="people_together" type="double" />
+		<column name="sex" type="int" />
+		<column name="idNumber" type="String" />
+		<column name="nation" type="String" />
+		<column name="placeOfOrigin" type="String" />
+		<column name="accountProperties" type="String" />
+		<column name="birthDate" type="Date" />
+		<column name="maritalStatus" type="String" />
+		<column name="highestDegree" type="String" />
+		<column name="politicalBackground" type="String" />
+		<column name="fileLocation" type="String" />
+		<column name="basePay" type="double" />
+		<column name="performancePay" type="double" />
+		<column name="health" type="int" />
+		<column name="contactPhone" type="String" />
+		<column name="mail" type="String" />
+		<column name="domicile" type="String" />
+		<column name="residencePhone" type="String" />
+		<column name="currentResidentialAddress" type="String" />
+		<column name="currentResidentialAddressPhone" type="String" />
+		<column name="emergencyContact" type="String" />
+		<column name="emergencyContactRelation" type="String" />
+		<column name="emergencyContactPhone" type="String" />
 
 		<!-- Audit fields -->
 
-		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
-		<column name="userName" type="String" />
+		<column name="createUserId" type="long" />
 		<column name="createDate" type="Date" />
+		<column name="modifiedUserId" type="long" />
 		<column name="modifiedDate" type="Date" />
 		
 		<!-- Order -->
 
 		<order>
-			<order-column name="createDate" order-by="asc" />
+			<order-column name="createDate" order-by="desc" />
 		</order>
 	</entity>
 	
-	<entity name="education" uuid="true" local-service="true" remote-service="false" trash-enabled="true">
+	<entity name="ExtInformation" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 		
-		<column name="educationId" type="long" primary="true" />
+		<column name="id" type="long" primary="true" />
 
 		<!-- Resource -->
-		<column name="satffId" type="long" />
+		<column name="userId" type="long" />
 		
+		<!-- Other fields -->
+		<column name="openCity" type="String" />
+		<column name="bankName" type="String" />
+		<column name="bankId" type="String" />
+		<column name="laborContractStart" type="Date" />
+		<column name="laborContractEnd" type="Date" />
+		<column name="probationPeriodStart" type="Date" />
+		<column name="probationPeriodEnd" type="Date" />
+		<column name="induredLocation" type="String" />
+		<column name="fristInsured" type="Date" />
+		<column name="isInsured" type="String" />
+
+		<!-- Audit fields -->
+
+		<column name="createUserId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedUserId" type="long" />
+		<column name="modifiedDate" type="Date" />
+		
+		<!-- Order -->
+
+		<order>
+			<order-column name="createDate" order-by="desc" />
+		</order>
+	</entity>
+	
+	<entity name="Education" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+		
+		<column name="id" type="long" primary="true" />
+
+		<!-- Resource -->
+		
+		<column name="userId" type="long" />
 
 		<!-- Other fields -->
 		<column name="witness" type="String" />
 		<column name="professional" type="String" />
 		<column name="university" type="String" />
-		<column name="contact_phone" type="String" />
-		<column name="start_stop_time" type="Date" />
+		<column name="contactPhone" type="String" />
+		<column name="startTime" type="Date" />
+		<column name="stopTime" type="Date" />
 
 		<!-- Audit fields -->
 
-		<column name="companyId" type="long" />
-		<column name="createuser" type="long" />
+		<column name="createUserId" type="long" />
 		<column name="createDate" type="Date" />
-		<column name="modifieduser" type="long" />
+		<column name="modifiedUserId" type="long" />
 		<column name="modifiedDate" type="Date" />
 		
 		<!-- Order -->
 
 		<order>
-			<order-column name="createDate" order-by="asc" />
+			<order-column name="createDate" order-by="desc" />
 		</order>
 	</entity>
 	
-	<entity name="work" uuid="true" local-service="true" remote-service="false" trash-enabled="true">
+	<entity name="WorkExperience" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 		
-		<column name="workId" type="long" primary="true" />
+		<column name="id" type="long" primary="true" />
 
 		<!-- Resource -->
-		<column name="satffId" type="long" />
 		
+		<column name="userId" type="long" />
 
 		<!-- Other fields -->
 		<column name="witness" type="String" />
-		<column name="once_job" type="String" />
-		<column name="work_unit" type="String" />
-		<column name="contact_phone" type="String" />
-		<column name="start_stop_time" type="Date" />
+		<column name="onceJob" type="String" />
+		<column name="workUnit" type="String" />
+		<column name="contactPhone" type="String" />
+		<column name="startTime" type="Date" />
+		<column name="stopTime" type="Date" />
 
 		<!-- Audit fields -->
 
-		<column name="companyId" type="long" />
-		<column name="createuser" type="long" />
+		<column name="createUserId" type="long" />
 		<column name="createDate" type="Date" />
-		<column name="modifieduser" type="long" />
+		<column name="modifiedUserId" type="long" />
 		<column name="modifiedDate" type="Date" />
 		
 		<!-- Order -->
 
 		<order>
-			<order-column name="createDate" order-by="asc" />
+			<order-column name="createDate" order-by="desc" />
 		</order>
 	</entity>
 	
-	<entity name="family" uuid="true" local-service="true" remote-service="false" trash-enabled="true">
+	<entity name="FamilyRelationship" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 		
-		<column name="familyId" type="long" primary="true" />
+		<column name="id" type="long" primary="true" />
 
 		<!-- Resource -->
-		<column name="satffId" type="long" />
 		
+		<column name="userId" type="long" />
 
 		<!-- Other fields -->
 		<column name="name" type="String" />
 		<column name="relationship" type="String" />
-		<column name="work_unit" type="String" />
-		<column name="contact_phone" type="String" />
-		<column name="once_job" type="String" />
+		<column name="workUnit" type="String" />
+		<column name="contactPhone" type="String" />
+		<column name="onceJob" type="String" />
 
 		<!-- Audit fields -->
 
-		<column name="companyId" type="long" />
-		<column name="createuser" type="long" />
+		<column name="createUserId" type="long" />
 		<column name="createDate" type="Date" />
-		<column name="modifieduser" type="long" />
+		<column name="modifiedUserId" type="long" />
 		<column name="modifiedDate" type="Date" />
 		
 		<!-- Order -->
 
 		<order>
-			<order-column name="createDate" order-by="asc" />
-		</order>
-	</entity>
-	
-	<entity name="basic_information" uuid="true" local-service="true" remote-service="false" trash-enabled="true">
-
-		<!-- PK fields -->
-		
-		<column name="staffId" type="long" primary="true" />
-
-		<!-- Resource -->
-		<column name="userId" type="long" />
-		
-
-		<!-- Other fields -->
-		<column name="name" type="String" />
-		<column name="sex" type="String" />
-		<column name="id_number" type="String" />
-		<column name="nation" type="String" />
-		<column name="place_of_origin" type="String" />
-		<column name="account_properties" type="String" />
-		<column name="birth" type="Date" />
-		<column name="marital_status" type="String" />
-		<column name="highest_degree" type="String" />
-		<column name="political_background" type="String" />
-		<column name="file_location" type="String" />
-		<column name="base_pay" type="double" />
-		<column name="performance_pay" type="double" />
-		<column name="health" type="String" />
-		<column name="contact_phone" type="String" />
-		<column name="mail" type="String" />
-		<column name="domicile" type="String" />
-		<column name="residence_phone" type="String" />
-		<column name="current_residential_address" type="String" />
-		<column name="current_residential_address_phone" type="String" />
-		<column name="emergency_contact" type="String" />
-		<column name="emergency_contact_relation" type="String" />
-		<column name="emergency_contact_phone" type="String" />
-
-		<!-- Audit fields -->
-
-		<column name="companyId" type="long" />
-		<column name="createuser" type="long" />
-		<column name="createDate" type="Date" />
-		<column name="modifieduser" type="long" />
-		<column name="modifiedDate" type="Date" />
-		
-		<!-- Order -->
-
-		<order>
-			<order-column name="createDate" order-by="asc" />
-		</order>
-	</entity>
-	
-	<entity name="ext_information" uuid="true" local-service="true" remote-service="false" trash-enabled="true">
-
-		<!-- PK fields -->
-		
-		<column name="extId" type="long" primary="true" />
-
-		<!-- Resource -->
-		<column name="staffId" type="long" />
-		
-
-		<!-- Other fields -->
-		<column name="open_city" type="String" />
-		<column name="bank_name" type="String" />
-		<column name="bankid" type="String" />
-		<column name="labor_contract_start" type="Date" />
-		<column name="labor_contract_end" type="Date" />
-		<column name="probation_period_start" type="Date" />
-		<column name="probation_period_end" type="Date" />
-		<column name="indured_location" type="String" />
-		<column name="frist_insured" type="Date" />
-		<column name="is_insured" type="String" />
-
-		<!-- Audit fields -->
-
-		<column name="companyId" type="long" />
-		<column name="createuser" type="long" />
-		<column name="createDate" type="Date" />
-		<column name="modifieduser" type="long" />
-		<column name="modifiedDate" type="Date" />
-		
-		<!-- Order -->
-
-		<order>
-			<order-column name="createDate" order-by="asc" />
+			<order-column name="createDate" order-by="desc" />
 		</order>
 	</entity>
 </service-builder>

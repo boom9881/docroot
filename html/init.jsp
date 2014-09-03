@@ -15,9 +15,6 @@
 <%@ page import="com.liferay.portlet.PortalPreferences" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 
-<%@page import="com.shuntian.portlet.intranet.model.Satff"%>
-<%@page import="com.shuntian.portlet.intranet.service.SatffLocalServiceUtil"%>
-
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.text.MessageFormat" %>
@@ -101,6 +98,9 @@
 <%@ page import="com.liferay.portal.service.GroupServiceUtil" %>
 <%@ page import="com.liferay.portal.service.OrganizationServiceUtil" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
+
+<%@ page import="com.shuntian.portlet.intranet.model.Satff" %>
+<%@ page import="com.shuntian.portlet.intranet.service.SatffLocalServiceUtil" %>
 
 <portlet:defineObjects />
 

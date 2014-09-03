@@ -100,9 +100,9 @@
 
 <liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
 
-<aui:script use="aui-base">
+<aui:script>
 	function <portlet:namespace />onSub(url){
-		document.<portlet:namespace />fm.action.value = url;
+		document.<portlet:namespace />fm.action = url;
 
 		submitForm(document.<portlet:namespace />fm);
 	}

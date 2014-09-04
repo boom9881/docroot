@@ -38,51 +38,131 @@ public interface FamilyRelationshipPersistence extends BasePersistence<FamilyRel
 	 */
 
 	/**
-	* Returns the family relationship where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException} if it could not be found.
+	* Returns all the family relationships where userId = &#63;.
 	*
 	* @param userId the user ID
-	* @return the matching family relationship
-	* @throws com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException if a matching family relationship could not be found
+	* @return the matching family relationships
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.shuntian.portlet.intranet.model.FamilyRelationship findByUserId(
-		long userId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException;
-
-	/**
-	* Returns the family relationship where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	*
-	* @param userId the user ID
-	* @return the matching family relationship, or <code>null</code> if a matching family relationship could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.shuntian.portlet.intranet.model.FamilyRelationship fetchByUserId(
+	public java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the family relationship where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns a range of all the family relationships where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.FamilyRelationshipModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
 	*
 	* @param userId the user ID
-	* @param retrieveFromCache whether to use the finder cache
-	* @return the matching family relationship, or <code>null</code> if a matching family relationship could not be found
+	* @param start the lower bound of the range of family relationships
+	* @param end the upper bound of the range of family relationships (not inclusive)
+	* @return the range of matching family relationships
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.shuntian.portlet.intranet.model.FamilyRelationship fetchByUserId(
-		long userId, boolean retrieveFromCache)
+	public java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship> findByUserId(
+		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes the family relationship where userId = &#63; from the database.
+	* Returns an ordered range of all the family relationships where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.FamilyRelationshipModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
 	*
 	* @param userId the user ID
-	* @return the family relationship that was removed
+	* @param start the lower bound of the range of family relationships
+	* @param end the upper bound of the range of family relationships (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching family relationships
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.shuntian.portlet.intranet.model.FamilyRelationship removeByUserId(
-		long userId)
+	public java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship> findByUserId(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the first family relationship in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching family relationship
+	* @throws com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException if a matching family relationship could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.FamilyRelationship findByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException;
+
+	/**
+	* Returns the first family relationship in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching family relationship, or <code>null</code> if a matching family relationship could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.FamilyRelationship fetchByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last family relationship in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching family relationship
+	* @throws com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException if a matching family relationship could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.FamilyRelationship findByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException;
+
+	/**
+	* Returns the last family relationship in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching family relationship, or <code>null</code> if a matching family relationship could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.FamilyRelationship fetchByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the family relationships before and after the current family relationship in the ordered set where userId = &#63;.
+	*
+	* @param id the primary key of the current family relationship
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next family relationship
+	* @throws com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException if a family relationship with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.shuntian.portlet.intranet.model.FamilyRelationship[] findByUserId_PrevAndNext(
+		long id, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException;
+
+	/**
+	* Removes all the family relationships where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the number of family relationships where userId = &#63;.

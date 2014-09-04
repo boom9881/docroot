@@ -287,6 +287,12 @@ public class WorkExperienceLocalServiceWrapper
 			arguments);
 	}
 
+	@Override
+	public java.util.List<com.shuntian.portlet.intranet.model.WorkExperience> findByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return _workExperienceLocalService.findByUserId(userId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

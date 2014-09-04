@@ -113,6 +113,10 @@ public class WorkExperienceLocalServiceClpInvoker {
 		_methodName49 = "setBeanIdentifier";
 
 		_methodParameterTypes49 = new String[] { "java.lang.String" };
+
+		_methodName54 = "findByUserId";
+
+		_methodParameterTypes54 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -216,6 +220,11 @@ public class WorkExperienceLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+			return WorkExperienceLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -255,4 +264,6 @@ public class WorkExperienceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes48;
 	private String _methodName49;
 	private String[] _methodParameterTypes49;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
 }

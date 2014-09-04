@@ -284,6 +284,12 @@ public class EducationLocalServiceWrapper implements EducationLocalService,
 			arguments);
 	}
 
+	@Override
+	public java.util.List<com.shuntian.portlet.intranet.model.Education> findByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return _educationLocalService.findByUserId(userId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

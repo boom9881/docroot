@@ -14,27 +14,36 @@
 
 package com.shuntian.portlet.intranet.service.impl;
 
+import java.util.List;
+
+import com.liferay.portal.kernel.exception.SystemException;
+import com.shuntian.portlet.intranet.model.WorkExperience;
 import com.shuntian.portlet.intranet.service.base.WorkExperienceLocalServiceBaseImpl;
 
 /**
  * The implementation of the work experience local service.
- *
+ * 
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.shuntian.portlet.intranet.service.WorkExperienceLocalService} interface.
- *
+ * All custom service methods should be put in this class. Whenever methods are
+ * added, rerun ServiceBuilder to copy their definitions into the
+ * {@link com.shuntian.portlet.intranet.service.WorkExperienceLocalService}
+ * interface.
+ * 
  * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * This is a local service. Methods of this service will not have security
+ * checks based on the propagated JAAS credentials because this service can only
+ * be accessed from within the same VM.
  * </p>
- *
+ * 
  * @author Brian Wing Shun Chan
  * @see com.shuntian.portlet.intranet.service.base.WorkExperienceLocalServiceBaseImpl
  * @see com.shuntian.portlet.intranet.service.WorkExperienceLocalServiceUtil
  */
-public class WorkExperienceLocalServiceImpl
-	extends WorkExperienceLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.shuntian.portlet.intranet.service.WorkExperienceLocalServiceUtil} to access the work experience local service.
-	 */
+public class WorkExperienceLocalServiceImpl extends
+		WorkExperienceLocalServiceBaseImpl {
+
+	public List<WorkExperience> findByUserId(long userId)
+			throws SystemException {
+		return workExperiencePersistence.findByUserId(userId);
+	}
 }

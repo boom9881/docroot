@@ -14,26 +14,34 @@
 
 package com.shuntian.portlet.intranet.service.impl;
 
+import java.util.List;
+
+import com.liferay.portal.kernel.exception.SystemException;
+import com.shuntian.portlet.intranet.model.Education;
 import com.shuntian.portlet.intranet.service.base.EducationLocalServiceBaseImpl;
 
 /**
  * The implementation of the education local service.
- *
+ * 
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.shuntian.portlet.intranet.service.EducationLocalService} interface.
- *
+ * All custom service methods should be put in this class. Whenever methods are
+ * added, rerun ServiceBuilder to copy their definitions into the
+ * {@link com.shuntian.portlet.intranet.service.EducationLocalService}
+ * interface.
+ * 
  * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * This is a local service. Methods of this service will not have security
+ * checks based on the propagated JAAS credentials because this service can only
+ * be accessed from within the same VM.
  * </p>
- *
+ * 
  * @author Brian Wing Shun Chan
  * @see com.shuntian.portlet.intranet.service.base.EducationLocalServiceBaseImpl
  * @see com.shuntian.portlet.intranet.service.EducationLocalServiceUtil
  */
 public class EducationLocalServiceImpl extends EducationLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.shuntian.portlet.intranet.service.EducationLocalServiceUtil} to access the education local service.
-	 */
+	
+	public List<Education> findByUserId(long userId) throws SystemException {
+		return educationPersistence.findByUserId(userId);
+	}
 }

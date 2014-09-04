@@ -78,6 +78,8 @@
 		<column name="induredLocation" type="String" />
 		<column name="fristInsured" type="Date" />
 		<column name="isInsured" type="String" />
+		<column name="basicWage" type="long" />
+		<column name="otherWage" type="long" />
 
 		<!-- Audit fields -->
 
@@ -94,7 +96,7 @@
 		
 		<!-- Finder methods -->
 
-		<finder name="UserId" return-type="BasicInformation">
+		<finder name="UserId" return-type="ExtInformation">
 			<finder-column name="userId" />
 		</finder>
 	</entity>
@@ -132,7 +134,7 @@
 		
 		<!-- Finder methods -->
 
-		<finder name="UserId" return-type="BasicInformation">
+		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId" />
 		</finder>
 	</entity>
@@ -170,7 +172,7 @@
 		
 		<!-- Finder methods -->
 
-		<finder name="UserId" return-type="BasicInformation">
+		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId" />
 		</finder>
 	</entity>
@@ -207,7 +209,7 @@
 		
 		<!-- Finder methods -->
 
-		<finder name="UserId" return-type="BasicInformation">
+		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId" />
 		</finder>
 	</entity>

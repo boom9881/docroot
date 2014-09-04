@@ -10,6 +10,8 @@ BasicInformation basicInformation = null;
 if(Validator.isNotNull(userId)){
 	basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(userId);
 }
+
+request.setAttribute("user.id", userId);
 %>
 
 <portlet:actionURL var="editUserActionURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">

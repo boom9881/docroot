@@ -86,96 +86,129 @@ public class FamilyRelationshipPersistenceImpl extends BasePersistenceImpl<Famil
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(FamilyRelationshipModelImpl.ENTITY_CACHE_ENABLED,
 			FamilyRelationshipModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_FETCH_BY_USERID = new FinderPath(FamilyRelationshipModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_USERID = new FinderPath(FamilyRelationshipModelImpl.ENTITY_CACHE_ENABLED,
 			FamilyRelationshipModelImpl.FINDER_CACHE_ENABLED,
-			FamilyRelationshipImpl.class, FINDER_CLASS_NAME_ENTITY,
-			"fetchByUserId", new String[] { Long.class.getName() },
-			FamilyRelationshipModelImpl.USERID_COLUMN_BITMASK);
+			FamilyRelationshipImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUserId",
+			new String[] {
+				Long.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID =
+		new FinderPath(FamilyRelationshipModelImpl.ENTITY_CACHE_ENABLED,
+			FamilyRelationshipModelImpl.FINDER_CACHE_ENABLED,
+			FamilyRelationshipImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
+			new String[] { Long.class.getName() },
+			FamilyRelationshipModelImpl.USERID_COLUMN_BITMASK |
+			FamilyRelationshipModelImpl.CREATEDATE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(FamilyRelationshipModelImpl.ENTITY_CACHE_ENABLED,
 			FamilyRelationshipModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
 			new String[] { Long.class.getName() });
 
 	/**
-	 * Returns the family relationship where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException} if it could not be found.
+	 * Returns all the family relationships where userId = &#63;.
 	 *
 	 * @param userId the user ID
-	 * @return the matching family relationship
-	 * @throws com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException if a matching family relationship could not be found
+	 * @return the matching family relationships
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public FamilyRelationship findByUserId(long userId)
-		throws NoSuchFamilyRelationshipException, SystemException {
-		FamilyRelationship familyRelationship = fetchByUserId(userId);
-
-		if (familyRelationship == null) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchFamilyRelationshipException(msg.toString());
-		}
-
-		return familyRelationship;
-	}
-
-	/**
-	 * Returns the family relationship where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param userId the user ID
-	 * @return the matching family relationship, or <code>null</code> if a matching family relationship could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public FamilyRelationship fetchByUserId(long userId)
+	public List<FamilyRelationship> findByUserId(long userId)
 		throws SystemException {
-		return fetchByUserId(userId, true);
+		return findByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns the family relationship where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns a range of all the family relationships where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.FamilyRelationshipModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
 	 *
 	 * @param userId the user ID
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching family relationship, or <code>null</code> if a matching family relationship could not be found
+	 * @param start the lower bound of the range of family relationships
+	 * @param end the upper bound of the range of family relationships (not inclusive)
+	 * @return the range of matching family relationships
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public FamilyRelationship fetchByUserId(long userId,
-		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { userId };
+	public List<FamilyRelationship> findByUserId(long userId, int start, int end)
+		throws SystemException {
+		return findByUserId(userId, start, end, null);
+	}
 
-		Object result = null;
+	/**
+	 * Returns an ordered range of all the family relationships where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.FamilyRelationshipModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of family relationships
+	 * @param end the upper bound of the range of family relationships (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching family relationships
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<FamilyRelationship> findByUserId(long userId, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_USERID,
-					finderArgs, this);
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID;
+			finderArgs = new Object[] { userId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_USERID;
+			finderArgs = new Object[] { userId, start, end, orderByComparator };
 		}
 
-		if (result instanceof FamilyRelationship) {
-			FamilyRelationship familyRelationship = (FamilyRelationship)result;
+		List<FamilyRelationship> list = (List<FamilyRelationship>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
 
-			if ((userId != familyRelationship.getUserId())) {
-				result = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (FamilyRelationship familyRelationship : list) {
+				if ((userId != familyRelationship.getUserId())) {
+					list = null;
+
+					break;
+				}
 			}
 		}
 
-		if (result == null) {
-			StringBundler query = new StringBundler(3);
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
 			query.append(_SQL_SELECT_FAMILYRELATIONSHIP_WHERE);
 
 			query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(FamilyRelationshipModelImpl.ORDER_BY_JPQL);
+			}
 
 			String sql = query.toString();
 
@@ -190,35 +223,25 @@ public class FamilyRelationshipPersistenceImpl extends BasePersistenceImpl<Famil
 
 				qPos.add(userId);
 
-				List<FamilyRelationship> list = q.list();
+				if (!pagination) {
+					list = (List<FamilyRelationship>)QueryUtil.list(q,
+							getDialect(), start, end, false);
 
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-						finderArgs, list);
+					Collections.sort(list);
+
+					list = new UnmodifiableList<FamilyRelationship>(list);
 				}
 				else {
-					if ((list.size() > 1) && _log.isWarnEnabled()) {
-						_log.warn(
-							"FamilyRelationshipPersistenceImpl.fetchByUserId(long, boolean) with parameters (" +
-							StringUtil.merge(finderArgs) +
-							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-					}
-
-					FamilyRelationship familyRelationship = list.get(0);
-
-					result = familyRelationship;
-
-					cacheResult(familyRelationship);
-
-					if ((familyRelationship.getUserId() != userId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-							finderArgs, familyRelationship);
-					}
+					list = (List<FamilyRelationship>)QueryUtil.list(q,
+							getDialect(), start, end);
 				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
-					finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -227,27 +250,279 @@ public class FamilyRelationshipPersistenceImpl extends BasePersistenceImpl<Famil
 			}
 		}
 
-		if (result instanceof List<?>) {
+		return list;
+	}
+
+	/**
+	 * Returns the first family relationship in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching family relationship
+	 * @throws com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException if a matching family relationship could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FamilyRelationship findByUserId_First(long userId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFamilyRelationshipException, SystemException {
+		FamilyRelationship familyRelationship = fetchByUserId_First(userId,
+				orderByComparator);
+
+		if (familyRelationship != null) {
+			return familyRelationship;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFamilyRelationshipException(msg.toString());
+	}
+
+	/**
+	 * Returns the first family relationship in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching family relationship, or <code>null</code> if a matching family relationship could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FamilyRelationship fetchByUserId_First(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<FamilyRelationship> list = findByUserId(userId, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last family relationship in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching family relationship
+	 * @throws com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException if a matching family relationship could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FamilyRelationship findByUserId_Last(long userId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFamilyRelationshipException, SystemException {
+		FamilyRelationship familyRelationship = fetchByUserId_Last(userId,
+				orderByComparator);
+
+		if (familyRelationship != null) {
+			return familyRelationship;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFamilyRelationshipException(msg.toString());
+	}
+
+	/**
+	 * Returns the last family relationship in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching family relationship, or <code>null</code> if a matching family relationship could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FamilyRelationship fetchByUserId_Last(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByUserId(userId);
+
+		if (count == 0) {
 			return null;
 		}
+
+		List<FamilyRelationship> list = findByUserId(userId, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the family relationships before and after the current family relationship in the ordered set where userId = &#63;.
+	 *
+	 * @param id the primary key of the current family relationship
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next family relationship
+	 * @throws com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException if a family relationship with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FamilyRelationship[] findByUserId_PrevAndNext(long id, long userId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFamilyRelationshipException, SystemException {
+		FamilyRelationship familyRelationship = findByPrimaryKey(id);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			FamilyRelationship[] array = new FamilyRelationshipImpl[3];
+
+			array[0] = getByUserId_PrevAndNext(session, familyRelationship,
+					userId, orderByComparator, true);
+
+			array[1] = familyRelationship;
+
+			array[2] = getByUserId_PrevAndNext(session, familyRelationship,
+					userId, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected FamilyRelationship getByUserId_PrevAndNext(Session session,
+		FamilyRelationship familyRelationship, long userId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
 		else {
-			return (FamilyRelationship)result;
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_FAMILYRELATIONSHIP_WHERE);
+
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(FamilyRelationshipModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(userId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(familyRelationship);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<FamilyRelationship> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
 	/**
-	 * Removes the family relationship where userId = &#63; from the database.
+	 * Removes all the family relationships where userId = &#63; from the database.
 	 *
 	 * @param userId the user ID
-	 * @return the family relationship that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public FamilyRelationship removeByUserId(long userId)
-		throws NoSuchFamilyRelationshipException, SystemException {
-		FamilyRelationship familyRelationship = findByUserId(userId);
-
-		return remove(familyRelationship);
+	public void removeByUserId(long userId) throws SystemException {
+		for (FamilyRelationship familyRelationship : findByUserId(userId,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+			remove(familyRelationship);
+		}
 	}
 
 	/**
@@ -320,9 +595,6 @@ public class FamilyRelationshipPersistenceImpl extends BasePersistenceImpl<Famil
 			FamilyRelationshipImpl.class, familyRelationship.getPrimaryKey(),
 			familyRelationship);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-			new Object[] { familyRelationship.getUserId() }, familyRelationship);
-
 		familyRelationship.resetOriginalValues();
 	}
 
@@ -380,8 +652,6 @@ public class FamilyRelationshipPersistenceImpl extends BasePersistenceImpl<Famil
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		clearUniqueFindersCache(familyRelationship);
 	}
 
 	@Override
@@ -392,51 +662,6 @@ public class FamilyRelationshipPersistenceImpl extends BasePersistenceImpl<Famil
 		for (FamilyRelationship familyRelationship : familyRelationships) {
 			EntityCacheUtil.removeResult(FamilyRelationshipModelImpl.ENTITY_CACHE_ENABLED,
 				FamilyRelationshipImpl.class, familyRelationship.getPrimaryKey());
-
-			clearUniqueFindersCache(familyRelationship);
-		}
-	}
-
-	protected void cacheUniqueFindersCache(
-		FamilyRelationship familyRelationship) {
-		if (familyRelationship.isNew()) {
-			Object[] args = new Object[] { familyRelationship.getUserId() };
-
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
-				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
-				familyRelationship);
-		}
-		else {
-			FamilyRelationshipModelImpl familyRelationshipModelImpl = (FamilyRelationshipModelImpl)familyRelationship;
-
-			if ((familyRelationshipModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { familyRelationship.getUserId() };
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
-					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
-					familyRelationship);
-			}
-		}
-	}
-
-	protected void clearUniqueFindersCache(
-		FamilyRelationship familyRelationship) {
-		FamilyRelationshipModelImpl familyRelationshipModelImpl = (FamilyRelationshipModelImpl)familyRelationship;
-
-		Object[] args = new Object[] { familyRelationship.getUserId() };
-
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
-
-		if ((familyRelationshipModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
-			args = new Object[] { familyRelationshipModelImpl.getOriginalUserId() };
-
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
 		}
 	}
 
@@ -552,6 +777,8 @@ public class FamilyRelationshipPersistenceImpl extends BasePersistenceImpl<Famil
 
 		boolean isNew = familyRelationship.isNew();
 
+		FamilyRelationshipModelImpl familyRelationshipModelImpl = (FamilyRelationshipModelImpl)familyRelationship;
+
 		Session session = null;
 
 		try {
@@ -579,12 +806,28 @@ public class FamilyRelationshipPersistenceImpl extends BasePersistenceImpl<Famil
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
+		else {
+			if ((familyRelationshipModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						familyRelationshipModelImpl.getOriginalUserId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+					args);
+
+				args = new Object[] { familyRelationshipModelImpl.getUserId() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+					args);
+			}
+		}
+
 		EntityCacheUtil.putResult(FamilyRelationshipModelImpl.ENTITY_CACHE_ENABLED,
 			FamilyRelationshipImpl.class, familyRelationship.getPrimaryKey(),
 			familyRelationship);
-
-		clearUniqueFindersCache(familyRelationship);
-		cacheUniqueFindersCache(familyRelationship);
 
 		return familyRelationship;
 	}

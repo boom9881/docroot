@@ -12,6 +12,7 @@
 
 	randerURL.setParameter("mvcPath","/html/satff/edit_satff.jsp");
 	
+	
 	PortletURL portletURL = renderResponse.createRenderURL();
 
 	portletURL.setWindowState(WindowState.MAXIMIZED);

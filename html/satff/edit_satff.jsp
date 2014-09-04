@@ -26,20 +26,33 @@ if(Validator.isNotNull(userId)){
 />
 
 <aui:form action="<%= editUserActionURL.toString() %>" method="post" name="fm">
-	<aui:input name="name" label="姓名" value="" />
-	<aui:input name="sex" label="性别" value="" />
-	<aui:input name="name" label="民族" value="" />
-	<aui:input name="sex" label="婚姻状况" value=""/>
-	<aui:input name="name" label="健康状况" value="" />
-	<aui:input name="sex" label="籍贯" value="" />
-	<aui:input name="name" label="出生年月" value="" />
-	<aui:input name="name" label="身份证号" value="" />
-	<aui:input name="sex" label="户口性质" value="" />
-	<aui:input name="name" label="最高学历" value="" />
-	<aui:input name="sex" label="政治面貌" value="" />
-	<aui:input name="sex" label="存档地点" value="" />
+	<liferay-util:buffer var="htmlTop">
+		<c:if test="<%= basicInformation != null %>">
+			<div class="user-info">
+				<div class="float-container">
+					<span class="user-name"><%= HtmlUtil.escape(basicInformation.getName()) %></span>
+				</div>
+			</div>
+		</c:if>
+	</liferay-util:buffer>
 	
+	<liferay-util:buffer var="htmlBottom">
+	</liferay-util:buffer>
 	
-	<aui:button type="submit" value="保存" />
-	<aui:button value="取消" />
+	<liferay-ui:form-navigator
+		backURL="<%= backURL %>"
+		categoryNames="<%= _CATEGORY_NAMES %>"
+		categorySections="<%= categorySections %>"
+		htmlBottom="<%= htmlBottom %>"
+		htmlTop="<%= htmlTop %>"
+		jspPath="/html/satff/"
+	/>
 </aui:form>
+
+<%!
+private static final String[] _CATEGORY_NAMES = {""};
+// 基本信息、（个人收款信息、劳动关系（合同信息）、社保信息）、教育经历、工作经历、家庭关系
+private static final String[] mainSections = "basic_information,staff_information,education,work_experience,family_relationship".split(",");
+
+private static final String[][] categorySections = {mainSections};
+%>

@@ -74,12 +74,14 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 			{ "induredLocation", Types.VARCHAR },
 			{ "fristInsured", Types.TIMESTAMP },
 			{ "isInsured", Types.VARCHAR },
+			{ "basicWage", Types.BIGINT },
+			{ "otherWage", Types.BIGINT },
 			{ "createUserId", Types.BIGINT },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedUserId", Types.BIGINT },
 			{ "modifiedDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_ExtInformation (id_ LONG not null primary key,userId LONG,openCity VARCHAR(75) null,bankName VARCHAR(75) null,bankId VARCHAR(75) null,laborContractStart DATE null,laborContractEnd DATE null,probationPeriodStart DATE null,probationPeriodEnd DATE null,induredLocation VARCHAR(75) null,fristInsured DATE null,isInsured VARCHAR(75) null,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_ExtInformation (id_ LONG not null primary key,userId LONG,openCity VARCHAR(75) null,bankName VARCHAR(75) null,bankId VARCHAR(75) null,laborContractStart DATE null,laborContractEnd DATE null,probationPeriodStart DATE null,probationPeriodEnd DATE null,induredLocation VARCHAR(75) null,fristInsured DATE null,isInsured VARCHAR(75) null,basicWage LONG,otherWage LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_ExtInformation";
 	public static final String ORDER_BY_JPQL = " ORDER BY extInformation.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY Intranet_ExtInformation.createDate DESC";
@@ -149,6 +151,8 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		attributes.put("induredLocation", getInduredLocation());
 		attributes.put("fristInsured", getFristInsured());
 		attributes.put("isInsured", getIsInsured());
+		attributes.put("basicWage", getBasicWage());
+		attributes.put("otherWage", getOtherWage());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedUserId", getModifiedUserId());
@@ -229,6 +233,18 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 
 		if (isInsured != null) {
 			setIsInsured(isInsured);
+		}
+
+		Long basicWage = (Long)attributes.get("basicWage");
+
+		if (basicWage != null) {
+			setBasicWage(basicWage);
+		}
+
+		Long otherWage = (Long)attributes.get("otherWage");
+
+		if (otherWage != null) {
+			setOtherWage(otherWage);
 		}
 
 		Long createUserId = (Long)attributes.get("createUserId");
@@ -424,6 +440,26 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 	}
 
 	@Override
+	public long getBasicWage() {
+		return _basicWage;
+	}
+
+	@Override
+	public void setBasicWage(long basicWage) {
+		_basicWage = basicWage;
+	}
+
+	@Override
+	public long getOtherWage() {
+		return _otherWage;
+	}
+
+	@Override
+	public void setOtherWage(long otherWage) {
+		_otherWage = otherWage;
+	}
+
+	@Override
 	public long getCreateUserId() {
 		return _createUserId;
 	}
@@ -530,6 +566,8 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		extInformationImpl.setInduredLocation(getInduredLocation());
 		extInformationImpl.setFristInsured(getFristInsured());
 		extInformationImpl.setIsInsured(getIsInsured());
+		extInformationImpl.setBasicWage(getBasicWage());
+		extInformationImpl.setOtherWage(getOtherWage());
 		extInformationImpl.setCreateUserId(getCreateUserId());
 		extInformationImpl.setCreateDate(getCreateDate());
 		extInformationImpl.setModifiedUserId(getModifiedUserId());
@@ -687,6 +725,10 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 			extInformationCacheModel.isInsured = null;
 		}
 
+		extInformationCacheModel.basicWage = getBasicWage();
+
+		extInformationCacheModel.otherWage = getOtherWage();
+
 		extInformationCacheModel.createUserId = getCreateUserId();
 
 		Date createDate = getCreateDate();
@@ -714,7 +756,7 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -740,6 +782,10 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		sb.append(getFristInsured());
 		sb.append(", isInsured=");
 		sb.append(getIsInsured());
+		sb.append(", basicWage=");
+		sb.append(getBasicWage());
+		sb.append(", otherWage=");
+		sb.append(getOtherWage());
 		sb.append(", createUserId=");
 		sb.append(getCreateUserId());
 		sb.append(", createDate=");
@@ -755,7 +801,7 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		StringBundler sb = new StringBundler(58);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.ExtInformation");
@@ -810,6 +856,14 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		sb.append(getIsInsured());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>basicWage</column-name><column-value><![CDATA[");
+		sb.append(getBasicWage());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>otherWage</column-name><column-value><![CDATA[");
+		sb.append(getOtherWage());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
 		sb.append(getCreateUserId());
 		sb.append("]]></column-value></column>");
@@ -850,6 +904,8 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 	private String _induredLocation;
 	private Date _fristInsured;
 	private String _isInsured;
+	private long _basicWage;
+	private long _otherWage;
 	private long _createUserId;
 	private String _createUserUuid;
 	private Date _createDate;

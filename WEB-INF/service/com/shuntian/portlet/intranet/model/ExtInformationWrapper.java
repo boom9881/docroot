@@ -62,6 +62,8 @@ public class ExtInformationWrapper implements ExtInformation,
 		attributes.put("induredLocation", getInduredLocation());
 		attributes.put("fristInsured", getFristInsured());
 		attributes.put("isInsured", getIsInsured());
+		attributes.put("basicWage", getBasicWage());
+		attributes.put("otherWage", getOtherWage());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedUserId", getModifiedUserId());
@@ -142,6 +144,18 @@ public class ExtInformationWrapper implements ExtInformation,
 
 		if (isInsured != null) {
 			setIsInsured(isInsured);
+		}
+
+		Long basicWage = (Long)attributes.get("basicWage");
+
+		if (basicWage != null) {
+			setBasicWage(basicWage);
+		}
+
+		Long otherWage = (Long)attributes.get("otherWage");
+
+		if (otherWage != null) {
+			setOtherWage(otherWage);
 		}
 
 		Long createUserId = (Long)attributes.get("createUserId");
@@ -449,6 +463,46 @@ public class ExtInformationWrapper implements ExtInformation,
 	@Override
 	public void setIsInsured(java.lang.String isInsured) {
 		_extInformation.setIsInsured(isInsured);
+	}
+
+	/**
+	* Returns the basic wage of this ext information.
+	*
+	* @return the basic wage of this ext information
+	*/
+	@Override
+	public long getBasicWage() {
+		return _extInformation.getBasicWage();
+	}
+
+	/**
+	* Sets the basic wage of this ext information.
+	*
+	* @param basicWage the basic wage of this ext information
+	*/
+	@Override
+	public void setBasicWage(long basicWage) {
+		_extInformation.setBasicWage(basicWage);
+	}
+
+	/**
+	* Returns the other wage of this ext information.
+	*
+	* @return the other wage of this ext information
+	*/
+	@Override
+	public long getOtherWage() {
+		return _extInformation.getOtherWage();
+	}
+
+	/**
+	* Sets the other wage of this ext information.
+	*
+	* @param otherWage the other wage of this ext information
+	*/
+	@Override
+	public void setOtherWage(long otherWage) {
+		_extInformation.setOtherWage(otherWage);
 	}
 
 	/**

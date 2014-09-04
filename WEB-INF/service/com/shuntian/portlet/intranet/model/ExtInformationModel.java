@@ -249,6 +249,34 @@ public interface ExtInformationModel extends BaseModel<ExtInformation> {
 	public void setIsInsured(String isInsured);
 
 	/**
+	 * Returns the basic wage of this ext information.
+	 *
+	 * @return the basic wage of this ext information
+	 */
+	public long getBasicWage();
+
+	/**
+	 * Sets the basic wage of this ext information.
+	 *
+	 * @param basicWage the basic wage of this ext information
+	 */
+	public void setBasicWage(long basicWage);
+
+	/**
+	 * Returns the other wage of this ext information.
+	 *
+	 * @return the other wage of this ext information
+	 */
+	public long getOtherWage();
+
+	/**
+	 * Sets the other wage of this ext information.
+	 *
+	 * @param otherWage the other wage of this ext information
+	 */
+	public void setOtherWage(long otherWage);
+
+	/**
 	 * Returns the create user ID of this ext information.
 	 *
 	 * @return the create user ID of this ext information

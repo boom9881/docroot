@@ -58,6 +58,8 @@ create table Intranet_ExtInformation (
 	induredLocation VARCHAR(75) null,
 	fristInsured DATE null,
 	isInsured VARCHAR(75) null,
+	basicWage LONG,
+	otherWage LONG,
 	createUserId LONG,
 	createDate DATE null,
 	modifiedUserId LONG,

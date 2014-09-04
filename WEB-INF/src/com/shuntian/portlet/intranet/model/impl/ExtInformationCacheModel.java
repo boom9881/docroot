@@ -38,7 +38,7 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -64,6 +64,10 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 		sb.append(fristInsured);
 		sb.append(", isInsured=");
 		sb.append(isInsured);
+		sb.append(", basicWage=");
+		sb.append(basicWage);
+		sb.append(", otherWage=");
+		sb.append(otherWage);
 		sb.append(", createUserId=");
 		sb.append(createUserId);
 		sb.append(", createDate=");
@@ -157,6 +161,8 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 			extInformationImpl.setIsInsured(isInsured);
 		}
 
+		extInformationImpl.setBasicWage(basicWage);
+		extInformationImpl.setOtherWage(otherWage);
 		extInformationImpl.setCreateUserId(createUserId);
 
 		if (createDate == Long.MIN_VALUE) {
@@ -194,6 +200,8 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 		induredLocation = objectInput.readUTF();
 		fristInsured = objectInput.readLong();
 		isInsured = objectInput.readUTF();
+		basicWage = objectInput.readLong();
+		otherWage = objectInput.readLong();
 		createUserId = objectInput.readLong();
 		createDate = objectInput.readLong();
 		modifiedUserId = objectInput.readLong();
@@ -248,6 +256,8 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 			objectOutput.writeUTF(isInsured);
 		}
 
+		objectOutput.writeLong(basicWage);
+		objectOutput.writeLong(otherWage);
 		objectOutput.writeLong(createUserId);
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedUserId);
@@ -266,6 +276,8 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 	public String induredLocation;
 	public long fristInsured;
 	public String isInsured;
+	public long basicWage;
+	public long otherWage;
 	public long createUserId;
 	public long createDate;
 	public long modifiedUserId;

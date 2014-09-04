@@ -42,6 +42,8 @@ public class ExtInformationSoap implements Serializable {
 		soapModel.setInduredLocation(model.getInduredLocation());
 		soapModel.setFristInsured(model.getFristInsured());
 		soapModel.setIsInsured(model.getIsInsured());
+		soapModel.setBasicWage(model.getBasicWage());
+		soapModel.setOtherWage(model.getOtherWage());
 		soapModel.setCreateUserId(model.getCreateUserId());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedUserId(model.getModifiedUserId());
@@ -194,6 +196,22 @@ public class ExtInformationSoap implements Serializable {
 		_isInsured = isInsured;
 	}
 
+	public long getBasicWage() {
+		return _basicWage;
+	}
+
+	public void setBasicWage(long basicWage) {
+		_basicWage = basicWage;
+	}
+
+	public long getOtherWage() {
+		return _otherWage;
+	}
+
+	public void setOtherWage(long otherWage) {
+		_otherWage = otherWage;
+	}
+
 	public long getCreateUserId() {
 		return _createUserId;
 	}
@@ -238,6 +256,8 @@ public class ExtInformationSoap implements Serializable {
 	private String _induredLocation;
 	private Date _fristInsured;
 	private String _isInsured;
+	private long _basicWage;
+	private long _otherWage;
 	private long _createUserId;
 	private Date _createDate;
 	private long _modifiedUserId;

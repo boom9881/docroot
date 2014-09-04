@@ -59,6 +59,8 @@
 		<field name="induredLocation" type="String" />
 		<field name="fristInsured" type="Date" />
 		<field name="isInsured" type="String" />
+		<field name="basicWage" type="long" />
+		<field name="otherWage" type="long" />
 		<field name="createUserId" type="long" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedUserId" type="long" />

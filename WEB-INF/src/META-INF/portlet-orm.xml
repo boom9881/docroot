@@ -112,6 +112,8 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="isInsured" />
+			<basic name="basicWage" />
+			<basic name="otherWage" />
 			<basic name="createUserId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>

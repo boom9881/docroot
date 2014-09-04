@@ -88,6 +88,8 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 		attributes.put("induredLocation", getInduredLocation());
 		attributes.put("fristInsured", getFristInsured());
 		attributes.put("isInsured", getIsInsured());
+		attributes.put("basicWage", getBasicWage());
+		attributes.put("otherWage", getOtherWage());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedUserId", getModifiedUserId());
@@ -168,6 +170,18 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 
 		if (isInsured != null) {
 			setIsInsured(isInsured);
+		}
+
+		Long basicWage = (Long)attributes.get("basicWage");
+
+		if (basicWage != null) {
+			setBasicWage(basicWage);
+		}
+
+		Long otherWage = (Long)attributes.get("otherWage");
+
+		if (otherWage != null) {
+			setOtherWage(otherWage);
 		}
 
 		Long createUserId = (Long)attributes.get("createUserId");
@@ -487,6 +501,52 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 	}
 
 	@Override
+	public long getBasicWage() {
+		return _basicWage;
+	}
+
+	@Override
+	public void setBasicWage(long basicWage) {
+		_basicWage = basicWage;
+
+		if (_extInformationRemoteModel != null) {
+			try {
+				Class<?> clazz = _extInformationRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setBasicWage", long.class);
+
+				method.invoke(_extInformationRemoteModel, basicWage);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getOtherWage() {
+		return _otherWage;
+	}
+
+	@Override
+	public void setOtherWage(long otherWage) {
+		_otherWage = otherWage;
+
+		if (_extInformationRemoteModel != null) {
+			try {
+				Class<?> clazz = _extInformationRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setOtherWage", long.class);
+
+				method.invoke(_extInformationRemoteModel, otherWage);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public long getCreateUserId() {
 		return _createUserId;
 	}
@@ -683,6 +743,8 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 		clone.setInduredLocation(getInduredLocation());
 		clone.setFristInsured(getFristInsured());
 		clone.setIsInsured(getIsInsured());
+		clone.setBasicWage(getBasicWage());
+		clone.setOtherWage(getOtherWage());
 		clone.setCreateUserId(getCreateUserId());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedUserId(getModifiedUserId());
@@ -736,7 +798,7 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -762,6 +824,10 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 		sb.append(getFristInsured());
 		sb.append(", isInsured=");
 		sb.append(getIsInsured());
+		sb.append(", basicWage=");
+		sb.append(getBasicWage());
+		sb.append(", otherWage=");
+		sb.append(getOtherWage());
 		sb.append(", createUserId=");
 		sb.append(getCreateUserId());
 		sb.append(", createDate=");
@@ -777,7 +843,7 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		StringBundler sb = new StringBundler(58);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.ExtInformation");
@@ -832,6 +898,14 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 		sb.append(getIsInsured());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>basicWage</column-name><column-value><![CDATA[");
+		sb.append(getBasicWage());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>otherWage</column-name><column-value><![CDATA[");
+		sb.append(getOtherWage());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
 		sb.append(getCreateUserId());
 		sb.append("]]></column-value></column>");
@@ -866,6 +940,8 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 	private String _induredLocation;
 	private Date _fristInsured;
 	private String _isInsured;
+	private long _basicWage;
+	private long _otherWage;
 	private long _createUserId;
 	private String _createUserUuid;
 	private Date _createDate;

@@ -210,4 +210,52 @@
 		</order>
 	</entity>
 	
+	<entity name="Attendance" local-service="true" remote-service="false">
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true"></column>
+		<!-- Resource -->
+		<column name="userId" type="long"></column>
+		<!-- Other fields -->
+		<column name="shouldAttendance" type="double"></column>
+		<column name="actualAttendance" type="double"></column>
+		<column name="attendanceMonthly" type="long"></column>
+		<!-- Audit fields -->
+		<column name="createUserId" type="long"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedUserId" type="long"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<!-- Order -->
+		<order>
+			<order-column name="createDate" order-by="desc"></order-column>
+		</order>
+		<!-- Finder methods -->
+		<finder name="UserId" return-type="BasicInformation">
+			<finder-column name="userId"></finder-column>
+		</finder>
+	</entity>
+	
+	<entity name="Overtime" local-service="true" remote-service="false">
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true"></column>
+		<!-- Resource -->
+		<column name="userId" type="long"></column>
+		<!-- Other fields -->
+		<column name="usuallyOvertime" type="double"></column>
+		<column name="restOvertime" type="double"></column>
+		<column name="legalOvertime" type="double"></column>
+		<column name="overtimeMonthly" type="long"></column>
+		<!-- Audit fields -->
+		<column name="createUserId" type="long"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedUserId" type="long"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<!-- Order -->
+		<order>
+			<order-column name="createDate" order-by="desc"></order-column>
+		</order>
+		<!-- Finder methods -->
+		<finder name="UserId" return-type="BasicInformation">
+			<finder-column name="userId"></finder-column>
+		</finder>
+	</entity>
 </service-builder>

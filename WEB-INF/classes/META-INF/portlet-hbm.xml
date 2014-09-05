@@ -2,12 +2,28 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.shuntian.portlet.intranet.model.Attendance" />
 	<import class="com.shuntian.portlet.intranet.model.BasicInformation" />
 	<import class="com.shuntian.portlet.intranet.model.Department" />
 	<import class="com.shuntian.portlet.intranet.model.Education" />
 	<import class="com.shuntian.portlet.intranet.model.ExtInformation" />
 	<import class="com.shuntian.portlet.intranet.model.FamilyRelationship" />
+	<import class="com.shuntian.portlet.intranet.model.Overtime" />
 	<import class="com.shuntian.portlet.intranet.model.WorkExperience" />
+	<class name="com.shuntian.portlet.intranet.model.impl.AttendanceImpl" table="Intranet_Attendance">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="shouldAttendance" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="actualAttendance" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="attendanceMonthly" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+	</class>
 	<class name="com.shuntian.portlet.intranet.model.impl.BasicInformationImpl" table="Intranet_BasicInformation">
 		<cache usage="read-write" />
 		<id name="id" column="id_" type="long">
@@ -97,6 +113,21 @@
 		<property name="workUnit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="contactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="onceJob" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.shuntian.portlet.intranet.model.impl.OvertimeImpl" table="Intranet_Overtime">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="usuallyOvertime" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="restOvertime" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="legalOvertime" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="overtimeMonthly" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.shuntian.portlet.intranet.model.impl.WorkExperienceImpl" table="Intranet_WorkExperience">
 		<cache usage="read-write" />

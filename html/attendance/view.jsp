@@ -1,8 +1,4 @@
-<%@page import="com.shuntian.portlet.intranet.service.AttendanceLocalServiceUtil"%>
-<%@page import="com.shuntian.portlet.intranet.model.Attendance"%>
-<%@page import="com.shuntian.portlet.intranet.service.BasicInformationLocalServiceUtil"%>
-<%@page import="com.shuntian.portlet.intranet.model.BasicInformation"%>
-<%@ include file="/html/init.jsp" %>
+<%@ include file="/html/attendance/init-ext.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%
@@ -60,6 +56,6 @@
 	}
 	
 %>
-
-<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
-
+<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
+	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
+</aui:form>

@@ -1,3 +1,15 @@
+create table Intranet_Attendance (
+	id_ LONG not null primary key,
+	userId LONG,
+	shouldAttendance DOUBLE,
+	actualAttendance DOUBLE,
+	attendanceMonthly LONG,
+	createUserId LONG,
+	createDate DATE null,
+	modifiedUserId LONG,
+	modifiedDate DATE null
+);
+
 create table Intranet_BasicInformation (
 	id_ LONG not null primary key,
 	userId LONG,
@@ -76,6 +88,19 @@ create table Intranet_FamilyRelationship (
 	workUnit VARCHAR(75) null,
 	contactPhone VARCHAR(75) null,
 	onceJob VARCHAR(75) null
+);
+
+create table Intranet_Overtime (
+	id_ LONG not null primary key,
+	userId LONG,
+	usuallyOvertime DOUBLE,
+	restOvertime DOUBLE,
+	legalOvertime DOUBLE,
+	overtimeMonthly LONG,
+	createUserId LONG,
+	createDate DATE null,
+	modifiedUserId LONG,
+	modifiedDate DATE null
 );
 
 create table Intranet_Satff (

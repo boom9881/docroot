@@ -7,6 +7,31 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
+	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.AttendanceModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="userId" />
+			<basic name="shouldAttendance" />
+			<basic name="actualAttendance" />
+			<basic name="attendanceMonthly" />
+			<basic name="createUserId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedUserId" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="createUserUuid" />
+			<transient name="modelAttributes" />
+			<transient name="modifiedUserUuid" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.BasicInformationModelImpl">
 		<attributes>
 			<id name="id">
@@ -149,6 +174,32 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.OvertimeModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="userId" />
+			<basic name="usuallyOvertime" />
+			<basic name="restOvertime" />
+			<basic name="legalOvertime" />
+			<basic name="overtimeMonthly" />
+			<basic name="createUserId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedUserId" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="createUserUuid" />
+			<transient name="modelAttributes" />
+			<transient name="modifiedUserUuid" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.WorkExperienceModelImpl">
 		<attributes>
 			<id name="id">
@@ -171,6 +222,10 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<entity class="com.shuntian.portlet.intranet.model.impl.AttendanceImpl" name="Attendance">
+		<table name="Intranet_Attendance" />
+		<attributes />
+	</entity>
 	<entity class="com.shuntian.portlet.intranet.model.impl.BasicInformationImpl" name="BasicInformation">
 		<table name="Intranet_BasicInformation" />
 		<attributes />
@@ -189,6 +244,10 @@
 	</entity>
 	<entity class="com.shuntian.portlet.intranet.model.impl.FamilyRelationshipImpl" name="FamilyRelationship">
 		<table name="Intranet_FamilyRelationship" />
+		<attributes />
+	</entity>
+	<entity class="com.shuntian.portlet.intranet.model.impl.OvertimeImpl" name="Overtime">
+		<table name="Intranet_Overtime" />
 		<attributes />
 	</entity>
 	<entity class="com.shuntian.portlet.intranet.model.impl.WorkExperienceImpl" name="WorkExperience">

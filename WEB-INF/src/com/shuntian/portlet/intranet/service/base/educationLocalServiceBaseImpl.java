@@ -33,12 +33,14 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.shuntian.portlet.intranet.model.Education;
 import com.shuntian.portlet.intranet.service.EducationLocalService;
+import com.shuntian.portlet.intranet.service.persistence.AttendancePersistence;
 import com.shuntian.portlet.intranet.service.persistence.BasicInformationPersistence;
 import com.shuntian.portlet.intranet.service.persistence.DepartmentFinder;
 import com.shuntian.portlet.intranet.service.persistence.DepartmentPersistence;
 import com.shuntian.portlet.intranet.service.persistence.EducationPersistence;
 import com.shuntian.portlet.intranet.service.persistence.ExtInformationPersistence;
 import com.shuntian.portlet.intranet.service.persistence.FamilyRelationshipPersistence;
+import com.shuntian.portlet.intranet.service.persistence.OvertimePersistence;
 import com.shuntian.portlet.intranet.service.persistence.WorkExperiencePersistence;
 
 import java.io.Serializable;
@@ -285,6 +287,44 @@ public abstract class EducationLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the attendance local service.
+	 *
+	 * @return the attendance local service
+	 */
+	public com.shuntian.portlet.intranet.service.AttendanceLocalService getAttendanceLocalService() {
+		return attendanceLocalService;
+	}
+
+	/**
+	 * Sets the attendance local service.
+	 *
+	 * @param attendanceLocalService the attendance local service
+	 */
+	public void setAttendanceLocalService(
+		com.shuntian.portlet.intranet.service.AttendanceLocalService attendanceLocalService) {
+		this.attendanceLocalService = attendanceLocalService;
+	}
+
+	/**
+	 * Returns the attendance persistence.
+	 *
+	 * @return the attendance persistence
+	 */
+	public AttendancePersistence getAttendancePersistence() {
+		return attendancePersistence;
+	}
+
+	/**
+	 * Sets the attendance persistence.
+	 *
+	 * @param attendancePersistence the attendance persistence
+	 */
+	public void setAttendancePersistence(
+		AttendancePersistence attendancePersistence) {
+		this.attendancePersistence = attendancePersistence;
+	}
+
+	/**
 	 * Returns the basic information local service.
 	 *
 	 * @return the basic information local service
@@ -490,6 +530,43 @@ public abstract class EducationLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public void setFamilyRelationshipPersistence(
 		FamilyRelationshipPersistence familyRelationshipPersistence) {
 		this.familyRelationshipPersistence = familyRelationshipPersistence;
+	}
+
+	/**
+	 * Returns the overtime local service.
+	 *
+	 * @return the overtime local service
+	 */
+	public com.shuntian.portlet.intranet.service.OvertimeLocalService getOvertimeLocalService() {
+		return overtimeLocalService;
+	}
+
+	/**
+	 * Sets the overtime local service.
+	 *
+	 * @param overtimeLocalService the overtime local service
+	 */
+	public void setOvertimeLocalService(
+		com.shuntian.portlet.intranet.service.OvertimeLocalService overtimeLocalService) {
+		this.overtimeLocalService = overtimeLocalService;
+	}
+
+	/**
+	 * Returns the overtime persistence.
+	 *
+	 * @return the overtime persistence
+	 */
+	public OvertimePersistence getOvertimePersistence() {
+		return overtimePersistence;
+	}
+
+	/**
+	 * Sets the overtime persistence.
+	 *
+	 * @param overtimePersistence the overtime persistence
+	 */
+	public void setOvertimePersistence(OvertimePersistence overtimePersistence) {
+		this.overtimePersistence = overtimePersistence;
 	}
 
 	/**
@@ -706,6 +783,10 @@ public abstract class EducationLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
+	@BeanReference(type = com.shuntian.portlet.intranet.service.AttendanceLocalService.class)
+	protected com.shuntian.portlet.intranet.service.AttendanceLocalService attendanceLocalService;
+	@BeanReference(type = AttendancePersistence.class)
+	protected AttendancePersistence attendancePersistence;
 	@BeanReference(type = com.shuntian.portlet.intranet.service.BasicInformationLocalService.class)
 	protected com.shuntian.portlet.intranet.service.BasicInformationLocalService basicInformationLocalService;
 	@BeanReference(type = BasicInformationPersistence.class)
@@ -728,6 +809,10 @@ public abstract class EducationLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.shuntian.portlet.intranet.service.FamilyRelationshipLocalService familyRelationshipLocalService;
 	@BeanReference(type = FamilyRelationshipPersistence.class)
 	protected FamilyRelationshipPersistence familyRelationshipPersistence;
+	@BeanReference(type = com.shuntian.portlet.intranet.service.OvertimeLocalService.class)
+	protected com.shuntian.portlet.intranet.service.OvertimeLocalService overtimeLocalService;
+	@BeanReference(type = OvertimePersistence.class)
+	protected OvertimePersistence overtimePersistence;
 	@BeanReference(type = com.shuntian.portlet.intranet.service.WorkExperienceLocalService.class)
 	protected com.shuntian.portlet.intranet.service.WorkExperienceLocalService workExperienceLocalService;
 	@BeanReference(type = WorkExperiencePersistence.class)

@@ -34,6 +34,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 import com.shuntian.portlet.intranet.model.WorkExperience;
 import com.shuntian.portlet.intranet.service.WorkExperienceLocalService;
 import com.shuntian.portlet.intranet.service.persistence.BasicInformationPersistence;
+import com.shuntian.portlet.intranet.service.persistence.DepartmentFinder;
 import com.shuntian.portlet.intranet.service.persistence.DepartmentPersistence;
 import com.shuntian.portlet.intranet.service.persistence.EducationPersistence;
 import com.shuntian.portlet.intranet.service.persistence.ExtInformationPersistence;
@@ -359,6 +360,24 @@ public abstract class WorkExperienceLocalServiceBaseImpl
 	public void setDepartmentPersistence(
 		DepartmentPersistence departmentPersistence) {
 		this.departmentPersistence = departmentPersistence;
+	}
+
+	/**
+	 * Returns the department finder.
+	 *
+	 * @return the department finder
+	 */
+	public DepartmentFinder getDepartmentFinder() {
+		return departmentFinder;
+	}
+
+	/**
+	 * Sets the department finder.
+	 *
+	 * @param departmentFinder the department finder
+	 */
+	public void setDepartmentFinder(DepartmentFinder departmentFinder) {
+		this.departmentFinder = departmentFinder;
 	}
 
 	/**
@@ -697,6 +716,8 @@ public abstract class WorkExperienceLocalServiceBaseImpl
 	protected com.shuntian.portlet.intranet.service.DepartmentLocalService departmentLocalService;
 	@BeanReference(type = DepartmentPersistence.class)
 	protected DepartmentPersistence departmentPersistence;
+	@BeanReference(type = DepartmentFinder.class)
+	protected DepartmentFinder departmentFinder;
 	@BeanReference(type = com.shuntian.portlet.intranet.service.EducationLocalService.class)
 	protected com.shuntian.portlet.intranet.service.EducationLocalService educationLocalService;
 	@BeanReference(type = EducationPersistence.class)

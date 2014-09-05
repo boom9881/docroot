@@ -1,6 +1,19 @@
-function <portlet:namespace />onSub(url){
-	alert(url);
-	document.<portlet:namespace />fm.action = url;
-
-	submitForm(document.<portlet:namespace />fm);
-}
+AUI.add(
+		'dhst-intranet',
+		function(url) {
+			alert(url);
+			
+			var form = this.getPrincipalForm();
+			
+			alert(form);
+			form.action = url;
+			
+			alert(form.action);
+			
+			submitForm(form);
+		},
+		'',
+		{
+			requires: ['aui-base']
+		}
+	);

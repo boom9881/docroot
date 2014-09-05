@@ -102,8 +102,7 @@ public class FamilyRelationshipPersistenceImpl extends BasePersistenceImpl<Famil
 			FamilyRelationshipImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
 			new String[] { Long.class.getName() },
-			FamilyRelationshipModelImpl.USERID_COLUMN_BITMASK |
-			FamilyRelationshipModelImpl.CREATEDATE_COLUMN_BITMASK);
+			FamilyRelationshipModelImpl.USERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(FamilyRelationshipModelImpl.ENTITY_CACHE_ENABLED,
 			FamilyRelationshipModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
@@ -850,10 +849,6 @@ public class FamilyRelationshipPersistenceImpl extends BasePersistenceImpl<Famil
 		familyRelationshipImpl.setWorkUnit(familyRelationship.getWorkUnit());
 		familyRelationshipImpl.setContactPhone(familyRelationship.getContactPhone());
 		familyRelationshipImpl.setOnceJob(familyRelationship.getOnceJob());
-		familyRelationshipImpl.setCreateUserId(familyRelationship.getCreateUserId());
-		familyRelationshipImpl.setCreateDate(familyRelationship.getCreateDate());
-		familyRelationshipImpl.setModifiedUserId(familyRelationship.getModifiedUserId());
-		familyRelationshipImpl.setModifiedDate(familyRelationship.getModifiedDate());
 
 		return familyRelationshipImpl;
 	}

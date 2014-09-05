@@ -34,6 +34,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 import com.shuntian.portlet.intranet.model.BasicInformation;
 import com.shuntian.portlet.intranet.service.BasicInformationLocalService;
 import com.shuntian.portlet.intranet.service.persistence.BasicInformationPersistence;
+import com.shuntian.portlet.intranet.service.persistence.DepartmentPersistence;
 import com.shuntian.portlet.intranet.service.persistence.EducationPersistence;
 import com.shuntian.portlet.intranet.service.persistence.ExtInformationPersistence;
 import com.shuntian.portlet.intranet.service.persistence.FamilyRelationshipPersistence;
@@ -320,6 +321,44 @@ public abstract class BasicInformationLocalServiceBaseImpl
 	public void setBasicInformationPersistence(
 		BasicInformationPersistence basicInformationPersistence) {
 		this.basicInformationPersistence = basicInformationPersistence;
+	}
+
+	/**
+	 * Returns the department local service.
+	 *
+	 * @return the department local service
+	 */
+	public com.shuntian.portlet.intranet.service.DepartmentLocalService getDepartmentLocalService() {
+		return departmentLocalService;
+	}
+
+	/**
+	 * Sets the department local service.
+	 *
+	 * @param departmentLocalService the department local service
+	 */
+	public void setDepartmentLocalService(
+		com.shuntian.portlet.intranet.service.DepartmentLocalService departmentLocalService) {
+		this.departmentLocalService = departmentLocalService;
+	}
+
+	/**
+	 * Returns the department persistence.
+	 *
+	 * @return the department persistence
+	 */
+	public DepartmentPersistence getDepartmentPersistence() {
+		return departmentPersistence;
+	}
+
+	/**
+	 * Sets the department persistence.
+	 *
+	 * @param departmentPersistence the department persistence
+	 */
+	public void setDepartmentPersistence(
+		DepartmentPersistence departmentPersistence) {
+		this.departmentPersistence = departmentPersistence;
 	}
 
 	/**
@@ -654,6 +693,10 @@ public abstract class BasicInformationLocalServiceBaseImpl
 	protected com.shuntian.portlet.intranet.service.BasicInformationLocalService basicInformationLocalService;
 	@BeanReference(type = BasicInformationPersistence.class)
 	protected BasicInformationPersistence basicInformationPersistence;
+	@BeanReference(type = com.shuntian.portlet.intranet.service.DepartmentLocalService.class)
+	protected com.shuntian.portlet.intranet.service.DepartmentLocalService departmentLocalService;
+	@BeanReference(type = DepartmentPersistence.class)
+	protected DepartmentPersistence departmentPersistence;
 	@BeanReference(type = com.shuntian.portlet.intranet.service.EducationLocalService.class)
 	protected com.shuntian.portlet.intranet.service.EducationLocalService educationLocalService;
 	@BeanReference(type = EducationPersistence.class)

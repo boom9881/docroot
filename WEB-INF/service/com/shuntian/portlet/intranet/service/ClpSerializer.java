@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
 import com.shuntian.portlet.intranet.model.BasicInformationClp;
+import com.shuntian.portlet.intranet.model.DepartmentClp;
 import com.shuntian.portlet.intranet.model.EducationClp;
 import com.shuntian.portlet.intranet.model.ExtInformationClp;
 import com.shuntian.portlet.intranet.model.FamilyRelationshipClp;
@@ -110,6 +111,10 @@ public class ClpSerializer {
 			return translateInputBasicInformation(oldModel);
 		}
 
+		if (oldModelClassName.equals(DepartmentClp.class.getName())) {
+			return translateInputDepartment(oldModel);
+		}
+
 		if (oldModelClassName.equals(EducationClp.class.getName())) {
 			return translateInputEducation(oldModel);
 		}
@@ -145,6 +150,16 @@ public class ClpSerializer {
 		BasicInformationClp oldClpModel = (BasicInformationClp)oldModel;
 
 		BaseModel<?> newModel = oldClpModel.getBasicInformationRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
+	public static Object translateInputDepartment(BaseModel<?> oldModel) {
+		DepartmentClp oldClpModel = (DepartmentClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getDepartmentRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -211,6 +226,11 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.shuntian.portlet.intranet.model.impl.BasicInformationImpl")) {
 			return translateOutputBasicInformation(oldModel);
+		}
+
+		if (oldModelClassName.equals(
+					"com.shuntian.portlet.intranet.model.impl.DepartmentImpl")) {
+			return translateOutputDepartment(oldModel);
 		}
 
 		if (oldModelClassName.equals(
@@ -319,6 +339,11 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
+					"com.shuntian.portlet.intranet.NoSuchDepartmentException")) {
+			return new com.shuntian.portlet.intranet.NoSuchDepartmentException();
+		}
+
+		if (className.equals(
 					"com.shuntian.portlet.intranet.NoSuchEducationException")) {
 			return new com.shuntian.portlet.intranet.NoSuchEducationException();
 		}
@@ -347,6 +372,16 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setBasicInformationRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputDepartment(BaseModel<?> oldModel) {
+		DepartmentClp newModel = new DepartmentClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setDepartmentRemoteModel(oldModel);
 
 		return newModel;
 	}

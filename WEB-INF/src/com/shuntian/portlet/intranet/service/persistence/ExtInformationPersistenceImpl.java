@@ -609,10 +609,6 @@ public class ExtInformationPersistenceImpl extends BasePersistenceImpl<ExtInform
 		extInformationImpl.setIsInsured(extInformation.getIsInsured());
 		extInformationImpl.setBasicWage(extInformation.getBasicWage());
 		extInformationImpl.setOtherWage(extInformation.getOtherWage());
-		extInformationImpl.setCreateUserId(extInformation.getCreateUserId());
-		extInformationImpl.setCreateDate(extInformation.getCreateDate());
-		extInformationImpl.setModifiedUserId(extInformation.getModifiedUserId());
-		extInformationImpl.setModifiedDate(extInformation.getModifiedDate());
 
 		return extInformationImpl;
 	}

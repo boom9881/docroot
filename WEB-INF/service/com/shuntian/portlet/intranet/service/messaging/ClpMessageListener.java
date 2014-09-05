@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.messaging.Message;
 
 import com.shuntian.portlet.intranet.service.BasicInformationLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.ClpSerializer;
+import com.shuntian.portlet.intranet.service.DepartmentLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.EducationLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.ExtInformationLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.FamilyRelationshipLocalServiceUtil;
@@ -40,6 +41,8 @@ public class ClpMessageListener extends BaseMessageListener {
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
 			BasicInformationLocalServiceUtil.clearService();
+
+			DepartmentLocalServiceUtil.clearService();
 
 			EducationLocalServiceUtil.clearService();
 

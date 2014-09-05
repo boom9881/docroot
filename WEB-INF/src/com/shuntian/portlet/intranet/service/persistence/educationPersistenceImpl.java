@@ -98,8 +98,7 @@ public class EducationPersistenceImpl extends BasePersistenceImpl<Education>
 			EducationModelImpl.FINDER_CACHE_ENABLED, EducationImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
 			new String[] { Long.class.getName() },
-			EducationModelImpl.USERID_COLUMN_BITMASK |
-			EducationModelImpl.CREATEDATE_COLUMN_BITMASK);
+			EducationModelImpl.USERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(EducationModelImpl.ENTITY_CACHE_ENABLED,
 			EducationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
@@ -839,10 +838,6 @@ public class EducationPersistenceImpl extends BasePersistenceImpl<Education>
 		educationImpl.setContactPhone(education.getContactPhone());
 		educationImpl.setStartTime(education.getStartTime());
 		educationImpl.setStopTime(education.getStopTime());
-		educationImpl.setCreateUserId(education.getCreateUserId());
-		educationImpl.setCreateDate(education.getCreateDate());
-		educationImpl.setModifiedUserId(education.getModifiedUserId());
-		educationImpl.setModifiedDate(education.getModifiedDate());
 
 		return educationImpl;
 	}

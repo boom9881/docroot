@@ -16,7 +16,6 @@ package com.shuntian.portlet.intranet.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -69,16 +68,12 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 			{ "workUnit", Types.VARCHAR },
 			{ "contactPhone", Types.VARCHAR },
 			{ "startTime", Types.TIMESTAMP },
-			{ "stopTime", Types.TIMESTAMP },
-			{ "createUserId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedUserId", Types.BIGINT },
-			{ "modifiedDate", Types.TIMESTAMP }
+			{ "stopTime", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_WorkExperience (id_ LONG not null primary key,userId LONG,witness VARCHAR(75) null,onceJob VARCHAR(75) null,workUnit VARCHAR(75) null,contactPhone VARCHAR(75) null,startTime DATE null,stopTime DATE null,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_WorkExperience (id_ LONG not null primary key,userId LONG,witness VARCHAR(75) null,onceJob VARCHAR(75) null,workUnit VARCHAR(75) null,contactPhone VARCHAR(75) null,startTime DATE null,stopTime DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_WorkExperience";
-	public static final String ORDER_BY_JPQL = " ORDER BY workExperience.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY Intranet_WorkExperience.createDate DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY workExperience.id DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY Intranet_WorkExperience.id_ DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -92,7 +87,7 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.WorkExperience"),
 			true);
 	public static long USERID_COLUMN_BITMASK = 1L;
-	public static long CREATEDATE_COLUMN_BITMASK = 2L;
+	public static long ID_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.WorkExperience"));
 
@@ -141,10 +136,6 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 		attributes.put("contactPhone", getContactPhone());
 		attributes.put("startTime", getStartTime());
 		attributes.put("stopTime", getStopTime());
-		attributes.put("createUserId", getCreateUserId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedUserId", getModifiedUserId());
-		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
 	}
@@ -198,30 +189,6 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 		if (stopTime != null) {
 			setStopTime(stopTime);
 		}
-
-		Long createUserId = (Long)attributes.get("createUserId");
-
-		if (createUserId != null) {
-			setCreateUserId(createUserId);
-		}
-
-		Date createDate = (Date)attributes.get("createDate");
-
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
-
-		Long modifiedUserId = (Long)attributes.get("modifiedUserId");
-
-		if (modifiedUserId != null) {
-			setModifiedUserId(modifiedUserId);
-		}
-
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
-
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
 	}
 
 	@Override
@@ -231,6 +198,8 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 
 	@Override
 	public void setId(long id) {
+		_columnBitmask = -1L;
+
 		_id = id;
 	}
 
@@ -346,70 +315,6 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 		_stopTime = stopTime;
 	}
 
-	@Override
-	public long getCreateUserId() {
-		return _createUserId;
-	}
-
-	@Override
-	public void setCreateUserId(long createUserId) {
-		_createUserId = createUserId;
-	}
-
-	@Override
-	public String getCreateUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getCreateUserId(), "uuid",
-			_createUserUuid);
-	}
-
-	@Override
-	public void setCreateUserUuid(String createUserUuid) {
-		_createUserUuid = createUserUuid;
-	}
-
-	@Override
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	@Override
-	public void setCreateDate(Date createDate) {
-		_columnBitmask = -1L;
-
-		_createDate = createDate;
-	}
-
-	@Override
-	public long getModifiedUserId() {
-		return _modifiedUserId;
-	}
-
-	@Override
-	public void setModifiedUserId(long modifiedUserId) {
-		_modifiedUserId = modifiedUserId;
-	}
-
-	@Override
-	public String getModifiedUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getModifiedUserId(), "uuid",
-			_modifiedUserUuid);
-	}
-
-	@Override
-	public void setModifiedUserUuid(String modifiedUserUuid) {
-		_modifiedUserUuid = modifiedUserUuid;
-	}
-
-	@Override
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	@Override
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
-
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -449,10 +354,6 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 		workExperienceImpl.setContactPhone(getContactPhone());
 		workExperienceImpl.setStartTime(getStartTime());
 		workExperienceImpl.setStopTime(getStopTime());
-		workExperienceImpl.setCreateUserId(getCreateUserId());
-		workExperienceImpl.setCreateDate(getCreateDate());
-		workExperienceImpl.setModifiedUserId(getModifiedUserId());
-		workExperienceImpl.setModifiedDate(getModifiedDate());
 
 		workExperienceImpl.resetOriginalValues();
 
@@ -463,8 +364,15 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 	public int compareTo(WorkExperience workExperience) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(),
-				workExperience.getCreateDate());
+		if (getId() < workExperience.getId()) {
+			value = -1;
+		}
+		else if (getId() > workExperience.getId()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		value = value * -1;
 
@@ -571,34 +479,12 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 			workExperienceCacheModel.stopTime = Long.MIN_VALUE;
 		}
 
-		workExperienceCacheModel.createUserId = getCreateUserId();
-
-		Date createDate = getCreateDate();
-
-		if (createDate != null) {
-			workExperienceCacheModel.createDate = createDate.getTime();
-		}
-		else {
-			workExperienceCacheModel.createDate = Long.MIN_VALUE;
-		}
-
-		workExperienceCacheModel.modifiedUserId = getModifiedUserId();
-
-		Date modifiedDate = getModifiedDate();
-
-		if (modifiedDate != null) {
-			workExperienceCacheModel.modifiedDate = modifiedDate.getTime();
-		}
-		else {
-			workExperienceCacheModel.modifiedDate = Long.MIN_VALUE;
-		}
-
 		return workExperienceCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -616,14 +502,6 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 		sb.append(getStartTime());
 		sb.append(", stopTime=");
 		sb.append(getStopTime());
-		sb.append(", createUserId=");
-		sb.append(getCreateUserId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedUserId=");
-		sb.append(getModifiedUserId());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -631,7 +509,7 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.WorkExperience");
@@ -669,22 +547,6 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 			"<column><column-name>stopTime</column-name><column-value><![CDATA[");
 		sb.append(getStopTime());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
-		sb.append(getCreateUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedUserId</column-name><column-value><![CDATA[");
-		sb.append(getModifiedUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -706,12 +568,6 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 	private String _contactPhone;
 	private Date _startTime;
 	private Date _stopTime;
-	private long _createUserId;
-	private String _createUserUuid;
-	private Date _createDate;
-	private long _modifiedUserId;
-	private String _modifiedUserUuid;
-	private Date _modifiedDate;
 	private long _columnBitmask;
 	private WorkExperience _escapedModel;
 }

@@ -67,13 +67,13 @@ else {
 				<aui:input name='<%= "frId" + frsIndex %>' type="hidden" value="<%= fr.getId() %>" />
 				
 				<aui:fieldset cssClass="span5">
-					<aui:input name="startTimed" label="姓名" />
-					<aui:input name="university" label="工作单位" value="" />
-					<aui:input name="witness" label="联系电话" value="" />
+					<aui:input name="name" label="姓名" />
+					<aui:input name="workUnit" label="工作单位" value="" />
+					<aui:input name="contactPhone" label="联系电话" value="" />
 				</aui:fieldset>
 				<aui:fieldset cssClass="span5">
-					<aui:input name="stopTimed" label="与本人关系" />
-					<aui:input name="professional" label="担任职务" value="" />
+					<aui:input name="relationship" label="与本人关系" />
+					<aui:input name="onceJob" label="担任职务" value="" />
 				</aui:fieldset>
 			</div>
 		</div>

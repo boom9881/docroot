@@ -16,7 +16,6 @@ package com.shuntian.portlet.intranet.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -75,16 +74,12 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 			{ "fristInsured", Types.TIMESTAMP },
 			{ "isInsured", Types.VARCHAR },
 			{ "basicWage", Types.BIGINT },
-			{ "otherWage", Types.BIGINT },
-			{ "createUserId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedUserId", Types.BIGINT },
-			{ "modifiedDate", Types.TIMESTAMP }
+			{ "otherWage", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_ExtInformation (id_ LONG not null primary key,userId LONG,openCity VARCHAR(75) null,bankName VARCHAR(75) null,bankId VARCHAR(75) null,laborContractStart DATE null,laborContractEnd DATE null,probationPeriodStart DATE null,probationPeriodEnd DATE null,induredLocation VARCHAR(75) null,fristInsured DATE null,isInsured VARCHAR(75) null,basicWage LONG,otherWage LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_ExtInformation (id_ LONG not null primary key,userId LONG,openCity VARCHAR(75) null,bankName VARCHAR(75) null,bankId VARCHAR(75) null,laborContractStart DATE null,laborContractEnd DATE null,probationPeriodStart DATE null,probationPeriodEnd DATE null,induredLocation VARCHAR(75) null,fristInsured DATE null,isInsured VARCHAR(75) null,basicWage LONG,otherWage LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_ExtInformation";
-	public static final String ORDER_BY_JPQL = " ORDER BY extInformation.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY Intranet_ExtInformation.createDate DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY extInformation.id DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY Intranet_ExtInformation.id_ DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -98,7 +93,7 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.ExtInformation"),
 			true);
 	public static long USERID_COLUMN_BITMASK = 1L;
-	public static long CREATEDATE_COLUMN_BITMASK = 2L;
+	public static long ID_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.ExtInformation"));
 
@@ -153,10 +148,6 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		attributes.put("isInsured", getIsInsured());
 		attributes.put("basicWage", getBasicWage());
 		attributes.put("otherWage", getOtherWage());
-		attributes.put("createUserId", getCreateUserId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedUserId", getModifiedUserId());
-		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
 	}
@@ -246,30 +237,6 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		if (otherWage != null) {
 			setOtherWage(otherWage);
 		}
-
-		Long createUserId = (Long)attributes.get("createUserId");
-
-		if (createUserId != null) {
-			setCreateUserId(createUserId);
-		}
-
-		Date createDate = (Date)attributes.get("createDate");
-
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
-
-		Long modifiedUserId = (Long)attributes.get("modifiedUserId");
-
-		if (modifiedUserId != null) {
-			setModifiedUserId(modifiedUserId);
-		}
-
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
-
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
 	}
 
 	@Override
@@ -279,6 +246,8 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 
 	@Override
 	public void setId(long id) {
+		_columnBitmask = -1L;
+
 		_id = id;
 	}
 
@@ -459,70 +428,6 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		_otherWage = otherWage;
 	}
 
-	@Override
-	public long getCreateUserId() {
-		return _createUserId;
-	}
-
-	@Override
-	public void setCreateUserId(long createUserId) {
-		_createUserId = createUserId;
-	}
-
-	@Override
-	public String getCreateUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getCreateUserId(), "uuid",
-			_createUserUuid);
-	}
-
-	@Override
-	public void setCreateUserUuid(String createUserUuid) {
-		_createUserUuid = createUserUuid;
-	}
-
-	@Override
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	@Override
-	public void setCreateDate(Date createDate) {
-		_columnBitmask = -1L;
-
-		_createDate = createDate;
-	}
-
-	@Override
-	public long getModifiedUserId() {
-		return _modifiedUserId;
-	}
-
-	@Override
-	public void setModifiedUserId(long modifiedUserId) {
-		_modifiedUserId = modifiedUserId;
-	}
-
-	@Override
-	public String getModifiedUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getModifiedUserId(), "uuid",
-			_modifiedUserUuid);
-	}
-
-	@Override
-	public void setModifiedUserUuid(String modifiedUserUuid) {
-		_modifiedUserUuid = modifiedUserUuid;
-	}
-
-	@Override
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	@Override
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
-
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -568,10 +473,6 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		extInformationImpl.setIsInsured(getIsInsured());
 		extInformationImpl.setBasicWage(getBasicWage());
 		extInformationImpl.setOtherWage(getOtherWage());
-		extInformationImpl.setCreateUserId(getCreateUserId());
-		extInformationImpl.setCreateDate(getCreateDate());
-		extInformationImpl.setModifiedUserId(getModifiedUserId());
-		extInformationImpl.setModifiedDate(getModifiedDate());
 
 		extInformationImpl.resetOriginalValues();
 
@@ -582,8 +483,15 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 	public int compareTo(ExtInformation extInformation) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(),
-				extInformation.getCreateDate());
+		if (getId() < extInformation.getId()) {
+			value = -1;
+		}
+		else if (getId() > extInformation.getId()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		value = value * -1;
 
@@ -729,34 +637,12 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 
 		extInformationCacheModel.otherWage = getOtherWage();
 
-		extInformationCacheModel.createUserId = getCreateUserId();
-
-		Date createDate = getCreateDate();
-
-		if (createDate != null) {
-			extInformationCacheModel.createDate = createDate.getTime();
-		}
-		else {
-			extInformationCacheModel.createDate = Long.MIN_VALUE;
-		}
-
-		extInformationCacheModel.modifiedUserId = getModifiedUserId();
-
-		Date modifiedDate = getModifiedDate();
-
-		if (modifiedDate != null) {
-			extInformationCacheModel.modifiedDate = modifiedDate.getTime();
-		}
-		else {
-			extInformationCacheModel.modifiedDate = Long.MIN_VALUE;
-		}
-
 		return extInformationCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -786,14 +672,6 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		sb.append(getBasicWage());
 		sb.append(", otherWage=");
 		sb.append(getOtherWage());
-		sb.append(", createUserId=");
-		sb.append(getCreateUserId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedUserId=");
-		sb.append(getModifiedUserId());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -801,7 +679,7 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(58);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.ExtInformation");
@@ -863,22 +741,6 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 			"<column><column-name>otherWage</column-name><column-value><![CDATA[");
 		sb.append(getOtherWage());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
-		sb.append(getCreateUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedUserId</column-name><column-value><![CDATA[");
-		sb.append(getModifiedUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -906,12 +768,6 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 	private String _isInsured;
 	private long _basicWage;
 	private long _otherWage;
-	private long _createUserId;
-	private String _createUserUuid;
-	private Date _createDate;
-	private long _modifiedUserId;
-	private String _modifiedUserUuid;
-	private Date _modifiedDate;
 	private long _columnBitmask;
 	private ExtInformation _escapedModel;
 }

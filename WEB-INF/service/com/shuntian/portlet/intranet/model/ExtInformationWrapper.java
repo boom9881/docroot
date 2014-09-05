@@ -64,10 +64,6 @@ public class ExtInformationWrapper implements ExtInformation,
 		attributes.put("isInsured", getIsInsured());
 		attributes.put("basicWage", getBasicWage());
 		attributes.put("otherWage", getOtherWage());
-		attributes.put("createUserId", getCreateUserId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedUserId", getModifiedUserId());
-		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
 	}
@@ -156,30 +152,6 @@ public class ExtInformationWrapper implements ExtInformation,
 
 		if (otherWage != null) {
 			setOtherWage(otherWage);
-		}
-
-		Long createUserId = (Long)attributes.get("createUserId");
-
-		if (createUserId != null) {
-			setCreateUserId(createUserId);
-		}
-
-		Date createDate = (Date)attributes.get("createDate");
-
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
-
-		Long modifiedUserId = (Long)attributes.get("modifiedUserId");
-
-		if (modifiedUserId != null) {
-			setModifiedUserId(modifiedUserId);
-		}
-
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
-
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
 		}
 	}
 
@@ -503,130 +475,6 @@ public class ExtInformationWrapper implements ExtInformation,
 	@Override
 	public void setOtherWage(long otherWage) {
 		_extInformation.setOtherWage(otherWage);
-	}
-
-	/**
-	* Returns the create user ID of this ext information.
-	*
-	* @return the create user ID of this ext information
-	*/
-	@Override
-	public long getCreateUserId() {
-		return _extInformation.getCreateUserId();
-	}
-
-	/**
-	* Sets the create user ID of this ext information.
-	*
-	* @param createUserId the create user ID of this ext information
-	*/
-	@Override
-	public void setCreateUserId(long createUserId) {
-		_extInformation.setCreateUserId(createUserId);
-	}
-
-	/**
-	* Returns the create user uuid of this ext information.
-	*
-	* @return the create user uuid of this ext information
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public java.lang.String getCreateUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _extInformation.getCreateUserUuid();
-	}
-
-	/**
-	* Sets the create user uuid of this ext information.
-	*
-	* @param createUserUuid the create user uuid of this ext information
-	*/
-	@Override
-	public void setCreateUserUuid(java.lang.String createUserUuid) {
-		_extInformation.setCreateUserUuid(createUserUuid);
-	}
-
-	/**
-	* Returns the create date of this ext information.
-	*
-	* @return the create date of this ext information
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _extInformation.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this ext information.
-	*
-	* @param createDate the create date of this ext information
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_extInformation.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified user ID of this ext information.
-	*
-	* @return the modified user ID of this ext information
-	*/
-	@Override
-	public long getModifiedUserId() {
-		return _extInformation.getModifiedUserId();
-	}
-
-	/**
-	* Sets the modified user ID of this ext information.
-	*
-	* @param modifiedUserId the modified user ID of this ext information
-	*/
-	@Override
-	public void setModifiedUserId(long modifiedUserId) {
-		_extInformation.setModifiedUserId(modifiedUserId);
-	}
-
-	/**
-	* Returns the modified user uuid of this ext information.
-	*
-	* @return the modified user uuid of this ext information
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public java.lang.String getModifiedUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _extInformation.getModifiedUserUuid();
-	}
-
-	/**
-	* Sets the modified user uuid of this ext information.
-	*
-	* @param modifiedUserUuid the modified user uuid of this ext information
-	*/
-	@Override
-	public void setModifiedUserUuid(java.lang.String modifiedUserUuid) {
-		_extInformation.setModifiedUserUuid(modifiedUserUuid);
-	}
-
-	/**
-	* Returns the modified date of this ext information.
-	*
-	* @return the modified date of this ext information
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _extInformation.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this ext information.
-	*
-	* @param modifiedDate the modified date of this ext information
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_extInformation.setModifiedDate(modifiedDate);
 	}
 
 	@Override

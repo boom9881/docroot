@@ -38,7 +38,7 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -68,14 +68,6 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 		sb.append(basicWage);
 		sb.append(", otherWage=");
 		sb.append(otherWage);
-		sb.append(", createUserId=");
-		sb.append(createUserId);
-		sb.append(", createDate=");
-		sb.append(createDate);
-		sb.append(", modifiedUserId=");
-		sb.append(modifiedUserId);
-		sb.append(", modifiedDate=");
-		sb.append(modifiedDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -163,23 +155,6 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 
 		extInformationImpl.setBasicWage(basicWage);
 		extInformationImpl.setOtherWage(otherWage);
-		extInformationImpl.setCreateUserId(createUserId);
-
-		if (createDate == Long.MIN_VALUE) {
-			extInformationImpl.setCreateDate(null);
-		}
-		else {
-			extInformationImpl.setCreateDate(new Date(createDate));
-		}
-
-		extInformationImpl.setModifiedUserId(modifiedUserId);
-
-		if (modifiedDate == Long.MIN_VALUE) {
-			extInformationImpl.setModifiedDate(null);
-		}
-		else {
-			extInformationImpl.setModifiedDate(new Date(modifiedDate));
-		}
 
 		extInformationImpl.resetOriginalValues();
 
@@ -202,10 +177,6 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 		isInsured = objectInput.readUTF();
 		basicWage = objectInput.readLong();
 		otherWage = objectInput.readLong();
-		createUserId = objectInput.readLong();
-		createDate = objectInput.readLong();
-		modifiedUserId = objectInput.readLong();
-		modifiedDate = objectInput.readLong();
 	}
 
 	@Override
@@ -258,10 +229,6 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 
 		objectOutput.writeLong(basicWage);
 		objectOutput.writeLong(otherWage);
-		objectOutput.writeLong(createUserId);
-		objectOutput.writeLong(createDate);
-		objectOutput.writeLong(modifiedUserId);
-		objectOutput.writeLong(modifiedDate);
 	}
 
 	public long id;
@@ -278,8 +245,4 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 	public String isInsured;
 	public long basicWage;
 	public long otherWage;
-	public long createUserId;
-	public long createDate;
-	public long modifiedUserId;
-	public long modifiedDate;
 }

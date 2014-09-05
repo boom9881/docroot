@@ -16,7 +16,6 @@ package com.shuntian.portlet.intranet.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,7 +35,6 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -68,16 +66,12 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 			{ "relationship", Types.VARCHAR },
 			{ "workUnit", Types.VARCHAR },
 			{ "contactPhone", Types.VARCHAR },
-			{ "onceJob", Types.VARCHAR },
-			{ "createUserId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedUserId", Types.BIGINT },
-			{ "modifiedDate", Types.TIMESTAMP }
+			{ "onceJob", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_FamilyRelationship (id_ LONG not null primary key,userId LONG,name VARCHAR(75) null,relationship VARCHAR(75) null,workUnit VARCHAR(75) null,contactPhone VARCHAR(75) null,onceJob VARCHAR(75) null,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_FamilyRelationship (id_ LONG not null primary key,userId LONG,name VARCHAR(75) null,relationship VARCHAR(75) null,workUnit VARCHAR(75) null,contactPhone VARCHAR(75) null,onceJob VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_FamilyRelationship";
-	public static final String ORDER_BY_JPQL = " ORDER BY familyRelationship.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY Intranet_FamilyRelationship.createDate DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY familyRelationship.id DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY Intranet_FamilyRelationship.id_ DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -91,7 +85,7 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.FamilyRelationship"),
 			true);
 	public static long USERID_COLUMN_BITMASK = 1L;
-	public static long CREATEDATE_COLUMN_BITMASK = 2L;
+	public static long ID_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.FamilyRelationship"));
 
@@ -139,10 +133,6 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 		attributes.put("workUnit", getWorkUnit());
 		attributes.put("contactPhone", getContactPhone());
 		attributes.put("onceJob", getOnceJob());
-		attributes.put("createUserId", getCreateUserId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedUserId", getModifiedUserId());
-		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
 	}
@@ -190,30 +180,6 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 		if (onceJob != null) {
 			setOnceJob(onceJob);
 		}
-
-		Long createUserId = (Long)attributes.get("createUserId");
-
-		if (createUserId != null) {
-			setCreateUserId(createUserId);
-		}
-
-		Date createDate = (Date)attributes.get("createDate");
-
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
-
-		Long modifiedUserId = (Long)attributes.get("modifiedUserId");
-
-		if (modifiedUserId != null) {
-			setModifiedUserId(modifiedUserId);
-		}
-
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
-
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
 	}
 
 	@Override
@@ -223,6 +189,8 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 
 	@Override
 	public void setId(long id) {
+		_columnBitmask = -1L;
+
 		_id = id;
 	}
 
@@ -333,70 +301,6 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 		_onceJob = onceJob;
 	}
 
-	@Override
-	public long getCreateUserId() {
-		return _createUserId;
-	}
-
-	@Override
-	public void setCreateUserId(long createUserId) {
-		_createUserId = createUserId;
-	}
-
-	@Override
-	public String getCreateUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getCreateUserId(), "uuid",
-			_createUserUuid);
-	}
-
-	@Override
-	public void setCreateUserUuid(String createUserUuid) {
-		_createUserUuid = createUserUuid;
-	}
-
-	@Override
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	@Override
-	public void setCreateDate(Date createDate) {
-		_columnBitmask = -1L;
-
-		_createDate = createDate;
-	}
-
-	@Override
-	public long getModifiedUserId() {
-		return _modifiedUserId;
-	}
-
-	@Override
-	public void setModifiedUserId(long modifiedUserId) {
-		_modifiedUserId = modifiedUserId;
-	}
-
-	@Override
-	public String getModifiedUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getModifiedUserId(), "uuid",
-			_modifiedUserUuid);
-	}
-
-	@Override
-	public void setModifiedUserUuid(String modifiedUserUuid) {
-		_modifiedUserUuid = modifiedUserUuid;
-	}
-
-	@Override
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	@Override
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
-
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -435,10 +339,6 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 		familyRelationshipImpl.setWorkUnit(getWorkUnit());
 		familyRelationshipImpl.setContactPhone(getContactPhone());
 		familyRelationshipImpl.setOnceJob(getOnceJob());
-		familyRelationshipImpl.setCreateUserId(getCreateUserId());
-		familyRelationshipImpl.setCreateDate(getCreateDate());
-		familyRelationshipImpl.setModifiedUserId(getModifiedUserId());
-		familyRelationshipImpl.setModifiedDate(getModifiedDate());
 
 		familyRelationshipImpl.resetOriginalValues();
 
@@ -449,8 +349,15 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 	public int compareTo(FamilyRelationship familyRelationship) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(),
-				familyRelationship.getCreateDate());
+		if (getId() < familyRelationship.getId()) {
+			value = -1;
+		}
+		else if (getId() > familyRelationship.getId()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		value = value * -1;
 
@@ -547,34 +454,12 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 			familyRelationshipCacheModel.onceJob = null;
 		}
 
-		familyRelationshipCacheModel.createUserId = getCreateUserId();
-
-		Date createDate = getCreateDate();
-
-		if (createDate != null) {
-			familyRelationshipCacheModel.createDate = createDate.getTime();
-		}
-		else {
-			familyRelationshipCacheModel.createDate = Long.MIN_VALUE;
-		}
-
-		familyRelationshipCacheModel.modifiedUserId = getModifiedUserId();
-
-		Date modifiedDate = getModifiedDate();
-
-		if (modifiedDate != null) {
-			familyRelationshipCacheModel.modifiedDate = modifiedDate.getTime();
-		}
-		else {
-			familyRelationshipCacheModel.modifiedDate = Long.MIN_VALUE;
-		}
-
 		return familyRelationshipCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -590,14 +475,6 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 		sb.append(getContactPhone());
 		sb.append(", onceJob=");
 		sb.append(getOnceJob());
-		sb.append(", createUserId=");
-		sb.append(getCreateUserId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedUserId=");
-		sb.append(getModifiedUserId());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -605,7 +482,7 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.FamilyRelationship");
@@ -639,22 +516,6 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 			"<column><column-name>onceJob</column-name><column-value><![CDATA[");
 		sb.append(getOnceJob());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
-		sb.append(getCreateUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedUserId</column-name><column-value><![CDATA[");
-		sb.append(getModifiedUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -675,12 +536,6 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 	private String _workUnit;
 	private String _contactPhone;
 	private String _onceJob;
-	private long _createUserId;
-	private String _createUserUuid;
-	private Date _createDate;
-	private long _modifiedUserId;
-	private String _modifiedUserUuid;
-	private Date _modifiedDate;
 	private long _columnBitmask;
 	private FamilyRelationship _escapedModel;
 }

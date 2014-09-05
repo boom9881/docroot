@@ -16,7 +16,6 @@ package com.shuntian.portlet.intranet.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -90,10 +89,6 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 		attributes.put("isInsured", getIsInsured());
 		attributes.put("basicWage", getBasicWage());
 		attributes.put("otherWage", getOtherWage());
-		attributes.put("createUserId", getCreateUserId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedUserId", getModifiedUserId());
-		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
 	}
@@ -182,30 +177,6 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 
 		if (otherWage != null) {
 			setOtherWage(otherWage);
-		}
-
-		Long createUserId = (Long)attributes.get("createUserId");
-
-		if (createUserId != null) {
-			setCreateUserId(createUserId);
-		}
-
-		Date createDate = (Date)attributes.get("createDate");
-
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
-
-		Long modifiedUserId = (Long)attributes.get("modifiedUserId");
-
-		if (modifiedUserId != null) {
-			setModifiedUserId(modifiedUserId);
-		}
-
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
-
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
 		}
 	}
 
@@ -546,120 +517,6 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 		}
 	}
 
-	@Override
-	public long getCreateUserId() {
-		return _createUserId;
-	}
-
-	@Override
-	public void setCreateUserId(long createUserId) {
-		_createUserId = createUserId;
-
-		if (_extInformationRemoteModel != null) {
-			try {
-				Class<?> clazz = _extInformationRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setCreateUserId", long.class);
-
-				method.invoke(_extInformationRemoteModel, createUserId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public String getCreateUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getCreateUserId(), "uuid",
-			_createUserUuid);
-	}
-
-	@Override
-	public void setCreateUserUuid(String createUserUuid) {
-		_createUserUuid = createUserUuid;
-	}
-
-	@Override
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	@Override
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
-
-		if (_extInformationRemoteModel != null) {
-			try {
-				Class<?> clazz = _extInformationRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setCreateDate", Date.class);
-
-				method.invoke(_extInformationRemoteModel, createDate);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public long getModifiedUserId() {
-		return _modifiedUserId;
-	}
-
-	@Override
-	public void setModifiedUserId(long modifiedUserId) {
-		_modifiedUserId = modifiedUserId;
-
-		if (_extInformationRemoteModel != null) {
-			try {
-				Class<?> clazz = _extInformationRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setModifiedUserId", long.class);
-
-				method.invoke(_extInformationRemoteModel, modifiedUserId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public String getModifiedUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getModifiedUserId(), "uuid",
-			_modifiedUserUuid);
-	}
-
-	@Override
-	public void setModifiedUserUuid(String modifiedUserUuid) {
-		_modifiedUserUuid = modifiedUserUuid;
-	}
-
-	@Override
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	@Override
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-
-		if (_extInformationRemoteModel != null) {
-			try {
-				Class<?> clazz = _extInformationRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setModifiedDate", Date.class);
-
-				method.invoke(_extInformationRemoteModel, modifiedDate);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
 	public BaseModel<?> getExtInformationRemoteModel() {
 		return _extInformationRemoteModel;
 	}
@@ -745,10 +602,6 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 		clone.setIsInsured(getIsInsured());
 		clone.setBasicWage(getBasicWage());
 		clone.setOtherWage(getOtherWage());
-		clone.setCreateUserId(getCreateUserId());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedUserId(getModifiedUserId());
-		clone.setModifiedDate(getModifiedDate());
 
 		return clone;
 	}
@@ -757,8 +610,15 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 	public int compareTo(ExtInformation extInformation) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(),
-				extInformation.getCreateDate());
+		if (getId() < extInformation.getId()) {
+			value = -1;
+		}
+		else if (getId() > extInformation.getId()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		value = value * -1;
 
@@ -798,7 +658,7 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -828,14 +688,6 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 		sb.append(getBasicWage());
 		sb.append(", otherWage=");
 		sb.append(getOtherWage());
-		sb.append(", createUserId=");
-		sb.append(getCreateUserId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedUserId=");
-		sb.append(getModifiedUserId());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -843,7 +695,7 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(58);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.ExtInformation");
@@ -905,22 +757,6 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 			"<column><column-name>otherWage</column-name><column-value><![CDATA[");
 		sb.append(getOtherWage());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
-		sb.append(getCreateUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedUserId</column-name><column-value><![CDATA[");
-		sb.append(getModifiedUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -942,11 +778,5 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 	private String _isInsured;
 	private long _basicWage;
 	private long _otherWage;
-	private long _createUserId;
-	private String _createUserUuid;
-	private Date _createDate;
-	private long _modifiedUserId;
-	private String _modifiedUserUuid;
-	private Date _modifiedDate;
 	private BaseModel<?> _extInformationRemoteModel;
 }

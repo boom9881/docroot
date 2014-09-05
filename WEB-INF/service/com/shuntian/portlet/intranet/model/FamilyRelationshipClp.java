@@ -16,7 +16,6 @@ package com.shuntian.portlet.intranet.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -30,7 +29,6 @@ import java.io.Serializable;
 
 import java.lang.reflect.Method;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -83,10 +81,6 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 		attributes.put("workUnit", getWorkUnit());
 		attributes.put("contactPhone", getContactPhone());
 		attributes.put("onceJob", getOnceJob());
-		attributes.put("createUserId", getCreateUserId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedUserId", getModifiedUserId());
-		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
 	}
@@ -133,30 +127,6 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 
 		if (onceJob != null) {
 			setOnceJob(onceJob);
-		}
-
-		Long createUserId = (Long)attributes.get("createUserId");
-
-		if (createUserId != null) {
-			setCreateUserId(createUserId);
-		}
-
-		Date createDate = (Date)attributes.get("createDate");
-
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
-
-		Long modifiedUserId = (Long)attributes.get("modifiedUserId");
-
-		if (modifiedUserId != null) {
-			setModifiedUserId(modifiedUserId);
-		}
-
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
-
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
 		}
 	}
 
@@ -331,120 +301,6 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 		}
 	}
 
-	@Override
-	public long getCreateUserId() {
-		return _createUserId;
-	}
-
-	@Override
-	public void setCreateUserId(long createUserId) {
-		_createUserId = createUserId;
-
-		if (_familyRelationshipRemoteModel != null) {
-			try {
-				Class<?> clazz = _familyRelationshipRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setCreateUserId", long.class);
-
-				method.invoke(_familyRelationshipRemoteModel, createUserId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public String getCreateUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getCreateUserId(), "uuid",
-			_createUserUuid);
-	}
-
-	@Override
-	public void setCreateUserUuid(String createUserUuid) {
-		_createUserUuid = createUserUuid;
-	}
-
-	@Override
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	@Override
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
-
-		if (_familyRelationshipRemoteModel != null) {
-			try {
-				Class<?> clazz = _familyRelationshipRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setCreateDate", Date.class);
-
-				method.invoke(_familyRelationshipRemoteModel, createDate);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public long getModifiedUserId() {
-		return _modifiedUserId;
-	}
-
-	@Override
-	public void setModifiedUserId(long modifiedUserId) {
-		_modifiedUserId = modifiedUserId;
-
-		if (_familyRelationshipRemoteModel != null) {
-			try {
-				Class<?> clazz = _familyRelationshipRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setModifiedUserId", long.class);
-
-				method.invoke(_familyRelationshipRemoteModel, modifiedUserId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public String getModifiedUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getModifiedUserId(), "uuid",
-			_modifiedUserUuid);
-	}
-
-	@Override
-	public void setModifiedUserUuid(String modifiedUserUuid) {
-		_modifiedUserUuid = modifiedUserUuid;
-	}
-
-	@Override
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	@Override
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-
-		if (_familyRelationshipRemoteModel != null) {
-			try {
-				Class<?> clazz = _familyRelationshipRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setModifiedDate", Date.class);
-
-				method.invoke(_familyRelationshipRemoteModel, modifiedDate);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
 	public BaseModel<?> getFamilyRelationshipRemoteModel() {
 		return _familyRelationshipRemoteModel;
 	}
@@ -523,10 +379,6 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 		clone.setWorkUnit(getWorkUnit());
 		clone.setContactPhone(getContactPhone());
 		clone.setOnceJob(getOnceJob());
-		clone.setCreateUserId(getCreateUserId());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedUserId(getModifiedUserId());
-		clone.setModifiedDate(getModifiedDate());
 
 		return clone;
 	}
@@ -535,8 +387,15 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 	public int compareTo(FamilyRelationship familyRelationship) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(),
-				familyRelationship.getCreateDate());
+		if (getId() < familyRelationship.getId()) {
+			value = -1;
+		}
+		else if (getId() > familyRelationship.getId()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		value = value * -1;
 
@@ -576,7 +435,7 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -592,14 +451,6 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 		sb.append(getContactPhone());
 		sb.append(", onceJob=");
 		sb.append(getOnceJob());
-		sb.append(", createUserId=");
-		sb.append(getCreateUserId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedUserId=");
-		sb.append(getModifiedUserId());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -607,7 +458,7 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.FamilyRelationship");
@@ -641,22 +492,6 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 			"<column><column-name>onceJob</column-name><column-value><![CDATA[");
 		sb.append(getOnceJob());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
-		sb.append(getCreateUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedUserId</column-name><column-value><![CDATA[");
-		sb.append(getModifiedUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -671,11 +506,5 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 	private String _workUnit;
 	private String _contactPhone;
 	private String _onceJob;
-	private long _createUserId;
-	private String _createUserUuid;
-	private Date _createDate;
-	private long _modifiedUserId;
-	private String _modifiedUserUuid;
-	private Date _modifiedDate;
 	private BaseModel<?> _familyRelationshipRemoteModel;
 }

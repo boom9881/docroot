@@ -17,7 +17,6 @@ package com.shuntian.portlet.intranet.model;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,10 +36,6 @@ public class FamilyRelationshipSoap implements Serializable {
 		soapModel.setWorkUnit(model.getWorkUnit());
 		soapModel.setContactPhone(model.getContactPhone());
 		soapModel.setOnceJob(model.getOnceJob());
-		soapModel.setCreateUserId(model.getCreateUserId());
-		soapModel.setCreateDate(model.getCreateDate());
-		soapModel.setModifiedUserId(model.getModifiedUserId());
-		soapModel.setModifiedDate(model.getModifiedDate());
 
 		return soapModel;
 	}
@@ -152,38 +147,6 @@ public class FamilyRelationshipSoap implements Serializable {
 		_onceJob = onceJob;
 	}
 
-	public long getCreateUserId() {
-		return _createUserId;
-	}
-
-	public void setCreateUserId(long createUserId) {
-		_createUserId = createUserId;
-	}
-
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
-	}
-
-	public long getModifiedUserId() {
-		return _modifiedUserId;
-	}
-
-	public void setModifiedUserId(long modifiedUserId) {
-		_modifiedUserId = modifiedUserId;
-	}
-
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
-
 	private long _id;
 	private long _userId;
 	private String _name;
@@ -191,8 +154,4 @@ public class FamilyRelationshipSoap implements Serializable {
 	private String _workUnit;
 	private String _contactPhone;
 	private String _onceJob;
-	private long _createUserId;
-	private Date _createDate;
-	private long _modifiedUserId;
-	private Date _modifiedDate;
 }

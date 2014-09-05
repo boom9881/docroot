@@ -57,10 +57,6 @@ public class EducationWrapper implements Education, ModelWrapper<Education> {
 		attributes.put("contactPhone", getContactPhone());
 		attributes.put("startTime", getStartTime());
 		attributes.put("stopTime", getStopTime());
-		attributes.put("createUserId", getCreateUserId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedUserId", getModifiedUserId());
-		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
 	}
@@ -113,30 +109,6 @@ public class EducationWrapper implements Education, ModelWrapper<Education> {
 
 		if (stopTime != null) {
 			setStopTime(stopTime);
-		}
-
-		Long createUserId = (Long)attributes.get("createUserId");
-
-		if (createUserId != null) {
-			setCreateUserId(createUserId);
-		}
-
-		Date createDate = (Date)attributes.get("createDate");
-
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
-
-		Long modifiedUserId = (Long)attributes.get("modifiedUserId");
-
-		if (modifiedUserId != null) {
-			setModifiedUserId(modifiedUserId);
-		}
-
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
-
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
 		}
 	}
 
@@ -340,130 +312,6 @@ public class EducationWrapper implements Education, ModelWrapper<Education> {
 	@Override
 	public void setStopTime(java.util.Date stopTime) {
 		_education.setStopTime(stopTime);
-	}
-
-	/**
-	* Returns the create user ID of this education.
-	*
-	* @return the create user ID of this education
-	*/
-	@Override
-	public long getCreateUserId() {
-		return _education.getCreateUserId();
-	}
-
-	/**
-	* Sets the create user ID of this education.
-	*
-	* @param createUserId the create user ID of this education
-	*/
-	@Override
-	public void setCreateUserId(long createUserId) {
-		_education.setCreateUserId(createUserId);
-	}
-
-	/**
-	* Returns the create user uuid of this education.
-	*
-	* @return the create user uuid of this education
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public java.lang.String getCreateUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _education.getCreateUserUuid();
-	}
-
-	/**
-	* Sets the create user uuid of this education.
-	*
-	* @param createUserUuid the create user uuid of this education
-	*/
-	@Override
-	public void setCreateUserUuid(java.lang.String createUserUuid) {
-		_education.setCreateUserUuid(createUserUuid);
-	}
-
-	/**
-	* Returns the create date of this education.
-	*
-	* @return the create date of this education
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _education.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this education.
-	*
-	* @param createDate the create date of this education
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_education.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified user ID of this education.
-	*
-	* @return the modified user ID of this education
-	*/
-	@Override
-	public long getModifiedUserId() {
-		return _education.getModifiedUserId();
-	}
-
-	/**
-	* Sets the modified user ID of this education.
-	*
-	* @param modifiedUserId the modified user ID of this education
-	*/
-	@Override
-	public void setModifiedUserId(long modifiedUserId) {
-		_education.setModifiedUserId(modifiedUserId);
-	}
-
-	/**
-	* Returns the modified user uuid of this education.
-	*
-	* @return the modified user uuid of this education
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public java.lang.String getModifiedUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _education.getModifiedUserUuid();
-	}
-
-	/**
-	* Sets the modified user uuid of this education.
-	*
-	* @param modifiedUserUuid the modified user uuid of this education
-	*/
-	@Override
-	public void setModifiedUserUuid(java.lang.String modifiedUserUuid) {
-		_education.setModifiedUserUuid(modifiedUserUuid);
-	}
-
-	/**
-	* Returns the modified date of this education.
-	*
-	* @return the modified date of this education
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _education.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this education.
-	*
-	* @param modifiedDate the modified date of this education
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_education.setModifiedDate(modifiedDate);
 	}
 
 	@Override

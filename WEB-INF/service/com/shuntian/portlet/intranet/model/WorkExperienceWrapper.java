@@ -58,10 +58,6 @@ public class WorkExperienceWrapper implements WorkExperience,
 		attributes.put("contactPhone", getContactPhone());
 		attributes.put("startTime", getStartTime());
 		attributes.put("stopTime", getStopTime());
-		attributes.put("createUserId", getCreateUserId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedUserId", getModifiedUserId());
-		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
 	}
@@ -114,30 +110,6 @@ public class WorkExperienceWrapper implements WorkExperience,
 
 		if (stopTime != null) {
 			setStopTime(stopTime);
-		}
-
-		Long createUserId = (Long)attributes.get("createUserId");
-
-		if (createUserId != null) {
-			setCreateUserId(createUserId);
-		}
-
-		Date createDate = (Date)attributes.get("createDate");
-
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
-
-		Long modifiedUserId = (Long)attributes.get("modifiedUserId");
-
-		if (modifiedUserId != null) {
-			setModifiedUserId(modifiedUserId);
-		}
-
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
-
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
 		}
 	}
 
@@ -341,130 +313,6 @@ public class WorkExperienceWrapper implements WorkExperience,
 	@Override
 	public void setStopTime(java.util.Date stopTime) {
 		_workExperience.setStopTime(stopTime);
-	}
-
-	/**
-	* Returns the create user ID of this work experience.
-	*
-	* @return the create user ID of this work experience
-	*/
-	@Override
-	public long getCreateUserId() {
-		return _workExperience.getCreateUserId();
-	}
-
-	/**
-	* Sets the create user ID of this work experience.
-	*
-	* @param createUserId the create user ID of this work experience
-	*/
-	@Override
-	public void setCreateUserId(long createUserId) {
-		_workExperience.setCreateUserId(createUserId);
-	}
-
-	/**
-	* Returns the create user uuid of this work experience.
-	*
-	* @return the create user uuid of this work experience
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public java.lang.String getCreateUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _workExperience.getCreateUserUuid();
-	}
-
-	/**
-	* Sets the create user uuid of this work experience.
-	*
-	* @param createUserUuid the create user uuid of this work experience
-	*/
-	@Override
-	public void setCreateUserUuid(java.lang.String createUserUuid) {
-		_workExperience.setCreateUserUuid(createUserUuid);
-	}
-
-	/**
-	* Returns the create date of this work experience.
-	*
-	* @return the create date of this work experience
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _workExperience.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this work experience.
-	*
-	* @param createDate the create date of this work experience
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_workExperience.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified user ID of this work experience.
-	*
-	* @return the modified user ID of this work experience
-	*/
-	@Override
-	public long getModifiedUserId() {
-		return _workExperience.getModifiedUserId();
-	}
-
-	/**
-	* Sets the modified user ID of this work experience.
-	*
-	* @param modifiedUserId the modified user ID of this work experience
-	*/
-	@Override
-	public void setModifiedUserId(long modifiedUserId) {
-		_workExperience.setModifiedUserId(modifiedUserId);
-	}
-
-	/**
-	* Returns the modified user uuid of this work experience.
-	*
-	* @return the modified user uuid of this work experience
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public java.lang.String getModifiedUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _workExperience.getModifiedUserUuid();
-	}
-
-	/**
-	* Sets the modified user uuid of this work experience.
-	*
-	* @param modifiedUserUuid the modified user uuid of this work experience
-	*/
-	@Override
-	public void setModifiedUserUuid(java.lang.String modifiedUserUuid) {
-		_workExperience.setModifiedUserUuid(modifiedUserUuid);
-	}
-
-	/**
-	* Returns the modified date of this work experience.
-	*
-	* @return the modified date of this work experience
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _workExperience.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this work experience.
-	*
-	* @param modifiedDate the modified date of this work experience
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_workExperience.setModifiedDate(modifiedDate);
 	}
 
 	@Override

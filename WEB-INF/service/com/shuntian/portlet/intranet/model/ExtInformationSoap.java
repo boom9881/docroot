@@ -44,10 +44,6 @@ public class ExtInformationSoap implements Serializable {
 		soapModel.setIsInsured(model.getIsInsured());
 		soapModel.setBasicWage(model.getBasicWage());
 		soapModel.setOtherWage(model.getOtherWage());
-		soapModel.setCreateUserId(model.getCreateUserId());
-		soapModel.setCreateDate(model.getCreateDate());
-		soapModel.setModifiedUserId(model.getModifiedUserId());
-		soapModel.setModifiedDate(model.getModifiedDate());
 
 		return soapModel;
 	}
@@ -212,38 +208,6 @@ public class ExtInformationSoap implements Serializable {
 		_otherWage = otherWage;
 	}
 
-	public long getCreateUserId() {
-		return _createUserId;
-	}
-
-	public void setCreateUserId(long createUserId) {
-		_createUserId = createUserId;
-	}
-
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
-	}
-
-	public long getModifiedUserId() {
-		return _modifiedUserId;
-	}
-
-	public void setModifiedUserId(long modifiedUserId) {
-		_modifiedUserId = modifiedUserId;
-	}
-
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
-
 	private long _id;
 	private long _userId;
 	private String _openCity;
@@ -258,8 +222,4 @@ public class ExtInformationSoap implements Serializable {
 	private String _isInsured;
 	private long _basicWage;
 	private long _otherWage;
-	private long _createUserId;
-	private Date _createDate;
-	private long _modifiedUserId;
-	private Date _modifiedDate;
 }

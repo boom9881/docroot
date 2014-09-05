@@ -38,10 +38,6 @@ public class WorkExperienceSoap implements Serializable {
 		soapModel.setContactPhone(model.getContactPhone());
 		soapModel.setStartTime(model.getStartTime());
 		soapModel.setStopTime(model.getStopTime());
-		soapModel.setCreateUserId(model.getCreateUserId());
-		soapModel.setCreateDate(model.getCreateDate());
-		soapModel.setModifiedUserId(model.getModifiedUserId());
-		soapModel.setModifiedDate(model.getModifiedDate());
 
 		return soapModel;
 	}
@@ -158,38 +154,6 @@ public class WorkExperienceSoap implements Serializable {
 		_stopTime = stopTime;
 	}
 
-	public long getCreateUserId() {
-		return _createUserId;
-	}
-
-	public void setCreateUserId(long createUserId) {
-		_createUserId = createUserId;
-	}
-
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
-	}
-
-	public long getModifiedUserId() {
-		return _modifiedUserId;
-	}
-
-	public void setModifiedUserId(long modifiedUserId) {
-		_modifiedUserId = modifiedUserId;
-	}
-
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
-
 	private long _id;
 	private long _userId;
 	private String _witness;
@@ -198,8 +162,4 @@ public class WorkExperienceSoap implements Serializable {
 	private String _contactPhone;
 	private Date _startTime;
 	private Date _stopTime;
-	private long _createUserId;
-	private Date _createDate;
-	private long _modifiedUserId;
-	private Date _modifiedDate;
 }

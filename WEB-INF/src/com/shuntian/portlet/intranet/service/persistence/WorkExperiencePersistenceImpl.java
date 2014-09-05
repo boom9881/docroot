@@ -102,8 +102,7 @@ public class WorkExperiencePersistenceImpl extends BasePersistenceImpl<WorkExper
 			WorkExperienceImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
 			new String[] { Long.class.getName() },
-			WorkExperienceModelImpl.USERID_COLUMN_BITMASK |
-			WorkExperienceModelImpl.CREATEDATE_COLUMN_BITMASK);
+			WorkExperienceModelImpl.USERID_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(WorkExperienceModelImpl.ENTITY_CACHE_ENABLED,
 			WorkExperienceModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
@@ -848,10 +847,6 @@ public class WorkExperiencePersistenceImpl extends BasePersistenceImpl<WorkExper
 		workExperienceImpl.setContactPhone(workExperience.getContactPhone());
 		workExperienceImpl.setStartTime(workExperience.getStartTime());
 		workExperienceImpl.setStopTime(workExperience.getStopTime());
-		workExperienceImpl.setCreateUserId(workExperience.getCreateUserId());
-		workExperienceImpl.setCreateDate(workExperience.getCreateDate());
-		workExperienceImpl.setModifiedUserId(workExperience.getModifiedUserId());
-		workExperienceImpl.setModifiedDate(workExperience.getModifiedDate());
 
 		return workExperienceImpl;
 	}

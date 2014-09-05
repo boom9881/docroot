@@ -24,8 +24,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 
 import java.io.Serializable;
 
-import java.util.Date;
-
 /**
  * The base model interface for the FamilyRelationship service. Represents a row in the &quot;Intranet_FamilyRelationship&quot; database table, with each column mapped to a property of this class.
  *
@@ -177,92 +175,6 @@ public interface FamilyRelationshipModel extends BaseModel<FamilyRelationship> {
 	 * @param onceJob the once job of this family relationship
 	 */
 	public void setOnceJob(String onceJob);
-
-	/**
-	 * Returns the create user ID of this family relationship.
-	 *
-	 * @return the create user ID of this family relationship
-	 */
-	public long getCreateUserId();
-
-	/**
-	 * Sets the create user ID of this family relationship.
-	 *
-	 * @param createUserId the create user ID of this family relationship
-	 */
-	public void setCreateUserId(long createUserId);
-
-	/**
-	 * Returns the create user uuid of this family relationship.
-	 *
-	 * @return the create user uuid of this family relationship
-	 * @throws SystemException if a system exception occurred
-	 */
-	public String getCreateUserUuid() throws SystemException;
-
-	/**
-	 * Sets the create user uuid of this family relationship.
-	 *
-	 * @param createUserUuid the create user uuid of this family relationship
-	 */
-	public void setCreateUserUuid(String createUserUuid);
-
-	/**
-	 * Returns the create date of this family relationship.
-	 *
-	 * @return the create date of this family relationship
-	 */
-	public Date getCreateDate();
-
-	/**
-	 * Sets the create date of this family relationship.
-	 *
-	 * @param createDate the create date of this family relationship
-	 */
-	public void setCreateDate(Date createDate);
-
-	/**
-	 * Returns the modified user ID of this family relationship.
-	 *
-	 * @return the modified user ID of this family relationship
-	 */
-	public long getModifiedUserId();
-
-	/**
-	 * Sets the modified user ID of this family relationship.
-	 *
-	 * @param modifiedUserId the modified user ID of this family relationship
-	 */
-	public void setModifiedUserId(long modifiedUserId);
-
-	/**
-	 * Returns the modified user uuid of this family relationship.
-	 *
-	 * @return the modified user uuid of this family relationship
-	 * @throws SystemException if a system exception occurred
-	 */
-	public String getModifiedUserUuid() throws SystemException;
-
-	/**
-	 * Sets the modified user uuid of this family relationship.
-	 *
-	 * @param modifiedUserUuid the modified user uuid of this family relationship
-	 */
-	public void setModifiedUserUuid(String modifiedUserUuid);
-
-	/**
-	 * Returns the modified date of this family relationship.
-	 *
-	 * @return the modified date of this family relationship
-	 */
-	public Date getModifiedDate();
-
-	/**
-	 * Sets the modified date of this family relationship.
-	 *
-	 * @param modifiedDate the modified date of this family relationship
-	 */
-	public void setModifiedDate(Date modifiedDate);
 
 	@Override
 	public boolean isNew();

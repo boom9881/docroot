@@ -17,7 +17,6 @@ package com.shuntian.portlet.intranet.model;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,10 +56,6 @@ public class FamilyRelationshipWrapper implements FamilyRelationship,
 		attributes.put("workUnit", getWorkUnit());
 		attributes.put("contactPhone", getContactPhone());
 		attributes.put("onceJob", getOnceJob());
-		attributes.put("createUserId", getCreateUserId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedUserId", getModifiedUserId());
-		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
 	}
@@ -107,30 +102,6 @@ public class FamilyRelationshipWrapper implements FamilyRelationship,
 
 		if (onceJob != null) {
 			setOnceJob(onceJob);
-		}
-
-		Long createUserId = (Long)attributes.get("createUserId");
-
-		if (createUserId != null) {
-			setCreateUserId(createUserId);
-		}
-
-		Date createDate = (Date)attributes.get("createDate");
-
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
-
-		Long modifiedUserId = (Long)attributes.get("modifiedUserId");
-
-		if (modifiedUserId != null) {
-			setModifiedUserId(modifiedUserId);
-		}
-
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
-
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
 		}
 	}
 
@@ -314,130 +285,6 @@ public class FamilyRelationshipWrapper implements FamilyRelationship,
 	@Override
 	public void setOnceJob(java.lang.String onceJob) {
 		_familyRelationship.setOnceJob(onceJob);
-	}
-
-	/**
-	* Returns the create user ID of this family relationship.
-	*
-	* @return the create user ID of this family relationship
-	*/
-	@Override
-	public long getCreateUserId() {
-		return _familyRelationship.getCreateUserId();
-	}
-
-	/**
-	* Sets the create user ID of this family relationship.
-	*
-	* @param createUserId the create user ID of this family relationship
-	*/
-	@Override
-	public void setCreateUserId(long createUserId) {
-		_familyRelationship.setCreateUserId(createUserId);
-	}
-
-	/**
-	* Returns the create user uuid of this family relationship.
-	*
-	* @return the create user uuid of this family relationship
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public java.lang.String getCreateUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _familyRelationship.getCreateUserUuid();
-	}
-
-	/**
-	* Sets the create user uuid of this family relationship.
-	*
-	* @param createUserUuid the create user uuid of this family relationship
-	*/
-	@Override
-	public void setCreateUserUuid(java.lang.String createUserUuid) {
-		_familyRelationship.setCreateUserUuid(createUserUuid);
-	}
-
-	/**
-	* Returns the create date of this family relationship.
-	*
-	* @return the create date of this family relationship
-	*/
-	@Override
-	public java.util.Date getCreateDate() {
-		return _familyRelationship.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this family relationship.
-	*
-	* @param createDate the create date of this family relationship
-	*/
-	@Override
-	public void setCreateDate(java.util.Date createDate) {
-		_familyRelationship.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified user ID of this family relationship.
-	*
-	* @return the modified user ID of this family relationship
-	*/
-	@Override
-	public long getModifiedUserId() {
-		return _familyRelationship.getModifiedUserId();
-	}
-
-	/**
-	* Sets the modified user ID of this family relationship.
-	*
-	* @param modifiedUserId the modified user ID of this family relationship
-	*/
-	@Override
-	public void setModifiedUserId(long modifiedUserId) {
-		_familyRelationship.setModifiedUserId(modifiedUserId);
-	}
-
-	/**
-	* Returns the modified user uuid of this family relationship.
-	*
-	* @return the modified user uuid of this family relationship
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public java.lang.String getModifiedUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _familyRelationship.getModifiedUserUuid();
-	}
-
-	/**
-	* Sets the modified user uuid of this family relationship.
-	*
-	* @param modifiedUserUuid the modified user uuid of this family relationship
-	*/
-	@Override
-	public void setModifiedUserUuid(java.lang.String modifiedUserUuid) {
-		_familyRelationship.setModifiedUserUuid(modifiedUserUuid);
-	}
-
-	/**
-	* Returns the modified date of this family relationship.
-	*
-	* @return the modified date of this family relationship
-	*/
-	@Override
-	public java.util.Date getModifiedDate() {
-		return _familyRelationship.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this family relationship.
-	*
-	* @param modifiedDate the modified date of this family relationship
-	*/
-	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_familyRelationship.setModifiedDate(modifiedDate);
 	}
 
 	@Override

@@ -38,7 +38,7 @@ public class EducationCacheModel implements CacheModel<Education>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -56,14 +56,6 @@ public class EducationCacheModel implements CacheModel<Education>,
 		sb.append(startTime);
 		sb.append(", stopTime=");
 		sb.append(stopTime);
-		sb.append(", createUserId=");
-		sb.append(createUserId);
-		sb.append(", createDate=");
-		sb.append(createDate);
-		sb.append(", modifiedUserId=");
-		sb.append(modifiedUserId);
-		sb.append(", modifiedDate=");
-		sb.append(modifiedDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -118,24 +110,6 @@ public class EducationCacheModel implements CacheModel<Education>,
 			educationImpl.setStopTime(new Date(stopTime));
 		}
 
-		educationImpl.setCreateUserId(createUserId);
-
-		if (createDate == Long.MIN_VALUE) {
-			educationImpl.setCreateDate(null);
-		}
-		else {
-			educationImpl.setCreateDate(new Date(createDate));
-		}
-
-		educationImpl.setModifiedUserId(modifiedUserId);
-
-		if (modifiedDate == Long.MIN_VALUE) {
-			educationImpl.setModifiedDate(null);
-		}
-		else {
-			educationImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
 		educationImpl.resetOriginalValues();
 
 		return educationImpl;
@@ -151,10 +125,6 @@ public class EducationCacheModel implements CacheModel<Education>,
 		contactPhone = objectInput.readUTF();
 		startTime = objectInput.readLong();
 		stopTime = objectInput.readLong();
-		createUserId = objectInput.readLong();
-		createDate = objectInput.readLong();
-		modifiedUserId = objectInput.readLong();
-		modifiedDate = objectInput.readLong();
 	}
 
 	@Override
@@ -193,10 +163,6 @@ public class EducationCacheModel implements CacheModel<Education>,
 
 		objectOutput.writeLong(startTime);
 		objectOutput.writeLong(stopTime);
-		objectOutput.writeLong(createUserId);
-		objectOutput.writeLong(createDate);
-		objectOutput.writeLong(modifiedUserId);
-		objectOutput.writeLong(modifiedDate);
 	}
 
 	public long id;
@@ -207,8 +173,4 @@ public class EducationCacheModel implements CacheModel<Education>,
 	public String contactPhone;
 	public long startTime;
 	public long stopTime;
-	public long createUserId;
-	public long createDate;
-	public long modifiedUserId;
-	public long modifiedDate;
 }

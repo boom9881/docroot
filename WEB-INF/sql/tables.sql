@@ -30,6 +30,16 @@ create table Intranet_BasicInformation (
 	modifiedDate DATE null
 );
 
+create table Intranet_Department (
+	id_ LONG not null primary key,
+	name VARCHAR(75) null,
+	leader LONG,
+	createUserId LONG,
+	createDate DATE null,
+	modifiedUserId LONG,
+	modifiedDate DATE null
+);
+
 create table Intranet_Education (
 	id_ LONG not null primary key,
 	userId LONG,
@@ -38,11 +48,7 @@ create table Intranet_Education (
 	university VARCHAR(75) null,
 	contactPhone VARCHAR(75) null,
 	startTime DATE null,
-	stopTime DATE null,
-	createUserId LONG,
-	createDate DATE null,
-	modifiedUserId LONG,
-	modifiedDate DATE null
+	stopTime DATE null
 );
 
 create table Intranet_ExtInformation (
@@ -59,11 +65,7 @@ create table Intranet_ExtInformation (
 	fristInsured DATE null,
 	isInsured VARCHAR(75) null,
 	basicWage LONG,
-	otherWage LONG,
-	createUserId LONG,
-	createDate DATE null,
-	modifiedUserId LONG,
-	modifiedDate DATE null
+	otherWage LONG
 );
 
 create table Intranet_FamilyRelationship (
@@ -73,11 +75,7 @@ create table Intranet_FamilyRelationship (
 	relationship VARCHAR(75) null,
 	workUnit VARCHAR(75) null,
 	contactPhone VARCHAR(75) null,
-	onceJob VARCHAR(75) null,
-	createUserId LONG,
-	createDate DATE null,
-	modifiedUserId LONG,
-	modifiedDate DATE null
+	onceJob VARCHAR(75) null
 );
 
 create table Intranet_Satff (
@@ -117,11 +115,7 @@ create table Intranet_WorkExperience (
 	workUnit VARCHAR(75) null,
 	contactPhone VARCHAR(75) null,
 	startTime DATE null,
-	stopTime DATE null,
-	createUserId LONG,
-	createDate DATE null,
-	modifiedUserId LONG,
-	modifiedDate DATE null
+	stopTime DATE null
 );
 
 create table Intranet_basic_information (

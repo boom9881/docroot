@@ -25,8 +25,6 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import java.util.Date;
-
 /**
  * The cache model class for representing FamilyRelationship in entity cache.
  *
@@ -38,7 +36,7 @@ public class FamilyRelationshipCacheModel implements CacheModel<FamilyRelationsh
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -54,14 +52,6 @@ public class FamilyRelationshipCacheModel implements CacheModel<FamilyRelationsh
 		sb.append(contactPhone);
 		sb.append(", onceJob=");
 		sb.append(onceJob);
-		sb.append(", createUserId=");
-		sb.append(createUserId);
-		sb.append(", createDate=");
-		sb.append(createDate);
-		sb.append(", modifiedUserId=");
-		sb.append(modifiedUserId);
-		sb.append(", modifiedDate=");
-		sb.append(modifiedDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -109,24 +99,6 @@ public class FamilyRelationshipCacheModel implements CacheModel<FamilyRelationsh
 			familyRelationshipImpl.setOnceJob(onceJob);
 		}
 
-		familyRelationshipImpl.setCreateUserId(createUserId);
-
-		if (createDate == Long.MIN_VALUE) {
-			familyRelationshipImpl.setCreateDate(null);
-		}
-		else {
-			familyRelationshipImpl.setCreateDate(new Date(createDate));
-		}
-
-		familyRelationshipImpl.setModifiedUserId(modifiedUserId);
-
-		if (modifiedDate == Long.MIN_VALUE) {
-			familyRelationshipImpl.setModifiedDate(null);
-		}
-		else {
-			familyRelationshipImpl.setModifiedDate(new Date(modifiedDate));
-		}
-
 		familyRelationshipImpl.resetOriginalValues();
 
 		return familyRelationshipImpl;
@@ -141,10 +113,6 @@ public class FamilyRelationshipCacheModel implements CacheModel<FamilyRelationsh
 		workUnit = objectInput.readUTF();
 		contactPhone = objectInput.readUTF();
 		onceJob = objectInput.readUTF();
-		createUserId = objectInput.readLong();
-		createDate = objectInput.readLong();
-		modifiedUserId = objectInput.readLong();
-		modifiedDate = objectInput.readLong();
 	}
 
 	@Override
@@ -187,11 +155,6 @@ public class FamilyRelationshipCacheModel implements CacheModel<FamilyRelationsh
 		else {
 			objectOutput.writeUTF(onceJob);
 		}
-
-		objectOutput.writeLong(createUserId);
-		objectOutput.writeLong(createDate);
-		objectOutput.writeLong(modifiedUserId);
-		objectOutput.writeLong(modifiedDate);
 	}
 
 	public long id;
@@ -201,8 +164,4 @@ public class FamilyRelationshipCacheModel implements CacheModel<FamilyRelationsh
 	public String workUnit;
 	public String contactPhone;
 	public String onceJob;
-	public long createUserId;
-	public long createDate;
-	public long modifiedUserId;
-	public long modifiedDate;
 }

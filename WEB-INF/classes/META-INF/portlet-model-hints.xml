@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.shuntian.portlet.intranet.model.BasicInformation">
+		<field name="id" type="long" />
+		<field name="userId" type="long" />
+		<field name="name" type="String" />
+		<field name="sex" type="int" />
+		<field name="idNumber" type="String" />
+		<field name="nation" type="String" />
+		<field name="placeOfOrigin" type="String" />
+		<field name="accountProperties" type="String" />
+		<field name="birthDate" type="Date" />
+		<field name="maritalStatus" type="String" />
+		<field name="highestDegree" type="String" />
+		<field name="politicalBackground" type="String" />
+		<field name="fileLocation" type="String" />
+		<field name="basePay" type="double" />
+		<field name="performancePay" type="double" />
+		<field name="health" type="int" />
+		<field name="contactPhone" type="String" />
+		<field name="mail" type="String" />
+		<field name="domicile" type="String" />
+		<field name="residencePhone" type="String" />
+		<field name="currentResidentialAddress" type="String" />
+		<field name="currentResidentialAddressPhone" type="String" />
+		<field name="emergencyContact" type="String" />
+		<field name="emergencyContactRelation" type="String" />
+		<field name="emergencyContactPhone" type="String" />
+		<field name="createUserId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedUserId" type="long" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+	<model name="com.shuntian.portlet.intranet.model.Education">
+		<field name="id" type="long" />
+		<field name="userId" type="long" />
+		<field name="witness" type="String" />
+		<field name="professional" type="String" />
+		<field name="university" type="String" />
+		<field name="contactPhone" type="String" />
+		<field name="startTime" type="Date" />
+		<field name="stopTime" type="Date" />
+		<field name="createUserId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedUserId" type="long" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+	<model name="com.shuntian.portlet.intranet.model.ExtInformation">
+		<field name="id" type="long" />
+		<field name="userId" type="long" />
+		<field name="openCity" type="String" />
+		<field name="bankName" type="String" />
+		<field name="bankId" type="String" />
+		<field name="laborContractStart" type="Date" />
+		<field name="laborContractEnd" type="Date" />
+		<field name="probationPeriodStart" type="Date" />
+		<field name="probationPeriodEnd" type="Date" />
+		<field name="induredLocation" type="String" />
+		<field name="fristInsured" type="Date" />
+		<field name="isInsured" type="String" />
+		<field name="basicWage" type="long" />
+		<field name="otherWage" type="long" />
+		<field name="createUserId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedUserId" type="long" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+	<model name="com.shuntian.portlet.intranet.model.FamilyRelationship">
+		<field name="id" type="long" />
+		<field name="userId" type="long" />
+		<field name="name" type="String" />
+		<field name="relationship" type="String" />
+		<field name="workUnit" type="String" />
+		<field name="contactPhone" type="String" />
+		<field name="onceJob" type="String" />
+		<field name="createUserId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedUserId" type="long" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+	<model name="com.shuntian.portlet.intranet.model.WorkExperience">
+		<field name="id" type="long" />
+		<field name="userId" type="long" />
+		<field name="witness" type="String" />
+		<field name="onceJob" type="String" />
+		<field name="workUnit" type="String" />
+		<field name="contactPhone" type="String" />
+		<field name="startTime" type="Date" />
+		<field name="stopTime" type="Date" />
+		<field name="createUserId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedUserId" type="long" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+</model-hints>

@@ -41,26 +41,30 @@
 
 		BasicInformation basicInformation = (BasicInformation) results.get(i);
 
-		Overtime overtime = OvertimeLocalServiceUtil.getOvertime(1L);
+		List<Overtime> overtime = OvertimeLocalServiceUtil.findByU_M(basicInformation.getId());
 
-		ResultRow row = new ResultRow(basicInformation,basicInformation.getId(), i);
-
-		row.addText(basicInformation.getName());
+		for (int j = 0; j < overtime.size(); j++) {
 		
-		row.addText(String.valueOf(overtime.getOvertimeMonthly()));
+			Overtime over= overtime.get(j);
 		
-		row.addText(String.valueOf(overtime.getUsuallyOvertime()));
-		
-		row.addText(String.valueOf(overtime.getRestOvertime()));
-		
-		row.addText(String.valueOf(overtime.getLegalOvertime()));
-		
-		row.addText(String.valueOf(OverTimeSum.sum(overtime.getUsuallyOvertime(), overtime.getRestOvertime(), overtime.getLegalOvertime())));
-		
-		row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/overtime/action.jsp");
-
-		resultRows.add(row);
-
+			ResultRow row = new ResultRow(basicInformation,basicInformation.getId(), i);
+	
+			row.addText(basicInformation.getName());
+			
+			row.addText(String.valueOf(over.getOvertimeMonthly()));
+			
+			row.addText(String.valueOf(over.getUsuallyOvertime()));
+			
+			row.addText(String.valueOf(over.getRestOvertime()));
+			
+			row.addText(String.valueOf(over.getLegalOvertime()));
+			
+			row.addText(String.valueOf(OverTimeSum.sum(over.getUsuallyOvertime(), over.getRestOvertime(), over.getLegalOvertime())));
+			
+			row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/overtime/action.jsp");
+	
+			resultRows.add(row);
+		}
 	}
 	
 %>

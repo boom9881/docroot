@@ -109,58 +109,150 @@ public class WagesUtil {
 	}
 
 	/**
-	* Returns the wages where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchWagesException} if it could not be found.
+	* Returns all the wageses where userId = &#63;.
 	*
 	* @param userId the user ID
-	* @return the matching wages
-	* @throws com.shuntian.portlet.intranet.NoSuchWagesException if a matching wages could not be found
+	* @return the matching wageses
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.shuntian.portlet.intranet.model.Wages findByUserId(
-		long userId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchWagesException {
+	public static java.util.List<com.shuntian.portlet.intranet.model.Wages> findByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId);
 	}
 
 	/**
-	* Returns the wages where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns a range of all the wageses where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.WagesModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
 	*
 	* @param userId the user ID
-	* @return the matching wages, or <code>null</code> if a matching wages could not be found
+	* @param start the lower bound of the range of wageses
+	* @param end the upper bound of the range of wageses (not inclusive)
+	* @return the range of matching wageses
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.shuntian.portlet.intranet.model.Wages fetchByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByUserId(userId);
-	}
-
-	/**
-	* Returns the wages where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param userId the user ID
-	* @param retrieveFromCache whether to use the finder cache
-	* @return the matching wages, or <code>null</code> if a matching wages could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.Wages fetchByUserId(
-		long userId, boolean retrieveFromCache)
+	public static java.util.List<com.shuntian.portlet.intranet.model.Wages> findByUserId(
+		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByUserId(userId, retrieveFromCache);
+		return getPersistence().findByUserId(userId, start, end);
 	}
 
 	/**
-	* Removes the wages where userId = &#63; from the database.
+	* Returns an ordered range of all the wageses where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.WagesModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
 	*
 	* @param userId the user ID
-	* @return the wages that was removed
+	* @param start the lower bound of the range of wageses
+	* @param end the upper bound of the range of wageses (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching wageses
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.shuntian.portlet.intranet.model.Wages removeByUserId(
-		long userId)
+	public static java.util.List<com.shuntian.portlet.intranet.model.Wages> findByUserId(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByUserId(userId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first wages in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching wages
+	* @throws com.shuntian.portlet.intranet.NoSuchWagesException if a matching wages could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Wages findByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchWagesException {
-		return getPersistence().removeByUserId(userId);
+		return getPersistence().findByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the first wages in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching wages, or <code>null</code> if a matching wages could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Wages fetchByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last wages in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching wages
+	* @throws com.shuntian.portlet.intranet.NoSuchWagesException if a matching wages could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Wages findByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchWagesException {
+		return getPersistence().findByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last wages in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching wages, or <code>null</code> if a matching wages could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Wages fetchByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the wageses before and after the current wages in the ordered set where userId = &#63;.
+	*
+	* @param id the primary key of the current wages
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next wages
+	* @throws com.shuntian.portlet.intranet.NoSuchWagesException if a wages with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Wages[] findByUserId_PrevAndNext(
+		long id, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchWagesException {
+		return getPersistence()
+				   .findByUserId_PrevAndNext(id, userId, orderByComparator);
+	}
+
+	/**
+	* Removes all the wageses where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUserId(userId);
 	}
 
 	/**
@@ -173,6 +265,80 @@ public class WagesUtil {
 	public static int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByUserId(userId);
+	}
+
+	/**
+	* Returns the wages where userId = &#63; and distributionMonth = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchWagesException} if it could not be found.
+	*
+	* @param userId the user ID
+	* @param distributionMonth the distribution month
+	* @return the matching wages
+	* @throws com.shuntian.portlet.intranet.NoSuchWagesException if a matching wages could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Wages findByU_M(
+		long userId, long distributionMonth)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchWagesException {
+		return getPersistence().findByU_M(userId, distributionMonth);
+	}
+
+	/**
+	* Returns the wages where userId = &#63; and distributionMonth = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user ID
+	* @param distributionMonth the distribution month
+	* @return the matching wages, or <code>null</code> if a matching wages could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Wages fetchByU_M(
+		long userId, long distributionMonth)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByU_M(userId, distributionMonth);
+	}
+
+	/**
+	* Returns the wages where userId = &#63; and distributionMonth = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user ID
+	* @param distributionMonth the distribution month
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching wages, or <code>null</code> if a matching wages could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Wages fetchByU_M(
+		long userId, long distributionMonth, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByU_M(userId, distributionMonth, retrieveFromCache);
+	}
+
+	/**
+	* Removes the wages where userId = &#63; and distributionMonth = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param distributionMonth the distribution month
+	* @return the wages that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Wages removeByU_M(
+		long userId, long distributionMonth)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchWagesException {
+		return getPersistence().removeByU_M(userId, distributionMonth);
+	}
+
+	/**
+	* Returns the number of wageses where userId = &#63; and distributionMonth = &#63;.
+	*
+	* @param userId the user ID
+	* @param distributionMonth the distribution month
+	* @return the number of matching wageses
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_M(long userId, long distributionMonth)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_M(userId, distributionMonth);
 	}
 
 	/**

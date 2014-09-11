@@ -84,95 +84,126 @@ public class WagesPersistenceImpl extends BasePersistenceImpl<Wages>
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(WagesModelImpl.ENTITY_CACHE_ENABLED,
 			WagesModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_FETCH_BY_USERID = new FinderPath(WagesModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_USERID = new FinderPath(WagesModelImpl.ENTITY_CACHE_ENABLED,
 			WagesModelImpl.FINDER_CACHE_ENABLED, WagesImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByUserId",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUserId",
+			new String[] {
+				Long.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID =
+		new FinderPath(WagesModelImpl.ENTITY_CACHE_ENABLED,
+			WagesModelImpl.FINDER_CACHE_ENABLED, WagesImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
 			new String[] { Long.class.getName() },
-			WagesModelImpl.USERID_COLUMN_BITMASK);
+			WagesModelImpl.USERID_COLUMN_BITMASK |
+			WagesModelImpl.CREATEDATE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(WagesModelImpl.ENTITY_CACHE_ENABLED,
 			WagesModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
 			new String[] { Long.class.getName() });
 
 	/**
-	 * Returns the wages where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchWagesException} if it could not be found.
+	 * Returns all the wageses where userId = &#63;.
 	 *
 	 * @param userId the user ID
-	 * @return the matching wages
-	 * @throws com.shuntian.portlet.intranet.NoSuchWagesException if a matching wages could not be found
+	 * @return the matching wageses
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Wages findByUserId(long userId)
-		throws NoSuchWagesException, SystemException {
-		Wages wages = fetchByUserId(userId);
-
-		if (wages == null) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchWagesException(msg.toString());
-		}
-
-		return wages;
+	public List<Wages> findByUserId(long userId) throws SystemException {
+		return findByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns the wages where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns a range of all the wageses where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.WagesModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
 	 *
 	 * @param userId the user ID
-	 * @return the matching wages, or <code>null</code> if a matching wages could not be found
+	 * @param start the lower bound of the range of wageses
+	 * @param end the upper bound of the range of wageses (not inclusive)
+	 * @return the range of matching wageses
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Wages fetchByUserId(long userId) throws SystemException {
-		return fetchByUserId(userId, true);
-	}
-
-	/**
-	 * Returns the wages where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param userId the user ID
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching wages, or <code>null</code> if a matching wages could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Wages fetchByUserId(long userId, boolean retrieveFromCache)
+	public List<Wages> findByUserId(long userId, int start, int end)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { userId };
+		return findByUserId(userId, start, end, null);
+	}
 
-		Object result = null;
+	/**
+	 * Returns an ordered range of all the wageses where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.WagesModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of wageses
+	 * @param end the upper bound of the range of wageses (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching wageses
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<Wages> findByUserId(long userId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_USERID,
-					finderArgs, this);
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID;
+			finderArgs = new Object[] { userId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_USERID;
+			finderArgs = new Object[] { userId, start, end, orderByComparator };
 		}
 
-		if (result instanceof Wages) {
-			Wages wages = (Wages)result;
+		List<Wages> list = (List<Wages>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
 
-			if ((userId != wages.getUserId())) {
-				result = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (Wages wages : list) {
+				if ((userId != wages.getUserId())) {
+					list = null;
+
+					break;
+				}
 			}
 		}
 
-		if (result == null) {
-			StringBundler query = new StringBundler(3);
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
 			query.append(_SQL_SELECT_WAGES_WHERE);
 
 			query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(WagesModelImpl.ORDER_BY_JPQL);
+			}
 
 			String sql = query.toString();
 
@@ -187,35 +218,25 @@ public class WagesPersistenceImpl extends BasePersistenceImpl<Wages>
 
 				qPos.add(userId);
 
-				List<Wages> list = q.list();
+				if (!pagination) {
+					list = (List<Wages>)QueryUtil.list(q, getDialect(), start,
+							end, false);
 
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-						finderArgs, list);
+					Collections.sort(list);
+
+					list = new UnmodifiableList<Wages>(list);
 				}
 				else {
-					if ((list.size() > 1) && _log.isWarnEnabled()) {
-						_log.warn(
-							"WagesPersistenceImpl.fetchByUserId(long, boolean) with parameters (" +
-							StringUtil.merge(finderArgs) +
-							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-					}
-
-					Wages wages = list.get(0);
-
-					result = wages;
-
-					cacheResult(wages);
-
-					if ((wages.getUserId() != userId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-							finderArgs, wages);
-					}
+					list = (List<Wages>)QueryUtil.list(q, getDialect(), start,
+							end);
 				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
-					finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -224,27 +245,275 @@ public class WagesPersistenceImpl extends BasePersistenceImpl<Wages>
 			}
 		}
 
-		if (result instanceof List<?>) {
+		return list;
+	}
+
+	/**
+	 * Returns the first wages in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching wages
+	 * @throws com.shuntian.portlet.intranet.NoSuchWagesException if a matching wages could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Wages findByUserId_First(long userId,
+		OrderByComparator orderByComparator)
+		throws NoSuchWagesException, SystemException {
+		Wages wages = fetchByUserId_First(userId, orderByComparator);
+
+		if (wages != null) {
+			return wages;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchWagesException(msg.toString());
+	}
+
+	/**
+	 * Returns the first wages in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching wages, or <code>null</code> if a matching wages could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Wages fetchByUserId_First(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Wages> list = findByUserId(userId, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last wages in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching wages
+	 * @throws com.shuntian.portlet.intranet.NoSuchWagesException if a matching wages could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Wages findByUserId_Last(long userId,
+		OrderByComparator orderByComparator)
+		throws NoSuchWagesException, SystemException {
+		Wages wages = fetchByUserId_Last(userId, orderByComparator);
+
+		if (wages != null) {
+			return wages;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchWagesException(msg.toString());
+	}
+
+	/**
+	 * Returns the last wages in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching wages, or <code>null</code> if a matching wages could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Wages fetchByUserId_Last(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByUserId(userId);
+
+		if (count == 0) {
 			return null;
 		}
+
+		List<Wages> list = findByUserId(userId, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the wageses before and after the current wages in the ordered set where userId = &#63;.
+	 *
+	 * @param id the primary key of the current wages
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next wages
+	 * @throws com.shuntian.portlet.intranet.NoSuchWagesException if a wages with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Wages[] findByUserId_PrevAndNext(long id, long userId,
+		OrderByComparator orderByComparator)
+		throws NoSuchWagesException, SystemException {
+		Wages wages = findByPrimaryKey(id);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Wages[] array = new WagesImpl[3];
+
+			array[0] = getByUserId_PrevAndNext(session, wages, userId,
+					orderByComparator, true);
+
+			array[1] = wages;
+
+			array[2] = getByUserId_PrevAndNext(session, wages, userId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Wages getByUserId_PrevAndNext(Session session, Wages wages,
+		long userId, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
 		else {
-			return (Wages)result;
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_WAGES_WHERE);
+
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(WagesModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(userId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(wages);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Wages> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
 	/**
-	 * Removes the wages where userId = &#63; from the database.
+	 * Removes all the wageses where userId = &#63; from the database.
 	 *
 	 * @param userId the user ID
-	 * @return the wages that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Wages removeByUserId(long userId)
-		throws NoSuchWagesException, SystemException {
-		Wages wages = findByUserId(userId);
-
-		return remove(wages);
+	public void removeByUserId(long userId) throws SystemException {
+		for (Wages wages : findByUserId(userId, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
+			remove(wages);
+		}
 	}
 
 	/**
@@ -301,6 +570,245 @@ public class WagesPersistenceImpl extends BasePersistenceImpl<Wages>
 	}
 
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "wages.userId = ?";
+	public static final FinderPath FINDER_PATH_FETCH_BY_U_M = new FinderPath(WagesModelImpl.ENTITY_CACHE_ENABLED,
+			WagesModelImpl.FINDER_CACHE_ENABLED, WagesImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByU_M",
+			new String[] { Long.class.getName(), Long.class.getName() },
+			WagesModelImpl.USERID_COLUMN_BITMASK |
+			WagesModelImpl.DISTRIBUTIONMONTH_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_U_M = new FinderPath(WagesModelImpl.ENTITY_CACHE_ENABLED,
+			WagesModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_M",
+			new String[] { Long.class.getName(), Long.class.getName() });
+
+	/**
+	 * Returns the wages where userId = &#63; and distributionMonth = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchWagesException} if it could not be found.
+	 *
+	 * @param userId the user ID
+	 * @param distributionMonth the distribution month
+	 * @return the matching wages
+	 * @throws com.shuntian.portlet.intranet.NoSuchWagesException if a matching wages could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Wages findByU_M(long userId, long distributionMonth)
+		throws NoSuchWagesException, SystemException {
+		Wages wages = fetchByU_M(userId, distributionMonth);
+
+		if (wages == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(", distributionMonth=");
+			msg.append(distributionMonth);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchWagesException(msg.toString());
+		}
+
+		return wages;
+	}
+
+	/**
+	 * Returns the wages where userId = &#63; and distributionMonth = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param distributionMonth the distribution month
+	 * @return the matching wages, or <code>null</code> if a matching wages could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Wages fetchByU_M(long userId, long distributionMonth)
+		throws SystemException {
+		return fetchByU_M(userId, distributionMonth, true);
+	}
+
+	/**
+	 * Returns the wages where userId = &#63; and distributionMonth = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param distributionMonth the distribution month
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching wages, or <code>null</code> if a matching wages could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Wages fetchByU_M(long userId, long distributionMonth,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { userId, distributionMonth };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_M,
+					finderArgs, this);
+		}
+
+		if (result instanceof Wages) {
+			Wages wages = (Wages)result;
+
+			if ((userId != wages.getUserId()) ||
+					(distributionMonth != wages.getDistributionMonth())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_SELECT_WAGES_WHERE);
+
+			query.append(_FINDER_COLUMN_U_M_USERID_2);
+
+			query.append(_FINDER_COLUMN_U_M_DISTRIBUTIONMONTH_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				qPos.add(distributionMonth);
+
+				List<Wages> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"WagesPersistenceImpl.fetchByU_M(long, long, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					Wages wages = list.get(0);
+
+					result = wages;
+
+					cacheResult(wages);
+
+					if ((wages.getUserId() != userId) ||
+							(wages.getDistributionMonth() != distributionMonth)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
+							finderArgs, wages);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Wages)result;
+		}
+	}
+
+	/**
+	 * Removes the wages where userId = &#63; and distributionMonth = &#63; from the database.
+	 *
+	 * @param userId the user ID
+	 * @param distributionMonth the distribution month
+	 * @return the wages that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Wages removeByU_M(long userId, long distributionMonth)
+		throws NoSuchWagesException, SystemException {
+		Wages wages = findByU_M(userId, distributionMonth);
+
+		return remove(wages);
+	}
+
+	/**
+	 * Returns the number of wageses where userId = &#63; and distributionMonth = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param distributionMonth the distribution month
+	 * @return the number of matching wageses
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByU_M(long userId, long distributionMonth)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_M;
+
+		Object[] finderArgs = new Object[] { userId, distributionMonth };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_WAGES_WHERE);
+
+			query.append(_FINDER_COLUMN_U_M_USERID_2);
+
+			query.append(_FINDER_COLUMN_U_M_DISTRIBUTIONMONTH_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				qPos.add(distributionMonth);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_U_M_USERID_2 = "wages.userId = ? AND ";
+	private static final String _FINDER_COLUMN_U_M_DISTRIBUTIONMONTH_2 = "wages.distributionMonth = ?";
 
 	public WagesPersistenceImpl() {
 		setModelClass(Wages.class);
@@ -316,8 +824,9 @@ public class WagesPersistenceImpl extends BasePersistenceImpl<Wages>
 		EntityCacheUtil.putResult(WagesModelImpl.ENTITY_CACHE_ENABLED,
 			WagesImpl.class, wages.getPrimaryKey(), wages);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-			new Object[] { wages.getUserId() }, wages);
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
+			new Object[] { wages.getUserId(), wages.getDistributionMonth() },
+			wages);
 
 		wages.resetOriginalValues();
 	}
@@ -393,23 +902,26 @@ public class WagesPersistenceImpl extends BasePersistenceImpl<Wages>
 
 	protected void cacheUniqueFindersCache(Wages wages) {
 		if (wages.isNew()) {
-			Object[] args = new Object[] { wages.getUserId() };
+			Object[] args = new Object[] {
+					wages.getUserId(), wages.getDistributionMonth()
+				};
 
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args, wages);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args, wages);
 		}
 		else {
 			WagesModelImpl wagesModelImpl = (WagesModelImpl)wages;
 
 			if ((wagesModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { wages.getUserId() };
+					FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						wages.getUserId(), wages.getDistributionMonth()
+					};
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
-					wages);
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args, wages);
 			}
 		}
 	}
@@ -417,17 +929,22 @@ public class WagesPersistenceImpl extends BasePersistenceImpl<Wages>
 	protected void clearUniqueFindersCache(Wages wages) {
 		WagesModelImpl wagesModelImpl = (WagesModelImpl)wages;
 
-		Object[] args = new Object[] { wages.getUserId() };
+		Object[] args = new Object[] {
+				wages.getUserId(), wages.getDistributionMonth()
+			};
 
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
 
 		if ((wagesModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
-			args = new Object[] { wagesModelImpl.getOriginalUserId() };
+				FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					wagesModelImpl.getOriginalUserId(),
+					wagesModelImpl.getOriginalDistributionMonth()
+				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
 		}
 	}
 
@@ -539,6 +1056,8 @@ public class WagesPersistenceImpl extends BasePersistenceImpl<Wages>
 
 		boolean isNew = wages.isNew();
 
+		WagesModelImpl wagesModelImpl = (WagesModelImpl)wages;
+
 		Session session = null;
 
 		try {
@@ -566,6 +1085,23 @@ public class WagesPersistenceImpl extends BasePersistenceImpl<Wages>
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
+		else {
+			if ((wagesModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { wagesModelImpl.getOriginalUserId() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+					args);
+
+				args = new Object[] { wagesModelImpl.getUserId() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+					args);
+			}
+		}
+
 		EntityCacheUtil.putResult(WagesModelImpl.ENTITY_CACHE_ENABLED,
 			WagesImpl.class, wages.getPrimaryKey(), wages);
 
@@ -588,6 +1124,7 @@ public class WagesPersistenceImpl extends BasePersistenceImpl<Wages>
 		wagesImpl.setId(wages.getId());
 		wagesImpl.setUserId(wages.getUserId());
 		wagesImpl.setWageName(wages.getWageName());
+		wagesImpl.setDistributionMonth(wages.getDistributionMonth());
 		wagesImpl.setEntryDate(wages.getEntryDate());
 		wagesImpl.setDepartureDate(wages.getDepartureDate());
 		wagesImpl.setUserWage(wages.getUserWage());
@@ -595,7 +1132,6 @@ public class WagesPersistenceImpl extends BasePersistenceImpl<Wages>
 		wagesImpl.setUserTotalWage(wages.getUserTotalWage());
 		wagesImpl.setAttendance(wages.getAttendance());
 		wagesImpl.setRealAttendance(wages.getRealAttendance());
-		wagesImpl.setDistributionMonth(wages.getDistributionMonth());
 		wagesImpl.setBasePay(wages.getBasePay());
 		wagesImpl.setOvertimeWages(wages.getOvertimeWages());
 		wagesImpl.setPerformanceScores(wages.getPerformanceScores());

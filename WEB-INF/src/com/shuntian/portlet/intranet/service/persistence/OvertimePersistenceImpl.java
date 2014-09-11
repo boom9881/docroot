@@ -84,95 +84,126 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
 			OvertimeModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_FETCH_BY_USERID = new FinderPath(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_USERID = new FinderPath(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
 			OvertimeModelImpl.FINDER_CACHE_ENABLED, OvertimeImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByUserId",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUserId",
+			new String[] {
+				Long.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID =
+		new FinderPath(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
+			OvertimeModelImpl.FINDER_CACHE_ENABLED, OvertimeImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
 			new String[] { Long.class.getName() },
-			OvertimeModelImpl.USERID_COLUMN_BITMASK);
+			OvertimeModelImpl.USERID_COLUMN_BITMASK |
+			OvertimeModelImpl.CREATEDATE_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
 			OvertimeModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
 			new String[] { Long.class.getName() });
 
 	/**
-	 * Returns the overtime where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchOvertimeException} if it could not be found.
+	 * Returns all the overtimes where userId = &#63;.
 	 *
 	 * @param userId the user ID
-	 * @return the matching overtime
-	 * @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a matching overtime could not be found
+	 * @return the matching overtimes
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Overtime findByUserId(long userId)
-		throws NoSuchOvertimeException, SystemException {
-		Overtime overtime = fetchByUserId(userId);
-
-		if (overtime == null) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchOvertimeException(msg.toString());
-		}
-
-		return overtime;
+	public List<Overtime> findByUserId(long userId) throws SystemException {
+		return findByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns the overtime where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns a range of all the overtimes where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.OvertimeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
 	 *
 	 * @param userId the user ID
-	 * @return the matching overtime, or <code>null</code> if a matching overtime could not be found
+	 * @param start the lower bound of the range of overtimes
+	 * @param end the upper bound of the range of overtimes (not inclusive)
+	 * @return the range of matching overtimes
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Overtime fetchByUserId(long userId) throws SystemException {
-		return fetchByUserId(userId, true);
-	}
-
-	/**
-	 * Returns the overtime where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param userId the user ID
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching overtime, or <code>null</code> if a matching overtime could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Overtime fetchByUserId(long userId, boolean retrieveFromCache)
+	public List<Overtime> findByUserId(long userId, int start, int end)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { userId };
+		return findByUserId(userId, start, end, null);
+	}
 
-		Object result = null;
+	/**
+	 * Returns an ordered range of all the overtimes where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.OvertimeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of overtimes
+	 * @param end the upper bound of the range of overtimes (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching overtimes
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<Overtime> findByUserId(long userId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_USERID,
-					finderArgs, this);
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID;
+			finderArgs = new Object[] { userId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_USERID;
+			finderArgs = new Object[] { userId, start, end, orderByComparator };
 		}
 
-		if (result instanceof Overtime) {
-			Overtime overtime = (Overtime)result;
+		List<Overtime> list = (List<Overtime>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
 
-			if ((userId != overtime.getUserId())) {
-				result = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (Overtime overtime : list) {
+				if ((userId != overtime.getUserId())) {
+					list = null;
+
+					break;
+				}
 			}
 		}
 
-		if (result == null) {
-			StringBundler query = new StringBundler(3);
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
 
 			query.append(_SQL_SELECT_OVERTIME_WHERE);
 
 			query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(OvertimeModelImpl.ORDER_BY_JPQL);
+			}
 
 			String sql = query.toString();
 
@@ -187,35 +218,25 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 
 				qPos.add(userId);
 
-				List<Overtime> list = q.list();
+				if (!pagination) {
+					list = (List<Overtime>)QueryUtil.list(q, getDialect(),
+							start, end, false);
 
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-						finderArgs, list);
+					Collections.sort(list);
+
+					list = new UnmodifiableList<Overtime>(list);
 				}
 				else {
-					if ((list.size() > 1) && _log.isWarnEnabled()) {
-						_log.warn(
-							"OvertimePersistenceImpl.fetchByUserId(long, boolean) with parameters (" +
-							StringUtil.merge(finderArgs) +
-							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-					}
-
-					Overtime overtime = list.get(0);
-
-					result = overtime;
-
-					cacheResult(overtime);
-
-					if ((overtime.getUserId() != userId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-							finderArgs, overtime);
-					}
+					list = (List<Overtime>)QueryUtil.list(q, getDialect(),
+							start, end);
 				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
-					finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -224,27 +245,276 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 			}
 		}
 
-		if (result instanceof List<?>) {
+		return list;
+	}
+
+	/**
+	 * Returns the first overtime in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching overtime
+	 * @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a matching overtime could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime findByUserId_First(long userId,
+		OrderByComparator orderByComparator)
+		throws NoSuchOvertimeException, SystemException {
+		Overtime overtime = fetchByUserId_First(userId, orderByComparator);
+
+		if (overtime != null) {
+			return overtime;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchOvertimeException(msg.toString());
+	}
+
+	/**
+	 * Returns the first overtime in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching overtime, or <code>null</code> if a matching overtime could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime fetchByUserId_First(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Overtime> list = findByUserId(userId, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last overtime in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching overtime
+	 * @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a matching overtime could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime findByUserId_Last(long userId,
+		OrderByComparator orderByComparator)
+		throws NoSuchOvertimeException, SystemException {
+		Overtime overtime = fetchByUserId_Last(userId, orderByComparator);
+
+		if (overtime != null) {
+			return overtime;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchOvertimeException(msg.toString());
+	}
+
+	/**
+	 * Returns the last overtime in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching overtime, or <code>null</code> if a matching overtime could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime fetchByUserId_Last(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByUserId(userId);
+
+		if (count == 0) {
 			return null;
 		}
+
+		List<Overtime> list = findByUserId(userId, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the overtimes before and after the current overtime in the ordered set where userId = &#63;.
+	 *
+	 * @param id the primary key of the current overtime
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next overtime
+	 * @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a overtime with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime[] findByUserId_PrevAndNext(long id, long userId,
+		OrderByComparator orderByComparator)
+		throws NoSuchOvertimeException, SystemException {
+		Overtime overtime = findByPrimaryKey(id);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Overtime[] array = new OvertimeImpl[3];
+
+			array[0] = getByUserId_PrevAndNext(session, overtime, userId,
+					orderByComparator, true);
+
+			array[1] = overtime;
+
+			array[2] = getByUserId_PrevAndNext(session, overtime, userId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Overtime getByUserId_PrevAndNext(Session session,
+		Overtime overtime, long userId, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
 		else {
-			return (Overtime)result;
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_OVERTIME_WHERE);
+
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(OvertimeModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(userId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(overtime);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Overtime> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
 	/**
-	 * Removes the overtime where userId = &#63; from the database.
+	 * Removes all the overtimes where userId = &#63; from the database.
 	 *
 	 * @param userId the user ID
-	 * @return the overtime that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Overtime removeByUserId(long userId)
-		throws NoSuchOvertimeException, SystemException {
-		Overtime overtime = findByUserId(userId);
-
-		return remove(overtime);
+	public void removeByUserId(long userId) throws SystemException {
+		for (Overtime overtime : findByUserId(userId, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
+			remove(overtime);
+		}
 	}
 
 	/**
@@ -301,6 +571,245 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 	}
 
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "overtime.userId = ?";
+	public static final FinderPath FINDER_PATH_FETCH_BY_U_M = new FinderPath(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
+			OvertimeModelImpl.FINDER_CACHE_ENABLED, OvertimeImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByU_M",
+			new String[] { Long.class.getName(), Long.class.getName() },
+			OvertimeModelImpl.USERID_COLUMN_BITMASK |
+			OvertimeModelImpl.OVERTIMEMONTHLY_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_U_M = new FinderPath(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
+			OvertimeModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_M",
+			new String[] { Long.class.getName(), Long.class.getName() });
+
+	/**
+	 * Returns the overtime where userId = &#63; and overtimeMonthly = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchOvertimeException} if it could not be found.
+	 *
+	 * @param userId the user ID
+	 * @param overtimeMonthly the overtime monthly
+	 * @return the matching overtime
+	 * @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a matching overtime could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime findByU_M(long userId, long overtimeMonthly)
+		throws NoSuchOvertimeException, SystemException {
+		Overtime overtime = fetchByU_M(userId, overtimeMonthly);
+
+		if (overtime == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(", overtimeMonthly=");
+			msg.append(overtimeMonthly);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchOvertimeException(msg.toString());
+		}
+
+		return overtime;
+	}
+
+	/**
+	 * Returns the overtime where userId = &#63; and overtimeMonthly = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param overtimeMonthly the overtime monthly
+	 * @return the matching overtime, or <code>null</code> if a matching overtime could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime fetchByU_M(long userId, long overtimeMonthly)
+		throws SystemException {
+		return fetchByU_M(userId, overtimeMonthly, true);
+	}
+
+	/**
+	 * Returns the overtime where userId = &#63; and overtimeMonthly = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param overtimeMonthly the overtime monthly
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching overtime, or <code>null</code> if a matching overtime could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime fetchByU_M(long userId, long overtimeMonthly,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { userId, overtimeMonthly };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_M,
+					finderArgs, this);
+		}
+
+		if (result instanceof Overtime) {
+			Overtime overtime = (Overtime)result;
+
+			if ((userId != overtime.getUserId()) ||
+					(overtimeMonthly != overtime.getOvertimeMonthly())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_SELECT_OVERTIME_WHERE);
+
+			query.append(_FINDER_COLUMN_U_M_USERID_2);
+
+			query.append(_FINDER_COLUMN_U_M_OVERTIMEMONTHLY_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				qPos.add(overtimeMonthly);
+
+				List<Overtime> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"OvertimePersistenceImpl.fetchByU_M(long, long, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					Overtime overtime = list.get(0);
+
+					result = overtime;
+
+					cacheResult(overtime);
+
+					if ((overtime.getUserId() != userId) ||
+							(overtime.getOvertimeMonthly() != overtimeMonthly)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
+							finderArgs, overtime);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Overtime)result;
+		}
+	}
+
+	/**
+	 * Removes the overtime where userId = &#63; and overtimeMonthly = &#63; from the database.
+	 *
+	 * @param userId the user ID
+	 * @param overtimeMonthly the overtime monthly
+	 * @return the overtime that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime removeByU_M(long userId, long overtimeMonthly)
+		throws NoSuchOvertimeException, SystemException {
+		Overtime overtime = findByU_M(userId, overtimeMonthly);
+
+		return remove(overtime);
+	}
+
+	/**
+	 * Returns the number of overtimes where userId = &#63; and overtimeMonthly = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param overtimeMonthly the overtime monthly
+	 * @return the number of matching overtimes
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByU_M(long userId, long overtimeMonthly)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_M;
+
+		Object[] finderArgs = new Object[] { userId, overtimeMonthly };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_OVERTIME_WHERE);
+
+			query.append(_FINDER_COLUMN_U_M_USERID_2);
+
+			query.append(_FINDER_COLUMN_U_M_OVERTIMEMONTHLY_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				qPos.add(overtimeMonthly);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_U_M_USERID_2 = "overtime.userId = ? AND ";
+	private static final String _FINDER_COLUMN_U_M_OVERTIMEMONTHLY_2 = "overtime.overtimeMonthly = ?";
 
 	public OvertimePersistenceImpl() {
 		setModelClass(Overtime.class);
@@ -316,8 +825,9 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 		EntityCacheUtil.putResult(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
 			OvertimeImpl.class, overtime.getPrimaryKey(), overtime);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-			new Object[] { overtime.getUserId() }, overtime);
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
+			new Object[] { overtime.getUserId(), overtime.getOvertimeMonthly() },
+			overtime);
 
 		overtime.resetOriginalValues();
 	}
@@ -394,23 +904,26 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 
 	protected void cacheUniqueFindersCache(Overtime overtime) {
 		if (overtime.isNew()) {
-			Object[] args = new Object[] { overtime.getUserId() };
+			Object[] args = new Object[] {
+					overtime.getUserId(), overtime.getOvertimeMonthly()
+				};
 
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
-				overtime);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args, overtime);
 		}
 		else {
 			OvertimeModelImpl overtimeModelImpl = (OvertimeModelImpl)overtime;
 
 			if ((overtimeModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { overtime.getUserId() };
+					FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						overtime.getUserId(), overtime.getOvertimeMonthly()
+					};
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args,
 					overtime);
 			}
 		}
@@ -419,17 +932,22 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 	protected void clearUniqueFindersCache(Overtime overtime) {
 		OvertimeModelImpl overtimeModelImpl = (OvertimeModelImpl)overtime;
 
-		Object[] args = new Object[] { overtime.getUserId() };
+		Object[] args = new Object[] {
+				overtime.getUserId(), overtime.getOvertimeMonthly()
+			};
 
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
 
 		if ((overtimeModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
-			args = new Object[] { overtimeModelImpl.getOriginalUserId() };
+				FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					overtimeModelImpl.getOriginalUserId(),
+					overtimeModelImpl.getOriginalOvertimeMonthly()
+				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
 		}
 	}
 
@@ -544,6 +1062,8 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 
 		boolean isNew = overtime.isNew();
 
+		OvertimeModelImpl overtimeModelImpl = (OvertimeModelImpl)overtime;
+
 		Session session = null;
 
 		try {
@@ -569,6 +1089,25 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 
 		if (isNew || !OvertimeModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
+
+		else {
+			if ((overtimeModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						overtimeModelImpl.getOriginalUserId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+					args);
+
+				args = new Object[] { overtimeModelImpl.getUserId() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+					args);
+			}
 		}
 
 		EntityCacheUtil.putResult(OvertimeModelImpl.ENTITY_CACHE_ENABLED,

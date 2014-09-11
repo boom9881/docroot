@@ -119,6 +119,20 @@ public interface WagesModel extends BaseModel<Wages> {
 	public void setWageName(String wageName);
 
 	/**
+	 * Returns the distribution month of this wages.
+	 *
+	 * @return the distribution month of this wages
+	 */
+	public long getDistributionMonth();
+
+	/**
+	 * Sets the distribution month of this wages.
+	 *
+	 * @param distributionMonth the distribution month of this wages
+	 */
+	public void setDistributionMonth(long distributionMonth);
+
+	/**
 	 * Returns the entry date of this wages.
 	 *
 	 * @return the entry date of this wages
@@ -215,20 +229,6 @@ public interface WagesModel extends BaseModel<Wages> {
 	 * @param realAttendance the real attendance of this wages
 	 */
 	public void setRealAttendance(double realAttendance);
-
-	/**
-	 * Returns the distribution month of this wages.
-	 *
-	 * @return the distribution month of this wages
-	 */
-	public long getDistributionMonth();
-
-	/**
-	 * Sets the distribution month of this wages.
-	 *
-	 * @param distributionMonth the distribution month of this wages
-	 */
-	public void setDistributionMonth(long distributionMonth);
 
 	/**
 	 * Returns the base pay of this wages.

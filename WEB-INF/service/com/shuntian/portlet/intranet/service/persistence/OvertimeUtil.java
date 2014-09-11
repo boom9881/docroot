@@ -110,58 +110,150 @@ public class OvertimeUtil {
 	}
 
 	/**
-	* Returns the overtime where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchOvertimeException} if it could not be found.
+	* Returns all the overtimes where userId = &#63;.
 	*
 	* @param userId the user ID
-	* @return the matching overtime
-	* @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a matching overtime could not be found
+	* @return the matching overtimes
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.shuntian.portlet.intranet.model.Overtime findByUserId(
-		long userId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+	public static java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId);
 	}
 
 	/**
-	* Returns the overtime where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns a range of all the overtimes where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.OvertimeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
 	*
 	* @param userId the user ID
-	* @return the matching overtime, or <code>null</code> if a matching overtime could not be found
+	* @param start the lower bound of the range of overtimes
+	* @param end the upper bound of the range of overtimes (not inclusive)
+	* @return the range of matching overtimes
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.shuntian.portlet.intranet.model.Overtime fetchByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByUserId(userId);
-	}
-
-	/**
-	* Returns the overtime where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param userId the user ID
-	* @param retrieveFromCache whether to use the finder cache
-	* @return the matching overtime, or <code>null</code> if a matching overtime could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.Overtime fetchByUserId(
-		long userId, boolean retrieveFromCache)
+	public static java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByUserId(
+		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByUserId(userId, retrieveFromCache);
+		return getPersistence().findByUserId(userId, start, end);
 	}
 
 	/**
-	* Removes the overtime where userId = &#63; from the database.
+	* Returns an ordered range of all the overtimes where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.OvertimeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
 	*
 	* @param userId the user ID
-	* @return the overtime that was removed
+	* @param start the lower bound of the range of overtimes
+	* @param end the upper bound of the range of overtimes (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching overtimes
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.shuntian.portlet.intranet.model.Overtime removeByUserId(
-		long userId)
+	public static java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByUserId(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByUserId(userId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first overtime in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching overtime
+	* @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a matching overtime could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Overtime findByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchOvertimeException {
-		return getPersistence().removeByUserId(userId);
+		return getPersistence().findByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the first overtime in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching overtime, or <code>null</code> if a matching overtime could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Overtime fetchByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last overtime in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching overtime
+	* @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a matching overtime could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Overtime findByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		return getPersistence().findByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last overtime in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching overtime, or <code>null</code> if a matching overtime could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Overtime fetchByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the overtimes before and after the current overtime in the ordered set where userId = &#63;.
+	*
+	* @param id the primary key of the current overtime
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next overtime
+	* @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a overtime with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Overtime[] findByUserId_PrevAndNext(
+		long id, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		return getPersistence()
+				   .findByUserId_PrevAndNext(id, userId, orderByComparator);
+	}
+
+	/**
+	* Removes all the overtimes where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUserId(userId);
 	}
 
 	/**
@@ -174,6 +266,80 @@ public class OvertimeUtil {
 	public static int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByUserId(userId);
+	}
+
+	/**
+	* Returns the overtime where userId = &#63; and overtimeMonthly = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchOvertimeException} if it could not be found.
+	*
+	* @param userId the user ID
+	* @param overtimeMonthly the overtime monthly
+	* @return the matching overtime
+	* @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a matching overtime could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Overtime findByU_M(
+		long userId, long overtimeMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		return getPersistence().findByU_M(userId, overtimeMonthly);
+	}
+
+	/**
+	* Returns the overtime where userId = &#63; and overtimeMonthly = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user ID
+	* @param overtimeMonthly the overtime monthly
+	* @return the matching overtime, or <code>null</code> if a matching overtime could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Overtime fetchByU_M(
+		long userId, long overtimeMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByU_M(userId, overtimeMonthly);
+	}
+
+	/**
+	* Returns the overtime where userId = &#63; and overtimeMonthly = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user ID
+	* @param overtimeMonthly the overtime monthly
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching overtime, or <code>null</code> if a matching overtime could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Overtime fetchByU_M(
+		long userId, long overtimeMonthly, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByU_M(userId, overtimeMonthly, retrieveFromCache);
+	}
+
+	/**
+	* Removes the overtime where userId = &#63; and overtimeMonthly = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param overtimeMonthly the overtime monthly
+	* @return the overtime that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Overtime removeByU_M(
+		long userId, long overtimeMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		return getPersistence().removeByU_M(userId, overtimeMonthly);
+	}
+
+	/**
+	* Returns the number of overtimes where userId = &#63; and overtimeMonthly = &#63;.
+	*
+	* @param userId the user ID
+	* @param overtimeMonthly the overtime monthly
+	* @return the number of matching overtimes
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_M(long userId, long overtimeMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_M(userId, overtimeMonthly);
 	}
 
 	/**

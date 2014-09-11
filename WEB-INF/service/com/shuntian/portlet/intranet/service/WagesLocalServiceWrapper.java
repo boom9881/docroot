@@ -280,6 +280,22 @@ public class WagesLocalServiceWrapper implements WagesLocalService,
 		return _wagesLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	@Override
+	public com.shuntian.portlet.intranet.model.Wages findByU_M(long userId,
+		long distributionMonth)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchWagesException {
+		return _wagesLocalService.findByU_M(userId, distributionMonth);
+	}
+
+	@Override
+	public java.util.List<com.shuntian.portlet.intranet.model.Wages> findByU_M(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return _wagesLocalService.findByU_M(userId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

@@ -14,6 +14,13 @@
 
 package com.shuntian.portlet.intranet.service.impl;
 
+import java.util.List;
+
+import com.liferay.portal.kernel.exception.SystemException;
+import com.shuntian.portlet.intranet.NoSuchAttendanceException;
+import com.shuntian.portlet.intranet.NoSuchOvertimeException;
+import com.shuntian.portlet.intranet.model.Attendance;
+import com.shuntian.portlet.intranet.model.Overtime;
 import com.shuntian.portlet.intranet.service.base.OvertimeLocalServiceBaseImpl;
 
 /**
@@ -31,9 +38,10 @@ import com.shuntian.portlet.intranet.service.base.OvertimeLocalServiceBaseImpl;
  * @see com.shuntian.portlet.intranet.service.OvertimeLocalServiceUtil
  */
 public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.shuntian.portlet.intranet.service.OvertimeLocalServiceUtil} to access the overtime local service.
-	 */
+	public Overtime findByU_M(long userId,long overtimeMonthly) throws SystemException, NoSuchAttendanceException, NoSuchOvertimeException{
+		return overtimePersistence.findByU_M(userId, overtimeMonthly);
+	}
+	public List<Overtime> findByU_M(long userId) throws SystemException, NoSuchAttendanceException{
+		return overtimePersistence.findByUserId(userId);
+	}
 }

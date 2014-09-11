@@ -207,6 +207,7 @@
 			</id>
 			<basic name="userId" />
 			<basic name="wageName" />
+			<basic name="distributionMonth" />
 			<basic name="entryDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -218,7 +219,6 @@
 			<basic name="userTotalWage" />
 			<basic name="attendance" />
 			<basic name="realAttendance" />
-			<basic name="distributionMonth" />
 			<basic name="basePay" />
 			<basic name="overtimeWages" />
 			<basic name="performanceScores" />

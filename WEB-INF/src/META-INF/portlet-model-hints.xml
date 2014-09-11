@@ -103,6 +103,7 @@
 		<field name="id" type="long" />
 		<field name="userId" type="long" />
 		<field name="wageName" type="String" />
+		<field name="distributionMonth" type="long" />
 		<field name="entryDate" type="Date" />
 		<field name="departureDate" type="Date" />
 		<field name="userWage" type="double" />
@@ -110,7 +111,6 @@
 		<field name="userTotalWage" type="double" />
 		<field name="attendance" type="double" />
 		<field name="realAttendance" type="double" />
-		<field name="distributionMonth" type="long" />
 		<field name="basePay" type="double" />
 		<field name="overtimeWages" type="double" />
 		<field name="performanceScores" type="double" />

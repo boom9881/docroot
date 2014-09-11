@@ -246,4 +246,14 @@ public interface AttendanceLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public com.shuntian.portlet.intranet.model.Attendance findByU_M(
+		long userId, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException;
+
+	public java.util.List<com.shuntian.portlet.intranet.model.Attendance> findByU_M(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException;
 }

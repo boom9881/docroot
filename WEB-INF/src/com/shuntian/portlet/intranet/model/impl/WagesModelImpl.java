@@ -64,6 +64,7 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 			{ "id_", Types.BIGINT },
 			{ "userId", Types.BIGINT },
 			{ "wageName", Types.VARCHAR },
+			{ "distributionMonth", Types.BIGINT },
 			{ "entryDate", Types.TIMESTAMP },
 			{ "departureDate", Types.TIMESTAMP },
 			{ "userWage", Types.DOUBLE },
@@ -71,7 +72,6 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 			{ "userTotalWage", Types.DOUBLE },
 			{ "attendance", Types.DOUBLE },
 			{ "realAttendance", Types.DOUBLE },
-			{ "distributionMonth", Types.BIGINT },
 			{ "basePay", Types.DOUBLE },
 			{ "overtimeWages", Types.DOUBLE },
 			{ "performanceScores", Types.DOUBLE },
@@ -89,7 +89,7 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 			{ "modifiedUserId", Types.BIGINT },
 			{ "modifiedDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_Wages (id_ LONG not null primary key,userId LONG,wageName VARCHAR(75) null,entryDate DATE null,departureDate DATE null,userWage DOUBLE,userPerformance DOUBLE,userTotalWage DOUBLE,attendance DOUBLE,realAttendance DOUBLE,distributionMonth LONG,basePay DOUBLE,overtimeWages DOUBLE,performanceScores DOUBLE,performanceSalary DOUBLE,allowance DOUBLE,totalWages DOUBLE,socialCompanyBearPart DOUBLE,socialIndividualsBearPart DOUBLE,taxableIncome DOUBLE,taxRate DOUBLE,taxes DOUBLE,realWages DOUBLE,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_Wages (id_ LONG not null primary key,userId LONG,wageName VARCHAR(75) null,distributionMonth LONG,entryDate DATE null,departureDate DATE null,userWage DOUBLE,userPerformance DOUBLE,userTotalWage DOUBLE,attendance DOUBLE,realAttendance DOUBLE,basePay DOUBLE,overtimeWages DOUBLE,performanceScores DOUBLE,performanceSalary DOUBLE,allowance DOUBLE,totalWages DOUBLE,socialCompanyBearPart DOUBLE,socialIndividualsBearPart DOUBLE,taxableIncome DOUBLE,taxRate DOUBLE,taxes DOUBLE,realWages DOUBLE,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_Wages";
 	public static final String ORDER_BY_JPQL = " ORDER BY wages.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY Intranet_Wages.createDate DESC";
@@ -105,8 +105,9 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.Wages"),
 			true);
-	public static long USERID_COLUMN_BITMASK = 1L;
-	public static long CREATEDATE_COLUMN_BITMASK = 2L;
+	public static long DISTRIBUTIONMONTH_COLUMN_BITMASK = 1L;
+	public static long USERID_COLUMN_BITMASK = 2L;
+	public static long CREATEDATE_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.Wages"));
 
@@ -150,6 +151,7 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		attributes.put("id", getId());
 		attributes.put("userId", getUserId());
 		attributes.put("wageName", getWageName());
+		attributes.put("distributionMonth", getDistributionMonth());
 		attributes.put("entryDate", getEntryDate());
 		attributes.put("departureDate", getDepartureDate());
 		attributes.put("userWage", getUserWage());
@@ -157,7 +159,6 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		attributes.put("userTotalWage", getUserTotalWage());
 		attributes.put("attendance", getAttendance());
 		attributes.put("realAttendance", getRealAttendance());
-		attributes.put("distributionMonth", getDistributionMonth());
 		attributes.put("basePay", getBasePay());
 		attributes.put("overtimeWages", getOvertimeWages());
 		attributes.put("performanceScores", getPerformanceScores());
@@ -197,6 +198,12 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 
 		if (wageName != null) {
 			setWageName(wageName);
+		}
+
+		Long distributionMonth = (Long)attributes.get("distributionMonth");
+
+		if (distributionMonth != null) {
+			setDistributionMonth(distributionMonth);
 		}
 
 		Date entryDate = (Date)attributes.get("entryDate");
@@ -239,12 +246,6 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 
 		if (realAttendance != null) {
 			setRealAttendance(realAttendance);
-		}
-
-		Long distributionMonth = (Long)attributes.get("distributionMonth");
-
-		if (distributionMonth != null) {
-			setDistributionMonth(distributionMonth);
 		}
 
 		Double basePay = (Double)attributes.get("basePay");
@@ -404,6 +405,28 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 	}
 
 	@Override
+	public long getDistributionMonth() {
+		return _distributionMonth;
+	}
+
+	@Override
+	public void setDistributionMonth(long distributionMonth) {
+		_columnBitmask |= DISTRIBUTIONMONTH_COLUMN_BITMASK;
+
+		if (!_setOriginalDistributionMonth) {
+			_setOriginalDistributionMonth = true;
+
+			_originalDistributionMonth = _distributionMonth;
+		}
+
+		_distributionMonth = distributionMonth;
+	}
+
+	public long getOriginalDistributionMonth() {
+		return _originalDistributionMonth;
+	}
+
+	@Override
 	public Date getEntryDate() {
 		return _entryDate;
 	}
@@ -471,16 +494,6 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 	@Override
 	public void setRealAttendance(double realAttendance) {
 		_realAttendance = realAttendance;
-	}
-
-	@Override
-	public long getDistributionMonth() {
-		return _distributionMonth;
-	}
-
-	@Override
-	public void setDistributionMonth(long distributionMonth) {
-		_distributionMonth = distributionMonth;
 	}
 
 	@Override
@@ -701,6 +714,7 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		wagesImpl.setId(getId());
 		wagesImpl.setUserId(getUserId());
 		wagesImpl.setWageName(getWageName());
+		wagesImpl.setDistributionMonth(getDistributionMonth());
 		wagesImpl.setEntryDate(getEntryDate());
 		wagesImpl.setDepartureDate(getDepartureDate());
 		wagesImpl.setUserWage(getUserWage());
@@ -708,7 +722,6 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		wagesImpl.setUserTotalWage(getUserTotalWage());
 		wagesImpl.setAttendance(getAttendance());
 		wagesImpl.setRealAttendance(getRealAttendance());
-		wagesImpl.setDistributionMonth(getDistributionMonth());
 		wagesImpl.setBasePay(getBasePay());
 		wagesImpl.setOvertimeWages(getOvertimeWages());
 		wagesImpl.setPerformanceScores(getPerformanceScores());
@@ -781,6 +794,10 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 
 		wagesModelImpl._setOriginalUserId = false;
 
+		wagesModelImpl._originalDistributionMonth = wagesModelImpl._distributionMonth;
+
+		wagesModelImpl._setOriginalDistributionMonth = false;
+
 		wagesModelImpl._columnBitmask = 0;
 	}
 
@@ -799,6 +816,8 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		if ((wageName != null) && (wageName.length() == 0)) {
 			wagesCacheModel.wageName = null;
 		}
+
+		wagesCacheModel.distributionMonth = getDistributionMonth();
 
 		Date entryDate = getEntryDate();
 
@@ -827,8 +846,6 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		wagesCacheModel.attendance = getAttendance();
 
 		wagesCacheModel.realAttendance = getRealAttendance();
-
-		wagesCacheModel.distributionMonth = getDistributionMonth();
 
 		wagesCacheModel.basePay = getBasePay();
 
@@ -889,6 +906,8 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		sb.append(getUserId());
 		sb.append(", wageName=");
 		sb.append(getWageName());
+		sb.append(", distributionMonth=");
+		sb.append(getDistributionMonth());
 		sb.append(", entryDate=");
 		sb.append(getEntryDate());
 		sb.append(", departureDate=");
@@ -903,8 +922,6 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		sb.append(getAttendance());
 		sb.append(", realAttendance=");
 		sb.append(getRealAttendance());
-		sb.append(", distributionMonth=");
-		sb.append(getDistributionMonth());
 		sb.append(", basePay=");
 		sb.append(getBasePay());
 		sb.append(", overtimeWages=");
@@ -963,6 +980,10 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		sb.append(getWageName());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>distributionMonth</column-name><column-value><![CDATA[");
+		sb.append(getDistributionMonth());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>entryDate</column-name><column-value><![CDATA[");
 		sb.append(getEntryDate());
 		sb.append("]]></column-value></column>");
@@ -989,10 +1010,6 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		sb.append(
 			"<column><column-name>realAttendance</column-name><column-value><![CDATA[");
 		sb.append(getRealAttendance());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>distributionMonth</column-name><column-value><![CDATA[");
-		sb.append(getDistributionMonth());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>basePay</column-name><column-value><![CDATA[");
@@ -1072,6 +1089,9 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 	private long _originalUserId;
 	private boolean _setOriginalUserId;
 	private String _wageName;
+	private long _distributionMonth;
+	private long _originalDistributionMonth;
+	private boolean _setOriginalDistributionMonth;
 	private Date _entryDate;
 	private Date _departureDate;
 	private double _userWage;
@@ -1079,7 +1099,6 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 	private double _userTotalWage;
 	private double _attendance;
 	private double _realAttendance;
-	private long _distributionMonth;
 	private double _basePay;
 	private double _overtimeWages;
 	private double _performanceScores;

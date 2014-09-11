@@ -244,4 +244,15 @@ public interface OvertimeLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public com.shuntian.portlet.intranet.model.Overtime findByU_M(long userId,
+		long overtimeMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException;
+
+	public java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByU_M(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException;
 }

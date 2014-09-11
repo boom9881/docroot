@@ -274,6 +274,20 @@ public class AttendanceLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static com.shuntian.portlet.intranet.model.Attendance findByU_M(
+		long userId, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return getService().findByU_M(userId, attendanceMonthly);
+	}
+
+	public static java.util.List<com.shuntian.portlet.intranet.model.Attendance> findByU_M(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return getService().findByU_M(userId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

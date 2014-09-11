@@ -33,6 +33,7 @@ public class WagesSoap implements Serializable {
 		soapModel.setId(model.getId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setWageName(model.getWageName());
+		soapModel.setDistributionMonth(model.getDistributionMonth());
 		soapModel.setEntryDate(model.getEntryDate());
 		soapModel.setDepartureDate(model.getDepartureDate());
 		soapModel.setUserWage(model.getUserWage());
@@ -40,7 +41,6 @@ public class WagesSoap implements Serializable {
 		soapModel.setUserTotalWage(model.getUserTotalWage());
 		soapModel.setAttendance(model.getAttendance());
 		soapModel.setRealAttendance(model.getRealAttendance());
-		soapModel.setDistributionMonth(model.getDistributionMonth());
 		soapModel.setBasePay(model.getBasePay());
 		soapModel.setOvertimeWages(model.getOvertimeWages());
 		soapModel.setPerformanceScores(model.getPerformanceScores());
@@ -133,6 +133,14 @@ public class WagesSoap implements Serializable {
 		_wageName = wageName;
 	}
 
+	public long getDistributionMonth() {
+		return _distributionMonth;
+	}
+
+	public void setDistributionMonth(long distributionMonth) {
+		_distributionMonth = distributionMonth;
+	}
+
 	public Date getEntryDate() {
 		return _entryDate;
 	}
@@ -187,14 +195,6 @@ public class WagesSoap implements Serializable {
 
 	public void setRealAttendance(double realAttendance) {
 		_realAttendance = realAttendance;
-	}
-
-	public long getDistributionMonth() {
-		return _distributionMonth;
-	}
-
-	public void setDistributionMonth(long distributionMonth) {
-		_distributionMonth = distributionMonth;
 	}
 
 	public double getBasePay() {
@@ -328,6 +328,7 @@ public class WagesSoap implements Serializable {
 	private long _id;
 	private long _userId;
 	private String _wageName;
+	private long _distributionMonth;
 	private Date _entryDate;
 	private Date _departureDate;
 	private double _userWage;
@@ -335,7 +336,6 @@ public class WagesSoap implements Serializable {
 	private double _userTotalWage;
 	private double _attendance;
 	private double _realAttendance;
-	private long _distributionMonth;
 	private double _basePay;
 	private double _overtimeWages;
 	private double _performanceScores;

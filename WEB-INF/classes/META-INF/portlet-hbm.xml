@@ -137,6 +137,7 @@
 		</id>
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="wageName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="distributionMonth" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="entryDate" type="org.hibernate.type.TimestampType" />
 		<property name="departureDate" type="org.hibernate.type.TimestampType" />
 		<property name="userWage" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
@@ -144,7 +145,6 @@
 		<property name="userTotalWage" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="attendance" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="realAttendance" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="distributionMonth" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="basePay" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="overtimeWages" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="performanceScores" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />

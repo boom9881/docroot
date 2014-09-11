@@ -114,6 +114,14 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
+
+		_methodName19 = "findByU_M";
+
+		_methodParameterTypes19 = new String[] { "long", "long" };
+
+		_methodName20 = "findByU_M";
+
+		_methodParameterTypes20 = new String[] { "long" };
 	}
 
 	@Override
@@ -664,6 +672,75 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public com.shuntian.portlet.intranet.model.Attendance findByU_M(
+		long userId, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
+					new Object[] { userId, attendanceMonthly });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.shuntian.portlet.intranet.NoSuchAttendanceException) {
+				throw (com.shuntian.portlet.intranet.NoSuchAttendanceException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.shuntian.portlet.intranet.model.Attendance)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.shuntian.portlet.intranet.model.Attendance> findByU_M(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] { userId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.shuntian.portlet.intranet.NoSuchAttendanceException) {
+				throw (com.shuntian.portlet.intranet.NoSuchAttendanceException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.shuntian.portlet.intranet.model.Attendance>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -701,4 +778,8 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
 }

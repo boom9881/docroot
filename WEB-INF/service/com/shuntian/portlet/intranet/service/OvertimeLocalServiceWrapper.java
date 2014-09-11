@@ -282,6 +282,23 @@ public class OvertimeLocalServiceWrapper implements OvertimeLocalService,
 			arguments);
 	}
 
+	@Override
+	public com.shuntian.portlet.intranet.model.Overtime findByU_M(long userId,
+		long overtimeMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		return _overtimeLocalService.findByU_M(userId, overtimeMonthly);
+	}
+
+	@Override
+	public java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByU_M(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return _overtimeLocalService.findByU_M(userId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

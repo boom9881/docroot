@@ -14,6 +14,11 @@
 
 package com.shuntian.portlet.intranet.service.impl;
 
+import java.util.List;
+
+import com.liferay.portal.kernel.exception.SystemException;
+import com.shuntian.portlet.intranet.NoSuchAttendanceException;
+import com.shuntian.portlet.intranet.model.Attendance;
 import com.shuntian.portlet.intranet.service.base.AttendanceLocalServiceBaseImpl;
 
 /**
@@ -31,9 +36,11 @@ import com.shuntian.portlet.intranet.service.base.AttendanceLocalServiceBaseImpl
  * @see com.shuntian.portlet.intranet.service.AttendanceLocalServiceUtil
  */
 public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.shuntian.portlet.intranet.service.AttendanceLocalServiceUtil} to access the attendance local service.
-	 */
+	public Attendance findByU_M(long userId,long attendanceMonthly) throws SystemException, NoSuchAttendanceException{
+		return attendancePersistence.findByU_M(userId, attendanceMonthly);
+	}
+	
+	public List<Attendance> findByU_M(long userId) throws SystemException, NoSuchAttendanceException{
+		return attendancePersistence.findByUserId(userId);
+	}
 }

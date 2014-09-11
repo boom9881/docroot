@@ -229,8 +229,12 @@
 			<order-column name="createDate" order-by="desc"></order-column>
 		</order>
 		<!-- Finder methods -->
-		<finder name="UserId" return-type="BasicInformation">
+		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId"></finder-column>
+		</finder>
+		<finder name="U_M" return-type="Attendance">
+			<finder-column name="userId"/>
+			<finder-column name="attendanceMonthly"/>
 		</finder>
 	</entity>
 	
@@ -254,8 +258,12 @@
 			<order-column name="createDate" order-by="desc"></order-column>
 		</order>
 		<!-- Finder methods -->
-		<finder name="UserId" return-type="BasicInformation">
+		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId"></finder-column>
+		</finder>
+		<finder name="U_M" return-type="Overtime">
+			<finder-column name="userId"/>
+			<finder-column name="overtimeMonthly"/>
 		</finder>
 	</entity>
 	
@@ -297,8 +305,12 @@
 			<order-column name="createDate" order-by="desc"></order-column>
 		</order>
 		<!-- Finder methods -->
-		<finder name="UserId" return-type="BasicInformation">
+		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId"></finder-column>
+		</finder>
+		<finder name="U_M" return-type="Wages">
+			<finder-column name="userId"/>
+			<finder-column name="distributionMonth"/>
 		</finder>
 	</entity>
 </service-builder>

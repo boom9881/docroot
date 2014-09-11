@@ -37,21 +37,26 @@
 
 		BasicInformation basicInformation = (BasicInformation) results.get(i);
 
-		Attendance attendance = AttendanceLocalServiceUtil.getAttendance(1L);
+		List<Attendance> attendance = AttendanceLocalServiceUtil.findByU_M(basicInformation.getId());
 
-		ResultRow row = new ResultRow(basicInformation,basicInformation.getId(), i);
-
-		row.addText(basicInformation.getName());
+		for (int j = 0; j < attendance.size(); j++) {
 		
-		row.addText(String.valueOf(attendance.getAttendanceMonthly()));
-		
-		row.addText(String.valueOf(attendance.getShouldAttendance()));
-		
-		row.addText(String.valueOf(attendance.getActualAttendance()));
-		
-		row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/attendance/action.jsp");
-
-		resultRows.add(row);
+			Attendance att = attendance.get(j);
+			
+			ResultRow row = new ResultRow(basicInformation,basicInformation.getId(), i);
+	
+			row.addText(basicInformation.getName()+basicInformation.getId());
+			
+			row.addText(String.valueOf(att.getAttendanceMonthly()));
+			
+			row.addText(String.valueOf(att.getShouldAttendance()));
+			
+			row.addText(String.valueOf(att.getActualAttendance()));
+			
+			row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/attendance/action.jsp");
+	
+			resultRows.add(row);
+		}
 
 	}
 	

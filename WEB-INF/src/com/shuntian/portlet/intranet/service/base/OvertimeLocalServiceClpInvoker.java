@@ -113,6 +113,14 @@ public class OvertimeLocalServiceClpInvoker {
 		_methodName67 = "setBeanIdentifier";
 
 		_methodParameterTypes67 = new String[] { "java.lang.String" };
+
+		_methodName72 = "findByU_M";
+
+		_methodParameterTypes72 = new String[] { "long", "long" };
+
+		_methodName73 = "findByU_M";
+
+		_methodParameterTypes73 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -216,6 +224,17 @@ public class OvertimeLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+			return OvertimeLocalServiceUtil.findByU_M(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+			return OvertimeLocalServiceUtil.findByU_M(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -255,4 +274,8 @@ public class OvertimeLocalServiceClpInvoker {
 	private String[] _methodParameterTypes66;
 	private String _methodName67;
 	private String[] _methodParameterTypes67;
+	private String _methodName72;
+	private String[] _methodParameterTypes72;
+	private String _methodName73;
+	private String[] _methodParameterTypes73;
 }

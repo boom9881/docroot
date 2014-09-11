@@ -14,6 +14,13 @@
 
 package com.shuntian.portlet.intranet.service.impl;
 
+import java.util.List;
+
+import com.liferay.portal.kernel.exception.SystemException;
+import com.shuntian.portlet.intranet.NoSuchAttendanceException;
+import com.shuntian.portlet.intranet.NoSuchWagesException;
+import com.shuntian.portlet.intranet.model.Overtime;
+import com.shuntian.portlet.intranet.model.Wages;
 import com.shuntian.portlet.intranet.service.base.WagesLocalServiceBaseImpl;
 
 /**
@@ -31,9 +38,11 @@ import com.shuntian.portlet.intranet.service.base.WagesLocalServiceBaseImpl;
  * @see com.shuntian.portlet.intranet.service.WagesLocalServiceUtil
  */
 public class WagesLocalServiceImpl extends WagesLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.shuntian.portlet.intranet.service.WagesLocalServiceUtil} to access the wages local service.
-	 */
+	
+	public Wages findByU_M(long userId,long distributionMonth) throws SystemException, NoSuchWagesException{
+		return wagesPersistence.findByU_M(userId, distributionMonth);
+	}
+	public List<Wages> findByU_M(long userId) throws SystemException, NoSuchAttendanceException{
+		return wagesPersistence.findByUserId(userId);
+	}
 }

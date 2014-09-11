@@ -52,6 +52,7 @@ public class WagesWrapper implements Wages, ModelWrapper<Wages> {
 		attributes.put("id", getId());
 		attributes.put("userId", getUserId());
 		attributes.put("wageName", getWageName());
+		attributes.put("distributionMonth", getDistributionMonth());
 		attributes.put("entryDate", getEntryDate());
 		attributes.put("departureDate", getDepartureDate());
 		attributes.put("userWage", getUserWage());
@@ -59,7 +60,6 @@ public class WagesWrapper implements Wages, ModelWrapper<Wages> {
 		attributes.put("userTotalWage", getUserTotalWage());
 		attributes.put("attendance", getAttendance());
 		attributes.put("realAttendance", getRealAttendance());
-		attributes.put("distributionMonth", getDistributionMonth());
 		attributes.put("basePay", getBasePay());
 		attributes.put("overtimeWages", getOvertimeWages());
 		attributes.put("performanceScores", getPerformanceScores());
@@ -99,6 +99,12 @@ public class WagesWrapper implements Wages, ModelWrapper<Wages> {
 
 		if (wageName != null) {
 			setWageName(wageName);
+		}
+
+		Long distributionMonth = (Long)attributes.get("distributionMonth");
+
+		if (distributionMonth != null) {
+			setDistributionMonth(distributionMonth);
 		}
 
 		Date entryDate = (Date)attributes.get("entryDate");
@@ -141,12 +147,6 @@ public class WagesWrapper implements Wages, ModelWrapper<Wages> {
 
 		if (realAttendance != null) {
 			setRealAttendance(realAttendance);
-		}
-
-		Long distributionMonth = (Long)attributes.get("distributionMonth");
-
-		if (distributionMonth != null) {
-			setDistributionMonth(distributionMonth);
 		}
 
 		Double basePay = (Double)attributes.get("basePay");
@@ -351,6 +351,26 @@ public class WagesWrapper implements Wages, ModelWrapper<Wages> {
 	}
 
 	/**
+	* Returns the distribution month of this wages.
+	*
+	* @return the distribution month of this wages
+	*/
+	@Override
+	public long getDistributionMonth() {
+		return _wages.getDistributionMonth();
+	}
+
+	/**
+	* Sets the distribution month of this wages.
+	*
+	* @param distributionMonth the distribution month of this wages
+	*/
+	@Override
+	public void setDistributionMonth(long distributionMonth) {
+		_wages.setDistributionMonth(distributionMonth);
+	}
+
+	/**
 	* Returns the entry date of this wages.
 	*
 	* @return the entry date of this wages
@@ -488,26 +508,6 @@ public class WagesWrapper implements Wages, ModelWrapper<Wages> {
 	@Override
 	public void setRealAttendance(double realAttendance) {
 		_wages.setRealAttendance(realAttendance);
-	}
-
-	/**
-	* Returns the distribution month of this wages.
-	*
-	* @return the distribution month of this wages
-	*/
-	@Override
-	public long getDistributionMonth() {
-		return _wages.getDistributionMonth();
-	}
-
-	/**
-	* Sets the distribution month of this wages.
-	*
-	* @param distributionMonth the distribution month of this wages
-	*/
-	@Override
-	public void setDistributionMonth(long distributionMonth) {
-		_wages.setDistributionMonth(distributionMonth);
 	}
 
 	/**
@@ -938,7 +938,7 @@ public class WagesWrapper implements Wages, ModelWrapper<Wages> {
 	}
 
 	@Override
-	public int compareTo(Wages wages) {
+	public int compareTo(com.shuntian.portlet.intranet.model.Wages wages) {
 		return _wages.compareTo(wages);
 	}
 
@@ -948,17 +948,17 @@ public class WagesWrapper implements Wages, ModelWrapper<Wages> {
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<Wages> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.shuntian.portlet.intranet.model.Wages> toCacheModel() {
 		return _wages.toCacheModel();
 	}
 
 	@Override
-	public Wages toEscapedModel() {
+	public com.shuntian.portlet.intranet.model.Wages toEscapedModel() {
 		return new WagesWrapper(_wages.toEscapedModel());
 	}
 
 	@Override
-	public Wages toUnescapedModel() {
+	public com.shuntian.portlet.intranet.model.Wages toUnescapedModel() {
 		return new WagesWrapper(_wages.toUnescapedModel());
 	}
 

@@ -78,6 +78,7 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 		attributes.put("id", getId());
 		attributes.put("userId", getUserId());
 		attributes.put("wageName", getWageName());
+		attributes.put("distributionMonth", getDistributionMonth());
 		attributes.put("entryDate", getEntryDate());
 		attributes.put("departureDate", getDepartureDate());
 		attributes.put("userWage", getUserWage());
@@ -85,7 +86,6 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 		attributes.put("userTotalWage", getUserTotalWage());
 		attributes.put("attendance", getAttendance());
 		attributes.put("realAttendance", getRealAttendance());
-		attributes.put("distributionMonth", getDistributionMonth());
 		attributes.put("basePay", getBasePay());
 		attributes.put("overtimeWages", getOvertimeWages());
 		attributes.put("performanceScores", getPerformanceScores());
@@ -125,6 +125,12 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 
 		if (wageName != null) {
 			setWageName(wageName);
+		}
+
+		Long distributionMonth = (Long)attributes.get("distributionMonth");
+
+		if (distributionMonth != null) {
+			setDistributionMonth(distributionMonth);
 		}
 
 		Date entryDate = (Date)attributes.get("entryDate");
@@ -167,12 +173,6 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 
 		if (realAttendance != null) {
 			setRealAttendance(realAttendance);
-		}
-
-		Long distributionMonth = (Long)attributes.get("distributionMonth");
-
-		if (distributionMonth != null) {
-			setDistributionMonth(distributionMonth);
 		}
 
 		Double basePay = (Double)attributes.get("basePay");
@@ -354,6 +354,30 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 	}
 
 	@Override
+	public long getDistributionMonth() {
+		return _distributionMonth;
+	}
+
+	@Override
+	public void setDistributionMonth(long distributionMonth) {
+		_distributionMonth = distributionMonth;
+
+		if (_wagesRemoteModel != null) {
+			try {
+				Class<?> clazz = _wagesRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDistributionMonth",
+						long.class);
+
+				method.invoke(_wagesRemoteModel, distributionMonth);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public Date getEntryDate() {
 		return _entryDate;
 	}
@@ -509,30 +533,6 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 						double.class);
 
 				method.invoke(_wagesRemoteModel, realAttendance);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public long getDistributionMonth() {
-		return _distributionMonth;
-	}
-
-	@Override
-	public void setDistributionMonth(long distributionMonth) {
-		_distributionMonth = distributionMonth;
-
-		if (_wagesRemoteModel != null) {
-			try {
-				Class<?> clazz = _wagesRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setDistributionMonth",
-						long.class);
-
-				method.invoke(_wagesRemoteModel, distributionMonth);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -1006,6 +1006,7 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 		clone.setId(getId());
 		clone.setUserId(getUserId());
 		clone.setWageName(getWageName());
+		clone.setDistributionMonth(getDistributionMonth());
 		clone.setEntryDate(getEntryDate());
 		clone.setDepartureDate(getDepartureDate());
 		clone.setUserWage(getUserWage());
@@ -1013,7 +1014,6 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 		clone.setUserTotalWage(getUserTotalWage());
 		clone.setAttendance(getAttendance());
 		clone.setRealAttendance(getRealAttendance());
-		clone.setDistributionMonth(getDistributionMonth());
 		clone.setBasePay(getBasePay());
 		clone.setOvertimeWages(getOvertimeWages());
 		clone.setPerformanceScores(getPerformanceScores());
@@ -1086,6 +1086,8 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 		sb.append(getUserId());
 		sb.append(", wageName=");
 		sb.append(getWageName());
+		sb.append(", distributionMonth=");
+		sb.append(getDistributionMonth());
 		sb.append(", entryDate=");
 		sb.append(getEntryDate());
 		sb.append(", departureDate=");
@@ -1100,8 +1102,6 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 		sb.append(getAttendance());
 		sb.append(", realAttendance=");
 		sb.append(getRealAttendance());
-		sb.append(", distributionMonth=");
-		sb.append(getDistributionMonth());
 		sb.append(", basePay=");
 		sb.append(getBasePay());
 		sb.append(", overtimeWages=");
@@ -1160,6 +1160,10 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 		sb.append(getWageName());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>distributionMonth</column-name><column-value><![CDATA[");
+		sb.append(getDistributionMonth());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>entryDate</column-name><column-value><![CDATA[");
 		sb.append(getEntryDate());
 		sb.append("]]></column-value></column>");
@@ -1186,10 +1190,6 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 		sb.append(
 			"<column><column-name>realAttendance</column-name><column-value><![CDATA[");
 		sb.append(getRealAttendance());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>distributionMonth</column-name><column-value><![CDATA[");
-		sb.append(getDistributionMonth());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>basePay</column-name><column-value><![CDATA[");
@@ -1265,6 +1265,7 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 	private long _userId;
 	private String _userUuid;
 	private String _wageName;
+	private long _distributionMonth;
 	private Date _entryDate;
 	private Date _departureDate;
 	private double _userWage;
@@ -1272,7 +1273,6 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 	private double _userTotalWage;
 	private double _attendance;
 	private double _realAttendance;
-	private long _distributionMonth;
 	private double _basePay;
 	private double _overtimeWages;
 	private double _performanceScores;

@@ -111,58 +111,150 @@ public class AttendanceUtil {
 	}
 
 	/**
-	* Returns the attendance where userId = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchAttendanceException} if it could not be found.
+	* Returns all the attendances where userId = &#63;.
 	*
 	* @param userId the user ID
-	* @return the matching attendance
-	* @throws com.shuntian.portlet.intranet.NoSuchAttendanceException if a matching attendance could not be found
+	* @return the matching attendances
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.shuntian.portlet.intranet.model.Attendance findByUserId(
-		long userId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+	public static java.util.List<com.shuntian.portlet.intranet.model.Attendance> findByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId);
 	}
 
 	/**
-	* Returns the attendance where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns a range of all the attendances where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.AttendanceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
 	*
 	* @param userId the user ID
-	* @return the matching attendance, or <code>null</code> if a matching attendance could not be found
+	* @param start the lower bound of the range of attendances
+	* @param end the upper bound of the range of attendances (not inclusive)
+	* @return the range of matching attendances
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.shuntian.portlet.intranet.model.Attendance fetchByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByUserId(userId);
-	}
-
-	/**
-	* Returns the attendance where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param userId the user ID
-	* @param retrieveFromCache whether to use the finder cache
-	* @return the matching attendance, or <code>null</code> if a matching attendance could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.shuntian.portlet.intranet.model.Attendance fetchByUserId(
-		long userId, boolean retrieveFromCache)
+	public static java.util.List<com.shuntian.portlet.intranet.model.Attendance> findByUserId(
+		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByUserId(userId, retrieveFromCache);
+		return getPersistence().findByUserId(userId, start, end);
 	}
 
 	/**
-	* Removes the attendance where userId = &#63; from the database.
+	* Returns an ordered range of all the attendances where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.AttendanceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
 	*
 	* @param userId the user ID
-	* @return the attendance that was removed
+	* @param start the lower bound of the range of attendances
+	* @param end the upper bound of the range of attendances (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching attendances
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.shuntian.portlet.intranet.model.Attendance removeByUserId(
-		long userId)
+	public static java.util.List<com.shuntian.portlet.intranet.model.Attendance> findByUserId(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByUserId(userId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first attendance in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching attendance
+	* @throws com.shuntian.portlet.intranet.NoSuchAttendanceException if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance findByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchAttendanceException {
-		return getPersistence().removeByUserId(userId);
+		return getPersistence().findByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the first attendance in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching attendance, or <code>null</code> if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance fetchByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last attendance in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching attendance
+	* @throws com.shuntian.portlet.intranet.NoSuchAttendanceException if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance findByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return getPersistence().findByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last attendance in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching attendance, or <code>null</code> if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance fetchByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the attendances before and after the current attendance in the ordered set where userId = &#63;.
+	*
+	* @param id the primary key of the current attendance
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next attendance
+	* @throws com.shuntian.portlet.intranet.NoSuchAttendanceException if a attendance with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance[] findByUserId_PrevAndNext(
+		long id, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return getPersistence()
+				   .findByUserId_PrevAndNext(id, userId, orderByComparator);
+	}
+
+	/**
+	* Removes all the attendances where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUserId(userId);
 	}
 
 	/**
@@ -175,6 +267,80 @@ public class AttendanceUtil {
 	public static int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByUserId(userId);
+	}
+
+	/**
+	* Returns the attendance where userId = &#63; and attendanceMonthly = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchAttendanceException} if it could not be found.
+	*
+	* @param userId the user ID
+	* @param attendanceMonthly the attendance monthly
+	* @return the matching attendance
+	* @throws com.shuntian.portlet.intranet.NoSuchAttendanceException if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance findByU_M(
+		long userId, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return getPersistence().findByU_M(userId, attendanceMonthly);
+	}
+
+	/**
+	* Returns the attendance where userId = &#63; and attendanceMonthly = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user ID
+	* @param attendanceMonthly the attendance monthly
+	* @return the matching attendance, or <code>null</code> if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance fetchByU_M(
+		long userId, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByU_M(userId, attendanceMonthly);
+	}
+
+	/**
+	* Returns the attendance where userId = &#63; and attendanceMonthly = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user ID
+	* @param attendanceMonthly the attendance monthly
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching attendance, or <code>null</code> if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance fetchByU_M(
+		long userId, long attendanceMonthly, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByU_M(userId, attendanceMonthly, retrieveFromCache);
+	}
+
+	/**
+	* Removes the attendance where userId = &#63; and attendanceMonthly = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param attendanceMonthly the attendance monthly
+	* @return the attendance that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance removeByU_M(
+		long userId, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return getPersistence().removeByU_M(userId, attendanceMonthly);
+	}
+
+	/**
+	* Returns the number of attendances where userId = &#63; and attendanceMonthly = &#63;.
+	*
+	* @param userId the user ID
+	* @param attendanceMonthly the attendance monthly
+	* @return the number of matching attendances
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_M(long userId, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_M(userId, attendanceMonthly);
 	}
 
 	/**

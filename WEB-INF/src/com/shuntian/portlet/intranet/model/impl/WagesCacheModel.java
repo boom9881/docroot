@@ -45,6 +45,8 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 		sb.append(userId);
 		sb.append(", wageName=");
 		sb.append(wageName);
+		sb.append(", distributionMonth=");
+		sb.append(distributionMonth);
 		sb.append(", entryDate=");
 		sb.append(entryDate);
 		sb.append(", departureDate=");
@@ -59,8 +61,6 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 		sb.append(attendance);
 		sb.append(", realAttendance=");
 		sb.append(realAttendance);
-		sb.append(", distributionMonth=");
-		sb.append(distributionMonth);
 		sb.append(", basePay=");
 		sb.append(basePay);
 		sb.append(", overtimeWages=");
@@ -112,6 +112,8 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 			wagesImpl.setWageName(wageName);
 		}
 
+		wagesImpl.setDistributionMonth(distributionMonth);
+
 		if (entryDate == Long.MIN_VALUE) {
 			wagesImpl.setEntryDate(null);
 		}
@@ -131,7 +133,6 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 		wagesImpl.setUserTotalWage(userTotalWage);
 		wagesImpl.setAttendance(attendance);
 		wagesImpl.setRealAttendance(realAttendance);
-		wagesImpl.setDistributionMonth(distributionMonth);
 		wagesImpl.setBasePay(basePay);
 		wagesImpl.setOvertimeWages(overtimeWages);
 		wagesImpl.setPerformanceScores(performanceScores);
@@ -172,6 +173,7 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 		id = objectInput.readLong();
 		userId = objectInput.readLong();
 		wageName = objectInput.readUTF();
+		distributionMonth = objectInput.readLong();
 		entryDate = objectInput.readLong();
 		departureDate = objectInput.readLong();
 		userWage = objectInput.readDouble();
@@ -179,7 +181,6 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 		userTotalWage = objectInput.readDouble();
 		attendance = objectInput.readDouble();
 		realAttendance = objectInput.readDouble();
-		distributionMonth = objectInput.readLong();
 		basePay = objectInput.readDouble();
 		overtimeWages = objectInput.readDouble();
 		performanceScores = objectInput.readDouble();
@@ -211,6 +212,7 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 			objectOutput.writeUTF(wageName);
 		}
 
+		objectOutput.writeLong(distributionMonth);
 		objectOutput.writeLong(entryDate);
 		objectOutput.writeLong(departureDate);
 		objectOutput.writeDouble(userWage);
@@ -218,7 +220,6 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 		objectOutput.writeDouble(userTotalWage);
 		objectOutput.writeDouble(attendance);
 		objectOutput.writeDouble(realAttendance);
-		objectOutput.writeLong(distributionMonth);
 		objectOutput.writeDouble(basePay);
 		objectOutput.writeDouble(overtimeWages);
 		objectOutput.writeDouble(performanceScores);
@@ -240,6 +241,7 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 	public long id;
 	public long userId;
 	public String wageName;
+	public long distributionMonth;
 	public long entryDate;
 	public long departureDate;
 	public double userWage;
@@ -247,7 +249,6 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 	public double userTotalWage;
 	public double attendance;
 	public double realAttendance;
-	public long distributionMonth;
 	public double basePay;
 	public double overtimeWages;
 	public double performanceScores;

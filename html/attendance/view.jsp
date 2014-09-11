@@ -56,6 +56,16 @@
 	}
 	
 %>
-<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
+
+<portlet:renderURL var="searchUserRenderURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
+	<portlet:param name="mvcPath" value="/html/attendance/view.jsp" />
+</portlet:renderURL>
+
+
+<aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">
+	<aui:input name="searchName" label="姓名" value="" />
+	<aui:input name="searchDep" label="部门" value="" />
+	<aui:button type="submit" value="搜索" />
+	
 	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
 </aui:form>

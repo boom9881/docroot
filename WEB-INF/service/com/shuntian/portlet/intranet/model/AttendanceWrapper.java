@@ -449,7 +449,8 @@ public class AttendanceWrapper implements Attendance, ModelWrapper<Attendance> {
 	}
 
 	@Override
-	public int compareTo(Attendance attendance) {
+	public int compareTo(
+		com.shuntian.portlet.intranet.model.Attendance attendance) {
 		return _attendance.compareTo(attendance);
 	}
 
@@ -459,17 +460,17 @@ public class AttendanceWrapper implements Attendance, ModelWrapper<Attendance> {
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<Attendance> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.shuntian.portlet.intranet.model.Attendance> toCacheModel() {
 		return _attendance.toCacheModel();
 	}
 
 	@Override
-	public Attendance toEscapedModel() {
+	public com.shuntian.portlet.intranet.model.Attendance toEscapedModel() {
 		return new AttendanceWrapper(_attendance.toEscapedModel());
 	}
 
 	@Override
-	public Attendance toUnescapedModel() {
+	public com.shuntian.portlet.intranet.model.Attendance toUnescapedModel() {
 		return new AttendanceWrapper(_attendance.toUnescapedModel());
 	}
 

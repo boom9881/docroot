@@ -476,7 +476,7 @@ public class OvertimeWrapper implements Overtime, ModelWrapper<Overtime> {
 	}
 
 	@Override
-	public int compareTo(Overtime overtime) {
+	public int compareTo(com.shuntian.portlet.intranet.model.Overtime overtime) {
 		return _overtime.compareTo(overtime);
 	}
 
@@ -486,17 +486,17 @@ public class OvertimeWrapper implements Overtime, ModelWrapper<Overtime> {
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<Overtime> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.shuntian.portlet.intranet.model.Overtime> toCacheModel() {
 		return _overtime.toCacheModel();
 	}
 
 	@Override
-	public Overtime toEscapedModel() {
+	public com.shuntian.portlet.intranet.model.Overtime toEscapedModel() {
 		return new OvertimeWrapper(_overtime.toEscapedModel());
 	}
 
 	@Override
-	public Overtime toUnescapedModel() {
+	public com.shuntian.portlet.intranet.model.Overtime toUnescapedModel() {
 		return new OvertimeWrapper(_overtime.toUnescapedModel());
 	}
 

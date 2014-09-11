@@ -99,6 +99,35 @@
 		<field name="modifiedUserId" type="long" />
 		<field name="modifiedDate" type="Date" />
 	</model>
+	<model name="com.shuntian.portlet.intranet.model.Wages">
+		<field name="id" type="long" />
+		<field name="userId" type="long" />
+		<field name="wageName" type="String" />
+		<field name="entryDate" type="Date" />
+		<field name="departureDate" type="Date" />
+		<field name="userWage" type="double" />
+		<field name="userPerformance" type="double" />
+		<field name="userTotalWage" type="double" />
+		<field name="attendance" type="double" />
+		<field name="realAttendance" type="double" />
+		<field name="distributionMonth" type="long" />
+		<field name="basePay" type="double" />
+		<field name="overtimeWages" type="double" />
+		<field name="performanceScores" type="double" />
+		<field name="performanceSalary" type="double" />
+		<field name="allowance" type="double" />
+		<field name="totalWages" type="double" />
+		<field name="socialCompanyBearPart" type="double" />
+		<field name="socialIndividualsBearPart" type="double" />
+		<field name="taxableIncome" type="double" />
+		<field name="taxRate" type="double" />
+		<field name="taxes" type="double" />
+		<field name="realWages" type="double" />
+		<field name="createUserId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedUserId" type="long" />
+		<field name="modifiedDate" type="Date" />
+	</model>
 	<model name="com.shuntian.portlet.intranet.model.WorkExperience">
 		<field name="id" type="long" />
 		<field name="userId" type="long" />

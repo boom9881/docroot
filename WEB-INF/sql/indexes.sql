@@ -13,6 +13,8 @@ create index IX_1AE3AC21 on Intranet_Overtime (userId);
 create index IX_14C5E488 on Intranet_Satff (uuid_);
 create index IX_D93D7AA0 on Intranet_Satff (uuid_, companyId);
 
+create index IX_E6C4BACB on Intranet_Wages (userId);
+
 create index IX_B797115B on Intranet_WorkExperience (userId);
 
 create index IX_C1BE5093 on Intranet_basic_information (uuid_);

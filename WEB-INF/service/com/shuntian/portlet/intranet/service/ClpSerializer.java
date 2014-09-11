@@ -32,6 +32,7 @@ import com.shuntian.portlet.intranet.model.EducationClp;
 import com.shuntian.portlet.intranet.model.ExtInformationClp;
 import com.shuntian.portlet.intranet.model.FamilyRelationshipClp;
 import com.shuntian.portlet.intranet.model.OvertimeClp;
+import com.shuntian.portlet.intranet.model.WagesClp;
 import com.shuntian.portlet.intranet.model.WorkExperienceClp;
 
 import java.io.ObjectInputStream;
@@ -137,6 +138,10 @@ public class ClpSerializer {
 			return translateInputOvertime(oldModel);
 		}
 
+		if (oldModelClassName.equals(WagesClp.class.getName())) {
+			return translateInputWages(oldModel);
+		}
+
 		if (oldModelClassName.equals(WorkExperienceClp.class.getName())) {
 			return translateInputWorkExperience(oldModel);
 		}
@@ -226,6 +231,16 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateInputWages(BaseModel<?> oldModel) {
+		WagesClp oldClpModel = (WagesClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getWagesRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
 	public static Object translateInputWorkExperience(BaseModel<?> oldModel) {
 		WorkExperienceClp oldClpModel = (WorkExperienceClp)oldModel;
 
@@ -286,6 +301,11 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.shuntian.portlet.intranet.model.impl.OvertimeImpl")) {
 			return translateOutputOvertime(oldModel);
+		}
+
+		if (oldModelClassName.equals(
+					"com.shuntian.portlet.intranet.model.impl.WagesImpl")) {
+			return translateOutputWages(oldModel);
 		}
 
 		if (oldModelClassName.equals(
@@ -409,6 +429,11 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
+					"com.shuntian.portlet.intranet.NoSuchWagesException")) {
+			return new com.shuntian.portlet.intranet.NoSuchWagesException();
+		}
+
+		if (className.equals(
 					"com.shuntian.portlet.intranet.NoSuchWorkExperienceException")) {
 			return new com.shuntian.portlet.intranet.NoSuchWorkExperienceException();
 		}
@@ -483,6 +508,16 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setOvertimeRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputWages(BaseModel<?> oldModel) {
+		WagesClp newModel = new WagesClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setWagesRemoteModel(oldModel);
 
 		return newModel;
 	}

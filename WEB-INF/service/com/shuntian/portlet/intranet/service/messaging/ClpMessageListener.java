@@ -25,6 +25,7 @@ import com.shuntian.portlet.intranet.service.EducationLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.ExtInformationLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.FamilyRelationshipLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.OvertimeLocalServiceUtil;
+import com.shuntian.portlet.intranet.service.WagesLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.WorkExperienceLocalServiceUtil;
 
 /**
@@ -55,6 +56,8 @@ public class ClpMessageListener extends BaseMessageListener {
 			FamilyRelationshipLocalServiceUtil.clearService();
 
 			OvertimeLocalServiceUtil.clearService();
+
+			WagesLocalServiceUtil.clearService();
 
 			WorkExperienceLocalServiceUtil.clearService();
 		}

@@ -132,6 +132,36 @@ create table Intranet_Satff (
 	modifiedDate DATE null
 );
 
+create table Intranet_Wages (
+	id_ LONG not null primary key,
+	userId LONG,
+	wageName VARCHAR(75) null,
+	entryDate DATE null,
+	departureDate DATE null,
+	userWage DOUBLE,
+	userPerformance DOUBLE,
+	userTotalWage DOUBLE,
+	attendance DOUBLE,
+	realAttendance DOUBLE,
+	distributionMonth LONG,
+	basePay DOUBLE,
+	overtimeWages DOUBLE,
+	performanceScores DOUBLE,
+	performanceSalary DOUBLE,
+	allowance DOUBLE,
+	totalWages DOUBLE,
+	socialCompanyBearPart DOUBLE,
+	socialIndividualsBearPart DOUBLE,
+	taxableIncome DOUBLE,
+	taxRate DOUBLE,
+	taxes DOUBLE,
+	realWages DOUBLE,
+	createUserId LONG,
+	createDate DATE null,
+	modifiedUserId LONG,
+	modifiedDate DATE null
+);
+
 create table Intranet_WorkExperience (
 	id_ LONG not null primary key,
 	userId LONG,

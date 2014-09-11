@@ -200,6 +200,53 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.WagesModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="userId" />
+			<basic name="wageName" />
+			<basic name="entryDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="departureDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="userWage" />
+			<basic name="userPerformance" />
+			<basic name="userTotalWage" />
+			<basic name="attendance" />
+			<basic name="realAttendance" />
+			<basic name="distributionMonth" />
+			<basic name="basePay" />
+			<basic name="overtimeWages" />
+			<basic name="performanceScores" />
+			<basic name="performanceSalary" />
+			<basic name="allowance" />
+			<basic name="totalWages" />
+			<basic name="socialCompanyBearPart" />
+			<basic name="socialIndividualsBearPart" />
+			<basic name="taxableIncome" />
+			<basic name="taxRate" />
+			<basic name="taxes" />
+			<basic name="realWages" />
+			<basic name="createUserId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedUserId" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="createUserUuid" />
+			<transient name="modelAttributes" />
+			<transient name="modifiedUserUuid" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.WorkExperienceModelImpl">
 		<attributes>
 			<id name="id">
@@ -248,6 +295,10 @@
 	</entity>
 	<entity class="com.shuntian.portlet.intranet.model.impl.OvertimeImpl" name="Overtime">
 		<table name="Intranet_Overtime" />
+		<attributes />
+	</entity>
+	<entity class="com.shuntian.portlet.intranet.model.impl.WagesImpl" name="Wages">
+		<table name="Intranet_Wages" />
 		<attributes />
 	</entity>
 	<entity class="com.shuntian.portlet.intranet.model.impl.WorkExperienceImpl" name="WorkExperience">

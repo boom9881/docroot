@@ -41,6 +41,7 @@ import com.shuntian.portlet.intranet.service.persistence.EducationPersistence;
 import com.shuntian.portlet.intranet.service.persistence.ExtInformationPersistence;
 import com.shuntian.portlet.intranet.service.persistence.FamilyRelationshipPersistence;
 import com.shuntian.portlet.intranet.service.persistence.OvertimePersistence;
+import com.shuntian.portlet.intranet.service.persistence.WagesPersistence;
 import com.shuntian.portlet.intranet.service.persistence.WorkExperiencePersistence;
 
 import java.io.Serializable;
@@ -572,6 +573,43 @@ public abstract class FamilyRelationshipLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the wages local service.
+	 *
+	 * @return the wages local service
+	 */
+	public com.shuntian.portlet.intranet.service.WagesLocalService getWagesLocalService() {
+		return wagesLocalService;
+	}
+
+	/**
+	 * Sets the wages local service.
+	 *
+	 * @param wagesLocalService the wages local service
+	 */
+	public void setWagesLocalService(
+		com.shuntian.portlet.intranet.service.WagesLocalService wagesLocalService) {
+		this.wagesLocalService = wagesLocalService;
+	}
+
+	/**
+	 * Returns the wages persistence.
+	 *
+	 * @return the wages persistence
+	 */
+	public WagesPersistence getWagesPersistence() {
+		return wagesPersistence;
+	}
+
+	/**
+	 * Sets the wages persistence.
+	 *
+	 * @param wagesPersistence the wages persistence
+	 */
+	public void setWagesPersistence(WagesPersistence wagesPersistence) {
+		this.wagesPersistence = wagesPersistence;
+	}
+
+	/**
 	 * Returns the work experience local service.
 	 *
 	 * @return the work experience local service
@@ -815,6 +853,10 @@ public abstract class FamilyRelationshipLocalServiceBaseImpl
 	protected com.shuntian.portlet.intranet.service.OvertimeLocalService overtimeLocalService;
 	@BeanReference(type = OvertimePersistence.class)
 	protected OvertimePersistence overtimePersistence;
+	@BeanReference(type = com.shuntian.portlet.intranet.service.WagesLocalService.class)
+	protected com.shuntian.portlet.intranet.service.WagesLocalService wagesLocalService;
+	@BeanReference(type = WagesPersistence.class)
+	protected WagesPersistence wagesPersistence;
 	@BeanReference(type = com.shuntian.portlet.intranet.service.WorkExperienceLocalService.class)
 	protected com.shuntian.portlet.intranet.service.WorkExperienceLocalService workExperienceLocalService;
 	@BeanReference(type = WorkExperiencePersistence.class)

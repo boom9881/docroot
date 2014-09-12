@@ -14,6 +14,7 @@ if(Validator.isNotNull(userId)){
 
 <portlet:actionURL var="editUserActionURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 	<portlet:param name="action" value="editUser" />
+	<portlet:param name="attendanceId" value="<%=attendance.getId() %>" />
 </portlet:actionURL>
 
 <portlet:renderURL var="backURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >

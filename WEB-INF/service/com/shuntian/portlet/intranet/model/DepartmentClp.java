@@ -401,8 +401,6 @@ public class DepartmentClp extends BaseModelImpl<Department>
 
 		value = DateUtil.compareTo(getCreateDate(), department.getCreateDate());
 
-		value = value * -1;
-
 		if (value != 0) {
 			return value;
 		}

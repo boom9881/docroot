@@ -1,6 +1,5 @@
 package com.shuntian.portlet.intranet.service.persistence;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.shuntian.portlet.intranet.model.Department;
 import com.shuntian.portlet.intranet.model.impl.DepartmentImpl;
@@ -25,16 +25,22 @@ public class DepartmentFinderImpl extends BasePersistenceImpl<Department>
 		try {
 			session = openSession();
 
-			String sql = "select count(d.id_) as COUNT_VALUE from intranet_department d where LOWER(d.`name`) like ?";
+			StringBuffer sql = new StringBuffer(
+					"select count(d.id_) as COUNT_VALUE from intranet_department d where ");
+			if (Validator.isNotNull(name)) {
+				sql.append("LOWER(d.`name`) like ? and ");
+			}
+			sql.append(" 1 = 1");
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSQLQuery(sql.toString());
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(StringPool.PERCENT + StringUtil.lowerCase(name)
-					+ StringPool.PERCENT);
+			if (Validator.isNotNull(name)) {
+				qPos.add(StringPool.PERCENT + StringUtil.lowerCase(name)
+						+ StringPool.PERCENT);
+			}
 
 			int count = 0;
 
@@ -64,16 +70,22 @@ public class DepartmentFinderImpl extends BasePersistenceImpl<Department>
 		try {
 			session = openSession();
 
-			String sql = "select * from intranet_department d where LOWER(d.`name`) like ?";
+			StringBuffer sql = new StringBuffer(
+					"select * from intranet_department d where ");
+			if (Validator.isNotNull(name)) {
+				sql.append(" LOWER(d.`name`) like ? and ");
+			}
+			sql.append(" 1 = 1 order by d.createdate asc");
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSQLQuery(sql.toString());
 
 			q.addEntity("Department", DepartmentImpl.class);
 
 			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(StringPool.PERCENT + StringUtil.lowerCase(name)
-					+ StringPool.PERCENT);
+			if (Validator.isNotNull(name)) {
+				qPos.add(StringPool.PERCENT + StringUtil.lowerCase(name)
+						+ StringPool.PERCENT);
+			}
 
 			return (List<Department>) QueryUtil.list(q, getDialect(), start,
 					end);

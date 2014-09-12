@@ -445,6 +445,20 @@ public interface BasicInformationModel extends BaseModel<BasicInformation> {
 	public void setEmergencyContactPhone(String emergencyContactPhone);
 
 	/**
+	 * Returns the is leave of this basic information.
+	 *
+	 * @return the is leave of this basic information
+	 */
+	public int getIsLeave();
+
+	/**
+	 * Sets the is leave of this basic information.
+	 *
+	 * @param isLeave the is leave of this basic information
+	 */
+	public void setIsLeave(int isLeave);
+
+	/**
 	 * Returns the create user ID of this basic information.
 	 *
 	 * @return the create user ID of this basic information

@@ -78,8 +78,8 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		};
 	public static final String TABLE_SQL_CREATE = "create table Intranet_ExtInformation (id_ LONG not null primary key,userId LONG,openCity VARCHAR(75) null,bankName VARCHAR(75) null,bankId VARCHAR(75) null,laborContractStart DATE null,laborContractEnd DATE null,probationPeriodStart DATE null,probationPeriodEnd DATE null,induredLocation VARCHAR(75) null,fristInsured DATE null,isInsured VARCHAR(75) null,basicWage LONG,otherWage LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_ExtInformation";
-	public static final String ORDER_BY_JPQL = " ORDER BY extInformation.id DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY Intranet_ExtInformation.id_ DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY extInformation.id ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Intranet_ExtInformation.id_ ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -492,8 +492,6 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		else {
 			value = 0;
 		}
-
-		value = value * -1;
 
 		if (value != 0) {
 			return value;

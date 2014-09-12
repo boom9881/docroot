@@ -36,6 +36,7 @@ create table Intranet_BasicInformation (
 	emergencyContact VARCHAR(75) null,
 	emergencyContactRelation VARCHAR(75) null,
 	emergencyContactPhone VARCHAR(75) null,
+	isLeave INTEGER,
 	createUserId LONG,
 	createDate DATE null,
 	modifiedUserId LONG,

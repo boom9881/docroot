@@ -274,6 +274,17 @@ public class BasicInformationLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByIsLeave(
+		boolean isLeave)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().findByIsLeave(isLeave);
+	}
+
+	public static com.shuntian.portlet.intranet.model.BasicInformation findByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().findByUserId(userId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

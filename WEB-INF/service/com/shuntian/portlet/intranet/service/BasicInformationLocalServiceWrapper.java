@@ -288,6 +288,19 @@ public class BasicInformationLocalServiceWrapper
 			arguments);
 	}
 
+	@Override
+	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByIsLeave(
+		boolean isLeave)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _basicInformationLocalService.findByIsLeave(isLeave);
+	}
+
+	@Override
+	public com.shuntian.portlet.intranet.model.BasicInformation findByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return _basicInformationLocalService.findByUserId(userId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

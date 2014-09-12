@@ -37,6 +37,7 @@
 		<column name="emergencyContact" type="String" />
 		<column name="emergencyContactRelation" type="String" />
 		<column name="emergencyContactPhone" type="String" />
+		<column name="isLeave" type="int" />
 
 		<!-- Audit fields -->
 
@@ -48,13 +49,16 @@
 		<!-- Order -->
 
 		<order>
-			<order-column name="createDate" order-by="desc" />
+			<order-column name="createDate" order-by="asc" />
 		</order>
 		
 		<!-- Finder methods -->
 
 		<finder name="UserId" return-type="BasicInformation">
 			<finder-column name="userId" />
+		</finder>
+		<finder name="IsLeave" return-type="Collection">
+			<finder-column name="isLeave" />
 		</finder>
 	</entity>
 	
@@ -84,7 +88,7 @@
 		<!-- Order -->
 
 		<order>
-			<order-column name="id" order-by="desc" />
+			<order-column name="id" order-by="asc" />
 		</order>
 		
 		<!-- Finder methods -->
@@ -115,7 +119,7 @@
 		<!-- Order -->
 
 		<order>
-			<order-column name="id" order-by="desc" />
+			<order-column name="id" order-by="asc" />
 		</order>
 		
 		<!-- Finder methods -->
@@ -146,7 +150,7 @@
 		<!-- Order -->
 
 		<order>
-			<order-column name="id" order-by="desc" />
+			<order-column name="id" order-by="asc" />
 		</order>
 		
 		<!-- Finder methods -->
@@ -176,7 +180,7 @@
 		<!-- Order -->
 
 		<order>
-			<order-column name="id" order-by="desc" />
+			<order-column name="id" order-by="asc" />
 		</order>
 		
 		<!-- Finder methods -->
@@ -206,7 +210,7 @@
 		<!-- Order -->
 
 		<order>
-			<order-column name="createDate" order-by="desc" />
+			<order-column name="createDate" order-by="asc" />
 		</order>
 		
 		<!-- Finder methods -->

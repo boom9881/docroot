@@ -178,6 +178,165 @@ public class BasicInformationUtil {
 	}
 
 	/**
+	* Returns all the basic informations where isLeave = &#63;.
+	*
+	* @param isLeave the is leave
+	* @return the matching basic informations
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByIsLeave(
+		int isLeave) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByIsLeave(isLeave);
+	}
+
+	/**
+	* Returns a range of all the basic informations where isLeave = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.BasicInformationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param isLeave the is leave
+	* @param start the lower bound of the range of basic informations
+	* @param end the upper bound of the range of basic informations (not inclusive)
+	* @return the range of matching basic informations
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByIsLeave(
+		int isLeave, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByIsLeave(isLeave, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the basic informations where isLeave = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.BasicInformationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param isLeave the is leave
+	* @param start the lower bound of the range of basic informations
+	* @param end the upper bound of the range of basic informations (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching basic informations
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByIsLeave(
+		int isLeave, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByIsLeave(isLeave, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first basic information in the ordered set where isLeave = &#63;.
+	*
+	* @param isLeave the is leave
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching basic information
+	* @throws com.shuntian.portlet.intranet.NoSuchBasicInformationException if a matching basic information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.BasicInformation findByIsLeave_First(
+		int isLeave,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchBasicInformationException {
+		return getPersistence().findByIsLeave_First(isLeave, orderByComparator);
+	}
+
+	/**
+	* Returns the first basic information in the ordered set where isLeave = &#63;.
+	*
+	* @param isLeave the is leave
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching basic information, or <code>null</code> if a matching basic information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.BasicInformation fetchByIsLeave_First(
+		int isLeave,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByIsLeave_First(isLeave, orderByComparator);
+	}
+
+	/**
+	* Returns the last basic information in the ordered set where isLeave = &#63;.
+	*
+	* @param isLeave the is leave
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching basic information
+	* @throws com.shuntian.portlet.intranet.NoSuchBasicInformationException if a matching basic information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.BasicInformation findByIsLeave_Last(
+		int isLeave,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchBasicInformationException {
+		return getPersistence().findByIsLeave_Last(isLeave, orderByComparator);
+	}
+
+	/**
+	* Returns the last basic information in the ordered set where isLeave = &#63;.
+	*
+	* @param isLeave the is leave
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching basic information, or <code>null</code> if a matching basic information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.BasicInformation fetchByIsLeave_Last(
+		int isLeave,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByIsLeave_Last(isLeave, orderByComparator);
+	}
+
+	/**
+	* Returns the basic informations before and after the current basic information in the ordered set where isLeave = &#63;.
+	*
+	* @param id the primary key of the current basic information
+	* @param isLeave the is leave
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next basic information
+	* @throws com.shuntian.portlet.intranet.NoSuchBasicInformationException if a basic information with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.BasicInformation[] findByIsLeave_PrevAndNext(
+		long id, int isLeave,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchBasicInformationException {
+		return getPersistence()
+				   .findByIsLeave_PrevAndNext(id, isLeave, orderByComparator);
+	}
+
+	/**
+	* Removes all the basic informations where isLeave = &#63; from the database.
+	*
+	* @param isLeave the is leave
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByIsLeave(int isLeave)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByIsLeave(isLeave);
+	}
+
+	/**
+	* Returns the number of basic informations where isLeave = &#63;.
+	*
+	* @param isLeave the is leave
+	* @return the number of matching basic informations
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByIsLeave(int isLeave)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByIsLeave(isLeave);
+	}
+
+	/**
 	* Caches the basic information in the entity cache if it is enabled.
 	*
 	* @param basicInformation the basic information

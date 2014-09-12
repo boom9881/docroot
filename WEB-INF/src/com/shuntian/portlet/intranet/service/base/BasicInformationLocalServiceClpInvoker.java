@@ -113,6 +113,14 @@ public class BasicInformationLocalServiceClpInvoker {
 		_methodName67 = "setBeanIdentifier";
 
 		_methodParameterTypes67 = new String[] { "java.lang.String" };
+
+		_methodName72 = "findByIsLeave";
+
+		_methodParameterTypes72 = new String[] { "boolean" };
+
+		_methodName73 = "findByUserId";
+
+		_methodParameterTypes73 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -216,6 +224,16 @@ public class BasicInformationLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+			return BasicInformationLocalServiceUtil.findByIsLeave(((Boolean)arguments[0]).booleanValue());
+		}
+
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+			return BasicInformationLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -255,4 +273,8 @@ public class BasicInformationLocalServiceClpInvoker {
 	private String[] _methodParameterTypes66;
 	private String _methodName67;
 	private String[] _methodParameterTypes67;
+	private String _methodName72;
+	private String[] _methodParameterTypes72;
+	private String _methodName73;
+	private String[] _methodParameterTypes73;
 }

@@ -72,8 +72,8 @@ public class DepartmentModelImpl extends BaseModelImpl<Department>
 		};
 	public static final String TABLE_SQL_CREATE = "create table Intranet_Department (id_ LONG not null primary key,name VARCHAR(75) null,leader LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_Department";
-	public static final String ORDER_BY_JPQL = " ORDER BY department.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY Intranet_Department.createDate DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY department.createDate ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Intranet_Department.createDate ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -342,8 +342,6 @@ public class DepartmentModelImpl extends BaseModelImpl<Department>
 		int value = 0;
 
 		value = DateUtil.compareTo(getCreateDate(), department.getCreateDate());
-
-		value = value * -1;
 
 		if (value != 0) {
 			return value;

@@ -66,18 +66,21 @@ public class DepartmentPortlet extends MVCPortlet {
 					"dhst-intranet-department-name-len");
 		}
 
-		Department d = DepartmentLocalServiceUtil.findByName(name);
+		try {
+			Department d = DepartmentLocalServiceUtil.findByName(name);
 
-		if (Validator.isNotNull(d)) {
-			if (cmd.equals(Constants.ADD)) {
-				SessionErrors.add(actionRequest,
-						"dhst-intranet-department-name-rep");
-			} else {
-				if (id != d.getId()) {
+			if (Validator.isNotNull(d)) {
+				if (cmd.equals(Constants.ADD)) {
 					SessionErrors.add(actionRequest,
 							"dhst-intranet-department-name-rep");
+				} else {
+					if (id != d.getId()) {
+						SessionErrors.add(actionRequest,
+								"dhst-intranet-department-name-rep");
+					}
 				}
 			}
+		} catch (NoSuchDepartmentException nsde) {
 		}
 	}
 }

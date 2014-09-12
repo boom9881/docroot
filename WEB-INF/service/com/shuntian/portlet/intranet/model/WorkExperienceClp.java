@@ -429,8 +429,6 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 			value = 0;
 		}
 
-		value = value * -1;
-
 		if (value != 0) {
 			return value;
 		}

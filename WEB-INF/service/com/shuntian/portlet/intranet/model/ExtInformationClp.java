@@ -620,8 +620,6 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 			value = 0;
 		}
 
-		value = value * -1;
-
 		if (value != 0) {
 			return value;
 		}

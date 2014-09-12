@@ -72,8 +72,8 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 		};
 	public static final String TABLE_SQL_CREATE = "create table Intranet_WorkExperience (id_ LONG not null primary key,userId LONG,witness VARCHAR(75) null,onceJob VARCHAR(75) null,workUnit VARCHAR(75) null,contactPhone VARCHAR(75) null,startTime DATE null,stopTime DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_WorkExperience";
-	public static final String ORDER_BY_JPQL = " ORDER BY workExperience.id DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY Intranet_WorkExperience.id_ DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY workExperience.id ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Intranet_WorkExperience.id_ ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -373,8 +373,6 @@ public class WorkExperienceModelImpl extends BaseModelImpl<WorkExperience>
 		else {
 			value = 0;
 		}
-
-		value = value * -1;
 
 		if (value != 0) {
 			return value;

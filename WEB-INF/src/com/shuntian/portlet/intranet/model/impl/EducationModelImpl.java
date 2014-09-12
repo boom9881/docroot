@@ -72,8 +72,8 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 		};
 	public static final String TABLE_SQL_CREATE = "create table Intranet_Education (id_ LONG not null primary key,userId LONG,witness VARCHAR(75) null,professional VARCHAR(75) null,university VARCHAR(75) null,contactPhone VARCHAR(75) null,startTime DATE null,stopTime DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_Education";
-	public static final String ORDER_BY_JPQL = " ORDER BY education.id DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY Intranet_Education.id_ DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY education.id ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Intranet_Education.id_ ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -373,8 +373,6 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 		else {
 			value = 0;
 		}
-
-		value = value * -1;
 
 		if (value != 0) {
 			return value;

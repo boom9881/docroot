@@ -77,6 +77,7 @@ public class BasicInformationWrapper implements BasicInformation,
 		attributes.put("emergencyContact", getEmergencyContact());
 		attributes.put("emergencyContactRelation", getEmergencyContactRelation());
 		attributes.put("emergencyContactPhone", getEmergencyContactPhone());
+		attributes.put("isLeave", getIsLeave());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedUserId", getModifiedUserId());
@@ -240,6 +241,12 @@ public class BasicInformationWrapper implements BasicInformation,
 
 		if (emergencyContactPhone != null) {
 			setEmergencyContactPhone(emergencyContactPhone);
+		}
+
+		Integer isLeave = (Integer)attributes.get("isLeave");
+
+		if (isLeave != null) {
+			setIsLeave(isLeave);
 		}
 
 		Long createUserId = (Long)attributes.get("createUserId");
@@ -810,6 +817,26 @@ public class BasicInformationWrapper implements BasicInformation,
 	@Override
 	public void setEmergencyContactPhone(java.lang.String emergencyContactPhone) {
 		_basicInformation.setEmergencyContactPhone(emergencyContactPhone);
+	}
+
+	/**
+	* Returns the is leave of this basic information.
+	*
+	* @return the is leave of this basic information
+	*/
+	@Override
+	public int getIsLeave() {
+		return _basicInformation.getIsLeave();
+	}
+
+	/**
+	* Sets the is leave of this basic information.
+	*
+	* @param isLeave the is leave of this basic information
+	*/
+	@Override
+	public void setIsLeave(int isLeave) {
+		_basicInformation.setIsLeave(isLeave);
 	}
 
 	/**

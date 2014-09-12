@@ -87,15 +87,16 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 			{ "emergencyContact", Types.VARCHAR },
 			{ "emergencyContactRelation", Types.VARCHAR },
 			{ "emergencyContactPhone", Types.VARCHAR },
+			{ "isLeave", Types.INTEGER },
 			{ "createUserId", Types.BIGINT },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedUserId", Types.BIGINT },
 			{ "modifiedDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_BasicInformation (id_ LONG not null primary key,userId LONG,name VARCHAR(75) null,sex INTEGER,idNumber VARCHAR(75) null,nation VARCHAR(75) null,placeOfOrigin VARCHAR(75) null,accountProperties VARCHAR(75) null,birthDate DATE null,maritalStatus VARCHAR(75) null,highestDegree VARCHAR(75) null,politicalBackground VARCHAR(75) null,fileLocation VARCHAR(75) null,basePay DOUBLE,performancePay DOUBLE,health INTEGER,contactPhone VARCHAR(75) null,mail VARCHAR(75) null,domicile VARCHAR(75) null,residencePhone VARCHAR(75) null,currentResidentialAddress VARCHAR(75) null,currentResidentialAddressPhone VARCHAR(75) null,emergencyContact VARCHAR(75) null,emergencyContactRelation VARCHAR(75) null,emergencyContactPhone VARCHAR(75) null,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_BasicInformation (id_ LONG not null primary key,userId LONG,name VARCHAR(75) null,sex INTEGER,idNumber VARCHAR(75) null,nation VARCHAR(75) null,placeOfOrigin VARCHAR(75) null,accountProperties VARCHAR(75) null,birthDate DATE null,maritalStatus VARCHAR(75) null,highestDegree VARCHAR(75) null,politicalBackground VARCHAR(75) null,fileLocation VARCHAR(75) null,basePay DOUBLE,performancePay DOUBLE,health INTEGER,contactPhone VARCHAR(75) null,mail VARCHAR(75) null,domicile VARCHAR(75) null,residencePhone VARCHAR(75) null,currentResidentialAddress VARCHAR(75) null,currentResidentialAddressPhone VARCHAR(75) null,emergencyContact VARCHAR(75) null,emergencyContactRelation VARCHAR(75) null,emergencyContactPhone VARCHAR(75) null,isLeave INTEGER,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_BasicInformation";
-	public static final String ORDER_BY_JPQL = " ORDER BY basicInformation.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY Intranet_BasicInformation.createDate DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY basicInformation.createDate ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Intranet_BasicInformation.createDate ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -108,8 +109,9 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.BasicInformation"),
 			true);
-	public static long USERID_COLUMN_BITMASK = 1L;
-	public static long CREATEDATE_COLUMN_BITMASK = 2L;
+	public static long ISLEAVE_COLUMN_BITMASK = 1L;
+	public static long USERID_COLUMN_BITMASK = 2L;
+	public static long CREATEDATE_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.BasicInformation"));
 
@@ -177,6 +179,7 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 		attributes.put("emergencyContact", getEmergencyContact());
 		attributes.put("emergencyContactRelation", getEmergencyContactRelation());
 		attributes.put("emergencyContactPhone", getEmergencyContactPhone());
+		attributes.put("isLeave", getIsLeave());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedUserId", getModifiedUserId());
@@ -340,6 +343,12 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 
 		if (emergencyContactPhone != null) {
 			setEmergencyContactPhone(emergencyContactPhone);
+		}
+
+		Integer isLeave = (Integer)attributes.get("isLeave");
+
+		if (isLeave != null) {
+			setIsLeave(isLeave);
 		}
 
 		Long createUserId = (Long)attributes.get("createUserId");
@@ -731,6 +740,28 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 	}
 
 	@Override
+	public int getIsLeave() {
+		return _isLeave;
+	}
+
+	@Override
+	public void setIsLeave(int isLeave) {
+		_columnBitmask |= ISLEAVE_COLUMN_BITMASK;
+
+		if (!_setOriginalIsLeave) {
+			_setOriginalIsLeave = true;
+
+			_originalIsLeave = _isLeave;
+		}
+
+		_isLeave = isLeave;
+	}
+
+	public int getOriginalIsLeave() {
+		return _originalIsLeave;
+	}
+
+	@Override
 	public long getCreateUserId() {
 		return _createUserId;
 	}
@@ -850,6 +881,7 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 		basicInformationImpl.setEmergencyContact(getEmergencyContact());
 		basicInformationImpl.setEmergencyContactRelation(getEmergencyContactRelation());
 		basicInformationImpl.setEmergencyContactPhone(getEmergencyContactPhone());
+		basicInformationImpl.setIsLeave(getIsLeave());
 		basicInformationImpl.setCreateUserId(getCreateUserId());
 		basicInformationImpl.setCreateDate(getCreateDate());
 		basicInformationImpl.setModifiedUserId(getModifiedUserId());
@@ -866,8 +898,6 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 
 		value = DateUtil.compareTo(getCreateDate(),
 				basicInformation.getCreateDate());
-
-		value = value * -1;
 
 		if (value != 0) {
 			return value;
@@ -910,6 +940,10 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 		basicInformationModelImpl._originalUserId = basicInformationModelImpl._userId;
 
 		basicInformationModelImpl._setOriginalUserId = false;
+
+		basicInformationModelImpl._originalIsLeave = basicInformationModelImpl._isLeave;
+
+		basicInformationModelImpl._setOriginalIsLeave = false;
 
 		basicInformationModelImpl._columnBitmask = 0;
 	}
@@ -1088,6 +1122,8 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 			basicInformationCacheModel.emergencyContactPhone = null;
 		}
 
+		basicInformationCacheModel.isLeave = getIsLeave();
+
 		basicInformationCacheModel.createUserId = getCreateUserId();
 
 		Date createDate = getCreateDate();
@@ -1115,7 +1151,7 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(59);
+		StringBundler sb = new StringBundler(61);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -1167,6 +1203,8 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 		sb.append(getEmergencyContactRelation());
 		sb.append(", emergencyContactPhone=");
 		sb.append(getEmergencyContactPhone());
+		sb.append(", isLeave=");
+		sb.append(getIsLeave());
 		sb.append(", createUserId=");
 		sb.append(getCreateUserId());
 		sb.append(", createDate=");
@@ -1182,7 +1220,7 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(91);
+		StringBundler sb = new StringBundler(94);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.BasicInformation");
@@ -1289,6 +1327,10 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 		sb.append(getEmergencyContactPhone());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>isLeave</column-name><column-value><![CDATA[");
+		sb.append(getIsLeave());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
 		sb.append(getCreateUserId());
 		sb.append("]]></column-value></column>");
@@ -1342,6 +1384,9 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 	private String _emergencyContact;
 	private String _emergencyContactRelation;
 	private String _emergencyContactPhone;
+	private int _isLeave;
+	private int _originalIsLeave;
+	private boolean _setOriginalIsLeave;
 	private long _createUserId;
 	private String _createUserUuid;
 	private Date _createDate;

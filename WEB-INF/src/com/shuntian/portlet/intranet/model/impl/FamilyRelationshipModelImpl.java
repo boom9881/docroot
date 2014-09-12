@@ -70,8 +70,8 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 		};
 	public static final String TABLE_SQL_CREATE = "create table Intranet_FamilyRelationship (id_ LONG not null primary key,userId LONG,name VARCHAR(75) null,relationship VARCHAR(75) null,workUnit VARCHAR(75) null,contactPhone VARCHAR(75) null,onceJob VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_FamilyRelationship";
-	public static final String ORDER_BY_JPQL = " ORDER BY familyRelationship.id DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY Intranet_FamilyRelationship.id_ DESC";
+	public static final String ORDER_BY_JPQL = " ORDER BY familyRelationship.id ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Intranet_FamilyRelationship.id_ ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -358,8 +358,6 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 		else {
 			value = 0;
 		}
-
-		value = value * -1;
 
 		if (value != 0) {
 			return value;

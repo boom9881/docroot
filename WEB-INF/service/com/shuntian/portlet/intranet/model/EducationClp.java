@@ -426,8 +426,6 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 			value = 0;
 		}
 
-		value = value * -1;
-
 		if (value != 0) {
 			return value;
 		}

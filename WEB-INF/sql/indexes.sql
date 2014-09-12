@@ -1,6 +1,7 @@
 create index IX_AD0B1F69 on Intranet_Attendance (userId);
 create index IX_EAA6EB8B on Intranet_Attendance (userId, attendanceMonthly);
 
+create index IX_416FE1F9 on Intranet_BasicInformation (isLeave);
 create index IX_D2312E5E on Intranet_BasicInformation (userId);
 
 create index IX_6E5FE17 on Intranet_Department (name);

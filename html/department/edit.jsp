@@ -31,8 +31,19 @@ if(Validator.isNotNull(id)){
 </portlet:renderURL>
 
 <aui:form action="" method="post" name="fm">
-	<aui:input name="name" label="部门名称" value="" />
-	<aui:input name="leader" label="部门负责人" value="" />
+	<aui:input type="hidden" name="cmd" value="<%= cmd %>" />
+	<aui:input type="hidden" name="id" value="<%= id %>" />
+	
+	<aui:input name="name" label="部门名称" value="" />	
+	<aui:select label="部门负责人" name="leader">
+		<%
+		BasicInformationLocalServiceUtil.
+		%>
+		<aui:option label="male" value="true" />
+		<%
+		
+		%>
+	</aui:select>
 	
 	<aui:button type="submit" value="保存" />
 	<aui:button type="button" value="取消" onClick="" />

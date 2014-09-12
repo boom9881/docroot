@@ -19,3 +19,11 @@
 	
 	<aui:button value="添加部门" onClick="<%= addURL %>" />
 </aui:form>
+
+<aui:script>
+	function <portlet:namespace />onSub(url){
+		document.<portlet:namespace />fm.action = url;
+
+		submitForm(document.<portlet:namespace />fm);
+	}
+</aui:script>

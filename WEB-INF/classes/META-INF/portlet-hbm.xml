@@ -3,7 +3,6 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.shuntian.portlet.intranet.model.BasicInformation" />
-	<import class="com.shuntian.portlet.intranet.model.Department" />
 	<import class="com.shuntian.portlet.intranet.model.Education" />
 	<import class="com.shuntian.portlet.intranet.model.ExtInformation" />
 	<import class="com.shuntian.portlet.intranet.model.FamilyRelationship" />
@@ -42,18 +41,6 @@
 		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 	</class>
-	<class name="com.shuntian.portlet.intranet.model.impl.DepartmentImpl" table="Intranet_Department">
-		<cache usage="read-write" />
-		<id name="id" column="id_" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="leader" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createDate" type="org.hibernate.type.TimestampType" />
-		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-	</class>
 	<class name="com.shuntian.portlet.intranet.model.impl.EducationImpl" table="Intranet_Education">
 		<cache usage="read-write" />
 		<id name="id" column="id_" type="long">
@@ -66,6 +53,10 @@
 		<property name="contactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="startTime" type="org.hibernate.type.TimestampType" />
 		<property name="stopTime" type="org.hibernate.type.TimestampType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.shuntian.portlet.intranet.model.impl.ExtInformationImpl" table="Intranet_ExtInformation">
 		<cache usage="read-write" />
@@ -85,6 +76,10 @@
 		<property name="isInsured" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="basicWage" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="otherWage" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.shuntian.portlet.intranet.model.impl.FamilyRelationshipImpl" table="Intranet_FamilyRelationship">
 		<cache usage="read-write" />
@@ -97,6 +92,10 @@
 		<property name="workUnit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="contactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="onceJob" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.shuntian.portlet.intranet.model.impl.WorkExperienceImpl" table="Intranet_WorkExperience">
 		<cache usage="read-write" />
@@ -110,5 +109,9 @@
 		<property name="contactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="startTime" type="org.hibernate.type.TimestampType" />
 		<property name="stopTime" type="org.hibernate.type.TimestampType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 	</class>
 </hibernate-mapping>

@@ -54,28 +54,6 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.DepartmentModelImpl">
-		<attributes>
-			<id name="id">
-				<column name="ID_" />
-			</id>
-			<basic name="name" />
-			<basic name="leader" />
-			<basic name="createUserId" />
-			<basic name="createDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="modifiedUserId" />
-			<basic name="modifiedDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<transient name="createUserUuid" />
-			<transient name="modelAttributes" />
-			<transient name="modifiedUserUuid" />
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-		</attributes>
-	</mapped-superclass>
 	<mapped-superclass class="com.shuntian.portlet.intranet.model.impl.EducationModelImpl">
 		<attributes>
 			<id name="id">
@@ -92,7 +70,17 @@
 			<basic name="stopTime">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="createUserId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedUserId" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="createUserUuid" />
 			<transient name="modelAttributes" />
+			<transient name="modifiedUserUuid" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -126,7 +114,17 @@
 			<basic name="isInsured" />
 			<basic name="basicWage" />
 			<basic name="otherWage" />
+			<basic name="createUserId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedUserId" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="createUserUuid" />
 			<transient name="modelAttributes" />
+			<transient name="modifiedUserUuid" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -143,7 +141,17 @@
 			<basic name="workUnit" />
 			<basic name="contactPhone" />
 			<basic name="onceJob" />
+			<basic name="createUserId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedUserId" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="createUserUuid" />
 			<transient name="modelAttributes" />
+			<transient name="modifiedUserUuid" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -165,7 +173,17 @@
 			<basic name="stopTime">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="createUserId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedUserId" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="createUserUuid" />
 			<transient name="modelAttributes" />
+			<transient name="modifiedUserUuid" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -173,10 +191,6 @@
 	</mapped-superclass>
 	<entity class="com.shuntian.portlet.intranet.model.impl.BasicInformationImpl" name="BasicInformation">
 		<table name="Intranet_BasicInformation" />
-		<attributes />
-	</entity>
-	<entity class="com.shuntian.portlet.intranet.model.impl.DepartmentImpl" name="Department">
-		<table name="Intranet_Department" />
 		<attributes />
 	</entity>
 	<entity class="com.shuntian.portlet.intranet.model.impl.EducationImpl" name="Education">

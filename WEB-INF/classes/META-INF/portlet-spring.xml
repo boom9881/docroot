@@ -3,8 +3,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.shuntian.portlet.intranet.service.BasicInformationLocalService" class="com.shuntian.portlet.intranet.service.impl.BasicInformationLocalServiceImpl" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.BasicInformationPersistence" class="com.shuntian.portlet.intranet.service.persistence.BasicInformationPersistenceImpl" parent="basePersistence" />
-	<bean id="com.shuntian.portlet.intranet.service.DepartmentLocalService" class="com.shuntian.portlet.intranet.service.impl.DepartmentLocalServiceImpl" />
-	<bean id="com.shuntian.portlet.intranet.service.persistence.DepartmentPersistence" class="com.shuntian.portlet.intranet.service.persistence.DepartmentPersistenceImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.EducationLocalService" class="com.shuntian.portlet.intranet.service.impl.EducationLocalServiceImpl" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.EducationPersistence" class="com.shuntian.portlet.intranet.service.persistence.EducationPersistenceImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.ExtInformationLocalService" class="com.shuntian.portlet.intranet.service.impl.ExtInformationLocalServiceImpl" />

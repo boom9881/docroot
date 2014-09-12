@@ -274,6 +274,30 @@ public class DepartmentLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void addDepartment(long userId, long leaderId,
+		java.lang.String name, java.util.Date now)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().addDepartment(userId, leaderId, name, now);
+	}
+
+	public static void updateDepartment(long id, long userId, long leaderId,
+		java.lang.String name, java.util.Date now)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchDepartmentException {
+		getService().updateDepartment(id, userId, leaderId, name, now);
+	}
+
+	public static int countByName(java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().countByName(name);
+	}
+
+	public static java.util.List<com.shuntian.portlet.intranet.model.Department> findByName(
+		java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().findByName(name, start, end);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

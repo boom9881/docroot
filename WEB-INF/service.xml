@@ -210,4 +210,107 @@
 		</order>
 	</entity>
 	
+	<entity name="Attendance" local-service="true" remote-service="false">
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true"></column>
+		<!-- Resource -->
+		<column name="userId" type="long"></column>
+		<!-- Other fields -->
+		<column name="shouldAttendance" type="double"></column>
+		<column name="actualAttendance" type="double"></column>
+		<column name="attendanceMonthly" type="long"></column>
+		<!-- Audit fields -->
+		<column name="createUserId" type="long"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedUserId" type="long"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<!-- Order -->
+		<order>
+			<order-column name="createDate" order-by="desc"></order-column>
+		</order>
+		<!-- Finder methods -->
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId"></finder-column>
+		</finder>
+		<finder name="U_M" return-type="Attendance">
+			<finder-column name="userId"/>
+			<finder-column name="attendanceMonthly"/>
+		</finder>
+	</entity>
+	
+	<entity name="Overtime" local-service="true" remote-service="false">
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true"></column>
+		<!-- Resource -->
+		<column name="userId" type="long"></column>
+		<!-- Other fields -->
+		<column name="usuallyOvertime" type="double"></column>
+		<column name="restOvertime" type="double"></column>
+		<column name="legalOvertime" type="double"></column>
+		<column name="overtimeMonthly" type="long"></column>
+		<!-- Audit fields -->
+		<column name="createUserId" type="long"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedUserId" type="long"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<!-- Order -->
+		<order>
+			<order-column name="createDate" order-by="desc"></order-column>
+		</order>
+		<!-- Finder methods -->
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId"></finder-column>
+		</finder>
+		<finder name="U_M" return-type="Overtime">
+			<finder-column name="userId"/>
+			<finder-column name="overtimeMonthly"/>
+		</finder>
+	</entity>
+	
+	<entity name="Wages" local-service="true" remote-service="false">
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true"></column>
+		<!-- Resource -->
+		<column name="userId" type="long"></column>
+		<!-- Other fields -->
+		<column name="wageName" type="String"></column>
+		<column name="distributionMonth" type="long"></column>
+		<column name="entryDate" type="Date"></column>
+		<column name="departureDate" type="Date"></column>
+		<column name="userWage" type="double"></column>
+		<column name="userPerformance" type="double"></column>
+		<column name="userTotalWage" type="double"></column>
+		<column name="attendance" type="double"></column>
+		<column name="realAttendance" type="double"></column>
+		
+		<column name="basePay" type="double"></column>
+		<column name="overtimeWages" type="double"></column>
+		<column name="performanceScores" type="double"></column>
+		<column name="performanceSalary" type="double"></column>
+		<column name="allowance" type="double"></column>
+		<column name="totalWages" type="double"></column>
+		<column name="socialCompanyBearPart" type="double"></column>
+		<column name="socialIndividualsBearPart" type="double"></column>
+		<column name="taxableIncome" type="double"></column>
+		<column name="taxRate" type="double"></column>
+		<column name="taxes" type="double"></column>
+		<column name="realWages" type="double"></column>
+		<!-- Audit fields -->
+		<column name="createUserId" type="long"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedUserId" type="long"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<!-- Order -->
+		<order>
+			<order-column name="createDate" order-by="desc"></order-column>
+		</order>
+		<!-- Finder methods -->
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId"></finder-column>
+		</finder>
+		<finder name="U_M" return-type="Wages">
+			<finder-column name="userId"/>
+			<finder-column name="distributionMonth"/>
+		</finder>
+	</entity>
 </service-builder>

@@ -17,12 +17,15 @@ package com.shuntian.portlet.intranet.service.messaging;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
+import com.shuntian.portlet.intranet.service.AttendanceLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.BasicInformationLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.ClpSerializer;
 import com.shuntian.portlet.intranet.service.DepartmentLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.EducationLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.ExtInformationLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.FamilyRelationshipLocalServiceUtil;
+import com.shuntian.portlet.intranet.service.OvertimeLocalServiceUtil;
+import com.shuntian.portlet.intranet.service.WagesLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.WorkExperienceLocalServiceUtil;
 
 /**
@@ -40,6 +43,8 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
+			AttendanceLocalServiceUtil.clearService();
+
 			BasicInformationLocalServiceUtil.clearService();
 
 			DepartmentLocalServiceUtil.clearService();
@@ -49,6 +54,10 @@ public class ClpMessageListener extends BaseMessageListener {
 			ExtInformationLocalServiceUtil.clearService();
 
 			FamilyRelationshipLocalServiceUtil.clearService();
+
+			OvertimeLocalServiceUtil.clearService();
+
+			WagesLocalServiceUtil.clearService();
 
 			WorkExperienceLocalServiceUtil.clearService();
 		}

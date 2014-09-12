@@ -246,4 +246,20 @@ public interface DepartmentLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public void addDepartment(long userId, long leaderId,
+		java.lang.String name, java.util.Date now)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void updateDepartment(long id, long userId, long leaderId,
+		java.lang.String name, java.util.Date now)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchDepartmentException;
+
+	public int countByName(java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.shuntian.portlet.intranet.model.Department> findByName(
+		java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

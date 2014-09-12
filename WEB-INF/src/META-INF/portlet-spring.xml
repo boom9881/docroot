@@ -1,16 +1,23 @@
 <?xml version="1.0"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.shuntian.portlet.intranet.service.AttendanceLocalService" class="com.shuntian.portlet.intranet.service.impl.AttendanceLocalServiceImpl" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.AttendancePersistence" class="com.shuntian.portlet.intranet.service.persistence.AttendancePersistenceImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.BasicInformationLocalService" class="com.shuntian.portlet.intranet.service.impl.BasicInformationLocalServiceImpl" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.BasicInformationPersistence" class="com.shuntian.portlet.intranet.service.persistence.BasicInformationPersistenceImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.DepartmentLocalService" class="com.shuntian.portlet.intranet.service.impl.DepartmentLocalServiceImpl" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.DepartmentPersistence" class="com.shuntian.portlet.intranet.service.persistence.DepartmentPersistenceImpl" parent="basePersistence" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.DepartmentFinder" class="com.shuntian.portlet.intranet.service.persistence.DepartmentFinderImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.EducationLocalService" class="com.shuntian.portlet.intranet.service.impl.EducationLocalServiceImpl" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.EducationPersistence" class="com.shuntian.portlet.intranet.service.persistence.EducationPersistenceImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.ExtInformationLocalService" class="com.shuntian.portlet.intranet.service.impl.ExtInformationLocalServiceImpl" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.ExtInformationPersistence" class="com.shuntian.portlet.intranet.service.persistence.ExtInformationPersistenceImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.FamilyRelationshipLocalService" class="com.shuntian.portlet.intranet.service.impl.FamilyRelationshipLocalServiceImpl" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.FamilyRelationshipPersistence" class="com.shuntian.portlet.intranet.service.persistence.FamilyRelationshipPersistenceImpl" parent="basePersistence" />
+	<bean id="com.shuntian.portlet.intranet.service.OvertimeLocalService" class="com.shuntian.portlet.intranet.service.impl.OvertimeLocalServiceImpl" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.OvertimePersistence" class="com.shuntian.portlet.intranet.service.persistence.OvertimePersistenceImpl" parent="basePersistence" />
+	<bean id="com.shuntian.portlet.intranet.service.WagesLocalService" class="com.shuntian.portlet.intranet.service.impl.WagesLocalServiceImpl" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.WagesPersistence" class="com.shuntian.portlet.intranet.service.persistence.WagesPersistenceImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.WorkExperienceLocalService" class="com.shuntian.portlet.intranet.service.impl.WorkExperienceLocalServiceImpl" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.WorkExperiencePersistence" class="com.shuntian.portlet.intranet.service.persistence.WorkExperiencePersistenceImpl" parent="basePersistence" />
 </beans>

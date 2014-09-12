@@ -25,11 +25,14 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
+import com.shuntian.portlet.intranet.model.AttendanceClp;
 import com.shuntian.portlet.intranet.model.BasicInformationClp;
 import com.shuntian.portlet.intranet.model.DepartmentClp;
 import com.shuntian.portlet.intranet.model.EducationClp;
 import com.shuntian.portlet.intranet.model.ExtInformationClp;
 import com.shuntian.portlet.intranet.model.FamilyRelationshipClp;
+import com.shuntian.portlet.intranet.model.OvertimeClp;
+import com.shuntian.portlet.intranet.model.WagesClp;
 import com.shuntian.portlet.intranet.model.WorkExperienceClp;
 
 import java.io.ObjectInputStream;
@@ -107,6 +110,10 @@ public class ClpSerializer {
 
 		String oldModelClassName = oldModelClass.getName();
 
+		if (oldModelClassName.equals(AttendanceClp.class.getName())) {
+			return translateInputAttendance(oldModel);
+		}
+
 		if (oldModelClassName.equals(BasicInformationClp.class.getName())) {
 			return translateInputBasicInformation(oldModel);
 		}
@@ -127,6 +134,14 @@ public class ClpSerializer {
 			return translateInputFamilyRelationship(oldModel);
 		}
 
+		if (oldModelClassName.equals(OvertimeClp.class.getName())) {
+			return translateInputOvertime(oldModel);
+		}
+
+		if (oldModelClassName.equals(WagesClp.class.getName())) {
+			return translateInputWages(oldModel);
+		}
+
 		if (oldModelClassName.equals(WorkExperienceClp.class.getName())) {
 			return translateInputWorkExperience(oldModel);
 		}
@@ -144,6 +159,16 @@ public class ClpSerializer {
 		}
 
 		return newList;
+	}
+
+	public static Object translateInputAttendance(BaseModel<?> oldModel) {
+		AttendanceClp oldClpModel = (AttendanceClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getAttendanceRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
 	}
 
 	public static Object translateInputBasicInformation(BaseModel<?> oldModel) {
@@ -196,6 +221,26 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateInputOvertime(BaseModel<?> oldModel) {
+		OvertimeClp oldClpModel = (OvertimeClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getOvertimeRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
+	public static Object translateInputWages(BaseModel<?> oldModel) {
+		WagesClp oldClpModel = (WagesClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getWagesRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
 	public static Object translateInputWorkExperience(BaseModel<?> oldModel) {
 		WorkExperienceClp oldClpModel = (WorkExperienceClp)oldModel;
 
@@ -224,6 +269,11 @@ public class ClpSerializer {
 		String oldModelClassName = oldModelClass.getName();
 
 		if (oldModelClassName.equals(
+					"com.shuntian.portlet.intranet.model.impl.AttendanceImpl")) {
+			return translateOutputAttendance(oldModel);
+		}
+
+		if (oldModelClassName.equals(
 					"com.shuntian.portlet.intranet.model.impl.BasicInformationImpl")) {
 			return translateOutputBasicInformation(oldModel);
 		}
@@ -246,6 +296,16 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.shuntian.portlet.intranet.model.impl.FamilyRelationshipImpl")) {
 			return translateOutputFamilyRelationship(oldModel);
+		}
+
+		if (oldModelClassName.equals(
+					"com.shuntian.portlet.intranet.model.impl.OvertimeImpl")) {
+			return translateOutputOvertime(oldModel);
+		}
+
+		if (oldModelClassName.equals(
+					"com.shuntian.portlet.intranet.model.impl.WagesImpl")) {
+			return translateOutputWages(oldModel);
 		}
 
 		if (oldModelClassName.equals(
@@ -334,6 +394,11 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
+					"com.shuntian.portlet.intranet.NoSuchAttendanceException")) {
+			return new com.shuntian.portlet.intranet.NoSuchAttendanceException();
+		}
+
+		if (className.equals(
 					"com.shuntian.portlet.intranet.NoSuchBasicInformationException")) {
 			return new com.shuntian.portlet.intranet.NoSuchBasicInformationException();
 		}
@@ -359,11 +424,31 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
+					"com.shuntian.portlet.intranet.NoSuchOvertimeException")) {
+			return new com.shuntian.portlet.intranet.NoSuchOvertimeException();
+		}
+
+		if (className.equals(
+					"com.shuntian.portlet.intranet.NoSuchWagesException")) {
+			return new com.shuntian.portlet.intranet.NoSuchWagesException();
+		}
+
+		if (className.equals(
 					"com.shuntian.portlet.intranet.NoSuchWorkExperienceException")) {
 			return new com.shuntian.portlet.intranet.NoSuchWorkExperienceException();
 		}
 
 		return throwable;
+	}
+
+	public static Object translateOutputAttendance(BaseModel<?> oldModel) {
+		AttendanceClp newModel = new AttendanceClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setAttendanceRemoteModel(oldModel);
+
+		return newModel;
 	}
 
 	public static Object translateOutputBasicInformation(BaseModel<?> oldModel) {
@@ -413,6 +498,26 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setFamilyRelationshipRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputOvertime(BaseModel<?> oldModel) {
+		OvertimeClp newModel = new OvertimeClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setOvertimeRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputWages(BaseModel<?> oldModel) {
+		WagesClp newModel = new WagesClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setWagesRemoteModel(oldModel);
 
 		return newModel;
 	}

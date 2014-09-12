@@ -1,3 +1,15 @@
+create table Intranet_Attendance (
+	id_ LONG not null primary key,
+	userId LONG,
+	shouldAttendance DOUBLE,
+	actualAttendance DOUBLE,
+	attendanceMonthly LONG,
+	createUserId LONG,
+	createDate DATE null,
+	modifiedUserId LONG,
+	modifiedDate DATE null
+);
+
 create table Intranet_BasicInformation (
 	id_ LONG not null primary key,
 	userId LONG,
@@ -78,6 +90,19 @@ create table Intranet_FamilyRelationship (
 	onceJob VARCHAR(75) null
 );
 
+create table Intranet_Overtime (
+	id_ LONG not null primary key,
+	userId LONG,
+	usuallyOvertime DOUBLE,
+	restOvertime DOUBLE,
+	legalOvertime DOUBLE,
+	overtimeMonthly LONG,
+	createUserId LONG,
+	createDate DATE null,
+	modifiedUserId LONG,
+	modifiedDate DATE null
+);
+
 create table Intranet_Satff (
 	uuid_ VARCHAR(75) null,
 	id_ LONG not null primary key,
@@ -104,6 +129,36 @@ create table Intranet_Satff (
 	userId LONG,
 	userName VARCHAR(75) null,
 	createDate DATE null,
+	modifiedDate DATE null
+);
+
+create table Intranet_Wages (
+	id_ LONG not null primary key,
+	userId LONG,
+	wageName VARCHAR(75) null,
+	distributionMonth LONG,
+	entryDate DATE null,
+	departureDate DATE null,
+	userWage DOUBLE,
+	userPerformance DOUBLE,
+	userTotalWage DOUBLE,
+	attendance DOUBLE,
+	realAttendance DOUBLE,
+	basePay DOUBLE,
+	overtimeWages DOUBLE,
+	performanceScores DOUBLE,
+	performanceSalary DOUBLE,
+	allowance DOUBLE,
+	totalWages DOUBLE,
+	socialCompanyBearPart DOUBLE,
+	socialIndividualsBearPart DOUBLE,
+	taxableIncome DOUBLE,
+	taxRate DOUBLE,
+	taxes DOUBLE,
+	realWages DOUBLE,
+	createUserId LONG,
+	createDate DATE null,
+	modifiedUserId LONG,
 	modifiedDate DATE null
 );
 

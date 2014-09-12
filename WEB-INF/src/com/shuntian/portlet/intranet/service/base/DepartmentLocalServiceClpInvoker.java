@@ -106,13 +106,33 @@ public class DepartmentLocalServiceClpInvoker {
 				"com.shuntian.portlet.intranet.model.Department"
 			};
 
-		_methodName52 = "getBeanIdentifier";
+		_methodName66 = "getBeanIdentifier";
 
-		_methodParameterTypes52 = new String[] {  };
+		_methodParameterTypes66 = new String[] {  };
 
-		_methodName53 = "setBeanIdentifier";
+		_methodName67 = "setBeanIdentifier";
 
-		_methodParameterTypes53 = new String[] { "java.lang.String" };
+		_methodParameterTypes67 = new String[] { "java.lang.String" };
+
+		_methodName72 = "addDepartment";
+
+		_methodParameterTypes72 = new String[] {
+				"long", "long", "java.lang.String", "java.util.Date"
+			};
+
+		_methodName73 = "updateDepartment";
+
+		_methodParameterTypes73 = new String[] {
+				"long", "long", "long", "java.lang.String", "java.util.Date"
+			};
+
+		_methodName74 = "countByName";
+
+		_methodParameterTypes74 = new String[] { "java.lang.String" };
+
+		_methodName75 = "findByName";
+
+		_methodParameterTypes75 = new String[] { "java.lang.String", "int", "int" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -204,16 +224,47 @@ public class DepartmentLocalServiceClpInvoker {
 			return DepartmentLocalServiceUtil.updateDepartment((com.shuntian.portlet.intranet.model.Department)arguments[0]);
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName66.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			return DepartmentLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName67.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
 			DepartmentLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
+		}
+
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+			DepartmentLocalServiceUtil.addDepartment(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2], (java.util.Date)arguments[3]);
+
+			return null;
+		}
+
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+			DepartmentLocalServiceUtil.updateDepartment(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue(),
+				(java.lang.String)arguments[3], (java.util.Date)arguments[4]);
+
+			return null;
+		}
+
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+			return DepartmentLocalServiceUtil.countByName((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
+			return DepartmentLocalServiceUtil.findByName((java.lang.String)arguments[0],
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -251,8 +302,16 @@ public class DepartmentLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
-	private String _methodName53;
-	private String[] _methodParameterTypes53;
+	private String _methodName66;
+	private String[] _methodParameterTypes66;
+	private String _methodName67;
+	private String[] _methodParameterTypes67;
+	private String _methodName72;
+	private String[] _methodParameterTypes72;
+	private String _methodName73;
+	private String[] _methodParameterTypes73;
+	private String _methodName74;
+	private String[] _methodParameterTypes74;
+	private String _methodName75;
+	private String[] _methodParameterTypes75;
 }

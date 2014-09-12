@@ -1,8 +1,4 @@
-<%@page import="com.shuntian.portlet.intranet.service.AttendanceLocalServiceUtil"%>
-<%@page import="com.shuntian.portlet.intranet.model.Attendance"%>
-<%@page import="com.shuntian.portlet.intranet.service.BasicInformationLocalServiceUtil"%>
-<%@page import="com.shuntian.portlet.intranet.model.BasicInformation"%>
-<%@ include file="/html/init.jsp" %>
+<%@ include file="/html/attendance/init-ext.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%
@@ -41,25 +37,40 @@
 
 		BasicInformation basicInformation = (BasicInformation) results.get(i);
 
-		Attendance attendance = AttendanceLocalServiceUtil.getAttendance(1L);
+		List<Attendance> attendance = AttendanceLocalServiceUtil.findByU_M(basicInformation.getId());
 
-		ResultRow row = new ResultRow(basicInformation,basicInformation.getId(), i);
-
-		row.addText(basicInformation.getName());
+		for (int j = 0; j < attendance.size(); j++) {
 		
-		row.addText(String.valueOf(attendance.getAttendanceMonthly()));
-		
-		row.addText(String.valueOf(attendance.getShouldAttendance()));
-		
-		row.addText(String.valueOf(attendance.getActualAttendance()));
-		
-		row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/attendance/action.jsp");
-
-		resultRows.add(row);
+			Attendance att = attendance.get(j);
+			
+			ResultRow row = new ResultRow(basicInformation,basicInformation.getId(), i);
+	
+			row.addText(basicInformation.getName()+basicInformation.getId());
+			
+			row.addText(String.valueOf(att.getAttendanceMonthly()));
+			
+			row.addText(String.valueOf(att.getShouldAttendance()));
+			
+			row.addText(String.valueOf(att.getActualAttendance()));
+			
+			row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/attendance/action.jsp");
+	
+			resultRows.add(row);
+		}
 
 	}
 	
 %>
 
-<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
+<portlet:renderURL var="searchUserRenderURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
+	<portlet:param name="mvcPath" value="/html/attendance/view.jsp" />
+</portlet:renderURL>
 
+
+<aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">
+	<aui:input name="searchName" label="姓名" value="" />
+	<aui:input name="searchDep" label="部门" value="" />
+	<aui:button type="submit" value="搜索" />
+	
+	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
+</aui:form>

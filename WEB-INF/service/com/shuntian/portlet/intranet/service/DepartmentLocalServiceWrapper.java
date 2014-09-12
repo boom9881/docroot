@@ -285,6 +285,34 @@ public class DepartmentLocalServiceWrapper implements DepartmentLocalService,
 			arguments);
 	}
 
+	@Override
+	public void addDepartment(long userId, long leaderId,
+		java.lang.String name, java.util.Date now)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_departmentLocalService.addDepartment(userId, leaderId, name, now);
+	}
+
+	@Override
+	public void updateDepartment(long id, long userId, long leaderId,
+		java.lang.String name, java.util.Date now)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchDepartmentException {
+		_departmentLocalService.updateDepartment(id, userId, leaderId, name, now);
+	}
+
+	@Override
+	public int countByName(java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _departmentLocalService.countByName(name);
+	}
+
+	@Override
+	public java.util.List<com.shuntian.portlet.intranet.model.Department> findByName(
+		java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _departmentLocalService.findByName(name, start, end);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

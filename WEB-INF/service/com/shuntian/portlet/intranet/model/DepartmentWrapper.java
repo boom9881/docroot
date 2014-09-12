@@ -373,7 +373,8 @@ public class DepartmentWrapper implements Department, ModelWrapper<Department> {
 	}
 
 	@Override
-	public int compareTo(Department department) {
+	public int compareTo(
+		com.shuntian.portlet.intranet.model.Department department) {
 		return _department.compareTo(department);
 	}
 
@@ -383,17 +384,17 @@ public class DepartmentWrapper implements Department, ModelWrapper<Department> {
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<Department> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.shuntian.portlet.intranet.model.Department> toCacheModel() {
 		return _department.toCacheModel();
 	}
 
 	@Override
-	public Department toEscapedModel() {
+	public com.shuntian.portlet.intranet.model.Department toEscapedModel() {
 		return new DepartmentWrapper(_department.toEscapedModel());
 	}
 
 	@Override
-	public Department toUnescapedModel() {
+	public com.shuntian.portlet.intranet.model.Department toUnescapedModel() {
 		return new DepartmentWrapper(_department.toUnescapedModel());
 	}
 

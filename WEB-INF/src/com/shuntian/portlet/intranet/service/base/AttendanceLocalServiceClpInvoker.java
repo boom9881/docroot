@@ -114,13 +114,25 @@ public class AttendanceLocalServiceClpInvoker {
 
 		_methodParameterTypes67 = new String[] { "java.lang.String" };
 
-		_methodName72 = "findByU_M";
+		_methodName72 = "addAttendance";
 
-		_methodParameterTypes72 = new String[] { "long", "long" };
+		_methodParameterTypes72 = new String[] {
+				"long", "long", "long", "double", "double"
+			};
 
-		_methodName73 = "findByU_M";
+		_methodName73 = "updateAttendance";
 
-		_methodParameterTypes73 = new String[] { "long" };
+		_methodParameterTypes73 = new String[] {
+				"long", "long", "long", "double", "double"
+			};
+
+		_methodName74 = "findByU_M";
+
+		_methodParameterTypes74 = new String[] { "long", "long" };
+
+		_methodName75 = "findByUserId";
+
+		_methodParameterTypes75 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -226,13 +238,35 @@ public class AttendanceLocalServiceClpInvoker {
 
 		if (_methodName72.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-			return AttendanceLocalServiceUtil.findByU_M(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+			AttendanceLocalServiceUtil.addAttendance(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue(),
+				((Double)arguments[3]).doubleValue(),
+				((Double)arguments[4]).doubleValue());
+
+			return null;
 		}
 
 		if (_methodName73.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
-			return AttendanceLocalServiceUtil.findByU_M(((Long)arguments[0]).longValue());
+			AttendanceLocalServiceUtil.updateAttendance(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue(),
+				((Double)arguments[3]).doubleValue(),
+				((Double)arguments[4]).doubleValue());
+
+			return null;
+		}
+
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+			return AttendanceLocalServiceUtil.findByU_M(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
+			return AttendanceLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -278,4 +312,8 @@ public class AttendanceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes72;
 	private String _methodName73;
 	private String[] _methodParameterTypes73;
+	private String _methodName74;
+	private String[] _methodParameterTypes74;
+	private String _methodName75;
+	private String[] _methodParameterTypes75;
 }

@@ -2,7 +2,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%
-	
+	long userId = themeDisplay.getUserId();
+				
 	PortletURL portletURL = renderResponse.createRenderURL();
 
 	portletURL.setWindowState(WindowState.MAXIMIZED);
@@ -37,15 +38,15 @@
 
 		BasicInformation basicInformation = (BasicInformation) results.get(i);
 
-		List<Attendance> attendance = AttendanceLocalServiceUtil.findByU_M(basicInformation.getId());
+		List<Attendance> attendance = AttendanceLocalServiceUtil.findByUserId(basicInformation.getId());
 
 		for (int j = 0; j < attendance.size(); j++) {
 		
 			Attendance att = attendance.get(j);
 			
-			ResultRow row = new ResultRow(basicInformation,basicInformation.getId(), i);
+			ResultRow row = new ResultRow(att,att.getId(), i);
 	
-			row.addText(basicInformation.getName()+basicInformation.getId());
+			row.addText(basicInformation.getName());
 			
 			row.addText(String.valueOf(att.getAttendanceMonthly()));
 			
@@ -60,17 +61,40 @@
 
 	}
 	
+	BasicInformation basicInformation = BasicInformationLocalServiceUtil.findByUserId(userId);
 %>
 
 <portlet:renderURL var="searchUserRenderURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
 	<portlet:param name="mvcPath" value="/html/attendance/view.jsp" />
 </portlet:renderURL>
 
+<portlet:renderURL var="addAttendancetURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
+	<portlet:param name="mvcPath" value="/html/attendance/edit_attendance.jsp" />
+	<c:if test='<%= basicInformation!=null %>'>
+		<portlet:param name="basicId" value="<%=String.valueOf(basicInformation.getId()) %>" />
+	</c:if>
+</portlet:renderURL>
 
 <aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">
 	<aui:input name="searchName" label="姓名" value="" />
 	<aui:input name="searchDep" label="部门" value="" />
 	<aui:button type="submit" value="搜索" />
+	<%
+	String addURL = renderResponse.getNamespace()+"onSub('"+addAttendancetURL.toString()+"');";
+	%>
+	
+	<aui:button value="添加考勤" onClick="<%= addURL %>" />
 	
 	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
 </aui:form>
+
+
+<aui:script>
+	function <portlet:namespace />onSub(url){
+		document.<portlet:namespace />fm.action = url;
+
+		submitForm(document.<portlet:namespace />fm);
+	}
+</aui:script>
+
+

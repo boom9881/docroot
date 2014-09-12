@@ -115,13 +115,25 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
-		_methodName19 = "findByU_M";
+		_methodName19 = "addAttendance";
 
-		_methodParameterTypes19 = new String[] { "long", "long" };
+		_methodParameterTypes19 = new String[] {
+				"long", "long", "long", "double", "double"
+			};
 
-		_methodName20 = "findByU_M";
+		_methodName20 = "updateAttendance";
 
-		_methodParameterTypes20 = new String[] { "long" };
+		_methodParameterTypes20 = new String[] {
+				"long", "long", "long", "double", "double"
+			};
+
+		_methodName21 = "findByU_M";
+
+		_methodParameterTypes21 = new String[] { "long", "long" };
+
+		_methodName22 = "findByUserId";
+
+		_methodParameterTypes22 = new String[] { "long" };
 	}
 
 	@Override
@@ -673,6 +685,83 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 	}
 
 	@Override
+	public void addAttendance(long userId, long basicId,
+		long attendanceMonthly, double actualAttendance, double shouldAttendance)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName19,
+				_methodParameterTypes19,
+				new Object[] {
+					userId,
+					
+				basicId,
+					
+				attendanceMonthly,
+					
+				actualAttendance,
+					
+				shouldAttendance
+				});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void updateAttendance(long userId, long attendanceId,
+		long attendanceMonthly, double actualAttendance, double shouldAttendance)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName20,
+				_methodParameterTypes20,
+				new Object[] {
+					userId,
+					
+				attendanceId,
+					
+				attendanceMonthly,
+					
+				actualAttendance,
+					
+				shouldAttendance
+				});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
 	public com.shuntian.portlet.intranet.model.Attendance findByU_M(
 		long userId, long attendanceMonthly)
 		throws com.liferay.portal.kernel.exception.SystemException,
@@ -680,8 +769,8 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
 					new Object[] { userId, attendanceMonthly });
 		}
 		catch (Throwable t) {
@@ -708,15 +797,15 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 	}
 
 	@Override
-	public java.util.List<com.shuntian.portlet.intranet.model.Attendance> findByU_M(
+	public java.util.List<com.shuntian.portlet.intranet.model.Attendance> findByUserId(
 		long userId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchAttendanceException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -782,4 +871,8 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
 }

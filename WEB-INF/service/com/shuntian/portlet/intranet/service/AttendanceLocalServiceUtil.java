@@ -274,6 +274,23 @@ public class AttendanceLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void addAttendance(long userId, long basicId,
+		long attendanceMonthly, double actualAttendance, double shouldAttendance)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.addAttendance(userId, basicId, attendanceMonthly,
+			actualAttendance, shouldAttendance);
+	}
+
+	public static void updateAttendance(long userId, long attendanceId,
+		long attendanceMonthly, double actualAttendance, double shouldAttendance)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.updateAttendance(userId, attendanceId, attendanceMonthly,
+			actualAttendance, shouldAttendance);
+	}
+
 	public static com.shuntian.portlet.intranet.model.Attendance findByU_M(
 		long userId, long attendanceMonthly)
 		throws com.liferay.portal.kernel.exception.SystemException,
@@ -281,11 +298,11 @@ public class AttendanceLocalServiceUtil {
 		return getService().findByU_M(userId, attendanceMonthly);
 	}
 
-	public static java.util.List<com.shuntian.portlet.intranet.model.Attendance> findByU_M(
+	public static java.util.List<com.shuntian.portlet.intranet.model.Attendance> findByUserId(
 		long userId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchAttendanceException {
-		return getService().findByU_M(userId);
+		return getService().findByUserId(userId);
 	}
 
 	public static void clearService() {

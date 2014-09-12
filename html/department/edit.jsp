@@ -13,9 +13,9 @@ if(Validator.isNotNull(id)){
 }
 %>
 
-<liferay-ui:error key="dhst-intranet-department-name-null" message="部门名称不能为空。" />
-<liferay-ui:error key="dhst-intranet-department-name-len" message="部门名称长度不能超过10个字。" />
-<liferay-ui:error key="dhst-intranet-department-name-rep" message="部门名称不能重复。" />
+<liferay-ui:error key="dhst-intranet-department-name-null" message="部门名称不能为空。" focusField="name" />
+<liferay-ui:error key="dhst-intranet-department-name-len" message="部门名称长度不能超过10个字。" focusField="name" />
+<liferay-ui:error key="dhst-intranet-department-name-rep" message="部门名称不能重复。" focusField="name" />
 
 <portlet:renderURL var="redirectURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
 	<portlet:param name="cmd" value="<%= cmd %>" />
@@ -44,7 +44,9 @@ if(Validator.isNotNull(id)){
 	<aui:input type="hidden" name="cmd" value="<%= cmd %>" />
 	<aui:input type="hidden" name="id" value="<%= id %>" />
 	
-	<aui:input bean="<%= department %>" name="name" label="部门名称" value="" />	
+	<aui:input bean="<%= department %>" name="name" label="部门名称" >
+		<aui:validator name="required" />
+	</aui:input>
 	<aui:select bean="<%= department %>" label="部门负责人" name="leader">
 		<%
 		List<BasicInformation> biResult = BasicInformationLocalServiceUtil.findByIsLeave(false);

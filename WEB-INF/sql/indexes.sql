@@ -3,6 +3,8 @@ create index IX_EAA6EB8B on Intranet_Attendance (userId, attendanceMonthly);
 
 create index IX_D2312E5E on Intranet_BasicInformation (userId);
 
+create index IX_6E5FE17 on Intranet_Department (name);
+
 create index IX_990B9DE8 on Intranet_Education (userId);
 
 create index IX_E80C2E4B on Intranet_ExtInformation (userId);

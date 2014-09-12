@@ -111,6 +111,74 @@ public class DepartmentUtil {
 	}
 
 	/**
+	* Returns the department where name = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchDepartmentException} if it could not be found.
+	*
+	* @param name the name
+	* @return the matching department
+	* @throws com.shuntian.portlet.intranet.NoSuchDepartmentException if a matching department could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Department findByName(
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchDepartmentException {
+		return getPersistence().findByName(name);
+	}
+
+	/**
+	* Returns the department where name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param name the name
+	* @return the matching department, or <code>null</code> if a matching department could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Department fetchByName(
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByName(name);
+	}
+
+	/**
+	* Returns the department where name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param name the name
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching department, or <code>null</code> if a matching department could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Department fetchByName(
+		java.lang.String name, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByName(name, retrieveFromCache);
+	}
+
+	/**
+	* Removes the department where name = &#63; from the database.
+	*
+	* @param name the name
+	* @return the department that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Department removeByName(
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchDepartmentException {
+		return getPersistence().removeByName(name);
+	}
+
+	/**
+	* Returns the number of departments where name = &#63;.
+	*
+	* @param name the name
+	* @return the number of matching departments
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByName(java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByName(name);
+	}
+
+	/**
 	* Caches the department in the entity cache if it is enabled.
 	*
 	* @param department the department

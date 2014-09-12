@@ -83,7 +83,11 @@ public class DepartmentModelImpl extends BaseModelImpl<Department>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.shuntian.portlet.intranet.model.Department"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.Department"),
+			true);
+	public static long NAME_COLUMN_BITMASK = 1L;
+	public static long CREATEDATE_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.Department"));
 
@@ -202,7 +206,17 @@ public class DepartmentModelImpl extends BaseModelImpl<Department>
 
 	@Override
 	public void setName(String name) {
+		_columnBitmask |= NAME_COLUMN_BITMASK;
+
+		if (_originalName == null) {
+			_originalName = _name;
+		}
+
 		_name = name;
+	}
+
+	public String getOriginalName() {
+		return GetterUtil.getString(_originalName);
 	}
 
 	@Override
@@ -243,6 +257,8 @@ public class DepartmentModelImpl extends BaseModelImpl<Department>
 
 	@Override
 	public void setCreateDate(Date createDate) {
+		_columnBitmask = -1L;
+
 		_createDate = createDate;
 	}
 
@@ -275,6 +291,10 @@ public class DepartmentModelImpl extends BaseModelImpl<Department>
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -361,6 +381,11 @@ public class DepartmentModelImpl extends BaseModelImpl<Department>
 
 	@Override
 	public void resetOriginalValues() {
+		DepartmentModelImpl departmentModelImpl = this;
+
+		departmentModelImpl._originalName = departmentModelImpl._name;
+
+		departmentModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -475,6 +500,7 @@ public class DepartmentModelImpl extends BaseModelImpl<Department>
 		};
 	private long _id;
 	private String _name;
+	private String _originalName;
 	private long _leader;
 	private long _createUserId;
 	private String _createUserUuid;
@@ -482,5 +508,6 @@ public class DepartmentModelImpl extends BaseModelImpl<Department>
 	private long _modifiedUserId;
 	private String _modifiedUserUuid;
 	private Date _modifiedDate;
+	private long _columnBitmask;
 	private Department _escapedModel;
 }

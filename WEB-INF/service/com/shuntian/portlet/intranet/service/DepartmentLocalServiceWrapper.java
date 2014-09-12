@@ -313,6 +313,14 @@ public class DepartmentLocalServiceWrapper implements DepartmentLocalService,
 		return _departmentLocalService.findByName(name, start, end);
 	}
 
+	@Override
+	public com.shuntian.portlet.intranet.model.Department findByName(
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchDepartmentException {
+		return _departmentLocalService.findByName(name);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

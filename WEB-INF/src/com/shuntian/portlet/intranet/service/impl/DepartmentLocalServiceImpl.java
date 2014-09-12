@@ -80,4 +80,9 @@ public class DepartmentLocalServiceImpl extends DepartmentLocalServiceBaseImpl {
 			throws SystemException {
 		return departmentFinder.findByName(name, start, end);
 	}
+	
+	public Department findByName(String name) throws SystemException,
+		NoSuchDepartmentException {
+		return departmentPersistence.findByName(name);
+	}
 }

@@ -208,6 +208,12 @@
 		<order>
 			<order-column name="createDate" order-by="desc" />
 		</order>
+		
+		<!-- Finder methods -->
+
+		<finder name="Name" return-type="Department">
+			<finder-column name="name" />
+		</finder>
 	</entity>
 	
 	<entity name="Attendance" local-service="true" remote-service="false">

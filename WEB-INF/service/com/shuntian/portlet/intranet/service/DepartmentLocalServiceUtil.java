@@ -298,6 +298,13 @@ public class DepartmentLocalServiceUtil {
 		return getService().findByName(name, start, end);
 	}
 
+	public static com.shuntian.portlet.intranet.model.Department findByName(
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchDepartmentException {
+		return getService().findByName(name);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

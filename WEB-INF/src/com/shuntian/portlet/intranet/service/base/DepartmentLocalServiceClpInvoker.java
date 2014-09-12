@@ -133,6 +133,10 @@ public class DepartmentLocalServiceClpInvoker {
 		_methodName75 = "findByName";
 
 		_methodParameterTypes75 = new String[] { "java.lang.String", "int", "int" };
+
+		_methodName76 = "findByName";
+
+		_methodParameterTypes76 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -267,6 +271,11 @@ public class DepartmentLocalServiceClpInvoker {
 				((Integer)arguments[2]).intValue());
 		}
 
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+			return DepartmentLocalServiceUtil.findByName((java.lang.String)arguments[0]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -314,4 +323,6 @@ public class DepartmentLocalServiceClpInvoker {
 	private String[] _methodParameterTypes74;
 	private String _methodName75;
 	private String[] _methodParameterTypes75;
+	private String _methodName76;
+	private String[] _methodParameterTypes76;
 }

@@ -262,4 +262,9 @@ public interface DepartmentLocalService extends BaseLocalService,
 	public java.util.List<com.shuntian.portlet.intranet.model.Department> findByName(
 		java.lang.String name, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.shuntian.portlet.intranet.model.Department findByName(
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchDepartmentException;
 }

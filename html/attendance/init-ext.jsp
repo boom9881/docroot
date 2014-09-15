@@ -1,5 +1,7 @@
 <%@ include file="/html/init.jsp" %>
 
+<%@ page import="com.shuntian.portlet.intranet.util.OverTimeSum"%>
+
 <%@ page import="com.shuntian.portlet.intranet.model.Attendance"%>
 <%@ page import="com.shuntian.portlet.intranet.service.AttendanceLocalServiceUtil"%>
 

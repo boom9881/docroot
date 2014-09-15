@@ -70,9 +70,7 @@
 
 <portlet:renderURL var="addAttendancetURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
 	<portlet:param name="mvcPath" value="/html/attendance/edit_attendance.jsp" />
-	<c:if test='<%= basicInformation!=null %>'>
-		<portlet:param name="basicId" value="<%=String.valueOf(basicInformation.getId()) %>" />
-	</c:if>
+	<portlet:param name="<%=Constants.CMD %>" value="<%=Constants.ADD %>" />
 </portlet:renderURL>
 
 <aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">

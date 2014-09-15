@@ -105,4 +105,6 @@ public class OverTimeSum {
 	public static double getRealWages(long userId,long attendanceId) throws PortalException, SystemException {
 		return getTaxableIncome(userId, attendanceId)-getTaxes(userId, attendanceId);
 	}
+	
+	public static final double SHOULDATTENDANCE = 21.75;
 }

@@ -3,7 +3,9 @@
 <%
 	ResultRow row = (ResultRow) request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-	BasicInformation basicInformation = (BasicInformation) row.getObject();
+	Overtime overtime = (Overtime) row.getObject();
+
+	BasicInformation basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(overtime.getUserId());
 %>
 
 <liferay-ui:icon-menu>
@@ -11,7 +13,11 @@
 
 		<portlet:param name="mvcPath" value="/html/overtime/edit_overtime.jsp" />
 
-		<portlet:param name="id" value="<%=String.valueOf(basicInformation.getId()) %>" />
+		<portlet:param name="basicId" value="<%=String.valueOf(basicInformation.getId()) %>" />
+		
+		<portlet:param name="overtimeId" value="<%=String.valueOf(overtime.getId()) %>" />
+		
+		<portlet:param name="<%=Constants.CMD %>" value="<%=Constants.EDIT %>" />
 
 	</portlet:renderURL>
 

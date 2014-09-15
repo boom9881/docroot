@@ -274,6 +274,25 @@ public class OvertimeLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void addOvertime(long userId, long basicId,
+		long overtimeMonthly, double usuallyOvertime, double restOvertime,
+		double legalOvertime)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.addOvertime(userId, basicId, overtimeMonthly, usuallyOvertime,
+			restOvertime, legalOvertime);
+	}
+
+	public static void updateOvertime(long userId, long overtimeId,
+		long overtimeMonthly, double usuallyOvertime, double restOvertime,
+		double legalOvertime)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.updateOvertime(userId, overtimeId, overtimeMonthly,
+			usuallyOvertime, restOvertime, legalOvertime);
+	}
+
 	public static com.shuntian.portlet.intranet.model.Overtime findByU_M(
 		long userId, long overtimeMonthly)
 		throws com.liferay.portal.kernel.exception.SystemException,
@@ -282,11 +301,11 @@ public class OvertimeLocalServiceUtil {
 		return getService().findByU_M(userId, overtimeMonthly);
 	}
 
-	public static java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByU_M(
+	public static java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByUserId(
 		long userId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchAttendanceException {
-		return getService().findByU_M(userId);
+		return getService().findByUserId(userId);
 	}
 
 	public static void clearService() {

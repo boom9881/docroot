@@ -57,8 +57,6 @@ public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
 		attendance.setShouldAttendance(shouldAttendance);
 		attendance.setCreateUserId(userId);
 		attendance.setCreateDate(new Date());
-		attendance.setModifiedUserId(userId);
-		attendance.setModifiedDate(new Date());
 		attendanceLocalService.updateAttendance(attendance);
 	}
 
@@ -71,8 +69,6 @@ public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
 		attendance.setActualAttendance(actualAttendance);
 		attendance.setAttendanceMonthly(attendanceMonthly);
 		attendance.setShouldAttendance(shouldAttendance);
-		attendance.setCreateUserId(userId);
-		attendance.setCreateDate(new Date());
 		attendance.setModifiedUserId(userId);
 		attendance.setModifiedDate(new Date());
 		attendanceLocalService.updateAttendance(attendance);

@@ -283,6 +283,24 @@ public class OvertimeLocalServiceWrapper implements OvertimeLocalService,
 	}
 
 	@Override
+	public void addOvertime(long userId, long basicId, long overtimeMonthly,
+		double usuallyOvertime, double restOvertime, double legalOvertime)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_overtimeLocalService.addOvertime(userId, basicId, overtimeMonthly,
+			usuallyOvertime, restOvertime, legalOvertime);
+	}
+
+	@Override
+	public void updateOvertime(long userId, long overtimeId,
+		long overtimeMonthly, double usuallyOvertime, double restOvertime,
+		double legalOvertime)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_overtimeLocalService.updateOvertime(userId, overtimeId,
+			overtimeMonthly, usuallyOvertime, restOvertime, legalOvertime);
+	}
+
+	@Override
 	public com.shuntian.portlet.intranet.model.Overtime findByU_M(long userId,
 		long overtimeMonthly)
 		throws com.liferay.portal.kernel.exception.SystemException,
@@ -292,11 +310,11 @@ public class OvertimeLocalServiceWrapper implements OvertimeLocalService,
 	}
 
 	@Override
-	public java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByU_M(
+	public java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByUserId(
 		long userId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchAttendanceException {
-		return _overtimeLocalService.findByU_M(userId);
+		return _overtimeLocalService.findByUserId(userId);
 	}
 
 	/**

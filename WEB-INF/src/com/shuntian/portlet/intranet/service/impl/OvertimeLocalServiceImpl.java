@@ -14,12 +14,13 @@
 
 package com.shuntian.portlet.intranet.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.shuntian.portlet.intranet.NoSuchAttendanceException;
 import com.shuntian.portlet.intranet.NoSuchOvertimeException;
-import com.shuntian.portlet.intranet.model.Attendance;
 import com.shuntian.portlet.intranet.model.Overtime;
 import com.shuntian.portlet.intranet.service.base.OvertimeLocalServiceBaseImpl;
 
@@ -38,10 +39,42 @@ import com.shuntian.portlet.intranet.service.base.OvertimeLocalServiceBaseImpl;
  * @see com.shuntian.portlet.intranet.service.OvertimeLocalServiceUtil
  */
 public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
+	public void addOvertime(long userId, long basicId,
+			long overtimeMonthly, double usuallyOvertime,
+			double restOvertime, double legalOvertime) throws SystemException {
+
+		long id = counterLocalService.increment();
+
+		Overtime overtime = overtimeLocalService.createOvertime(id);
+		
+		overtime.setUserId(basicId);
+		overtime.setOvertimeMonthly(overtimeMonthly);
+		overtime.setUsuallyOvertime(usuallyOvertime);
+		overtime.setRestOvertime(restOvertime);
+		overtime.setLegalOvertime(legalOvertime);
+		overtime.setCreateUserId(userId);
+		overtime.setCreateDate(new Date());
+		overtimeLocalService.updateOvertime(overtime);
+	}
+
+	public void updateOvertime(long userId, long overtimeId,
+			long overtimeMonthly, double usuallyOvertime,
+			double restOvertime, double legalOvertime) throws SystemException, PortalException {
+		Overtime overtime = overtimeLocalService.getOvertime(overtimeId);
+
+		overtime.setOvertimeMonthly(overtimeMonthly);
+		overtime.setUsuallyOvertime(usuallyOvertime);
+		overtime.setRestOvertime(restOvertime);
+		overtime.setLegalOvertime(legalOvertime);
+		overtime.setModifiedUserId(userId);
+		overtime.setModifiedDate(new Date());
+		overtimeLocalService.updateOvertime(overtime);
+	}
+	
 	public Overtime findByU_M(long userId,long overtimeMonthly) throws SystemException, NoSuchAttendanceException, NoSuchOvertimeException{
 		return overtimePersistence.findByU_M(userId, overtimeMonthly);
 	}
-	public List<Overtime> findByU_M(long userId) throws SystemException, NoSuchAttendanceException{
+	public List<Overtime> findByUserId(long userId) throws SystemException, NoSuchAttendanceException{
 		return overtimePersistence.findByUserId(userId);
 	}
 }

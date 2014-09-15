@@ -245,13 +245,23 @@ public interface OvertimeLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	public void addOvertime(long userId, long basicId, long overtimeMonthly,
+		double usuallyOvertime, double restOvertime, double legalOvertime)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public void updateOvertime(long userId, long overtimeId,
+		long overtimeMonthly, double usuallyOvertime, double restOvertime,
+		double legalOvertime)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public com.shuntian.portlet.intranet.model.Overtime findByU_M(long userId,
 		long overtimeMonthly)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchAttendanceException,
 			com.shuntian.portlet.intranet.NoSuchOvertimeException;
 
-	public java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByU_M(
+	public java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByUserId(
 		long userId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchAttendanceException;

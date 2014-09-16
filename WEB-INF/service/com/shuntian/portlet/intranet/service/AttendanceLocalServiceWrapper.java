@@ -286,20 +286,22 @@ public class AttendanceLocalServiceWrapper implements AttendanceLocalService,
 	}
 
 	@Override
-	public void addAttendance(long userId, long basicId,
+	public void addAttendance(long userId, long basicId, long attendanceYear,
 		long attendanceMonthly, double actualAttendance, double shouldAttendance)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_attendanceLocalService.addAttendance(userId, basicId,
+		_attendanceLocalService.addAttendance(userId, basicId, attendanceYear,
 			attendanceMonthly, actualAttendance, shouldAttendance);
 	}
 
 	@Override
 	public void updateAttendance(long userId, long attendanceId,
-		long attendanceMonthly, double actualAttendance, double shouldAttendance)
+		long attendanceYear, long attendanceMonthly, double actualAttendance,
+		double shouldAttendance)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_attendanceLocalService.updateAttendance(userId, attendanceId,
-			attendanceMonthly, actualAttendance, shouldAttendance);
+			attendanceYear, attendanceMonthly, actualAttendance,
+			shouldAttendance);
 	}
 
 	@Override

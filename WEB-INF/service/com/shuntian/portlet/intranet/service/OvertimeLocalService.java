@@ -245,11 +245,12 @@ public interface OvertimeLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public void addOvertime(long userId, long basicId, long overtimeMonthly,
-		double usuallyOvertime, double restOvertime, double legalOvertime)
+	public void addOvertime(long userId, long basicId, long overtimeYear,
+		long overtimeMonthly, double usuallyOvertime, double restOvertime,
+		double legalOvertime)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void updateOvertime(long userId, long overtimeId,
+	public void updateOvertime(long userId, long overtimeId, long overtimeYear,
 		long overtimeMonthly, double usuallyOvertime, double restOvertime,
 		double legalOvertime)
 		throws com.liferay.portal.kernel.exception.PortalException,

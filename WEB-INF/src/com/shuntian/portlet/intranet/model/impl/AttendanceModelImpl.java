@@ -65,13 +65,14 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 			{ "userId", Types.BIGINT },
 			{ "shouldAttendance", Types.DOUBLE },
 			{ "actualAttendance", Types.DOUBLE },
+			{ "attendanceYear", Types.BIGINT },
 			{ "attendanceMonthly", Types.BIGINT },
 			{ "createUserId", Types.BIGINT },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedUserId", Types.BIGINT },
 			{ "modifiedDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_Attendance (id_ LONG not null primary key,userId LONG,shouldAttendance DOUBLE,actualAttendance DOUBLE,attendanceMonthly LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_Attendance (id_ LONG not null primary key,userId LONG,shouldAttendance DOUBLE,actualAttendance DOUBLE,attendanceYear LONG,attendanceMonthly LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_Attendance";
 	public static final String ORDER_BY_JPQL = " ORDER BY attendance.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY Intranet_Attendance.createDate DESC";
@@ -134,6 +135,7 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 		attributes.put("userId", getUserId());
 		attributes.put("shouldAttendance", getShouldAttendance());
 		attributes.put("actualAttendance", getActualAttendance());
+		attributes.put("attendanceYear", getAttendanceYear());
 		attributes.put("attendanceMonthly", getAttendanceMonthly());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
@@ -167,6 +169,12 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 
 		if (actualAttendance != null) {
 			setActualAttendance(actualAttendance);
+		}
+
+		Long attendanceYear = (Long)attributes.get("attendanceYear");
+
+		if (attendanceYear != null) {
+			setAttendanceYear(attendanceYear);
 		}
 
 		Long attendanceMonthly = (Long)attributes.get("attendanceMonthly");
@@ -260,6 +268,16 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 	@Override
 	public void setActualAttendance(double actualAttendance) {
 		_actualAttendance = actualAttendance;
+	}
+
+	@Override
+	public long getAttendanceYear() {
+		return _attendanceYear;
+	}
+
+	@Override
+	public void setAttendanceYear(long attendanceYear) {
+		_attendanceYear = attendanceYear;
 	}
 
 	@Override
@@ -383,6 +401,7 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 		attendanceImpl.setUserId(getUserId());
 		attendanceImpl.setShouldAttendance(getShouldAttendance());
 		attendanceImpl.setActualAttendance(getActualAttendance());
+		attendanceImpl.setAttendanceYear(getAttendanceYear());
 		attendanceImpl.setAttendanceMonthly(getAttendanceMonthly());
 		attendanceImpl.setCreateUserId(getCreateUserId());
 		attendanceImpl.setCreateDate(getCreateDate());
@@ -463,6 +482,8 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 
 		attendanceCacheModel.actualAttendance = getActualAttendance();
 
+		attendanceCacheModel.attendanceYear = getAttendanceYear();
+
 		attendanceCacheModel.attendanceMonthly = getAttendanceMonthly();
 
 		attendanceCacheModel.createUserId = getCreateUserId();
@@ -492,7 +513,7 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -502,6 +523,8 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 		sb.append(getShouldAttendance());
 		sb.append(", actualAttendance=");
 		sb.append(getActualAttendance());
+		sb.append(", attendanceYear=");
+		sb.append(getAttendanceYear());
 		sb.append(", attendanceMonthly=");
 		sb.append(getAttendanceMonthly());
 		sb.append(", createUserId=");
@@ -519,7 +542,7 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.Attendance");
@@ -540,6 +563,10 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 		sb.append(
 			"<column><column-name>actualAttendance</column-name><column-value><![CDATA[");
 		sb.append(getActualAttendance());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>attendanceYear</column-name><column-value><![CDATA[");
+		sb.append(getAttendanceYear());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>attendanceMonthly</column-name><column-value><![CDATA[");
@@ -578,6 +605,7 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 	private boolean _setOriginalUserId;
 	private double _shouldAttendance;
 	private double _actualAttendance;
+	private long _attendanceYear;
 	private long _attendanceMonthly;
 	private long _originalAttendanceMonthly;
 	private boolean _setOriginalAttendanceMonthly;

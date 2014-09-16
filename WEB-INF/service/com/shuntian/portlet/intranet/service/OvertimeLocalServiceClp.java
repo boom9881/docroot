@@ -117,13 +117,13 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 		_methodName19 = "addOvertime";
 
 		_methodParameterTypes19 = new String[] {
-				"long", "long", "long", "double", "double", "double"
+				"long", "long", "long", "long", "double", "double", "double"
 			};
 
 		_methodName20 = "updateOvertime";
 
 		_methodParameterTypes20 = new String[] {
-				"long", "long", "long", "double", "double", "double"
+				"long", "long", "long", "long", "double", "double", "double"
 			};
 
 		_methodName21 = "findByU_M";
@@ -682,8 +682,9 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 	}
 
 	@Override
-	public void addOvertime(long userId, long basicId, long overtimeMonthly,
-		double usuallyOvertime, double restOvertime, double legalOvertime)
+	public void addOvertime(long userId, long basicId, long overtimeYear,
+		long overtimeMonthly, double usuallyOvertime, double restOvertime,
+		double legalOvertime)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName19,
@@ -692,6 +693,8 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 					userId,
 					
 				basicId,
+					
+				overtimeYear,
 					
 				overtimeMonthly,
 					
@@ -720,7 +723,7 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 	}
 
 	@Override
-	public void updateOvertime(long userId, long overtimeId,
+	public void updateOvertime(long userId, long overtimeId, long overtimeYear,
 		long overtimeMonthly, double usuallyOvertime, double restOvertime,
 		double legalOvertime)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -732,6 +735,8 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 					userId,
 					
 				overtimeId,
+					
+				overtimeYear,
 					
 				overtimeMonthly,
 					

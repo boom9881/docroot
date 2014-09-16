@@ -43,7 +43,7 @@ import com.shuntian.portlet.intranet.service.base.AttendanceLocalServiceBaseImpl
  * @see com.shuntian.portlet.intranet.service.AttendanceLocalServiceUtil
  */
 public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
-	public void addAttendance(long userId, long basicId,
+	public void addAttendance(long userId, long basicId, long attendanceYear,
 			long attendanceMonthly, double actualAttendance,
 			double shouldAttendance) throws SystemException {
 
@@ -53,6 +53,7 @@ public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
 
 		attendance.setUserId(basicId);
 		attendance.setActualAttendance(actualAttendance);
+		attendance.setAttendanceYear(attendanceYear);
 		attendance.setAttendanceMonthly(attendanceMonthly);
 		attendance.setShouldAttendance(shouldAttendance);
 		attendance.setCreateUserId(userId);
@@ -61,12 +62,14 @@ public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
 	}
 
 	public void updateAttendance(long userId, long attendanceId,
-			long attendanceMonthly, double actualAttendance,
-			double shouldAttendance) throws SystemException, PortalException {
+			long attendanceYear, long attendanceMonthly,
+			double actualAttendance, double shouldAttendance)
+			throws SystemException, PortalException {
 		Attendance attendance = attendanceLocalService
 				.getAttendance(attendanceId);
 
 		attendance.setActualAttendance(actualAttendance);
+		attendance.setAttendanceYear(attendanceYear);
 		attendance.setAttendanceMonthly(attendanceMonthly);
 		attendance.setShouldAttendance(shouldAttendance);
 		attendance.setModifiedUserId(userId);

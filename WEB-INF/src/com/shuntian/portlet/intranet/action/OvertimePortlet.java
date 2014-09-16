@@ -26,18 +26,21 @@ public class OvertimePortlet extends MVCPortlet {
 
 		String overtimeMonthly = ParamUtil.getString(actionRequest,
 				"overtimeMonthly");
+		String overtimeYear = ParamUtil
+				.getString(actionRequest, "overtimeYear");
 		String usuallyOvertime = ParamUtil.getString(actionRequest,
 				"usuallyOvertime");
-		String restOvertime = ParamUtil.getString(actionRequest,
-				"restOvertime");
+		String restOvertime = ParamUtil
+				.getString(actionRequest, "restOvertime");
 		String legalOvertime = ParamUtil.getString(actionRequest,
 				"legalOvertime");
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		if (cmd.equals(Constants.ADD)) {
-			
+
 			OvertimeLocalServiceUtil.addOvertime(userId, basicId,
+					Long.parseLong(overtimeYear),
 					Long.parseLong(overtimeMonthly),
 					Double.parseDouble(usuallyOvertime),
 					Double.parseDouble(restOvertime),
@@ -45,6 +48,7 @@ public class OvertimePortlet extends MVCPortlet {
 
 		} else {
 			OvertimeLocalServiceUtil.updateOvertime(userId, overtimeId,
+					Long.parseLong(overtimeYear),
 					Long.parseLong(overtimeMonthly),
 					Double.parseDouble(usuallyOvertime),
 					Double.parseDouble(restOvertime),

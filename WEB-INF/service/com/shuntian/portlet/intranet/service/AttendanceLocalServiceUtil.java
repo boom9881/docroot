@@ -275,20 +275,22 @@ public class AttendanceLocalServiceUtil {
 	}
 
 	public static void addAttendance(long userId, long basicId,
-		long attendanceMonthly, double actualAttendance, double shouldAttendance)
+		long attendanceYear, long attendanceMonthly, double actualAttendance,
+		double shouldAttendance)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.addAttendance(userId, basicId, attendanceMonthly,
+			.addAttendance(userId, basicId, attendanceYear, attendanceMonthly,
 			actualAttendance, shouldAttendance);
 	}
 
 	public static void updateAttendance(long userId, long attendanceId,
-		long attendanceMonthly, double actualAttendance, double shouldAttendance)
+		long attendanceYear, long attendanceMonthly, double actualAttendance,
+		double shouldAttendance)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.updateAttendance(userId, attendanceId, attendanceMonthly,
-			actualAttendance, shouldAttendance);
+			.updateAttendance(userId, attendanceId, attendanceYear,
+			attendanceMonthly, actualAttendance, shouldAttendance);
 	}
 
 	public static com.shuntian.portlet.intranet.model.Attendance findByU_M(

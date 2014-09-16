@@ -79,6 +79,7 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 		attributes.put("userId", getUserId());
 		attributes.put("wageName", getWageName());
 		attributes.put("distributionMonth", getDistributionMonth());
+		attributes.put("distributionYear", getDistributionYear());
 		attributes.put("entryDate", getEntryDate());
 		attributes.put("departureDate", getDepartureDate());
 		attributes.put("userWage", getUserWage());
@@ -131,6 +132,12 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 
 		if (distributionMonth != null) {
 			setDistributionMonth(distributionMonth);
+		}
+
+		Long distributionYear = (Long)attributes.get("distributionYear");
+
+		if (distributionYear != null) {
+			setDistributionYear(distributionYear);
 		}
 
 		Date entryDate = (Date)attributes.get("entryDate");
@@ -370,6 +377,30 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 						long.class);
 
 				method.invoke(_wagesRemoteModel, distributionMonth);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getDistributionYear() {
+		return _distributionYear;
+	}
+
+	@Override
+	public void setDistributionYear(long distributionYear) {
+		_distributionYear = distributionYear;
+
+		if (_wagesRemoteModel != null) {
+			try {
+				Class<?> clazz = _wagesRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDistributionYear",
+						long.class);
+
+				method.invoke(_wagesRemoteModel, distributionYear);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -1007,6 +1038,7 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 		clone.setUserId(getUserId());
 		clone.setWageName(getWageName());
 		clone.setDistributionMonth(getDistributionMonth());
+		clone.setDistributionYear(getDistributionYear());
 		clone.setEntryDate(getEntryDate());
 		clone.setDepartureDate(getDepartureDate());
 		clone.setUserWage(getUserWage());
@@ -1078,7 +1110,7 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -1088,6 +1120,8 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 		sb.append(getWageName());
 		sb.append(", distributionMonth=");
 		sb.append(getDistributionMonth());
+		sb.append(", distributionYear=");
+		sb.append(getDistributionYear());
 		sb.append(", entryDate=");
 		sb.append(getEntryDate());
 		sb.append(", departureDate=");
@@ -1141,7 +1175,7 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(85);
+		StringBundler sb = new StringBundler(88);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.Wages");
@@ -1162,6 +1196,10 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 		sb.append(
 			"<column><column-name>distributionMonth</column-name><column-value><![CDATA[");
 		sb.append(getDistributionMonth());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>distributionYear</column-name><column-value><![CDATA[");
+		sb.append(getDistributionYear());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>entryDate</column-name><column-value><![CDATA[");
@@ -1266,6 +1304,7 @@ public class WagesClp extends BaseModelImpl<Wages> implements Wages {
 	private String _userUuid;
 	private String _wageName;
 	private long _distributionMonth;
+	private long _distributionYear;
 	private Date _entryDate;
 	private Date _departureDate;
 	private double _userWage;

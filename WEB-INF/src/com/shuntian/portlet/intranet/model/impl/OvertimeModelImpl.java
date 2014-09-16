@@ -66,13 +66,14 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 			{ "usuallyOvertime", Types.DOUBLE },
 			{ "restOvertime", Types.DOUBLE },
 			{ "legalOvertime", Types.DOUBLE },
+			{ "overtimeYear", Types.BIGINT },
 			{ "overtimeMonthly", Types.BIGINT },
 			{ "createUserId", Types.BIGINT },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedUserId", Types.BIGINT },
 			{ "modifiedDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_Overtime (id_ LONG not null primary key,userId LONG,usuallyOvertime DOUBLE,restOvertime DOUBLE,legalOvertime DOUBLE,overtimeMonthly LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_Overtime (id_ LONG not null primary key,userId LONG,usuallyOvertime DOUBLE,restOvertime DOUBLE,legalOvertime DOUBLE,overtimeYear LONG,overtimeMonthly LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_Overtime";
 	public static final String ORDER_BY_JPQL = " ORDER BY overtime.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY Intranet_Overtime.createDate DESC";
@@ -136,6 +137,7 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 		attributes.put("usuallyOvertime", getUsuallyOvertime());
 		attributes.put("restOvertime", getRestOvertime());
 		attributes.put("legalOvertime", getLegalOvertime());
+		attributes.put("overtimeYear", getOvertimeYear());
 		attributes.put("overtimeMonthly", getOvertimeMonthly());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
@@ -175,6 +177,12 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 
 		if (legalOvertime != null) {
 			setLegalOvertime(legalOvertime);
+		}
+
+		Long overtimeYear = (Long)attributes.get("overtimeYear");
+
+		if (overtimeYear != null) {
+			setOvertimeYear(overtimeYear);
 		}
 
 		Long overtimeMonthly = (Long)attributes.get("overtimeMonthly");
@@ -278,6 +286,16 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 	@Override
 	public void setLegalOvertime(double legalOvertime) {
 		_legalOvertime = legalOvertime;
+	}
+
+	@Override
+	public long getOvertimeYear() {
+		return _overtimeYear;
+	}
+
+	@Override
+	public void setOvertimeYear(long overtimeYear) {
+		_overtimeYear = overtimeYear;
 	}
 
 	@Override
@@ -402,6 +420,7 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 		overtimeImpl.setUsuallyOvertime(getUsuallyOvertime());
 		overtimeImpl.setRestOvertime(getRestOvertime());
 		overtimeImpl.setLegalOvertime(getLegalOvertime());
+		overtimeImpl.setOvertimeYear(getOvertimeYear());
 		overtimeImpl.setOvertimeMonthly(getOvertimeMonthly());
 		overtimeImpl.setCreateUserId(getCreateUserId());
 		overtimeImpl.setCreateDate(getCreateDate());
@@ -484,6 +503,8 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 
 		overtimeCacheModel.legalOvertime = getLegalOvertime();
 
+		overtimeCacheModel.overtimeYear = getOvertimeYear();
+
 		overtimeCacheModel.overtimeMonthly = getOvertimeMonthly();
 
 		overtimeCacheModel.createUserId = getCreateUserId();
@@ -513,7 +534,7 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -525,6 +546,8 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 		sb.append(getRestOvertime());
 		sb.append(", legalOvertime=");
 		sb.append(getLegalOvertime());
+		sb.append(", overtimeYear=");
+		sb.append(getOvertimeYear());
 		sb.append(", overtimeMonthly=");
 		sb.append(getOvertimeMonthly());
 		sb.append(", createUserId=");
@@ -542,7 +565,7 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.Overtime");
@@ -567,6 +590,10 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 		sb.append(
 			"<column><column-name>legalOvertime</column-name><column-value><![CDATA[");
 		sb.append(getLegalOvertime());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>overtimeYear</column-name><column-value><![CDATA[");
+		sb.append(getOvertimeYear());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>overtimeMonthly</column-name><column-value><![CDATA[");
@@ -606,6 +633,7 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 	private double _usuallyOvertime;
 	private double _restOvertime;
 	private double _legalOvertime;
+	private long _overtimeYear;
 	private long _overtimeMonthly;
 	private long _originalOvertimeMonthly;
 	private boolean _setOriginalOvertimeMonthly;

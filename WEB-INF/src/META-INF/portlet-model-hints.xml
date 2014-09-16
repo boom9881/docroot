@@ -6,6 +6,7 @@
 		<field name="userId" type="long" />
 		<field name="shouldAttendance" type="double" />
 		<field name="actualAttendance" type="double" />
+		<field name="attendanceYear" type="long" />
 		<field name="attendanceMonthly" type="long" />
 		<field name="createUserId" type="long" />
 		<field name="createDate" type="Date" />
@@ -94,6 +95,7 @@
 		<field name="usuallyOvertime" type="double" />
 		<field name="restOvertime" type="double" />
 		<field name="legalOvertime" type="double" />
+		<field name="overtimeYear" type="long" />
 		<field name="overtimeMonthly" type="long" />
 		<field name="createUserId" type="long" />
 		<field name="createDate" type="Date" />
@@ -105,6 +107,7 @@
 		<field name="userId" type="long" />
 		<field name="wageName" type="String" />
 		<field name="distributionMonth" type="long" />
+		<field name="distributionYear" type="long" />
 		<field name="entryDate" type="Date" />
 		<field name="departureDate" type="Date" />
 		<field name="userWage" type="double" />

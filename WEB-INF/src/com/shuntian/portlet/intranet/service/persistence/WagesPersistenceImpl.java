@@ -1125,6 +1125,7 @@ public class WagesPersistenceImpl extends BasePersistenceImpl<Wages>
 		wagesImpl.setUserId(wages.getUserId());
 		wagesImpl.setWageName(wages.getWageName());
 		wagesImpl.setDistributionMonth(wages.getDistributionMonth());
+		wagesImpl.setDistributionYear(wages.getDistributionYear());
 		wagesImpl.setEntryDate(wages.getEntryDate());
 		wagesImpl.setDepartureDate(wages.getDepartureDate());
 		wagesImpl.setUserWage(wages.getUserWage());

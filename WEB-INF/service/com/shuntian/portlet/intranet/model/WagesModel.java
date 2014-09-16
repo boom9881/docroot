@@ -133,6 +133,20 @@ public interface WagesModel extends BaseModel<Wages> {
 	public void setDistributionMonth(long distributionMonth);
 
 	/**
+	 * Returns the distribution year of this wages.
+	 *
+	 * @return the distribution year of this wages
+	 */
+	public long getDistributionYear();
+
+	/**
+	 * Sets the distribution year of this wages.
+	 *
+	 * @param distributionYear the distribution year of this wages
+	 */
+	public void setDistributionYear(long distributionYear);
+
+	/**
 	 * Returns the entry date of this wages.
 	 *
 	 * @return the entry date of this wages

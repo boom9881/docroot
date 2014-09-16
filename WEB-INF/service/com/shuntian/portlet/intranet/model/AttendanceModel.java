@@ -131,6 +131,20 @@ public interface AttendanceModel extends BaseModel<Attendance> {
 	public void setActualAttendance(double actualAttendance);
 
 	/**
+	 * Returns the attendance year of this attendance.
+	 *
+	 * @return the attendance year of this attendance
+	 */
+	public long getAttendanceYear();
+
+	/**
+	 * Sets the attendance year of this attendance.
+	 *
+	 * @param attendanceYear the attendance year of this attendance
+	 */
+	public void setAttendanceYear(long attendanceYear);
+
+	/**
 	 * Returns the attendance monthly of this attendance.
 	 *
 	 * @return the attendance monthly of this attendance

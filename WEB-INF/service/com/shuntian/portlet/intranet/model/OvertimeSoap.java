@@ -35,6 +35,7 @@ public class OvertimeSoap implements Serializable {
 		soapModel.setUsuallyOvertime(model.getUsuallyOvertime());
 		soapModel.setRestOvertime(model.getRestOvertime());
 		soapModel.setLegalOvertime(model.getLegalOvertime());
+		soapModel.setOvertimeYear(model.getOvertimeYear());
 		soapModel.setOvertimeMonthly(model.getOvertimeMonthly());
 		soapModel.setCreateUserId(model.getCreateUserId());
 		soapModel.setCreateDate(model.getCreateDate());
@@ -132,6 +133,14 @@ public class OvertimeSoap implements Serializable {
 		_legalOvertime = legalOvertime;
 	}
 
+	public long getOvertimeYear() {
+		return _overtimeYear;
+	}
+
+	public void setOvertimeYear(long overtimeYear) {
+		_overtimeYear = overtimeYear;
+	}
+
 	public long getOvertimeMonthly() {
 		return _overtimeMonthly;
 	}
@@ -177,6 +186,7 @@ public class OvertimeSoap implements Serializable {
 	private double _usuallyOvertime;
 	private double _restOvertime;
 	private double _legalOvertime;
+	private long _overtimeYear;
 	private long _overtimeMonthly;
 	private long _createUserId;
 	private Date _createDate;

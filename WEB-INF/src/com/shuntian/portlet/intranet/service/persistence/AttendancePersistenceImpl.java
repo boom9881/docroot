@@ -1136,6 +1136,7 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 		attendanceImpl.setUserId(attendance.getUserId());
 		attendanceImpl.setShouldAttendance(attendance.getShouldAttendance());
 		attendanceImpl.setActualAttendance(attendance.getActualAttendance());
+		attendanceImpl.setAttendanceYear(attendance.getAttendanceYear());
 		attendanceImpl.setAttendanceMonthly(attendance.getAttendanceMonthly());
 		attendanceImpl.setCreateUserId(attendance.getCreateUserId());
 		attendanceImpl.setCreateDate(attendance.getCreateDate());

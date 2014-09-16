@@ -55,12 +55,27 @@ if(cmd.equals(Constants.ADD)){
 			%>
 			</aui:select>
 		</c:if>
+		<aui:select label="出勤年份" name="attendanceYear">
+		<% 
+		for(int i=2010;i<2015;i++){
+			if(attendance!=null&&attendance.getAttendanceYear()==i){
+			%>
+				<aui:option label="<%= i %>" value="<%= i %>" selected="" />
+			<%			
+			}else{
+			%>
+				<aui:option label="<%= i %>" value="<%= i %>" />
+			<%
+			}
+		}
+		%>
+		</aui:select>
 		<aui:select label="出勤月份" name="attendanceMonthly">
 			<% 
 				for(int i=1;i<13;i++){
 					if(attendance!=null&&attendance.getAttendanceMonthly()==i){
 			%>
-					<aui:option label="<%= i %>" value="<%= i %>" />
+					<aui:option label="<%= i %>" value="<%= i %>" selected="" />
 			<%			
 					}else{
 			%>

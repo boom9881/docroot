@@ -247,12 +247,13 @@ public interface AttendanceLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public void addAttendance(long userId, long basicId,
+	public void addAttendance(long userId, long basicId, long attendanceYear,
 		long attendanceMonthly, double actualAttendance, double shouldAttendance)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void updateAttendance(long userId, long attendanceId,
-		long attendanceMonthly, double actualAttendance, double shouldAttendance)
+		long attendanceYear, long attendanceMonthly, double actualAttendance,
+		double shouldAttendance)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

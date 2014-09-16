@@ -5,7 +5,11 @@
 	long userId = themeDisplay.getUserId();
 	
 	int userRole = OverTimeSum.isSatff(userId);
-		
+	
+	Date nowDate = new Date();
+	int year = nowDate.getYear()+1900;
+	int month = nowDate.getMonth();
+	
 	PortletURL portletURL = renderResponse.createRenderURL();
 
 	portletURL.setWindowState(WindowState.MAXIMIZED);
@@ -15,8 +19,8 @@
 	List headerNames = new ArrayList();
 
 	headerNames.add("姓名");
-
-	headerNames.add("月份");
+	
+	headerNames.add("考勤月份");
 
 	headerNames.add("应出勤天数");
 
@@ -60,7 +64,7 @@
 	
 			row.addText(basicInformation.getName());
 			
-			row.addText(String.valueOf(att.getAttendanceMonthly()));
+			row.addText(String.valueOf(att.getAttendanceYear()+"-"+att.getAttendanceMonthly()));
 			
 			row.addText(String.valueOf(att.getShouldAttendance()));
 			
@@ -91,23 +95,65 @@
 	<c:if test='<%= userRole == 1 %>'>
 		<aui:input name="searchName" label="姓名" value="" />
 		<aui:input name="searchDep" label="部门" value="" />
-		<aui:select label="考勤月份" name="attendanceMonthly">
+		<aui:select label="考勤年份" name="attendanceYear">
 		<% 
-		for(int i=1;i<13;i++){
+		for(int i=2010;i<2014;i++){
+			if(year==i){
+		%>
+			<aui:option label="<%= i %>" value="<%= i %>" selected="" />
+		<%			
+			}else{
 		%>
 			<aui:option label="<%= i %>" value="<%= i %>" />
 		<%
+			}
+		}
+		%>
+		</aui:select>
+		<aui:select label="考勤月份" name="attendanceMonthly">
+		<% 
+		for(int i=1;i<13;i++){
+			if(month==i){
+		%>
+			<aui:option label="<%= i %>" value="<%= i %>" selected="" />
+		<%			
+			}else{
+		%>
+			<aui:option label="<%= i %>" value="<%= i %>" />
+		<%
+			}
 		}
 		%>
 		</aui:select>
 		<aui:button type="submit" value="搜索" />
-		
 		<%
 		String addURL = renderResponse.getNamespace()+"onSub('"+addAttendancetURL.toString()+"');";
 		%>
-	
 		<aui:button value="添加考勤" onClick="<%= addURL %>" />
 	</c:if>
+	<c:if test='<%= userRole == 2 %>'>
+		<aui:select label="考勤年份" name="attendanceYear">
+			<% 
+			for(int i=2010;i<2015;i++){
+			%>
+				<aui:option label="<%= i %>" value="<%= i %>" />
+			<%
+			}
+			%>
+			</aui:select>
+			<aui:select label="考勤月份" name="attendanceMonthly">
+			<% 
+			for(int i=1;i<13;i++){
+			%>
+				<aui:option label="<%= i %>" value="<%= i %>" />
+			<%
+			}
+			%>
+		</aui:select>
+		<aui:button type="submit" value="搜索" />
+	</c:if>
+	
+	
 	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
 </aui:form>
 

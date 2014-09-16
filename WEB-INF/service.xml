@@ -231,6 +231,7 @@
 		<!-- Other fields -->
 		<column name="shouldAttendance" type="double"></column>
 		<column name="actualAttendance" type="double"></column>
+		<column name="attendanceYear" type="long"></column>
 		<column name="attendanceMonthly" type="long"></column>
 		<!-- Audit fields -->
 		<column name="createUserId" type="long"></column>
@@ -260,6 +261,7 @@
 		<column name="usuallyOvertime" type="double"></column>
 		<column name="restOvertime" type="double"></column>
 		<column name="legalOvertime" type="double"></column>
+		<column name="overtimeYear" type="long"></column>
 		<column name="overtimeMonthly" type="long"></column>
 		<!-- Audit fields -->
 		<column name="createUserId" type="long"></column>
@@ -288,6 +290,7 @@
 		<!-- Other fields -->
 		<column name="wageName" type="String"></column>
 		<column name="distributionMonth" type="long"></column>
+		<column name="distributionYear" type="long"></column>
 		<column name="entryDate" type="Date"></column>
 		<column name="departureDate" type="Date"></column>
 		<column name="userWage" type="double"></column>

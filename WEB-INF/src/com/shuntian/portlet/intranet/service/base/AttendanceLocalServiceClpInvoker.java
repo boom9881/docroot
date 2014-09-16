@@ -117,13 +117,13 @@ public class AttendanceLocalServiceClpInvoker {
 		_methodName72 = "addAttendance";
 
 		_methodParameterTypes72 = new String[] {
-				"long", "long", "long", "double", "double"
+				"long", "long", "long", "long", "double", "double"
 			};
 
 		_methodName73 = "updateAttendance";
 
 		_methodParameterTypes73 = new String[] {
-				"long", "long", "long", "double", "double"
+				"long", "long", "long", "long", "double", "double"
 			};
 
 		_methodName74 = "findByU_M";
@@ -241,8 +241,9 @@ public class AttendanceLocalServiceClpInvoker {
 			AttendanceLocalServiceUtil.addAttendance(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
-				((Double)arguments[3]).doubleValue(),
-				((Double)arguments[4]).doubleValue());
+				((Long)arguments[3]).longValue(),
+				((Double)arguments[4]).doubleValue(),
+				((Double)arguments[5]).doubleValue());
 
 			return null;
 		}
@@ -252,8 +253,9 @@ public class AttendanceLocalServiceClpInvoker {
 			AttendanceLocalServiceUtil.updateAttendance(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
-				((Double)arguments[3]).doubleValue(),
-				((Double)arguments[4]).doubleValue());
+				((Long)arguments[3]).longValue(),
+				((Double)arguments[4]).doubleValue(),
+				((Double)arguments[5]).doubleValue());
 
 			return null;
 		}

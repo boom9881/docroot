@@ -54,6 +54,7 @@ public class OvertimeWrapper implements Overtime, ModelWrapper<Overtime> {
 		attributes.put("usuallyOvertime", getUsuallyOvertime());
 		attributes.put("restOvertime", getRestOvertime());
 		attributes.put("legalOvertime", getLegalOvertime());
+		attributes.put("overtimeYear", getOvertimeYear());
 		attributes.put("overtimeMonthly", getOvertimeMonthly());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
@@ -93,6 +94,12 @@ public class OvertimeWrapper implements Overtime, ModelWrapper<Overtime> {
 
 		if (legalOvertime != null) {
 			setLegalOvertime(legalOvertime);
+		}
+
+		Long overtimeYear = (Long)attributes.get("overtimeYear");
+
+		if (overtimeYear != null) {
+			setOvertimeYear(overtimeYear);
 		}
 
 		Long overtimeMonthly = (Long)attributes.get("overtimeMonthly");
@@ -266,6 +273,26 @@ public class OvertimeWrapper implements Overtime, ModelWrapper<Overtime> {
 	@Override
 	public void setLegalOvertime(double legalOvertime) {
 		_overtime.setLegalOvertime(legalOvertime);
+	}
+
+	/**
+	* Returns the overtime year of this overtime.
+	*
+	* @return the overtime year of this overtime
+	*/
+	@Override
+	public long getOvertimeYear() {
+		return _overtime.getOvertimeYear();
+	}
+
+	/**
+	* Sets the overtime year of this overtime.
+	*
+	* @param overtimeYear the overtime year of this overtime
+	*/
+	@Override
+	public void setOvertimeYear(long overtimeYear) {
+		_overtime.setOvertimeYear(overtimeYear);
 	}
 
 	/**

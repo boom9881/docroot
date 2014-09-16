@@ -37,7 +37,7 @@ import java.util.Date;
 public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -47,6 +47,8 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 		sb.append(wageName);
 		sb.append(", distributionMonth=");
 		sb.append(distributionMonth);
+		sb.append(", distributionYear=");
+		sb.append(distributionYear);
 		sb.append(", entryDate=");
 		sb.append(entryDate);
 		sb.append(", departureDate=");
@@ -113,6 +115,7 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 		}
 
 		wagesImpl.setDistributionMonth(distributionMonth);
+		wagesImpl.setDistributionYear(distributionYear);
 
 		if (entryDate == Long.MIN_VALUE) {
 			wagesImpl.setEntryDate(null);
@@ -174,6 +177,7 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 		userId = objectInput.readLong();
 		wageName = objectInput.readUTF();
 		distributionMonth = objectInput.readLong();
+		distributionYear = objectInput.readLong();
 		entryDate = objectInput.readLong();
 		departureDate = objectInput.readLong();
 		userWage = objectInput.readDouble();
@@ -213,6 +217,7 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 		}
 
 		objectOutput.writeLong(distributionMonth);
+		objectOutput.writeLong(distributionYear);
 		objectOutput.writeLong(entryDate);
 		objectOutput.writeLong(departureDate);
 		objectOutput.writeDouble(userWage);
@@ -242,6 +247,7 @@ public class WagesCacheModel implements CacheModel<Wages>, Externalizable {
 	public long userId;
 	public String wageName;
 	public long distributionMonth;
+	public long distributionYear;
 	public long entryDate;
 	public long departureDate;
 	public double userWage;

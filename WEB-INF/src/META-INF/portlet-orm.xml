@@ -15,6 +15,7 @@
 			<basic name="userId" />
 			<basic name="shouldAttendance" />
 			<basic name="actualAttendance" />
+			<basic name="attendanceYear" />
 			<basic name="attendanceMonthly" />
 			<basic name="createUserId" />
 			<basic name="createDate">
@@ -184,6 +185,7 @@
 			<basic name="usuallyOvertime" />
 			<basic name="restOvertime" />
 			<basic name="legalOvertime" />
+			<basic name="overtimeYear" />
 			<basic name="overtimeMonthly" />
 			<basic name="createUserId" />
 			<basic name="createDate">
@@ -209,6 +211,7 @@
 			<basic name="userId" />
 			<basic name="wageName" />
 			<basic name="distributionMonth" />
+			<basic name="distributionYear" />
 			<basic name="entryDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>

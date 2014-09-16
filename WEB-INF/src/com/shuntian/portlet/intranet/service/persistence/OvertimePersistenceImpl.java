@@ -1134,6 +1134,7 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 		overtimeImpl.setUsuallyOvertime(overtime.getUsuallyOvertime());
 		overtimeImpl.setRestOvertime(overtime.getRestOvertime());
 		overtimeImpl.setLegalOvertime(overtime.getLegalOvertime());
+		overtimeImpl.setOvertimeYear(overtime.getOvertimeYear());
 		overtimeImpl.setOvertimeMonthly(overtime.getOvertimeMonthly());
 		overtimeImpl.setCreateUserId(overtime.getCreateUserId());
 		overtimeImpl.setCreateDate(overtime.getCreateDate());

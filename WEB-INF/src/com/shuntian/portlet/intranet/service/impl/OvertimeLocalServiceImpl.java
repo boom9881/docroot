@@ -26,28 +26,33 @@ import com.shuntian.portlet.intranet.service.base.OvertimeLocalServiceBaseImpl;
 
 /**
  * The implementation of the overtime local service.
- *
+ * 
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.shuntian.portlet.intranet.service.OvertimeLocalService} interface.
- *
+ * All custom service methods should be put in this class. Whenever methods are
+ * added, rerun ServiceBuilder to copy their definitions into the
+ * {@link com.shuntian.portlet.intranet.service.OvertimeLocalService} interface.
+ * 
  * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * This is a local service. Methods of this service will not have security
+ * checks based on the propagated JAAS credentials because this service can only
+ * be accessed from within the same VM.
  * </p>
- *
+ * 
  * @author Brian Wing Shun Chan
  * @see com.shuntian.portlet.intranet.service.base.OvertimeLocalServiceBaseImpl
  * @see com.shuntian.portlet.intranet.service.OvertimeLocalServiceUtil
  */
 public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
-	public void addOvertime(long userId, long basicId,
-			long overtimeMonthly, double usuallyOvertime,
-			double restOvertime, double legalOvertime) throws SystemException {
+	public void addOvertime(long userId, long basicId, long overtimeYear,
+			long overtimeMonthly, double usuallyOvertime, double restOvertime,
+			double legalOvertime) throws SystemException {
 
 		long id = counterLocalService.increment();
 
 		Overtime overtime = overtimeLocalService.createOvertime(id);
-		
+
 		overtime.setUserId(basicId);
+		overtime.setOvertimeYear(overtimeYear);
 		overtime.setOvertimeMonthly(overtimeMonthly);
 		overtime.setUsuallyOvertime(usuallyOvertime);
 		overtime.setRestOvertime(restOvertime);
@@ -57,11 +62,12 @@ public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
 		overtimeLocalService.updateOvertime(overtime);
 	}
 
-	public void updateOvertime(long userId, long overtimeId,
-			long overtimeMonthly, double usuallyOvertime,
-			double restOvertime, double legalOvertime) throws SystemException, PortalException {
+	public void updateOvertime(long userId, long overtimeId, long overtimeYear,
+			long overtimeMonthly, double usuallyOvertime, double restOvertime,
+			double legalOvertime) throws SystemException, PortalException {
 		Overtime overtime = overtimeLocalService.getOvertime(overtimeId);
-
+		
+		overtime.setOvertimeYear(overtimeYear);
 		overtime.setOvertimeMonthly(overtimeMonthly);
 		overtime.setUsuallyOvertime(usuallyOvertime);
 		overtime.setRestOvertime(restOvertime);
@@ -70,11 +76,15 @@ public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
 		overtime.setModifiedDate(new Date());
 		overtimeLocalService.updateOvertime(overtime);
 	}
-	
-	public Overtime findByU_M(long userId,long overtimeMonthly) throws SystemException, NoSuchAttendanceException, NoSuchOvertimeException{
+
+	public Overtime findByU_M(long userId, long overtimeMonthly)
+			throws SystemException, NoSuchAttendanceException,
+			NoSuchOvertimeException {
 		return overtimePersistence.findByU_M(userId, overtimeMonthly);
 	}
-	public List<Overtime> findByUserId(long userId) throws SystemException, NoSuchAttendanceException{
+
+	public List<Overtime> findByUserId(long userId) throws SystemException,
+			NoSuchAttendanceException {
 		return overtimePersistence.findByUserId(userId);
 	}
 }

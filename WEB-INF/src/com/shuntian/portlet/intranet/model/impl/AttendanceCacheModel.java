@@ -37,7 +37,7 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -47,6 +47,8 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 		sb.append(shouldAttendance);
 		sb.append(", actualAttendance=");
 		sb.append(actualAttendance);
+		sb.append(", attendanceYear=");
+		sb.append(attendanceYear);
 		sb.append(", attendanceMonthly=");
 		sb.append(attendanceMonthly);
 		sb.append(", createUserId=");
@@ -70,6 +72,7 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 		attendanceImpl.setUserId(userId);
 		attendanceImpl.setShouldAttendance(shouldAttendance);
 		attendanceImpl.setActualAttendance(actualAttendance);
+		attendanceImpl.setAttendanceYear(attendanceYear);
 		attendanceImpl.setAttendanceMonthly(attendanceMonthly);
 		attendanceImpl.setCreateUserId(createUserId);
 
@@ -100,6 +103,7 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 		userId = objectInput.readLong();
 		shouldAttendance = objectInput.readDouble();
 		actualAttendance = objectInput.readDouble();
+		attendanceYear = objectInput.readLong();
 		attendanceMonthly = objectInput.readLong();
 		createUserId = objectInput.readLong();
 		createDate = objectInput.readLong();
@@ -114,6 +118,7 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 		objectOutput.writeLong(userId);
 		objectOutput.writeDouble(shouldAttendance);
 		objectOutput.writeDouble(actualAttendance);
+		objectOutput.writeLong(attendanceYear);
 		objectOutput.writeLong(attendanceMonthly);
 		objectOutput.writeLong(createUserId);
 		objectOutput.writeLong(createDate);
@@ -125,6 +130,7 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 	public long userId;
 	public double shouldAttendance;
 	public double actualAttendance;
+	public long attendanceYear;
 	public long attendanceMonthly;
 	public long createUserId;
 	public long createDate;

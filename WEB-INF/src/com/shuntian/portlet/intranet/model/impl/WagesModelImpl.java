@@ -65,6 +65,7 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 			{ "userId", Types.BIGINT },
 			{ "wageName", Types.VARCHAR },
 			{ "distributionMonth", Types.BIGINT },
+			{ "distributionYear", Types.BIGINT },
 			{ "entryDate", Types.TIMESTAMP },
 			{ "departureDate", Types.TIMESTAMP },
 			{ "userWage", Types.DOUBLE },
@@ -89,7 +90,7 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 			{ "modifiedUserId", Types.BIGINT },
 			{ "modifiedDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_Wages (id_ LONG not null primary key,userId LONG,wageName VARCHAR(75) null,distributionMonth LONG,entryDate DATE null,departureDate DATE null,userWage DOUBLE,userPerformance DOUBLE,userTotalWage DOUBLE,attendance DOUBLE,realAttendance DOUBLE,basePay DOUBLE,overtimeWages DOUBLE,performanceScores DOUBLE,performanceSalary DOUBLE,allowance DOUBLE,totalWages DOUBLE,socialCompanyBearPart DOUBLE,socialIndividualsBearPart DOUBLE,taxableIncome DOUBLE,taxRate DOUBLE,taxes DOUBLE,realWages DOUBLE,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_Wages (id_ LONG not null primary key,userId LONG,wageName VARCHAR(75) null,distributionMonth LONG,distributionYear LONG,entryDate DATE null,departureDate DATE null,userWage DOUBLE,userPerformance DOUBLE,userTotalWage DOUBLE,attendance DOUBLE,realAttendance DOUBLE,basePay DOUBLE,overtimeWages DOUBLE,performanceScores DOUBLE,performanceSalary DOUBLE,allowance DOUBLE,totalWages DOUBLE,socialCompanyBearPart DOUBLE,socialIndividualsBearPart DOUBLE,taxableIncome DOUBLE,taxRate DOUBLE,taxes DOUBLE,realWages DOUBLE,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_Wages";
 	public static final String ORDER_BY_JPQL = " ORDER BY wages.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY Intranet_Wages.createDate DESC";
@@ -152,6 +153,7 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		attributes.put("userId", getUserId());
 		attributes.put("wageName", getWageName());
 		attributes.put("distributionMonth", getDistributionMonth());
+		attributes.put("distributionYear", getDistributionYear());
 		attributes.put("entryDate", getEntryDate());
 		attributes.put("departureDate", getDepartureDate());
 		attributes.put("userWage", getUserWage());
@@ -204,6 +206,12 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 
 		if (distributionMonth != null) {
 			setDistributionMonth(distributionMonth);
+		}
+
+		Long distributionYear = (Long)attributes.get("distributionYear");
+
+		if (distributionYear != null) {
+			setDistributionYear(distributionYear);
 		}
 
 		Date entryDate = (Date)attributes.get("entryDate");
@@ -424,6 +432,16 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 
 	public long getOriginalDistributionMonth() {
 		return _originalDistributionMonth;
+	}
+
+	@Override
+	public long getDistributionYear() {
+		return _distributionYear;
+	}
+
+	@Override
+	public void setDistributionYear(long distributionYear) {
+		_distributionYear = distributionYear;
 	}
 
 	@Override
@@ -715,6 +733,7 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		wagesImpl.setUserId(getUserId());
 		wagesImpl.setWageName(getWageName());
 		wagesImpl.setDistributionMonth(getDistributionMonth());
+		wagesImpl.setDistributionYear(getDistributionYear());
 		wagesImpl.setEntryDate(getEntryDate());
 		wagesImpl.setDepartureDate(getDepartureDate());
 		wagesImpl.setUserWage(getUserWage());
@@ -819,6 +838,8 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 
 		wagesCacheModel.distributionMonth = getDistributionMonth();
 
+		wagesCacheModel.distributionYear = getDistributionYear();
+
 		Date entryDate = getEntryDate();
 
 		if (entryDate != null) {
@@ -898,7 +919,7 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -908,6 +929,8 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		sb.append(getWageName());
 		sb.append(", distributionMonth=");
 		sb.append(getDistributionMonth());
+		sb.append(", distributionYear=");
+		sb.append(getDistributionYear());
 		sb.append(", entryDate=");
 		sb.append(getEntryDate());
 		sb.append(", departureDate=");
@@ -961,7 +984,7 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(85);
+		StringBundler sb = new StringBundler(88);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.Wages");
@@ -982,6 +1005,10 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 		sb.append(
 			"<column><column-name>distributionMonth</column-name><column-value><![CDATA[");
 		sb.append(getDistributionMonth());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>distributionYear</column-name><column-value><![CDATA[");
+		sb.append(getDistributionYear());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>entryDate</column-name><column-value><![CDATA[");
@@ -1092,6 +1119,7 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 	private long _distributionMonth;
 	private long _originalDistributionMonth;
 	private boolean _setOriginalDistributionMonth;
+	private long _distributionYear;
 	private Date _entryDate;
 	private Date _departureDate;
 	private double _userWage;

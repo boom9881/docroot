@@ -36,7 +36,7 @@ import java.util.Date;
 public class OvertimeCacheModel implements CacheModel<Overtime>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -48,6 +48,8 @@ public class OvertimeCacheModel implements CacheModel<Overtime>, Externalizable 
 		sb.append(restOvertime);
 		sb.append(", legalOvertime=");
 		sb.append(legalOvertime);
+		sb.append(", overtimeYear=");
+		sb.append(overtimeYear);
 		sb.append(", overtimeMonthly=");
 		sb.append(overtimeMonthly);
 		sb.append(", createUserId=");
@@ -72,6 +74,7 @@ public class OvertimeCacheModel implements CacheModel<Overtime>, Externalizable 
 		overtimeImpl.setUsuallyOvertime(usuallyOvertime);
 		overtimeImpl.setRestOvertime(restOvertime);
 		overtimeImpl.setLegalOvertime(legalOvertime);
+		overtimeImpl.setOvertimeYear(overtimeYear);
 		overtimeImpl.setOvertimeMonthly(overtimeMonthly);
 		overtimeImpl.setCreateUserId(createUserId);
 
@@ -103,6 +106,7 @@ public class OvertimeCacheModel implements CacheModel<Overtime>, Externalizable 
 		usuallyOvertime = objectInput.readDouble();
 		restOvertime = objectInput.readDouble();
 		legalOvertime = objectInput.readDouble();
+		overtimeYear = objectInput.readLong();
 		overtimeMonthly = objectInput.readLong();
 		createUserId = objectInput.readLong();
 		createDate = objectInput.readLong();
@@ -118,6 +122,7 @@ public class OvertimeCacheModel implements CacheModel<Overtime>, Externalizable 
 		objectOutput.writeDouble(usuallyOvertime);
 		objectOutput.writeDouble(restOvertime);
 		objectOutput.writeDouble(legalOvertime);
+		objectOutput.writeLong(overtimeYear);
 		objectOutput.writeLong(overtimeMonthly);
 		objectOutput.writeLong(createUserId);
 		objectOutput.writeLong(createDate);
@@ -130,6 +135,7 @@ public class OvertimeCacheModel implements CacheModel<Overtime>, Externalizable 
 	public double usuallyOvertime;
 	public double restOvertime;
 	public double legalOvertime;
+	public long overtimeYear;
 	public long overtimeMonthly;
 	public long createUserId;
 	public long createDate;

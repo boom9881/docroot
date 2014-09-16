@@ -118,13 +118,13 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		_methodName19 = "addAttendance";
 
 		_methodParameterTypes19 = new String[] {
-				"long", "long", "long", "double", "double"
+				"long", "long", "long", "long", "double", "double"
 			};
 
 		_methodName20 = "updateAttendance";
 
 		_methodParameterTypes20 = new String[] {
-				"long", "long", "long", "double", "double"
+				"long", "long", "long", "long", "double", "double"
 			};
 
 		_methodName21 = "findByU_M";
@@ -685,7 +685,7 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 	}
 
 	@Override
-	public void addAttendance(long userId, long basicId,
+	public void addAttendance(long userId, long basicId, long attendanceYear,
 		long attendanceMonthly, double actualAttendance, double shouldAttendance)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -695,6 +695,8 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 					userId,
 					
 				basicId,
+					
+				attendanceYear,
 					
 				attendanceMonthly,
 					
@@ -722,7 +724,8 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 
 	@Override
 	public void updateAttendance(long userId, long attendanceId,
-		long attendanceMonthly, double actualAttendance, double shouldAttendance)
+		long attendanceYear, long attendanceMonthly, double actualAttendance,
+		double shouldAttendance)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -732,6 +735,8 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 					userId,
 					
 				attendanceId,
+					
+				attendanceYear,
 					
 				attendanceMonthly,
 					

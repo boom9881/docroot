@@ -55,12 +55,27 @@ if(cmd.equals(Constants.ADD)){
 			%>
 			</aui:select>
 		</c:if>
+		<aui:select label="加班年份" name="overtimeYear">
+		<% 
+		for(int i=2010;i<2015;i++){
+			if(overtime!=null&&overtime.getOvertimeYear()==i){
+			%>
+				<aui:option label="<%= i %>" value="<%= i %>" selected="" />
+			<%			
+			}else{
+			%>
+				<aui:option label="<%= i %>" value="<%= i %>" />
+			<%
+			}
+		}
+		%>
+		</aui:select>
 		<aui:select label="加班月份" name="overtimeMonthly">
 			<% 
 				for(int i=1;i<13;i++){
 					if(overtime!=null&&overtime.getOvertimeMonthly()==i){
 			%>
-					<aui:option label="<%= i %>" value="<%= i %>" />
+					<aui:option label="<%= i %>" value="<%= i %>" selected="" />
 			<%			
 					}else{
 			%>

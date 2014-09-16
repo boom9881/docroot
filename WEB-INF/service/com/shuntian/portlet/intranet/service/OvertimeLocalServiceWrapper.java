@@ -283,20 +283,21 @@ public class OvertimeLocalServiceWrapper implements OvertimeLocalService,
 	}
 
 	@Override
-	public void addOvertime(long userId, long basicId, long overtimeMonthly,
-		double usuallyOvertime, double restOvertime, double legalOvertime)
+	public void addOvertime(long userId, long basicId, long overtimeYear,
+		long overtimeMonthly, double usuallyOvertime, double restOvertime,
+		double legalOvertime)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_overtimeLocalService.addOvertime(userId, basicId, overtimeMonthly,
-			usuallyOvertime, restOvertime, legalOvertime);
+		_overtimeLocalService.addOvertime(userId, basicId, overtimeYear,
+			overtimeMonthly, usuallyOvertime, restOvertime, legalOvertime);
 	}
 
 	@Override
-	public void updateOvertime(long userId, long overtimeId,
+	public void updateOvertime(long userId, long overtimeId, long overtimeYear,
 		long overtimeMonthly, double usuallyOvertime, double restOvertime,
 		double legalOvertime)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_overtimeLocalService.updateOvertime(userId, overtimeId,
+		_overtimeLocalService.updateOvertime(userId, overtimeId, overtimeYear,
 			overtimeMonthly, usuallyOvertime, restOvertime, legalOvertime);
 	}
 

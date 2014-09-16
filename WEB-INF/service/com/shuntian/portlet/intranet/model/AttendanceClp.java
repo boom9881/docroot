@@ -80,6 +80,7 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 		attributes.put("userId", getUserId());
 		attributes.put("shouldAttendance", getShouldAttendance());
 		attributes.put("actualAttendance", getActualAttendance());
+		attributes.put("attendanceYear", getAttendanceYear());
 		attributes.put("attendanceMonthly", getAttendanceMonthly());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
@@ -113,6 +114,12 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 
 		if (actualAttendance != null) {
 			setActualAttendance(actualAttendance);
+		}
+
+		Long attendanceYear = (Long)attributes.get("attendanceYear");
+
+		if (attendanceYear != null) {
+			setAttendanceYear(attendanceYear);
 		}
 
 		Long attendanceMonthly = (Long)attributes.get("attendanceMonthly");
@@ -243,6 +250,29 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 						double.class);
 
 				method.invoke(_attendanceRemoteModel, actualAttendance);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getAttendanceYear() {
+		return _attendanceYear;
+	}
+
+	@Override
+	public void setAttendanceYear(long attendanceYear) {
+		_attendanceYear = attendanceYear;
+
+		if (_attendanceRemoteModel != null) {
+			try {
+				Class<?> clazz = _attendanceRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setAttendanceYear", long.class);
+
+				method.invoke(_attendanceRemoteModel, attendanceYear);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -461,6 +491,7 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 		clone.setUserId(getUserId());
 		clone.setShouldAttendance(getShouldAttendance());
 		clone.setActualAttendance(getActualAttendance());
+		clone.setAttendanceYear(getAttendanceYear());
 		clone.setAttendanceMonthly(getAttendanceMonthly());
 		clone.setCreateUserId(getCreateUserId());
 		clone.setCreateDate(getCreateDate());
@@ -514,7 +545,7 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -524,6 +555,8 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 		sb.append(getShouldAttendance());
 		sb.append(", actualAttendance=");
 		sb.append(getActualAttendance());
+		sb.append(", attendanceYear=");
+		sb.append(getAttendanceYear());
 		sb.append(", attendanceMonthly=");
 		sb.append(getAttendanceMonthly());
 		sb.append(", createUserId=");
@@ -541,7 +574,7 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.Attendance");
@@ -562,6 +595,10 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 		sb.append(
 			"<column><column-name>actualAttendance</column-name><column-value><![CDATA[");
 		sb.append(getActualAttendance());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>attendanceYear</column-name><column-value><![CDATA[");
+		sb.append(getAttendanceYear());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>attendanceMonthly</column-name><column-value><![CDATA[");
@@ -594,6 +631,7 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 	private String _userUuid;
 	private double _shouldAttendance;
 	private double _actualAttendance;
+	private long _attendanceYear;
 	private long _attendanceMonthly;
 	private long _createUserId;
 	private String _createUserUuid;

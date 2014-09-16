@@ -275,21 +275,21 @@ public class OvertimeLocalServiceUtil {
 	}
 
 	public static void addOvertime(long userId, long basicId,
-		long overtimeMonthly, double usuallyOvertime, double restOvertime,
-		double legalOvertime)
+		long overtimeYear, long overtimeMonthly, double usuallyOvertime,
+		double restOvertime, double legalOvertime)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.addOvertime(userId, basicId, overtimeMonthly, usuallyOvertime,
-			restOvertime, legalOvertime);
+			.addOvertime(userId, basicId, overtimeYear, overtimeMonthly,
+			usuallyOvertime, restOvertime, legalOvertime);
 	}
 
 	public static void updateOvertime(long userId, long overtimeId,
-		long overtimeMonthly, double usuallyOvertime, double restOvertime,
-		double legalOvertime)
+		long overtimeYear, long overtimeMonthly, double usuallyOvertime,
+		double restOvertime, double legalOvertime)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.updateOvertime(userId, overtimeId, overtimeMonthly,
+			.updateOvertime(userId, overtimeId, overtimeYear, overtimeMonthly,
 			usuallyOvertime, restOvertime, legalOvertime);
 	}
 

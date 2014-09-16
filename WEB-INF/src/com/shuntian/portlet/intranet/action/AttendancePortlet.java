@@ -26,6 +26,8 @@ public class AttendancePortlet extends MVCPortlet {
 
 		String attendanceMonthly = ParamUtil.getString(actionRequest,
 				"attendanceMonthly");
+		String attendanceYear = ParamUtil.getString(actionRequest,
+				"attendanceYear");
 		String actualAttendance = ParamUtil.getString(actionRequest,
 				"actualAttendance");
 		String shouldAttendance = ParamUtil.getString(actionRequest,
@@ -35,12 +37,14 @@ public class AttendancePortlet extends MVCPortlet {
 
 		if (cmd.equals(Constants.ADD)) {
 			AttendanceLocalServiceUtil.addAttendance(userId, basicId,
+					Long.parseLong(attendanceYear),
 					Long.parseLong(attendanceMonthly),
 					Double.parseDouble(actualAttendance),
 					Double.parseDouble(shouldAttendance));
 
 		} else {
 			AttendanceLocalServiceUtil.updateAttendance(userId, attendanceId,
+					Long.parseLong(attendanceYear),
 					Long.parseLong(attendanceMonthly),
 					Double.parseDouble(actualAttendance),
 					Double.parseDouble(shouldAttendance));

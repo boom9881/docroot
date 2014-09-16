@@ -34,6 +34,7 @@ public class WagesSoap implements Serializable {
 		soapModel.setUserId(model.getUserId());
 		soapModel.setWageName(model.getWageName());
 		soapModel.setDistributionMonth(model.getDistributionMonth());
+		soapModel.setDistributionYear(model.getDistributionYear());
 		soapModel.setEntryDate(model.getEntryDate());
 		soapModel.setDepartureDate(model.getDepartureDate());
 		soapModel.setUserWage(model.getUserWage());
@@ -139,6 +140,14 @@ public class WagesSoap implements Serializable {
 
 	public void setDistributionMonth(long distributionMonth) {
 		_distributionMonth = distributionMonth;
+	}
+
+	public long getDistributionYear() {
+		return _distributionYear;
+	}
+
+	public void setDistributionYear(long distributionYear) {
+		_distributionYear = distributionYear;
 	}
 
 	public Date getEntryDate() {
@@ -329,6 +338,7 @@ public class WagesSoap implements Serializable {
 	private long _userId;
 	private String _wageName;
 	private long _distributionMonth;
+	private long _distributionYear;
 	private Date _entryDate;
 	private Date _departureDate;
 	private double _userWage;

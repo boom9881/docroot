@@ -80,6 +80,7 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 		attributes.put("usuallyOvertime", getUsuallyOvertime());
 		attributes.put("restOvertime", getRestOvertime());
 		attributes.put("legalOvertime", getLegalOvertime());
+		attributes.put("overtimeYear", getOvertimeYear());
 		attributes.put("overtimeMonthly", getOvertimeMonthly());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
@@ -119,6 +120,12 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 
 		if (legalOvertime != null) {
 			setLegalOvertime(legalOvertime);
+		}
+
+		Long overtimeYear = (Long)attributes.get("overtimeYear");
+
+		if (overtimeYear != null) {
+			setOvertimeYear(overtimeYear);
 		}
 
 		Long overtimeMonthly = (Long)attributes.get("overtimeMonthly");
@@ -271,6 +278,29 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 				Method method = clazz.getMethod("setLegalOvertime", double.class);
 
 				method.invoke(_overtimeRemoteModel, legalOvertime);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getOvertimeYear() {
+		return _overtimeYear;
+	}
+
+	@Override
+	public void setOvertimeYear(long overtimeYear) {
+		_overtimeYear = overtimeYear;
+
+		if (_overtimeRemoteModel != null) {
+			try {
+				Class<?> clazz = _overtimeRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setOvertimeYear", long.class);
+
+				method.invoke(_overtimeRemoteModel, overtimeYear);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -489,6 +519,7 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 		clone.setUsuallyOvertime(getUsuallyOvertime());
 		clone.setRestOvertime(getRestOvertime());
 		clone.setLegalOvertime(getLegalOvertime());
+		clone.setOvertimeYear(getOvertimeYear());
 		clone.setOvertimeMonthly(getOvertimeMonthly());
 		clone.setCreateUserId(getCreateUserId());
 		clone.setCreateDate(getCreateDate());
@@ -542,7 +573,7 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -554,6 +585,8 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 		sb.append(getRestOvertime());
 		sb.append(", legalOvertime=");
 		sb.append(getLegalOvertime());
+		sb.append(", overtimeYear=");
+		sb.append(getOvertimeYear());
 		sb.append(", overtimeMonthly=");
 		sb.append(getOvertimeMonthly());
 		sb.append(", createUserId=");
@@ -571,7 +604,7 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.Overtime");
@@ -596,6 +629,10 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 		sb.append(
 			"<column><column-name>legalOvertime</column-name><column-value><![CDATA[");
 		sb.append(getLegalOvertime());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>overtimeYear</column-name><column-value><![CDATA[");
+		sb.append(getOvertimeYear());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>overtimeMonthly</column-name><column-value><![CDATA[");
@@ -629,6 +666,7 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 	private double _usuallyOvertime;
 	private double _restOvertime;
 	private double _legalOvertime;
+	private long _overtimeYear;
 	private long _overtimeMonthly;
 	private long _createUserId;
 	private String _createUserUuid;

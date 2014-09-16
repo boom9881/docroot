@@ -34,6 +34,7 @@ public class AttendanceSoap implements Serializable {
 		soapModel.setUserId(model.getUserId());
 		soapModel.setShouldAttendance(model.getShouldAttendance());
 		soapModel.setActualAttendance(model.getActualAttendance());
+		soapModel.setAttendanceYear(model.getAttendanceYear());
 		soapModel.setAttendanceMonthly(model.getAttendanceMonthly());
 		soapModel.setCreateUserId(model.getCreateUserId());
 		soapModel.setCreateDate(model.getCreateDate());
@@ -123,6 +124,14 @@ public class AttendanceSoap implements Serializable {
 		_actualAttendance = actualAttendance;
 	}
 
+	public long getAttendanceYear() {
+		return _attendanceYear;
+	}
+
+	public void setAttendanceYear(long attendanceYear) {
+		_attendanceYear = attendanceYear;
+	}
+
 	public long getAttendanceMonthly() {
 		return _attendanceMonthly;
 	}
@@ -167,6 +176,7 @@ public class AttendanceSoap implements Serializable {
 	private long _userId;
 	private double _shouldAttendance;
 	private double _actualAttendance;
+	private long _attendanceYear;
 	private long _attendanceMonthly;
 	private long _createUserId;
 	private Date _createDate;

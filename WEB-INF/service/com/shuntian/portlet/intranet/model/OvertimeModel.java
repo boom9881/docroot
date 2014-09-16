@@ -145,6 +145,20 @@ public interface OvertimeModel extends BaseModel<Overtime> {
 	public void setLegalOvertime(double legalOvertime);
 
 	/**
+	 * Returns the overtime year of this overtime.
+	 *
+	 * @return the overtime year of this overtime
+	 */
+	public long getOvertimeYear();
+
+	/**
+	 * Sets the overtime year of this overtime.
+	 *
+	 * @param overtimeYear the overtime year of this overtime
+	 */
+	public void setOvertimeYear(long overtimeYear);
+
+	/**
 	 * Returns the overtime monthly of this overtime.
 	 *
 	 * @return the overtime monthly of this overtime

@@ -53,6 +53,7 @@ public class AttendanceWrapper implements Attendance, ModelWrapper<Attendance> {
 		attributes.put("userId", getUserId());
 		attributes.put("shouldAttendance", getShouldAttendance());
 		attributes.put("actualAttendance", getActualAttendance());
+		attributes.put("attendanceYear", getAttendanceYear());
 		attributes.put("attendanceMonthly", getAttendanceMonthly());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
@@ -86,6 +87,12 @@ public class AttendanceWrapper implements Attendance, ModelWrapper<Attendance> {
 
 		if (actualAttendance != null) {
 			setActualAttendance(actualAttendance);
+		}
+
+		Long attendanceYear = (Long)attributes.get("attendanceYear");
+
+		if (attendanceYear != null) {
+			setAttendanceYear(attendanceYear);
 		}
 
 		Long attendanceMonthly = (Long)attributes.get("attendanceMonthly");
@@ -239,6 +246,26 @@ public class AttendanceWrapper implements Attendance, ModelWrapper<Attendance> {
 	@Override
 	public void setActualAttendance(double actualAttendance) {
 		_attendance.setActualAttendance(actualAttendance);
+	}
+
+	/**
+	* Returns the attendance year of this attendance.
+	*
+	* @return the attendance year of this attendance
+	*/
+	@Override
+	public long getAttendanceYear() {
+		return _attendance.getAttendanceYear();
+	}
+
+	/**
+	* Sets the attendance year of this attendance.
+	*
+	* @param attendanceYear the attendance year of this attendance
+	*/
+	@Override
+	public void setAttendanceYear(long attendanceYear) {
+		_attendance.setAttendanceYear(attendanceYear);
 	}
 
 	/**

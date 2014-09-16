@@ -53,6 +53,7 @@ public class WagesWrapper implements Wages, ModelWrapper<Wages> {
 		attributes.put("userId", getUserId());
 		attributes.put("wageName", getWageName());
 		attributes.put("distributionMonth", getDistributionMonth());
+		attributes.put("distributionYear", getDistributionYear());
 		attributes.put("entryDate", getEntryDate());
 		attributes.put("departureDate", getDepartureDate());
 		attributes.put("userWage", getUserWage());
@@ -105,6 +106,12 @@ public class WagesWrapper implements Wages, ModelWrapper<Wages> {
 
 		if (distributionMonth != null) {
 			setDistributionMonth(distributionMonth);
+		}
+
+		Long distributionYear = (Long)attributes.get("distributionYear");
+
+		if (distributionYear != null) {
+			setDistributionYear(distributionYear);
 		}
 
 		Date entryDate = (Date)attributes.get("entryDate");
@@ -368,6 +375,26 @@ public class WagesWrapper implements Wages, ModelWrapper<Wages> {
 	@Override
 	public void setDistributionMonth(long distributionMonth) {
 		_wages.setDistributionMonth(distributionMonth);
+	}
+
+	/**
+	* Returns the distribution year of this wages.
+	*
+	* @return the distribution year of this wages
+	*/
+	@Override
+	public long getDistributionYear() {
+		return _wages.getDistributionYear();
+	}
+
+	/**
+	* Sets the distribution year of this wages.
+	*
+	* @param distributionYear the distribution year of this wages
+	*/
+	@Override
+	public void setDistributionYear(long distributionYear) {
+		_wages.setDistributionYear(distributionYear);
 	}
 
 	/**

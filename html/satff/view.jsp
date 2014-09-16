@@ -3,73 +3,54 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%
-/**
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+long searchDep = ParamUtil.getLong(request, "searchDep");
+String searchName = ParamUtil.getString(request, "searchName");
 
-	PortletURL randerURL = renderResponse.createRenderURL();
+PortletURL portletURL = renderResponse.createRenderURL();
+portletURL.setWindowState(WindowState.MAXIMIZED);
+portletURL.setParameter("searchName",searchName);
+portletURL.setParameter("searchDep",String.valueOf(searchDep));
+portletURL.setParameter("mvcPath","/html/department/view.jsp");
 
-	randerURL.setWindowState(WindowState.MAXIMIZED);
+List<String> headerNames = new ArrayList<String>();
 
-	randerURL.setParameter("mvcPath","/html/satff/edit_satff.jsp");
+headerNames.add("姓名");
+headerNames.add("部门");
+headerNames.add("联系电话");
+headerNames.add("邮箱");
+headerNames.add("身份证号");
+headerNames.add("操作");
+
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, "没有员工被显示。");
+
+int total = BasicInformationLocalServiceUtil.countByDepAndName(searchDep, searchName);
+
+searchContainer.setTotal(total);
+
+List<BasicInformation> results = BasicInformationLocalServiceUtil.findByDepAndName(searchDep, searchName, searchContainer.getStart(), searchContainer.getEnd());
+
+searchContainer.setResults(results);
+
+List resultRows = searchContainer.getResultRows();
+
+for (int i = 0; i < results.size(); i++) {
+	BasicInformation bi = (BasicInformation) results.get(i);
+		
+	ResultRow row = new ResultRow(bi,bi.getId(), i);
+
+	row.addText(bi.getName());
 	
-	PortletURL portletURL = renderResponse.createRenderURL();
-
-	portletURL.setWindowState(WindowState.MAXIMIZED);
-
-	portletURL.setParameter("mvcPath","/html/satff/view.jsp");
-
-	List headerNames = new ArrayList();
-
-	headerNames.add("编号");
-
-	headerNames.add("姓名");
-
-	headerNames.add("离职时间");
-
-	headerNames.add("入职时间");
-
-	headerNames.add("");
-
-	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, null);
-
-	int total = BasicInformationLocalServiceUtil.getSatffsCount();;
-
-	searchContainer.setTotal(total);
-
-	List results = SatffLocalServiceUtil.getSatffs(searchContainer.getStart(), searchContainer.getEnd());
+	Department dep = DepartmentLocalServiceUtil.getDepartment(bi.getDepartmentId());
 	
-	searchContainer.setResults(results);
+	row.addText(dep.getName());
+	row.addText(bi.getContactPhone());
+	row.addText(bi.getMail());
+	row.addText(bi.getIdNumber());
 	
-	List resultRows = searchContainer.getResultRows();
+	row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/satff/action.jsp");
 
-	for (int i = 0; i < results.size(); i++) {
-
-		Satff satff = (Satff) results.get(i);
-
-		ResultRow row = new ResultRow(satff,satff.getId(), i);
-
-		PortletURL rowURL = renderResponse.createRenderURL();
-
-		rowURL.setWindowState(WindowState.MAXIMIZED);
-
-		rowURL.setParameter("mvcPath","/html/satff/action.jsp");
-
-		rowURL.setParameter("id", String.valueOf(satff.getId()));
-
-		row.addText(String.valueOf(satff.getId()), rowURL);
-
-		row.addText(satff.getName(), rowURL);
-
-		row.addText(sdf.format(satff.getTurnover_time()), rowURL);
-
-		row.addText(sdf.format(satff.getEntry_time()), rowURL);
-
-		//row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/satff/action.jsp");
-
-		resultRows.add(row);
-
-	}
-	*/
+	resultRows.add(row);
+}
 %>
 
 <portlet:actionURL var="deleteUserActionURL">
@@ -85,23 +66,52 @@
 </portlet:renderURL>
 
 <aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">
-
-	<aui:input name="searchDep" label="部门" value="" />
+	<table>
+		<tr>
+			<td>
+				<aui:select label="部门" name="searchDep" style="width:120px;margin-right:10px;">
+					<aui:option label="所有" value="" />
+					<%
+					int end = DepartmentLocalServiceUtil.getDepartmentsCount();
+					List<Department> depResult = DepartmentLocalServiceUtil.getDepartments(0, end);
+					
+					for(Department d : depResult){
+					%>
+						<aui:option label="<%= d.getName() %>" value="<%= d.getId() %>" />
+					<%
+					}
+					%>
+				</aui:select>
+			</td>
+			<td>
+				<aui:input name="searchName" label="姓名" style="width:150px;margin-right:10px;" />
+			</td>
+			<td>
+				<div style="margin-bottom:12px;">
+					<aui:button type="submit" value="搜索" />
+		
+					<%
+					String addUserURL = renderResponse.getNamespace()+"onSub('"+addUserRenderURL.toString()+"');";
+					%>
+				
+					<aui:button value="添加员工" onClick="<%= addUserURL %>" />
+				</div>
+			</td>
+		</tr>
+	</table>
 	
-	<aui:input name="searchName" label="姓名" value="" />
-	
-	<aui:button type="submit" value="搜索" />
-
-	<%
-	String addUserURL = renderResponse.getNamespace()+"onSub('"+addUserRenderURL.toString()+"');";
-	%>
-
-	<aui:button value="添加员工" onClick="<%= addUserURL %>" />
+	<div style="margin-top:-20px;">
+		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
+	</div>
 </aui:form>
-<%--
-<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
---%>
+
 <aui:script>
+	function <portlet:namespace />leave(url){
+		if(confirm("您确定此人离职？")){
+			<portlet:namespace />onSub(url);
+		}
+	}
+	
 	function <portlet:namespace />onSub(url){
 		document.<portlet:namespace />fm.action = url;
 

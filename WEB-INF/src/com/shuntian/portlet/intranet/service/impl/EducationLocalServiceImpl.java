@@ -14,9 +14,12 @@
 
 package com.shuntian.portlet.intranet.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.liferay.portal.kernel.exception.SystemException;
+import com.shuntian.portlet.intranet.NoSuchEducationException;
 import com.shuntian.portlet.intranet.model.Education;
 import com.shuntian.portlet.intranet.service.base.EducationLocalServiceBaseImpl;
 
@@ -40,6 +43,67 @@ import com.shuntian.portlet.intranet.service.base.EducationLocalServiceBaseImpl;
  * @see com.shuntian.portlet.intranet.service.EducationLocalServiceUtil
  */
 public class EducationLocalServiceImpl extends EducationLocalServiceBaseImpl {
+
+	public void editEducation(long userId, List<Education> edus)
+			throws SystemException, NoSuchEducationException {
+
+		Set<Long> eduIds = new HashSet<Long>();
+
+		for (Education edu : edus) {
+			long id = edu.getId();
+			String witness = edu.getEWitness();
+			String professional = edu.getEProfessional();
+			String university = edu.getEUniversity();
+			String contactPhone = edu.getEContactPhone();
+			String startTimeYear = edu.getEStartTimeYear();
+			String startTimeMonth = edu.getEStartTimeMonth();
+			String stopTimeYear = edu.getEStopTimeYear();
+			String stopTimeMonth = edu.getEStopTimeMonth();
+
+			edu = updateEducation(id, userId, witness, professional,
+					university, contactPhone, startTimeYear, startTimeMonth,
+					stopTimeYear, stopTimeMonth);
+
+			eduIds.add(edu.getId());
+		}
+
+		edus = findByUserId(userId);
+
+		for (Education edu : edus) {
+			if (!eduIds.contains(edu.getId())) {
+				educationPersistence.remove(edu.getId());
+			}
+		}
+	}
+
+	private Education updateEducation(long id, long userId, String witness,
+			String professional, String university, String contactPhone,
+			String startTimeYear, String startTimeMonth, String stopTimeYear,
+			String stopTimeMonth) throws SystemException,
+			NoSuchEducationException {
+
+		Education edu = null;
+
+		if (id <= 0) {
+			id = counterLocalService.increment();
+
+			edu = educationPersistence.create(id);
+		} else {
+			edu = educationPersistence.findByPrimaryKey(id);
+		}
+
+		edu.setUserId(userId);
+		edu.setEWitness(witness);
+		edu.setEProfessional(professional);
+		edu.setEUniversity(university);
+		edu.setEContactPhone(contactPhone);
+		edu.setEStartTimeYear(startTimeYear);
+		edu.setEStartTimeMonth(startTimeMonth);
+		edu.setEStopTimeYear(stopTimeYear);
+		edu.setEStopTimeMonth(stopTimeMonth);
+
+		return educationPersistence.update(edu);
+	}
 
 	public List<Education> findByUserId(long userId) throws SystemException {
 		return educationPersistence.findByUserId(userId);

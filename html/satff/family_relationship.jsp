@@ -59,21 +59,21 @@ else {
 
 		FamilyRelationship fr = frs.get(i);
 	%>
- 		<%--
+ 		
 		<aui:model-context bean="<%= fr %>" model="<%= FamilyRelationship.class %>" />
-		--%>
+		
 		<div class="lfr-form-row lfr-form-row-inline">
 			<div class="row-fields">
 				<aui:input name='<%= "frId" + frsIndex %>' type="hidden" value="<%= fr.getId() %>" />
 				
 				<aui:fieldset cssClass="span5">
-					<aui:input name="name" label="姓名" />
-					<aui:input name="workUnit" label="工作单位" value="" />
-					<aui:input name="contactPhone" label="联系电话" value="" />
+					<aui:input name="frName" label="姓名" />
+					<aui:input name="frWorkUnit" label="工作单位" value="" />
+					<aui:input name="frContactPhone" label="联系电话" value="" />
 				</aui:fieldset>
 				<aui:fieldset cssClass="span5">
-					<aui:input name="relationship" label="与本人关系" />
-					<aui:input name="onceJob" label="担任职务" value="" />
+					<aui:input name="frRelationship" label="与本人关系" />
+					<aui:input name="frOnceJob" label="担任职务" value="" />
 				</aui:fieldset>
 			</div>
 		</div>

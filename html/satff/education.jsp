@@ -59,22 +59,30 @@ else {
 
 		Education edu = edus.get(i);
 	%>
- 		<%--
+ 		
 		<aui:model-context bean="<%= edu %>" model="<%= Education.class %>" />
-		--%>
+		
 		<div class="lfr-form-row lfr-form-row-inline">
 			<div class="row-fields">
 				<aui:input name='<%= "eduId" + edusIndex %>' type="hidden" value="<%= edu.getId() %>" />
 				
 				<aui:fieldset cssClass="span5">
-					<aui:input name="startTimed" label="开始时间（年月）" />
-					<aui:input name="university" label="毕业院校" value="" />
-					<aui:input name="witness" label="证明人" value="" />
+					<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
+						<liferay-util:param name="name" value="eStartTime" />
+						<liferay-util:param name="label" value="开始时间（年月）" />
+					</liferay-util:include>
+					
+					<aui:input name="eUniversity" label="毕业院校" value="" />
+					<aui:input name="eWitness" label="证明人" value="" />
 				</aui:fieldset>
 				<aui:fieldset cssClass="span5">
-					<aui:input name="stopTimed" label="结束时间（年月）" />
-					<aui:input name="professional" label="专业" value="" />
-					<aui:input name="contactPhone" label="联系电话" value="" />
+					<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
+						<liferay-util:param name="name" value="eStopTime" />
+						<liferay-util:param name="label" value="结束时间（年月）" />
+					</liferay-util:include>
+					
+					<aui:input name="eProfessional" label="专业" value="" />
+					<aui:input name="eContactPhone" label="联系电话" value="" />
 				</aui:fieldset>
 			</div>
 		</div>

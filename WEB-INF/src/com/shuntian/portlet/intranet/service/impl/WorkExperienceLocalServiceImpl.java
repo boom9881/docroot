@@ -14,9 +14,12 @@
 
 package com.shuntian.portlet.intranet.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.liferay.portal.kernel.exception.SystemException;
+import com.shuntian.portlet.intranet.NoSuchWorkExperienceException;
 import com.shuntian.portlet.intranet.model.WorkExperience;
 import com.shuntian.portlet.intranet.service.base.WorkExperienceLocalServiceBaseImpl;
 
@@ -41,6 +44,67 @@ import com.shuntian.portlet.intranet.service.base.WorkExperienceLocalServiceBase
  */
 public class WorkExperienceLocalServiceImpl extends
 		WorkExperienceLocalServiceBaseImpl {
+
+	public void editWorkExperience(long userId, List<WorkExperience> wes)
+			throws SystemException, NoSuchWorkExperienceException {
+
+		Set<Long> weIds = new HashSet<Long>();
+
+		for (WorkExperience we : wes) {
+			long id = we.getId();
+			String witness = we.getWeWitness();
+			String onceJob = we.getWeOnceJob();
+			String workUnit = we.getWeWorkUnit();
+			String contactPhone = we.getWeContactPhone();
+
+			String startTimeYear = we.getWeStartTimeYear();
+			String startTimeMonth = we.getWeStartTimeMonth();
+			String stopTimeYear = we.getWeStopTimeYear();
+			String stopTimeMonth = we.getWeStopTimeMonth();
+
+			we = updateWE(id, userId, witness, onceJob, workUnit, contactPhone,
+					startTimeYear, startTimeMonth, stopTimeYear, stopTimeMonth);
+
+			weIds.add(we.getId());
+		}
+
+		wes = findByUserId(userId);
+
+		for (WorkExperience we : wes) {
+			if (!weIds.contains(we.getId())) {
+				workExperiencePersistence.remove(we.getId());
+			}
+		}
+	}
+
+	private WorkExperience updateWE(long id, long userId, String witness,
+			String onceJob, String workUnit, String contactPhone,
+			String startTimeYear, String startTimeMonth, String stopTimeYear,
+			String stopTimeMonth) throws SystemException,
+			NoSuchWorkExperienceException {
+
+		WorkExperience we = null;
+
+		if (id <= 0) {
+			id = counterLocalService.increment();
+
+			we = workExperiencePersistence.create(id);
+		} else {
+			we = workExperiencePersistence.findByPrimaryKey(id);
+		}
+
+		we.setUserId(userId);
+		we.setWeWitness(witness);
+		we.setWeOnceJob(onceJob);
+		we.setWeWorkUnit(workUnit);
+		we.setWeContactPhone(contactPhone);
+		we.setWeStartTimeYear(startTimeYear);
+		we.setWeStartTimeMonth(startTimeMonth);
+		we.setWeStopTimeYear(stopTimeYear);
+		we.setWeStopTimeMonth(stopTimeMonth);
+
+		return workExperiencePersistence.update(we);
+	}
 
 	public List<WorkExperience> findByUserId(long userId)
 			throws SystemException {

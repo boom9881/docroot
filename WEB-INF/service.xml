@@ -38,6 +38,7 @@
 		<column name="emergencyContactRelation" type="String" />
 		<column name="emergencyContactPhone" type="String" />
 		<column name="isLeave" type="int" />
+		<column name="departmentId" type="long" />
 
 		<!-- Audit fields -->
 
@@ -55,9 +56,6 @@
 		<!-- Finder methods -->
 
 		<finder name="UserId" return-type="BasicInformation">
-			<finder-column name="userId" />
-		</finder>
-		<finder name="U" return-type="Collection">
 			<finder-column name="userId" />
 		</finder>
 		<finder name="IsLeave" return-type="Collection">
@@ -83,7 +81,8 @@
 		<column name="probationPeriodStart" type="Date" />
 		<column name="probationPeriodEnd" type="Date" />
 		<column name="induredLocation" type="String" />
-		<column name="fristInsured" type="Date" />
+		<column name="fristInsuredYear" type="String" />
+		<column name="fristInsuredMonth" type="String" />
 		<column name="isInsured" type="String" />
 		<column name="basicWage" type="long" />
 		<column name="otherWage" type="long" />
@@ -112,12 +111,14 @@
 		<column name="userId" type="long" />
 
 		<!-- Other fields -->
-		<column name="witness" type="String" />
-		<column name="professional" type="String" />
-		<column name="university" type="String" />
-		<column name="contactPhone" type="String" />
-		<column name="startTime" type="Date" />
-		<column name="stopTime" type="Date" />
+		<column name="eWitness" type="String" />
+		<column name="eProfessional" type="String" />
+		<column name="eUniversity" type="String" />
+		<column name="eContactPhone" type="String" />
+		<column name="eStartTimeYear" type="String" />
+		<column name="eStartTimeMonth" type="String" />
+		<column name="eStopTimeYear" type="String" />
+		<column name="eStopTimeMonth" type="String" />
 
 		<!-- Order -->
 
@@ -143,12 +144,14 @@
 		<column name="userId" type="long" />
 
 		<!-- Other fields -->
-		<column name="witness" type="String" />
-		<column name="onceJob" type="String" />
-		<column name="workUnit" type="String" />
-		<column name="contactPhone" type="String" />
-		<column name="startTime" type="Date" />
-		<column name="stopTime" type="Date" />
+		<column name="weWitness" type="String" />
+		<column name="weOnceJob" type="String" />
+		<column name="weWorkUnit" type="String" />
+		<column name="weContactPhone" type="String" />
+		<column name="weStartTimeYear" type="String" />
+		<column name="weStartTimeMonth" type="String" />
+		<column name="weStopTimeYear" type="String" />
+		<column name="weStopTimeMonth" type="String" />
 
 		<!-- Order -->
 
@@ -174,11 +177,11 @@
 		<column name="userId" type="long" />
 
 		<!-- Other fields -->
-		<column name="name" type="String" />
-		<column name="relationship" type="String" />
-		<column name="workUnit" type="String" />
-		<column name="contactPhone" type="String" />
-		<column name="onceJob" type="String" />
+		<column name="frName" type="String" />
+		<column name="frRelationship" type="String" />
+		<column name="frWorkUnit" type="String" />
+		<column name="frContactPhone" type="String" />
+		<column name="frOnceJob" type="String" />
 
 		<!-- Order -->
 

@@ -16,7 +16,7 @@ headerNames.add("部门名称");
 headerNames.add("负责人");
 headerNames.add("操作");
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, null);
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, "没有部门被显示。");
 
 int total = DepartmentLocalServiceUtil.countByName(searchName);
 

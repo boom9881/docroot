@@ -2,20 +2,37 @@
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<% 
+<%
+long biId = ParamUtil.getLong(request, "biId");
 long userId = ParamUtil.getLong(request, "userId");
 
 BasicInformation basicInformation = null;
 
-if(Validator.isNotNull(userId)){
-	basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(userId);
+if(Validator.isNotNull(biId)){
+	basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(biId);
 }
 
 request.setAttribute("user.id", userId);
+request.setAttribute("bi.id", biId);
 %>
 
+<portlet:renderURL var="redirectURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
+	<portlet:param name="biId" value="<%= String.valueOf(biId) %>" />
+	<portlet:param name="userId" value="<%= String.valueOf(userId) %>" />
+	<c:if test='<%= Validator.isNull(biId) %>'>
+		<portlet:param name="mvcPath" value="/html/satff/view.jsp" />
+	</c:if>
+	<c:if test='<%= Validator.isNotNull(biId) %>'>
+		<portlet:param name="mvcPath" value="/html/satff/edit_satff.jsp" />
+	</c:if>
+</portlet:renderURL>
+
 <portlet:actionURL var="editUserActionURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-	<portlet:param name="action" value="editUser" />
+	<portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="editSatff" />
+	<portlet:param name="biId" value="<%= String.valueOf(biId) %>" />
+	<portlet:param name="userId" value="<%= String.valueOf(userId) %>" />
+	<portlet:param name="mvcPath" value="/html/satff/edit_satff.jsp" />
+	<portlet:param name="redirect" value="<%= redirectURL.toString() %>" />
 </portlet:actionURL>
 
 <portlet:renderURL var="backURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
@@ -28,6 +45,9 @@ request.setAttribute("user.id", userId);
 />
 
 <aui:form action="<%= editUserActionURL.toString() %>" method="post" name="fm">
+	<aui:input type="hidden" name="biId" value="<%= biId %>" />
+	<aui:input type="hidden" name="userId" value="<%= userId %>" />
+	
 	<liferay-util:buffer var="htmlTop">
 		<c:if test="<%= basicInformation != null %>">
 			<div class="user-info">

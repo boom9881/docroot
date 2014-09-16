@@ -35,7 +35,6 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,14 +62,16 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "id_", Types.BIGINT },
 			{ "userId", Types.BIGINT },
-			{ "witness", Types.VARCHAR },
-			{ "professional", Types.VARCHAR },
-			{ "university", Types.VARCHAR },
-			{ "contactPhone", Types.VARCHAR },
-			{ "startTime", Types.TIMESTAMP },
-			{ "stopTime", Types.TIMESTAMP }
+			{ "eWitness", Types.VARCHAR },
+			{ "eProfessional", Types.VARCHAR },
+			{ "eUniversity", Types.VARCHAR },
+			{ "eContactPhone", Types.VARCHAR },
+			{ "eStartTimeYear", Types.VARCHAR },
+			{ "eStartTimeMonth", Types.VARCHAR },
+			{ "eStopTimeYear", Types.VARCHAR },
+			{ "eStopTimeMonth", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_Education (id_ LONG not null primary key,userId LONG,witness VARCHAR(75) null,professional VARCHAR(75) null,university VARCHAR(75) null,contactPhone VARCHAR(75) null,startTime DATE null,stopTime DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_Education (id_ LONG not null primary key,userId LONG,eWitness VARCHAR(75) null,eProfessional VARCHAR(75) null,eUniversity VARCHAR(75) null,eContactPhone VARCHAR(75) null,eStartTimeYear VARCHAR(75) null,eStartTimeMonth VARCHAR(75) null,eStopTimeYear VARCHAR(75) null,eStopTimeMonth VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_Education";
 	public static final String ORDER_BY_JPQL = " ORDER BY education.id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Intranet_Education.id_ ASC";
@@ -130,12 +131,14 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 
 		attributes.put("id", getId());
 		attributes.put("userId", getUserId());
-		attributes.put("witness", getWitness());
-		attributes.put("professional", getProfessional());
-		attributes.put("university", getUniversity());
-		attributes.put("contactPhone", getContactPhone());
-		attributes.put("startTime", getStartTime());
-		attributes.put("stopTime", getStopTime());
+		attributes.put("eWitness", getEWitness());
+		attributes.put("eProfessional", getEProfessional());
+		attributes.put("eUniversity", getEUniversity());
+		attributes.put("eContactPhone", getEContactPhone());
+		attributes.put("eStartTimeYear", getEStartTimeYear());
+		attributes.put("eStartTimeMonth", getEStartTimeMonth());
+		attributes.put("eStopTimeYear", getEStopTimeYear());
+		attributes.put("eStopTimeMonth", getEStopTimeMonth());
 
 		return attributes;
 	}
@@ -154,40 +157,52 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 			setUserId(userId);
 		}
 
-		String witness = (String)attributes.get("witness");
+		String eWitness = (String)attributes.get("eWitness");
 
-		if (witness != null) {
-			setWitness(witness);
+		if (eWitness != null) {
+			setEWitness(eWitness);
 		}
 
-		String professional = (String)attributes.get("professional");
+		String eProfessional = (String)attributes.get("eProfessional");
 
-		if (professional != null) {
-			setProfessional(professional);
+		if (eProfessional != null) {
+			setEProfessional(eProfessional);
 		}
 
-		String university = (String)attributes.get("university");
+		String eUniversity = (String)attributes.get("eUniversity");
 
-		if (university != null) {
-			setUniversity(university);
+		if (eUniversity != null) {
+			setEUniversity(eUniversity);
 		}
 
-		String contactPhone = (String)attributes.get("contactPhone");
+		String eContactPhone = (String)attributes.get("eContactPhone");
 
-		if (contactPhone != null) {
-			setContactPhone(contactPhone);
+		if (eContactPhone != null) {
+			setEContactPhone(eContactPhone);
 		}
 
-		Date startTime = (Date)attributes.get("startTime");
+		String eStartTimeYear = (String)attributes.get("eStartTimeYear");
 
-		if (startTime != null) {
-			setStartTime(startTime);
+		if (eStartTimeYear != null) {
+			setEStartTimeYear(eStartTimeYear);
 		}
 
-		Date stopTime = (Date)attributes.get("stopTime");
+		String eStartTimeMonth = (String)attributes.get("eStartTimeMonth");
 
-		if (stopTime != null) {
-			setStopTime(stopTime);
+		if (eStartTimeMonth != null) {
+			setEStartTimeMonth(eStartTimeMonth);
+		}
+
+		String eStopTimeYear = (String)attributes.get("eStopTimeYear");
+
+		if (eStopTimeYear != null) {
+			setEStopTimeYear(eStopTimeYear);
+		}
+
+		String eStopTimeMonth = (String)attributes.get("eStopTimeMonth");
+
+		if (eStopTimeMonth != null) {
+			setEStopTimeMonth(eStopTimeMonth);
 		}
 	}
 
@@ -236,83 +251,123 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 	}
 
 	@Override
-	public String getWitness() {
-		if (_witness == null) {
+	public String getEWitness() {
+		if (_eWitness == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _witness;
+			return _eWitness;
 		}
 	}
 
 	@Override
-	public void setWitness(String witness) {
-		_witness = witness;
+	public void setEWitness(String eWitness) {
+		_eWitness = eWitness;
 	}
 
 	@Override
-	public String getProfessional() {
-		if (_professional == null) {
+	public String getEProfessional() {
+		if (_eProfessional == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _professional;
+			return _eProfessional;
 		}
 	}
 
 	@Override
-	public void setProfessional(String professional) {
-		_professional = professional;
+	public void setEProfessional(String eProfessional) {
+		_eProfessional = eProfessional;
 	}
 
 	@Override
-	public String getUniversity() {
-		if (_university == null) {
+	public String getEUniversity() {
+		if (_eUniversity == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _university;
+			return _eUniversity;
 		}
 	}
 
 	@Override
-	public void setUniversity(String university) {
-		_university = university;
+	public void setEUniversity(String eUniversity) {
+		_eUniversity = eUniversity;
 	}
 
 	@Override
-	public String getContactPhone() {
-		if (_contactPhone == null) {
+	public String getEContactPhone() {
+		if (_eContactPhone == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _contactPhone;
+			return _eContactPhone;
 		}
 	}
 
 	@Override
-	public void setContactPhone(String contactPhone) {
-		_contactPhone = contactPhone;
+	public void setEContactPhone(String eContactPhone) {
+		_eContactPhone = eContactPhone;
 	}
 
 	@Override
-	public Date getStartTime() {
-		return _startTime;
+	public String getEStartTimeYear() {
+		if (_eStartTimeYear == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _eStartTimeYear;
+		}
 	}
 
 	@Override
-	public void setStartTime(Date startTime) {
-		_startTime = startTime;
+	public void setEStartTimeYear(String eStartTimeYear) {
+		_eStartTimeYear = eStartTimeYear;
 	}
 
 	@Override
-	public Date getStopTime() {
-		return _stopTime;
+	public String getEStartTimeMonth() {
+		if (_eStartTimeMonth == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _eStartTimeMonth;
+		}
 	}
 
 	@Override
-	public void setStopTime(Date stopTime) {
-		_stopTime = stopTime;
+	public void setEStartTimeMonth(String eStartTimeMonth) {
+		_eStartTimeMonth = eStartTimeMonth;
+	}
+
+	@Override
+	public String getEStopTimeYear() {
+		if (_eStopTimeYear == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _eStopTimeYear;
+		}
+	}
+
+	@Override
+	public void setEStopTimeYear(String eStopTimeYear) {
+		_eStopTimeYear = eStopTimeYear;
+	}
+
+	@Override
+	public String getEStopTimeMonth() {
+		if (_eStopTimeMonth == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _eStopTimeMonth;
+		}
+	}
+
+	@Override
+	public void setEStopTimeMonth(String eStopTimeMonth) {
+		_eStopTimeMonth = eStopTimeMonth;
 	}
 
 	public long getColumnBitmask() {
@@ -348,12 +403,14 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 
 		educationImpl.setId(getId());
 		educationImpl.setUserId(getUserId());
-		educationImpl.setWitness(getWitness());
-		educationImpl.setProfessional(getProfessional());
-		educationImpl.setUniversity(getUniversity());
-		educationImpl.setContactPhone(getContactPhone());
-		educationImpl.setStartTime(getStartTime());
-		educationImpl.setStopTime(getStopTime());
+		educationImpl.setEWitness(getEWitness());
+		educationImpl.setEProfessional(getEProfessional());
+		educationImpl.setEUniversity(getEUniversity());
+		educationImpl.setEContactPhone(getEContactPhone());
+		educationImpl.setEStartTimeYear(getEStartTimeYear());
+		educationImpl.setEStartTimeMonth(getEStartTimeMonth());
+		educationImpl.setEStopTimeYear(getEStopTimeYear());
+		educationImpl.setEStopTimeMonth(getEStopTimeMonth());
 
 		educationImpl.resetOriginalValues();
 
@@ -427,54 +484,68 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 
 		educationCacheModel.userId = getUserId();
 
-		educationCacheModel.witness = getWitness();
+		educationCacheModel.eWitness = getEWitness();
 
-		String witness = educationCacheModel.witness;
+		String eWitness = educationCacheModel.eWitness;
 
-		if ((witness != null) && (witness.length() == 0)) {
-			educationCacheModel.witness = null;
+		if ((eWitness != null) && (eWitness.length() == 0)) {
+			educationCacheModel.eWitness = null;
 		}
 
-		educationCacheModel.professional = getProfessional();
+		educationCacheModel.eProfessional = getEProfessional();
 
-		String professional = educationCacheModel.professional;
+		String eProfessional = educationCacheModel.eProfessional;
 
-		if ((professional != null) && (professional.length() == 0)) {
-			educationCacheModel.professional = null;
+		if ((eProfessional != null) && (eProfessional.length() == 0)) {
+			educationCacheModel.eProfessional = null;
 		}
 
-		educationCacheModel.university = getUniversity();
+		educationCacheModel.eUniversity = getEUniversity();
 
-		String university = educationCacheModel.university;
+		String eUniversity = educationCacheModel.eUniversity;
 
-		if ((university != null) && (university.length() == 0)) {
-			educationCacheModel.university = null;
+		if ((eUniversity != null) && (eUniversity.length() == 0)) {
+			educationCacheModel.eUniversity = null;
 		}
 
-		educationCacheModel.contactPhone = getContactPhone();
+		educationCacheModel.eContactPhone = getEContactPhone();
 
-		String contactPhone = educationCacheModel.contactPhone;
+		String eContactPhone = educationCacheModel.eContactPhone;
 
-		if ((contactPhone != null) && (contactPhone.length() == 0)) {
-			educationCacheModel.contactPhone = null;
+		if ((eContactPhone != null) && (eContactPhone.length() == 0)) {
+			educationCacheModel.eContactPhone = null;
 		}
 
-		Date startTime = getStartTime();
+		educationCacheModel.eStartTimeYear = getEStartTimeYear();
 
-		if (startTime != null) {
-			educationCacheModel.startTime = startTime.getTime();
-		}
-		else {
-			educationCacheModel.startTime = Long.MIN_VALUE;
+		String eStartTimeYear = educationCacheModel.eStartTimeYear;
+
+		if ((eStartTimeYear != null) && (eStartTimeYear.length() == 0)) {
+			educationCacheModel.eStartTimeYear = null;
 		}
 
-		Date stopTime = getStopTime();
+		educationCacheModel.eStartTimeMonth = getEStartTimeMonth();
 
-		if (stopTime != null) {
-			educationCacheModel.stopTime = stopTime.getTime();
+		String eStartTimeMonth = educationCacheModel.eStartTimeMonth;
+
+		if ((eStartTimeMonth != null) && (eStartTimeMonth.length() == 0)) {
+			educationCacheModel.eStartTimeMonth = null;
 		}
-		else {
-			educationCacheModel.stopTime = Long.MIN_VALUE;
+
+		educationCacheModel.eStopTimeYear = getEStopTimeYear();
+
+		String eStopTimeYear = educationCacheModel.eStopTimeYear;
+
+		if ((eStopTimeYear != null) && (eStopTimeYear.length() == 0)) {
+			educationCacheModel.eStopTimeYear = null;
+		}
+
+		educationCacheModel.eStopTimeMonth = getEStopTimeMonth();
+
+		String eStopTimeMonth = educationCacheModel.eStopTimeMonth;
+
+		if ((eStopTimeMonth != null) && (eStopTimeMonth.length() == 0)) {
+			educationCacheModel.eStopTimeMonth = null;
 		}
 
 		return educationCacheModel;
@@ -482,24 +553,28 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{id=");
 		sb.append(getId());
 		sb.append(", userId=");
 		sb.append(getUserId());
-		sb.append(", witness=");
-		sb.append(getWitness());
-		sb.append(", professional=");
-		sb.append(getProfessional());
-		sb.append(", university=");
-		sb.append(getUniversity());
-		sb.append(", contactPhone=");
-		sb.append(getContactPhone());
-		sb.append(", startTime=");
-		sb.append(getStartTime());
-		sb.append(", stopTime=");
-		sb.append(getStopTime());
+		sb.append(", eWitness=");
+		sb.append(getEWitness());
+		sb.append(", eProfessional=");
+		sb.append(getEProfessional());
+		sb.append(", eUniversity=");
+		sb.append(getEUniversity());
+		sb.append(", eContactPhone=");
+		sb.append(getEContactPhone());
+		sb.append(", eStartTimeYear=");
+		sb.append(getEStartTimeYear());
+		sb.append(", eStartTimeMonth=");
+		sb.append(getEStartTimeMonth());
+		sb.append(", eStopTimeYear=");
+		sb.append(getEStopTimeYear());
+		sb.append(", eStopTimeMonth=");
+		sb.append(getEStopTimeMonth());
 		sb.append("}");
 
 		return sb.toString();
@@ -507,7 +582,7 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.Education");
@@ -522,28 +597,36 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>witness</column-name><column-value><![CDATA[");
-		sb.append(getWitness());
+			"<column><column-name>eWitness</column-name><column-value><![CDATA[");
+		sb.append(getEWitness());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>professional</column-name><column-value><![CDATA[");
-		sb.append(getProfessional());
+			"<column><column-name>eProfessional</column-name><column-value><![CDATA[");
+		sb.append(getEProfessional());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>university</column-name><column-value><![CDATA[");
-		sb.append(getUniversity());
+			"<column><column-name>eUniversity</column-name><column-value><![CDATA[");
+		sb.append(getEUniversity());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>contactPhone</column-name><column-value><![CDATA[");
-		sb.append(getContactPhone());
+			"<column><column-name>eContactPhone</column-name><column-value><![CDATA[");
+		sb.append(getEContactPhone());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>startTime</column-name><column-value><![CDATA[");
-		sb.append(getStartTime());
+			"<column><column-name>eStartTimeYear</column-name><column-value><![CDATA[");
+		sb.append(getEStartTimeYear());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>stopTime</column-name><column-value><![CDATA[");
-		sb.append(getStopTime());
+			"<column><column-name>eStartTimeMonth</column-name><column-value><![CDATA[");
+		sb.append(getEStartTimeMonth());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>eStopTimeYear</column-name><column-value><![CDATA[");
+		sb.append(getEStopTimeYear());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>eStopTimeMonth</column-name><column-value><![CDATA[");
+		sb.append(getEStopTimeMonth());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -560,12 +643,14 @@ public class EducationModelImpl extends BaseModelImpl<Education>
 	private String _userUuid;
 	private long _originalUserId;
 	private boolean _setOriginalUserId;
-	private String _witness;
-	private String _professional;
-	private String _university;
-	private String _contactPhone;
-	private Date _startTime;
-	private Date _stopTime;
+	private String _eWitness;
+	private String _eProfessional;
+	private String _eUniversity;
+	private String _eContactPhone;
+	private String _eStartTimeYear;
+	private String _eStartTimeMonth;
+	private String _eStopTimeYear;
+	private String _eStopTimeMonth;
 	private long _columnBitmask;
 	private Education _escapedModel;
 }

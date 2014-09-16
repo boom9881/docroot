@@ -5,6 +5,7 @@
 	<bean id="com.shuntian.portlet.intranet.service.persistence.AttendancePersistence" class="com.shuntian.portlet.intranet.service.persistence.AttendancePersistenceImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.BasicInformationLocalService" class="com.shuntian.portlet.intranet.service.impl.BasicInformationLocalServiceImpl" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.BasicInformationPersistence" class="com.shuntian.portlet.intranet.service.persistence.BasicInformationPersistenceImpl" parent="basePersistence" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.BasicInformationFinder" class="com.shuntian.portlet.intranet.service.persistence.BasicInformationFinderImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.DepartmentLocalService" class="com.shuntian.portlet.intranet.service.impl.DepartmentLocalServiceImpl" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.DepartmentPersistence" class="com.shuntian.portlet.intranet.service.persistence.DepartmentPersistenceImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.DepartmentFinder" class="com.shuntian.portlet.intranet.service.persistence.DepartmentFinderImpl" parent="basePersistence" />

@@ -85,7 +85,8 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 		attributes.put("probationPeriodStart", getProbationPeriodStart());
 		attributes.put("probationPeriodEnd", getProbationPeriodEnd());
 		attributes.put("induredLocation", getInduredLocation());
-		attributes.put("fristInsured", getFristInsured());
+		attributes.put("fristInsuredYear", getFristInsuredYear());
+		attributes.put("fristInsuredMonth", getFristInsuredMonth());
 		attributes.put("isInsured", getIsInsured());
 		attributes.put("basicWage", getBasicWage());
 		attributes.put("otherWage", getOtherWage());
@@ -155,10 +156,16 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 			setInduredLocation(induredLocation);
 		}
 
-		Date fristInsured = (Date)attributes.get("fristInsured");
+		String fristInsuredYear = (String)attributes.get("fristInsuredYear");
 
-		if (fristInsured != null) {
-			setFristInsured(fristInsured);
+		if (fristInsuredYear != null) {
+			setFristInsuredYear(fristInsuredYear);
+		}
+
+		String fristInsuredMonth = (String)attributes.get("fristInsuredMonth");
+
+		if (fristInsuredMonth != null) {
+			setFristInsuredMonth(fristInsuredMonth);
 		}
 
 		String isInsured = (String)attributes.get("isInsured");
@@ -426,21 +433,46 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 	}
 
 	@Override
-	public Date getFristInsured() {
-		return _fristInsured;
+	public String getFristInsuredYear() {
+		return _fristInsuredYear;
 	}
 
 	@Override
-	public void setFristInsured(Date fristInsured) {
-		_fristInsured = fristInsured;
+	public void setFristInsuredYear(String fristInsuredYear) {
+		_fristInsuredYear = fristInsuredYear;
 
 		if (_extInformationRemoteModel != null) {
 			try {
 				Class<?> clazz = _extInformationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setFristInsured", Date.class);
+				Method method = clazz.getMethod("setFristInsuredYear",
+						String.class);
 
-				method.invoke(_extInformationRemoteModel, fristInsured);
+				method.invoke(_extInformationRemoteModel, fristInsuredYear);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getFristInsuredMonth() {
+		return _fristInsuredMonth;
+	}
+
+	@Override
+	public void setFristInsuredMonth(String fristInsuredMonth) {
+		_fristInsuredMonth = fristInsuredMonth;
+
+		if (_extInformationRemoteModel != null) {
+			try {
+				Class<?> clazz = _extInformationRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFristInsuredMonth",
+						String.class);
+
+				method.invoke(_extInformationRemoteModel, fristInsuredMonth);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -598,7 +630,8 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 		clone.setProbationPeriodStart(getProbationPeriodStart());
 		clone.setProbationPeriodEnd(getProbationPeriodEnd());
 		clone.setInduredLocation(getInduredLocation());
-		clone.setFristInsured(getFristInsured());
+		clone.setFristInsuredYear(getFristInsuredYear());
+		clone.setFristInsuredMonth(getFristInsuredMonth());
 		clone.setIsInsured(getIsInsured());
 		clone.setBasicWage(getBasicWage());
 		clone.setOtherWage(getOtherWage());
@@ -656,7 +689,7 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -678,8 +711,10 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 		sb.append(getProbationPeriodEnd());
 		sb.append(", induredLocation=");
 		sb.append(getInduredLocation());
-		sb.append(", fristInsured=");
-		sb.append(getFristInsured());
+		sb.append(", fristInsuredYear=");
+		sb.append(getFristInsuredYear());
+		sb.append(", fristInsuredMonth=");
+		sb.append(getFristInsuredMonth());
 		sb.append(", isInsured=");
 		sb.append(getIsInsured());
 		sb.append(", basicWage=");
@@ -693,7 +728,7 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.ExtInformation");
@@ -740,8 +775,12 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 		sb.append(getInduredLocation());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fristInsured</column-name><column-value><![CDATA[");
-		sb.append(getFristInsured());
+			"<column><column-name>fristInsuredYear</column-name><column-value><![CDATA[");
+		sb.append(getFristInsuredYear());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fristInsuredMonth</column-name><column-value><![CDATA[");
+		sb.append(getFristInsuredMonth());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>isInsured</column-name><column-value><![CDATA[");
@@ -772,7 +811,8 @@ public class ExtInformationClp extends BaseModelImpl<ExtInformation>
 	private Date _probationPeriodStart;
 	private Date _probationPeriodEnd;
 	private String _induredLocation;
-	private Date _fristInsured;
+	private String _fristInsuredYear;
+	private String _fristInsuredMonth;
 	private String _isInsured;
 	private long _basicWage;
 	private long _otherWage;

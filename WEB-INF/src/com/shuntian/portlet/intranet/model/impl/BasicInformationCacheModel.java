@@ -38,7 +38,7 @@ public class BasicInformationCacheModel implements CacheModel<BasicInformation>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(61);
+		StringBundler sb = new StringBundler(63);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -92,6 +92,8 @@ public class BasicInformationCacheModel implements CacheModel<BasicInformation>,
 		sb.append(emergencyContactPhone);
 		sb.append(", isLeave=");
 		sb.append(isLeave);
+		sb.append(", departmentId=");
+		sb.append(departmentId);
 		sb.append(", createUserId=");
 		sb.append(createUserId);
 		sb.append(", createDate=");
@@ -252,6 +254,7 @@ public class BasicInformationCacheModel implements CacheModel<BasicInformation>,
 		}
 
 		basicInformationImpl.setIsLeave(isLeave);
+		basicInformationImpl.setDepartmentId(departmentId);
 		basicInformationImpl.setCreateUserId(createUserId);
 
 		if (createDate == Long.MIN_VALUE) {
@@ -303,6 +306,7 @@ public class BasicInformationCacheModel implements CacheModel<BasicInformation>,
 		emergencyContactRelation = objectInput.readUTF();
 		emergencyContactPhone = objectInput.readUTF();
 		isLeave = objectInput.readInt();
+		departmentId = objectInput.readLong();
 		createUserId = objectInput.readLong();
 		createDate = objectInput.readLong();
 		modifiedUserId = objectInput.readLong();
@@ -450,6 +454,7 @@ public class BasicInformationCacheModel implements CacheModel<BasicInformation>,
 		}
 
 		objectOutput.writeInt(isLeave);
+		objectOutput.writeLong(departmentId);
 		objectOutput.writeLong(createUserId);
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedUserId);
@@ -482,6 +487,7 @@ public class BasicInformationCacheModel implements CacheModel<BasicInformation>,
 	public String emergencyContactRelation;
 	public String emergencyContactPhone;
 	public int isLeave;
+	public long departmentId;
 	public long createUserId;
 	public long createDate;
 	public long modifiedUserId;

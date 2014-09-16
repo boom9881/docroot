@@ -76,11 +76,11 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 
 		attributes.put("id", getId());
 		attributes.put("userId", getUserId());
-		attributes.put("name", getName());
-		attributes.put("relationship", getRelationship());
-		attributes.put("workUnit", getWorkUnit());
-		attributes.put("contactPhone", getContactPhone());
-		attributes.put("onceJob", getOnceJob());
+		attributes.put("frName", getFrName());
+		attributes.put("frRelationship", getFrRelationship());
+		attributes.put("frWorkUnit", getFrWorkUnit());
+		attributes.put("frContactPhone", getFrContactPhone());
+		attributes.put("frOnceJob", getFrOnceJob());
 
 		return attributes;
 	}
@@ -99,34 +99,34 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 			setUserId(userId);
 		}
 
-		String name = (String)attributes.get("name");
+		String frName = (String)attributes.get("frName");
 
-		if (name != null) {
-			setName(name);
+		if (frName != null) {
+			setFrName(frName);
 		}
 
-		String relationship = (String)attributes.get("relationship");
+		String frRelationship = (String)attributes.get("frRelationship");
 
-		if (relationship != null) {
-			setRelationship(relationship);
+		if (frRelationship != null) {
+			setFrRelationship(frRelationship);
 		}
 
-		String workUnit = (String)attributes.get("workUnit");
+		String frWorkUnit = (String)attributes.get("frWorkUnit");
 
-		if (workUnit != null) {
-			setWorkUnit(workUnit);
+		if (frWorkUnit != null) {
+			setFrWorkUnit(frWorkUnit);
 		}
 
-		String contactPhone = (String)attributes.get("contactPhone");
+		String frContactPhone = (String)attributes.get("frContactPhone");
 
-		if (contactPhone != null) {
-			setContactPhone(contactPhone);
+		if (frContactPhone != null) {
+			setFrContactPhone(frContactPhone);
 		}
 
-		String onceJob = (String)attributes.get("onceJob");
+		String frOnceJob = (String)attributes.get("frOnceJob");
 
-		if (onceJob != null) {
-			setOnceJob(onceJob);
+		if (frOnceJob != null) {
+			setFrOnceJob(frOnceJob);
 		}
 	}
 
@@ -187,21 +187,21 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 	}
 
 	@Override
-	public String getName() {
-		return _name;
+	public String getFrName() {
+		return _frName;
 	}
 
 	@Override
-	public void setName(String name) {
-		_name = name;
+	public void setFrName(String frName) {
+		_frName = frName;
 
 		if (_familyRelationshipRemoteModel != null) {
 			try {
 				Class<?> clazz = _familyRelationshipRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setName", String.class);
+				Method method = clazz.getMethod("setFrName", String.class);
 
-				method.invoke(_familyRelationshipRemoteModel, name);
+				method.invoke(_familyRelationshipRemoteModel, frName);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -210,21 +210,22 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 	}
 
 	@Override
-	public String getRelationship() {
-		return _relationship;
+	public String getFrRelationship() {
+		return _frRelationship;
 	}
 
 	@Override
-	public void setRelationship(String relationship) {
-		_relationship = relationship;
+	public void setFrRelationship(String frRelationship) {
+		_frRelationship = frRelationship;
 
 		if (_familyRelationshipRemoteModel != null) {
 			try {
 				Class<?> clazz = _familyRelationshipRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setRelationship", String.class);
+				Method method = clazz.getMethod("setFrRelationship",
+						String.class);
 
-				method.invoke(_familyRelationshipRemoteModel, relationship);
+				method.invoke(_familyRelationshipRemoteModel, frRelationship);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -233,21 +234,21 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 	}
 
 	@Override
-	public String getWorkUnit() {
-		return _workUnit;
+	public String getFrWorkUnit() {
+		return _frWorkUnit;
 	}
 
 	@Override
-	public void setWorkUnit(String workUnit) {
-		_workUnit = workUnit;
+	public void setFrWorkUnit(String frWorkUnit) {
+		_frWorkUnit = frWorkUnit;
 
 		if (_familyRelationshipRemoteModel != null) {
 			try {
 				Class<?> clazz = _familyRelationshipRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setWorkUnit", String.class);
+				Method method = clazz.getMethod("setFrWorkUnit", String.class);
 
-				method.invoke(_familyRelationshipRemoteModel, workUnit);
+				method.invoke(_familyRelationshipRemoteModel, frWorkUnit);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -256,21 +257,22 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 	}
 
 	@Override
-	public String getContactPhone() {
-		return _contactPhone;
+	public String getFrContactPhone() {
+		return _frContactPhone;
 	}
 
 	@Override
-	public void setContactPhone(String contactPhone) {
-		_contactPhone = contactPhone;
+	public void setFrContactPhone(String frContactPhone) {
+		_frContactPhone = frContactPhone;
 
 		if (_familyRelationshipRemoteModel != null) {
 			try {
 				Class<?> clazz = _familyRelationshipRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setContactPhone", String.class);
+				Method method = clazz.getMethod("setFrContactPhone",
+						String.class);
 
-				method.invoke(_familyRelationshipRemoteModel, contactPhone);
+				method.invoke(_familyRelationshipRemoteModel, frContactPhone);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -279,21 +281,21 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 	}
 
 	@Override
-	public String getOnceJob() {
-		return _onceJob;
+	public String getFrOnceJob() {
+		return _frOnceJob;
 	}
 
 	@Override
-	public void setOnceJob(String onceJob) {
-		_onceJob = onceJob;
+	public void setFrOnceJob(String frOnceJob) {
+		_frOnceJob = frOnceJob;
 
 		if (_familyRelationshipRemoteModel != null) {
 			try {
 				Class<?> clazz = _familyRelationshipRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setOnceJob", String.class);
+				Method method = clazz.getMethod("setFrOnceJob", String.class);
 
-				method.invoke(_familyRelationshipRemoteModel, onceJob);
+				method.invoke(_familyRelationshipRemoteModel, frOnceJob);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -374,11 +376,11 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 
 		clone.setId(getId());
 		clone.setUserId(getUserId());
-		clone.setName(getName());
-		clone.setRelationship(getRelationship());
-		clone.setWorkUnit(getWorkUnit());
-		clone.setContactPhone(getContactPhone());
-		clone.setOnceJob(getOnceJob());
+		clone.setFrName(getFrName());
+		clone.setFrRelationship(getFrRelationship());
+		clone.setFrWorkUnit(getFrWorkUnit());
+		clone.setFrContactPhone(getFrContactPhone());
+		clone.setFrOnceJob(getFrOnceJob());
 
 		return clone;
 	}
@@ -439,16 +441,16 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 		sb.append(getId());
 		sb.append(", userId=");
 		sb.append(getUserId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", relationship=");
-		sb.append(getRelationship());
-		sb.append(", workUnit=");
-		sb.append(getWorkUnit());
-		sb.append(", contactPhone=");
-		sb.append(getContactPhone());
-		sb.append(", onceJob=");
-		sb.append(getOnceJob());
+		sb.append(", frName=");
+		sb.append(getFrName());
+		sb.append(", frRelationship=");
+		sb.append(getFrRelationship());
+		sb.append(", frWorkUnit=");
+		sb.append(getFrWorkUnit());
+		sb.append(", frContactPhone=");
+		sb.append(getFrContactPhone());
+		sb.append(", frOnceJob=");
+		sb.append(getFrOnceJob());
 		sb.append("}");
 
 		return sb.toString();
@@ -471,24 +473,24 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
+			"<column><column-name>frName</column-name><column-value><![CDATA[");
+		sb.append(getFrName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>relationship</column-name><column-value><![CDATA[");
-		sb.append(getRelationship());
+			"<column><column-name>frRelationship</column-name><column-value><![CDATA[");
+		sb.append(getFrRelationship());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>workUnit</column-name><column-value><![CDATA[");
-		sb.append(getWorkUnit());
+			"<column><column-name>frWorkUnit</column-name><column-value><![CDATA[");
+		sb.append(getFrWorkUnit());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>contactPhone</column-name><column-value><![CDATA[");
-		sb.append(getContactPhone());
+			"<column><column-name>frContactPhone</column-name><column-value><![CDATA[");
+		sb.append(getFrContactPhone());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>onceJob</column-name><column-value><![CDATA[");
-		sb.append(getOnceJob());
+			"<column><column-name>frOnceJob</column-name><column-value><![CDATA[");
+		sb.append(getFrOnceJob());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -499,10 +501,10 @@ public class FamilyRelationshipClp extends BaseModelImpl<FamilyRelationship>
 	private long _id;
 	private long _userId;
 	private String _userUuid;
-	private String _name;
-	private String _relationship;
-	private String _workUnit;
-	private String _contactPhone;
-	private String _onceJob;
+	private String _frName;
+	private String _frRelationship;
+	private String _frWorkUnit;
+	private String _frContactPhone;
+	private String _frOnceJob;
 	private BaseModel<?> _familyRelationshipRemoteModel;
 }

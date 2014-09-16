@@ -25,8 +25,6 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import java.util.Date;
-
 /**
  * The cache model class for representing WorkExperience in entity cache.
  *
@@ -38,24 +36,28 @@ public class WorkExperienceCacheModel implements CacheModel<WorkExperience>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{id=");
 		sb.append(id);
 		sb.append(", userId=");
 		sb.append(userId);
-		sb.append(", witness=");
-		sb.append(witness);
-		sb.append(", onceJob=");
-		sb.append(onceJob);
-		sb.append(", workUnit=");
-		sb.append(workUnit);
-		sb.append(", contactPhone=");
-		sb.append(contactPhone);
-		sb.append(", startTime=");
-		sb.append(startTime);
-		sb.append(", stopTime=");
-		sb.append(stopTime);
+		sb.append(", weWitness=");
+		sb.append(weWitness);
+		sb.append(", weOnceJob=");
+		sb.append(weOnceJob);
+		sb.append(", weWorkUnit=");
+		sb.append(weWorkUnit);
+		sb.append(", weContactPhone=");
+		sb.append(weContactPhone);
+		sb.append(", weStartTimeYear=");
+		sb.append(weStartTimeYear);
+		sb.append(", weStartTimeMonth=");
+		sb.append(weStartTimeMonth);
+		sb.append(", weStopTimeYear=");
+		sb.append(weStopTimeYear);
+		sb.append(", weStopTimeMonth=");
+		sb.append(weStopTimeMonth);
 		sb.append("}");
 
 		return sb.toString();
@@ -68,46 +70,60 @@ public class WorkExperienceCacheModel implements CacheModel<WorkExperience>,
 		workExperienceImpl.setId(id);
 		workExperienceImpl.setUserId(userId);
 
-		if (witness == null) {
-			workExperienceImpl.setWitness(StringPool.BLANK);
+		if (weWitness == null) {
+			workExperienceImpl.setWeWitness(StringPool.BLANK);
 		}
 		else {
-			workExperienceImpl.setWitness(witness);
+			workExperienceImpl.setWeWitness(weWitness);
 		}
 
-		if (onceJob == null) {
-			workExperienceImpl.setOnceJob(StringPool.BLANK);
+		if (weOnceJob == null) {
+			workExperienceImpl.setWeOnceJob(StringPool.BLANK);
 		}
 		else {
-			workExperienceImpl.setOnceJob(onceJob);
+			workExperienceImpl.setWeOnceJob(weOnceJob);
 		}
 
-		if (workUnit == null) {
-			workExperienceImpl.setWorkUnit(StringPool.BLANK);
+		if (weWorkUnit == null) {
+			workExperienceImpl.setWeWorkUnit(StringPool.BLANK);
 		}
 		else {
-			workExperienceImpl.setWorkUnit(workUnit);
+			workExperienceImpl.setWeWorkUnit(weWorkUnit);
 		}
 
-		if (contactPhone == null) {
-			workExperienceImpl.setContactPhone(StringPool.BLANK);
+		if (weContactPhone == null) {
+			workExperienceImpl.setWeContactPhone(StringPool.BLANK);
 		}
 		else {
-			workExperienceImpl.setContactPhone(contactPhone);
+			workExperienceImpl.setWeContactPhone(weContactPhone);
 		}
 
-		if (startTime == Long.MIN_VALUE) {
-			workExperienceImpl.setStartTime(null);
+		if (weStartTimeYear == null) {
+			workExperienceImpl.setWeStartTimeYear(StringPool.BLANK);
 		}
 		else {
-			workExperienceImpl.setStartTime(new Date(startTime));
+			workExperienceImpl.setWeStartTimeYear(weStartTimeYear);
 		}
 
-		if (stopTime == Long.MIN_VALUE) {
-			workExperienceImpl.setStopTime(null);
+		if (weStartTimeMonth == null) {
+			workExperienceImpl.setWeStartTimeMonth(StringPool.BLANK);
 		}
 		else {
-			workExperienceImpl.setStopTime(new Date(stopTime));
+			workExperienceImpl.setWeStartTimeMonth(weStartTimeMonth);
+		}
+
+		if (weStopTimeYear == null) {
+			workExperienceImpl.setWeStopTimeYear(StringPool.BLANK);
+		}
+		else {
+			workExperienceImpl.setWeStopTimeYear(weStopTimeYear);
+		}
+
+		if (weStopTimeMonth == null) {
+			workExperienceImpl.setWeStopTimeMonth(StringPool.BLANK);
+		}
+		else {
+			workExperienceImpl.setWeStopTimeMonth(weStopTimeMonth);
 		}
 
 		workExperienceImpl.resetOriginalValues();
@@ -119,12 +135,14 @@ public class WorkExperienceCacheModel implements CacheModel<WorkExperience>,
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		id = objectInput.readLong();
 		userId = objectInput.readLong();
-		witness = objectInput.readUTF();
-		onceJob = objectInput.readUTF();
-		workUnit = objectInput.readUTF();
-		contactPhone = objectInput.readUTF();
-		startTime = objectInput.readLong();
-		stopTime = objectInput.readLong();
+		weWitness = objectInput.readUTF();
+		weOnceJob = objectInput.readUTF();
+		weWorkUnit = objectInput.readUTF();
+		weContactPhone = objectInput.readUTF();
+		weStartTimeYear = objectInput.readUTF();
+		weStartTimeMonth = objectInput.readUTF();
+		weStopTimeYear = objectInput.readUTF();
+		weStopTimeMonth = objectInput.readUTF();
 	}
 
 	@Override
@@ -133,44 +151,71 @@ public class WorkExperienceCacheModel implements CacheModel<WorkExperience>,
 		objectOutput.writeLong(id);
 		objectOutput.writeLong(userId);
 
-		if (witness == null) {
+		if (weWitness == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(witness);
+			objectOutput.writeUTF(weWitness);
 		}
 
-		if (onceJob == null) {
+		if (weOnceJob == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(onceJob);
+			objectOutput.writeUTF(weOnceJob);
 		}
 
-		if (workUnit == null) {
+		if (weWorkUnit == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(workUnit);
+			objectOutput.writeUTF(weWorkUnit);
 		}
 
-		if (contactPhone == null) {
+		if (weContactPhone == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(contactPhone);
+			objectOutput.writeUTF(weContactPhone);
 		}
 
-		objectOutput.writeLong(startTime);
-		objectOutput.writeLong(stopTime);
+		if (weStartTimeYear == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(weStartTimeYear);
+		}
+
+		if (weStartTimeMonth == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(weStartTimeMonth);
+		}
+
+		if (weStopTimeYear == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(weStopTimeYear);
+		}
+
+		if (weStopTimeMonth == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(weStopTimeMonth);
+		}
 	}
 
 	public long id;
 	public long userId;
-	public String witness;
-	public String onceJob;
-	public String workUnit;
-	public String contactPhone;
-	public long startTime;
-	public long stopTime;
+	public String weWitness;
+	public String weOnceJob;
+	public String weWorkUnit;
+	public String weContactPhone;
+	public String weStartTimeYear;
+	public String weStartTimeMonth;
+	public String weStopTimeYear;
+	public String weStopTimeMonth;
 }

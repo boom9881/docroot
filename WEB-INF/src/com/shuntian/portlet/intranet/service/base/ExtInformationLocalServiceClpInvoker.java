@@ -106,13 +106,33 @@ public class ExtInformationLocalServiceClpInvoker {
 				"com.shuntian.portlet.intranet.model.ExtInformation"
 			};
 
-		_methodName66 = "getBeanIdentifier";
+		_methodName68 = "getBeanIdentifier";
 
-		_methodParameterTypes66 = new String[] {  };
+		_methodParameterTypes68 = new String[] {  };
 
-		_methodName67 = "setBeanIdentifier";
+		_methodName69 = "setBeanIdentifier";
 
-		_methodParameterTypes67 = new String[] { "java.lang.String" };
+		_methodParameterTypes69 = new String[] { "java.lang.String" };
+
+		_methodName74 = "editExtInformation";
+
+		_methodParameterTypes74 = new String[] {
+				"long", "com.shuntian.portlet.intranet.model.ExtInformation"
+			};
+
+		_methodName75 = "editExtInformation";
+
+		_methodParameterTypes75 = new String[] {
+				"long", "java.lang.String", "java.lang.String",
+				"java.lang.String", "java.util.Date", "java.util.Date",
+				"java.util.Date", "java.util.Date", "java.lang.String",
+				"java.lang.String", "java.lang.String", "java.lang.String",
+				"long", "long"
+			};
+
+		_methodName76 = "findByUserId";
+
+		_methodParameterTypes76 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -204,16 +224,45 @@ public class ExtInformationLocalServiceClpInvoker {
 			return ExtInformationLocalServiceUtil.updateExtInformation((com.shuntian.portlet.intranet.model.ExtInformation)arguments[0]);
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return ExtInformationLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			ExtInformationLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
+		}
+
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+			ExtInformationLocalServiceUtil.editExtInformation(((Long)arguments[0]).longValue(),
+				(com.shuntian.portlet.intranet.model.ExtInformation)arguments[1]);
+
+			return null;
+		}
+
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
+			ExtInformationLocalServiceUtil.editExtInformation(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
+				(java.lang.String)arguments[3], (java.util.Date)arguments[4],
+				(java.util.Date)arguments[5], (java.util.Date)arguments[6],
+				(java.util.Date)arguments[7], (java.lang.String)arguments[8],
+				(java.lang.String)arguments[9],
+				(java.lang.String)arguments[10],
+				(java.lang.String)arguments[11],
+				((Long)arguments[12]).longValue(),
+				((Long)arguments[13]).longValue());
+
+			return null;
+		}
+
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+			return ExtInformationLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -251,8 +300,14 @@ public class ExtInformationLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName66;
-	private String[] _methodParameterTypes66;
-	private String _methodName67;
-	private String[] _methodParameterTypes67;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
+	private String _methodName74;
+	private String[] _methodParameterTypes74;
+	private String _methodName75;
+	private String[] _methodParameterTypes75;
+	private String _methodName76;
+	private String[] _methodParameterTypes76;
 }

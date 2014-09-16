@@ -248,6 +248,20 @@ public interface BasicInformationLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	public void editStaff(long companyId, long id, long userId, long curUserId,
+		com.shuntian.portlet.intranet.model.BasicInformation bi,
+		com.shuntian.portlet.intranet.model.ExtInformation ei,
+		java.util.List<com.shuntian.portlet.intranet.model.Education> edus,
+		java.util.List<com.shuntian.portlet.intranet.model.WorkExperience> wes,
+		java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship> frs,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void leave(long id, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchBasicInformationException;
+
 	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByIsLeave(
 		boolean isLeave)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -255,9 +269,10 @@ public interface BasicInformationLocalService extends BaseLocalService,
 	public com.shuntian.portlet.intranet.model.BasicInformation findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findListByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByDepAndName(long departmentId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countByListUserId(long userId)
+	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByDepAndName(
+		long departmentId, java.lang.String name, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

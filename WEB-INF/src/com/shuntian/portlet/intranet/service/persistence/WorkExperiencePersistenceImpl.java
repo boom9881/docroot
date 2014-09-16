@@ -841,12 +841,14 @@ public class WorkExperiencePersistenceImpl extends BasePersistenceImpl<WorkExper
 
 		workExperienceImpl.setId(workExperience.getId());
 		workExperienceImpl.setUserId(workExperience.getUserId());
-		workExperienceImpl.setWitness(workExperience.getWitness());
-		workExperienceImpl.setOnceJob(workExperience.getOnceJob());
-		workExperienceImpl.setWorkUnit(workExperience.getWorkUnit());
-		workExperienceImpl.setContactPhone(workExperience.getContactPhone());
-		workExperienceImpl.setStartTime(workExperience.getStartTime());
-		workExperienceImpl.setStopTime(workExperience.getStopTime());
+		workExperienceImpl.setWeWitness(workExperience.getWeWitness());
+		workExperienceImpl.setWeOnceJob(workExperience.getWeOnceJob());
+		workExperienceImpl.setWeWorkUnit(workExperience.getWeWorkUnit());
+		workExperienceImpl.setWeContactPhone(workExperience.getWeContactPhone());
+		workExperienceImpl.setWeStartTimeYear(workExperience.getWeStartTimeYear());
+		workExperienceImpl.setWeStartTimeMonth(workExperience.getWeStartTimeMonth());
+		workExperienceImpl.setWeStopTimeYear(workExperience.getWeStopTimeYear());
+		workExperienceImpl.setWeStopTimeMonth(workExperience.getWeStopTimeMonth());
 
 		return workExperienceImpl;
 	}

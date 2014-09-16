@@ -17,7 +17,6 @@ package com.shuntian.portlet.intranet.model;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,12 +51,14 @@ public class WorkExperienceWrapper implements WorkExperience,
 
 		attributes.put("id", getId());
 		attributes.put("userId", getUserId());
-		attributes.put("witness", getWitness());
-		attributes.put("onceJob", getOnceJob());
-		attributes.put("workUnit", getWorkUnit());
-		attributes.put("contactPhone", getContactPhone());
-		attributes.put("startTime", getStartTime());
-		attributes.put("stopTime", getStopTime());
+		attributes.put("weWitness", getWeWitness());
+		attributes.put("weOnceJob", getWeOnceJob());
+		attributes.put("weWorkUnit", getWeWorkUnit());
+		attributes.put("weContactPhone", getWeContactPhone());
+		attributes.put("weStartTimeYear", getWeStartTimeYear());
+		attributes.put("weStartTimeMonth", getWeStartTimeMonth());
+		attributes.put("weStopTimeYear", getWeStopTimeYear());
+		attributes.put("weStopTimeMonth", getWeStopTimeMonth());
 
 		return attributes;
 	}
@@ -76,40 +77,52 @@ public class WorkExperienceWrapper implements WorkExperience,
 			setUserId(userId);
 		}
 
-		String witness = (String)attributes.get("witness");
+		String weWitness = (String)attributes.get("weWitness");
 
-		if (witness != null) {
-			setWitness(witness);
+		if (weWitness != null) {
+			setWeWitness(weWitness);
 		}
 
-		String onceJob = (String)attributes.get("onceJob");
+		String weOnceJob = (String)attributes.get("weOnceJob");
 
-		if (onceJob != null) {
-			setOnceJob(onceJob);
+		if (weOnceJob != null) {
+			setWeOnceJob(weOnceJob);
 		}
 
-		String workUnit = (String)attributes.get("workUnit");
+		String weWorkUnit = (String)attributes.get("weWorkUnit");
 
-		if (workUnit != null) {
-			setWorkUnit(workUnit);
+		if (weWorkUnit != null) {
+			setWeWorkUnit(weWorkUnit);
 		}
 
-		String contactPhone = (String)attributes.get("contactPhone");
+		String weContactPhone = (String)attributes.get("weContactPhone");
 
-		if (contactPhone != null) {
-			setContactPhone(contactPhone);
+		if (weContactPhone != null) {
+			setWeContactPhone(weContactPhone);
 		}
 
-		Date startTime = (Date)attributes.get("startTime");
+		String weStartTimeYear = (String)attributes.get("weStartTimeYear");
 
-		if (startTime != null) {
-			setStartTime(startTime);
+		if (weStartTimeYear != null) {
+			setWeStartTimeYear(weStartTimeYear);
 		}
 
-		Date stopTime = (Date)attributes.get("stopTime");
+		String weStartTimeMonth = (String)attributes.get("weStartTimeMonth");
 
-		if (stopTime != null) {
-			setStopTime(stopTime);
+		if (weStartTimeMonth != null) {
+			setWeStartTimeMonth(weStartTimeMonth);
+		}
+
+		String weStopTimeYear = (String)attributes.get("weStopTimeYear");
+
+		if (weStopTimeYear != null) {
+			setWeStopTimeYear(weStopTimeYear);
+		}
+
+		String weStopTimeMonth = (String)attributes.get("weStopTimeMonth");
+
+		if (weStopTimeMonth != null) {
+			setWeStopTimeMonth(weStopTimeMonth);
 		}
 	}
 
@@ -196,123 +209,163 @@ public class WorkExperienceWrapper implements WorkExperience,
 	}
 
 	/**
-	* Returns the witness of this work experience.
+	* Returns the we witness of this work experience.
 	*
-	* @return the witness of this work experience
+	* @return the we witness of this work experience
 	*/
 	@Override
-	public java.lang.String getWitness() {
-		return _workExperience.getWitness();
+	public java.lang.String getWeWitness() {
+		return _workExperience.getWeWitness();
 	}
 
 	/**
-	* Sets the witness of this work experience.
+	* Sets the we witness of this work experience.
 	*
-	* @param witness the witness of this work experience
+	* @param weWitness the we witness of this work experience
 	*/
 	@Override
-	public void setWitness(java.lang.String witness) {
-		_workExperience.setWitness(witness);
+	public void setWeWitness(java.lang.String weWitness) {
+		_workExperience.setWeWitness(weWitness);
 	}
 
 	/**
-	* Returns the once job of this work experience.
+	* Returns the we once job of this work experience.
 	*
-	* @return the once job of this work experience
+	* @return the we once job of this work experience
 	*/
 	@Override
-	public java.lang.String getOnceJob() {
-		return _workExperience.getOnceJob();
+	public java.lang.String getWeOnceJob() {
+		return _workExperience.getWeOnceJob();
 	}
 
 	/**
-	* Sets the once job of this work experience.
+	* Sets the we once job of this work experience.
 	*
-	* @param onceJob the once job of this work experience
+	* @param weOnceJob the we once job of this work experience
 	*/
 	@Override
-	public void setOnceJob(java.lang.String onceJob) {
-		_workExperience.setOnceJob(onceJob);
+	public void setWeOnceJob(java.lang.String weOnceJob) {
+		_workExperience.setWeOnceJob(weOnceJob);
 	}
 
 	/**
-	* Returns the work unit of this work experience.
+	* Returns the we work unit of this work experience.
 	*
-	* @return the work unit of this work experience
+	* @return the we work unit of this work experience
 	*/
 	@Override
-	public java.lang.String getWorkUnit() {
-		return _workExperience.getWorkUnit();
+	public java.lang.String getWeWorkUnit() {
+		return _workExperience.getWeWorkUnit();
 	}
 
 	/**
-	* Sets the work unit of this work experience.
+	* Sets the we work unit of this work experience.
 	*
-	* @param workUnit the work unit of this work experience
+	* @param weWorkUnit the we work unit of this work experience
 	*/
 	@Override
-	public void setWorkUnit(java.lang.String workUnit) {
-		_workExperience.setWorkUnit(workUnit);
+	public void setWeWorkUnit(java.lang.String weWorkUnit) {
+		_workExperience.setWeWorkUnit(weWorkUnit);
 	}
 
 	/**
-	* Returns the contact phone of this work experience.
+	* Returns the we contact phone of this work experience.
 	*
-	* @return the contact phone of this work experience
+	* @return the we contact phone of this work experience
 	*/
 	@Override
-	public java.lang.String getContactPhone() {
-		return _workExperience.getContactPhone();
+	public java.lang.String getWeContactPhone() {
+		return _workExperience.getWeContactPhone();
 	}
 
 	/**
-	* Sets the contact phone of this work experience.
+	* Sets the we contact phone of this work experience.
 	*
-	* @param contactPhone the contact phone of this work experience
+	* @param weContactPhone the we contact phone of this work experience
 	*/
 	@Override
-	public void setContactPhone(java.lang.String contactPhone) {
-		_workExperience.setContactPhone(contactPhone);
+	public void setWeContactPhone(java.lang.String weContactPhone) {
+		_workExperience.setWeContactPhone(weContactPhone);
 	}
 
 	/**
-	* Returns the start time of this work experience.
+	* Returns the we start time year of this work experience.
 	*
-	* @return the start time of this work experience
+	* @return the we start time year of this work experience
 	*/
 	@Override
-	public java.util.Date getStartTime() {
-		return _workExperience.getStartTime();
+	public java.lang.String getWeStartTimeYear() {
+		return _workExperience.getWeStartTimeYear();
 	}
 
 	/**
-	* Sets the start time of this work experience.
+	* Sets the we start time year of this work experience.
 	*
-	* @param startTime the start time of this work experience
+	* @param weStartTimeYear the we start time year of this work experience
 	*/
 	@Override
-	public void setStartTime(java.util.Date startTime) {
-		_workExperience.setStartTime(startTime);
+	public void setWeStartTimeYear(java.lang.String weStartTimeYear) {
+		_workExperience.setWeStartTimeYear(weStartTimeYear);
 	}
 
 	/**
-	* Returns the stop time of this work experience.
+	* Returns the we start time month of this work experience.
 	*
-	* @return the stop time of this work experience
+	* @return the we start time month of this work experience
 	*/
 	@Override
-	public java.util.Date getStopTime() {
-		return _workExperience.getStopTime();
+	public java.lang.String getWeStartTimeMonth() {
+		return _workExperience.getWeStartTimeMonth();
 	}
 
 	/**
-	* Sets the stop time of this work experience.
+	* Sets the we start time month of this work experience.
 	*
-	* @param stopTime the stop time of this work experience
+	* @param weStartTimeMonth the we start time month of this work experience
 	*/
 	@Override
-	public void setStopTime(java.util.Date stopTime) {
-		_workExperience.setStopTime(stopTime);
+	public void setWeStartTimeMonth(java.lang.String weStartTimeMonth) {
+		_workExperience.setWeStartTimeMonth(weStartTimeMonth);
+	}
+
+	/**
+	* Returns the we stop time year of this work experience.
+	*
+	* @return the we stop time year of this work experience
+	*/
+	@Override
+	public java.lang.String getWeStopTimeYear() {
+		return _workExperience.getWeStopTimeYear();
+	}
+
+	/**
+	* Sets the we stop time year of this work experience.
+	*
+	* @param weStopTimeYear the we stop time year of this work experience
+	*/
+	@Override
+	public void setWeStopTimeYear(java.lang.String weStopTimeYear) {
+		_workExperience.setWeStopTimeYear(weStopTimeYear);
+	}
+
+	/**
+	* Returns the we stop time month of this work experience.
+	*
+	* @return the we stop time month of this work experience
+	*/
+	@Override
+	public java.lang.String getWeStopTimeMonth() {
+		return _workExperience.getWeStopTimeMonth();
+	}
+
+	/**
+	* Sets the we stop time month of this work experience.
+	*
+	* @param weStopTimeMonth the we stop time month of this work experience
+	*/
+	@Override
+	public void setWeStopTimeMonth(java.lang.String weStopTimeMonth) {
+		_workExperience.setWeStopTimeMonth(weStopTimeMonth);
 	}
 
 	@Override

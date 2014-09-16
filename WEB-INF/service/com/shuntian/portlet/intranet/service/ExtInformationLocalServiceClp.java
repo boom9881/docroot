@@ -114,6 +114,26 @@ public class ExtInformationLocalServiceClp implements ExtInformationLocalService
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
+
+		_methodName19 = "editExtInformation";
+
+		_methodParameterTypes19 = new String[] {
+				"long", "com.shuntian.portlet.intranet.model.ExtInformation"
+			};
+
+		_methodName20 = "editExtInformation";
+
+		_methodParameterTypes20 = new String[] {
+				"long", "java.lang.String", "java.lang.String",
+				"java.lang.String", "java.util.Date", "java.util.Date",
+				"java.util.Date", "java.util.Date", "java.lang.String",
+				"java.lang.String", "java.lang.String", "java.lang.String",
+				"long", "long"
+			};
+
+		_methodName21 = "findByUserId";
+
+		_methodParameterTypes21 = new String[] { "long" };
 	}
 
 	@Override
@@ -665,6 +685,130 @@ public class ExtInformationLocalServiceClp implements ExtInformationLocalService
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public void editExtInformation(long userId,
+		com.shuntian.portlet.intranet.model.ExtInformation ei)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchExtInformationException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName19,
+				_methodParameterTypes19,
+				new Object[] { userId, ClpSerializer.translateInput(ei) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.shuntian.portlet.intranet.NoSuchExtInformationException) {
+				throw (com.shuntian.portlet.intranet.NoSuchExtInformationException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void editExtInformation(long userId, java.lang.String openCity,
+		java.lang.String bankName, java.lang.String bankId,
+		java.util.Date laborContractStart, java.util.Date laborContractEnd,
+		java.util.Date probationPeriodStart, java.util.Date probationPeriodEnd,
+		java.lang.String induredLocation, java.lang.String fristInsuredYear,
+		java.lang.String fristInsuredMonth, java.lang.String isInsured,
+		long basicWage, long otherWage)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName20,
+				_methodParameterTypes20,
+				new Object[] {
+					userId,
+					
+				ClpSerializer.translateInput(openCity),
+					
+				ClpSerializer.translateInput(bankName),
+					
+				ClpSerializer.translateInput(bankId),
+					
+				ClpSerializer.translateInput(laborContractStart),
+					
+				ClpSerializer.translateInput(laborContractEnd),
+					
+				ClpSerializer.translateInput(probationPeriodStart),
+					
+				ClpSerializer.translateInput(probationPeriodEnd),
+					
+				ClpSerializer.translateInput(induredLocation),
+					
+				ClpSerializer.translateInput(fristInsuredYear),
+					
+				ClpSerializer.translateInput(fristInsuredMonth),
+					
+				ClpSerializer.translateInput(isInsured),
+					
+				basicWage,
+					
+				otherWage
+				});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public com.shuntian.portlet.intranet.model.ExtInformation findByUserId(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchExtInformationException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] { userId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.shuntian.portlet.intranet.NoSuchExtInformationException) {
+				throw (com.shuntian.portlet.intranet.NoSuchExtInformationException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.shuntian.portlet.intranet.model.ExtInformation)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -702,4 +846,10 @@ public class ExtInformationLocalServiceClp implements ExtInformationLocalService
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
 }

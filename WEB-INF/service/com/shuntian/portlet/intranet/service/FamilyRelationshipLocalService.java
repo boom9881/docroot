@@ -248,6 +248,11 @@ public interface FamilyRelationshipLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	public void editFamilyRelationship(long userId,
+		java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship> frs)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException;
+
 	public java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 }

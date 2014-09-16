@@ -247,6 +247,11 @@ public interface EducationLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	public void editEducation(long userId,
+		java.util.List<com.shuntian.portlet.intranet.model.Education> edus)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchEducationException;
+
 	public java.util.List<com.shuntian.portlet.intranet.model.Education> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 }

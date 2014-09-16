@@ -71,12 +71,13 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 			{ "probationPeriodStart", Types.TIMESTAMP },
 			{ "probationPeriodEnd", Types.TIMESTAMP },
 			{ "induredLocation", Types.VARCHAR },
-			{ "fristInsured", Types.TIMESTAMP },
+			{ "fristInsuredYear", Types.VARCHAR },
+			{ "fristInsuredMonth", Types.VARCHAR },
 			{ "isInsured", Types.VARCHAR },
 			{ "basicWage", Types.BIGINT },
 			{ "otherWage", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_ExtInformation (id_ LONG not null primary key,userId LONG,openCity VARCHAR(75) null,bankName VARCHAR(75) null,bankId VARCHAR(75) null,laborContractStart DATE null,laborContractEnd DATE null,probationPeriodStart DATE null,probationPeriodEnd DATE null,induredLocation VARCHAR(75) null,fristInsured DATE null,isInsured VARCHAR(75) null,basicWage LONG,otherWage LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_ExtInformation (id_ LONG not null primary key,userId LONG,openCity VARCHAR(75) null,bankName VARCHAR(75) null,bankId VARCHAR(75) null,laborContractStart DATE null,laborContractEnd DATE null,probationPeriodStart DATE null,probationPeriodEnd DATE null,induredLocation VARCHAR(75) null,fristInsuredYear VARCHAR(75) null,fristInsuredMonth VARCHAR(75) null,isInsured VARCHAR(75) null,basicWage LONG,otherWage LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_ExtInformation";
 	public static final String ORDER_BY_JPQL = " ORDER BY extInformation.id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Intranet_ExtInformation.id_ ASC";
@@ -144,7 +145,8 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		attributes.put("probationPeriodStart", getProbationPeriodStart());
 		attributes.put("probationPeriodEnd", getProbationPeriodEnd());
 		attributes.put("induredLocation", getInduredLocation());
-		attributes.put("fristInsured", getFristInsured());
+		attributes.put("fristInsuredYear", getFristInsuredYear());
+		attributes.put("fristInsuredMonth", getFristInsuredMonth());
 		attributes.put("isInsured", getIsInsured());
 		attributes.put("basicWage", getBasicWage());
 		attributes.put("otherWage", getOtherWage());
@@ -214,10 +216,16 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 			setInduredLocation(induredLocation);
 		}
 
-		Date fristInsured = (Date)attributes.get("fristInsured");
+		String fristInsuredYear = (String)attributes.get("fristInsuredYear");
 
-		if (fristInsured != null) {
-			setFristInsured(fristInsured);
+		if (fristInsuredYear != null) {
+			setFristInsuredYear(fristInsuredYear);
+		}
+
+		String fristInsuredMonth = (String)attributes.get("fristInsuredMonth");
+
+		if (fristInsuredMonth != null) {
+			setFristInsuredMonth(fristInsuredMonth);
 		}
 
 		String isInsured = (String)attributes.get("isInsured");
@@ -384,13 +392,33 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 	}
 
 	@Override
-	public Date getFristInsured() {
-		return _fristInsured;
+	public String getFristInsuredYear() {
+		if (_fristInsuredYear == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _fristInsuredYear;
+		}
 	}
 
 	@Override
-	public void setFristInsured(Date fristInsured) {
-		_fristInsured = fristInsured;
+	public void setFristInsuredYear(String fristInsuredYear) {
+		_fristInsuredYear = fristInsuredYear;
+	}
+
+	@Override
+	public String getFristInsuredMonth() {
+		if (_fristInsuredMonth == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _fristInsuredMonth;
+		}
+	}
+
+	@Override
+	public void setFristInsuredMonth(String fristInsuredMonth) {
+		_fristInsuredMonth = fristInsuredMonth;
 	}
 
 	@Override
@@ -469,7 +497,8 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		extInformationImpl.setProbationPeriodStart(getProbationPeriodStart());
 		extInformationImpl.setProbationPeriodEnd(getProbationPeriodEnd());
 		extInformationImpl.setInduredLocation(getInduredLocation());
-		extInformationImpl.setFristInsured(getFristInsured());
+		extInformationImpl.setFristInsuredYear(getFristInsuredYear());
+		extInformationImpl.setFristInsuredMonth(getFristInsuredMonth());
 		extInformationImpl.setIsInsured(getIsInsured());
 		extInformationImpl.setBasicWage(getBasicWage());
 		extInformationImpl.setOtherWage(getOtherWage());
@@ -614,13 +643,20 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 			extInformationCacheModel.induredLocation = null;
 		}
 
-		Date fristInsured = getFristInsured();
+		extInformationCacheModel.fristInsuredYear = getFristInsuredYear();
 
-		if (fristInsured != null) {
-			extInformationCacheModel.fristInsured = fristInsured.getTime();
+		String fristInsuredYear = extInformationCacheModel.fristInsuredYear;
+
+		if ((fristInsuredYear != null) && (fristInsuredYear.length() == 0)) {
+			extInformationCacheModel.fristInsuredYear = null;
 		}
-		else {
-			extInformationCacheModel.fristInsured = Long.MIN_VALUE;
+
+		extInformationCacheModel.fristInsuredMonth = getFristInsuredMonth();
+
+		String fristInsuredMonth = extInformationCacheModel.fristInsuredMonth;
+
+		if ((fristInsuredMonth != null) && (fristInsuredMonth.length() == 0)) {
+			extInformationCacheModel.fristInsuredMonth = null;
 		}
 
 		extInformationCacheModel.isInsured = getIsInsured();
@@ -640,7 +676,7 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -662,8 +698,10 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		sb.append(getProbationPeriodEnd());
 		sb.append(", induredLocation=");
 		sb.append(getInduredLocation());
-		sb.append(", fristInsured=");
-		sb.append(getFristInsured());
+		sb.append(", fristInsuredYear=");
+		sb.append(getFristInsuredYear());
+		sb.append(", fristInsuredMonth=");
+		sb.append(getFristInsuredMonth());
 		sb.append(", isInsured=");
 		sb.append(getIsInsured());
 		sb.append(", basicWage=");
@@ -677,7 +715,7 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.ExtInformation");
@@ -724,8 +762,12 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 		sb.append(getInduredLocation());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fristInsured</column-name><column-value><![CDATA[");
-		sb.append(getFristInsured());
+			"<column><column-name>fristInsuredYear</column-name><column-value><![CDATA[");
+		sb.append(getFristInsuredYear());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fristInsuredMonth</column-name><column-value><![CDATA[");
+		sb.append(getFristInsuredMonth());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>isInsured</column-name><column-value><![CDATA[");
@@ -762,7 +804,8 @@ public class ExtInformationModelImpl extends BaseModelImpl<ExtInformation>
 	private Date _probationPeriodStart;
 	private Date _probationPeriodEnd;
 	private String _induredLocation;
-	private Date _fristInsured;
+	private String _fristInsuredYear;
+	private String _fristInsuredMonth;
 	private String _isInsured;
 	private long _basicWage;
 	private long _otherWage;

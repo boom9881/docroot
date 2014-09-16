@@ -62,13 +62,13 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "id_", Types.BIGINT },
 			{ "userId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "relationship", Types.VARCHAR },
-			{ "workUnit", Types.VARCHAR },
-			{ "contactPhone", Types.VARCHAR },
-			{ "onceJob", Types.VARCHAR }
+			{ "frName", Types.VARCHAR },
+			{ "frRelationship", Types.VARCHAR },
+			{ "frWorkUnit", Types.VARCHAR },
+			{ "frContactPhone", Types.VARCHAR },
+			{ "frOnceJob", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_FamilyRelationship (id_ LONG not null primary key,userId LONG,name VARCHAR(75) null,relationship VARCHAR(75) null,workUnit VARCHAR(75) null,contactPhone VARCHAR(75) null,onceJob VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_FamilyRelationship (id_ LONG not null primary key,userId LONG,frName VARCHAR(75) null,frRelationship VARCHAR(75) null,frWorkUnit VARCHAR(75) null,frContactPhone VARCHAR(75) null,frOnceJob VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_FamilyRelationship";
 	public static final String ORDER_BY_JPQL = " ORDER BY familyRelationship.id ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Intranet_FamilyRelationship.id_ ASC";
@@ -128,11 +128,11 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 
 		attributes.put("id", getId());
 		attributes.put("userId", getUserId());
-		attributes.put("name", getName());
-		attributes.put("relationship", getRelationship());
-		attributes.put("workUnit", getWorkUnit());
-		attributes.put("contactPhone", getContactPhone());
-		attributes.put("onceJob", getOnceJob());
+		attributes.put("frName", getFrName());
+		attributes.put("frRelationship", getFrRelationship());
+		attributes.put("frWorkUnit", getFrWorkUnit());
+		attributes.put("frContactPhone", getFrContactPhone());
+		attributes.put("frOnceJob", getFrOnceJob());
 
 		return attributes;
 	}
@@ -151,34 +151,34 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 			setUserId(userId);
 		}
 
-		String name = (String)attributes.get("name");
+		String frName = (String)attributes.get("frName");
 
-		if (name != null) {
-			setName(name);
+		if (frName != null) {
+			setFrName(frName);
 		}
 
-		String relationship = (String)attributes.get("relationship");
+		String frRelationship = (String)attributes.get("frRelationship");
 
-		if (relationship != null) {
-			setRelationship(relationship);
+		if (frRelationship != null) {
+			setFrRelationship(frRelationship);
 		}
 
-		String workUnit = (String)attributes.get("workUnit");
+		String frWorkUnit = (String)attributes.get("frWorkUnit");
 
-		if (workUnit != null) {
-			setWorkUnit(workUnit);
+		if (frWorkUnit != null) {
+			setFrWorkUnit(frWorkUnit);
 		}
 
-		String contactPhone = (String)attributes.get("contactPhone");
+		String frContactPhone = (String)attributes.get("frContactPhone");
 
-		if (contactPhone != null) {
-			setContactPhone(contactPhone);
+		if (frContactPhone != null) {
+			setFrContactPhone(frContactPhone);
 		}
 
-		String onceJob = (String)attributes.get("onceJob");
+		String frOnceJob = (String)attributes.get("frOnceJob");
 
-		if (onceJob != null) {
-			setOnceJob(onceJob);
+		if (frOnceJob != null) {
+			setFrOnceJob(frOnceJob);
 		}
 	}
 
@@ -227,78 +227,78 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 	}
 
 	@Override
-	public String getName() {
-		if (_name == null) {
+	public String getFrName() {
+		if (_frName == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _name;
+			return _frName;
 		}
 	}
 
 	@Override
-	public void setName(String name) {
-		_name = name;
+	public void setFrName(String frName) {
+		_frName = frName;
 	}
 
 	@Override
-	public String getRelationship() {
-		if (_relationship == null) {
+	public String getFrRelationship() {
+		if (_frRelationship == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _relationship;
+			return _frRelationship;
 		}
 	}
 
 	@Override
-	public void setRelationship(String relationship) {
-		_relationship = relationship;
+	public void setFrRelationship(String frRelationship) {
+		_frRelationship = frRelationship;
 	}
 
 	@Override
-	public String getWorkUnit() {
-		if (_workUnit == null) {
+	public String getFrWorkUnit() {
+		if (_frWorkUnit == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _workUnit;
+			return _frWorkUnit;
 		}
 	}
 
 	@Override
-	public void setWorkUnit(String workUnit) {
-		_workUnit = workUnit;
+	public void setFrWorkUnit(String frWorkUnit) {
+		_frWorkUnit = frWorkUnit;
 	}
 
 	@Override
-	public String getContactPhone() {
-		if (_contactPhone == null) {
+	public String getFrContactPhone() {
+		if (_frContactPhone == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _contactPhone;
+			return _frContactPhone;
 		}
 	}
 
 	@Override
-	public void setContactPhone(String contactPhone) {
-		_contactPhone = contactPhone;
+	public void setFrContactPhone(String frContactPhone) {
+		_frContactPhone = frContactPhone;
 	}
 
 	@Override
-	public String getOnceJob() {
-		if (_onceJob == null) {
+	public String getFrOnceJob() {
+		if (_frOnceJob == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _onceJob;
+			return _frOnceJob;
 		}
 	}
 
 	@Override
-	public void setOnceJob(String onceJob) {
-		_onceJob = onceJob;
+	public void setFrOnceJob(String frOnceJob) {
+		_frOnceJob = frOnceJob;
 	}
 
 	public long getColumnBitmask() {
@@ -334,11 +334,11 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 
 		familyRelationshipImpl.setId(getId());
 		familyRelationshipImpl.setUserId(getUserId());
-		familyRelationshipImpl.setName(getName());
-		familyRelationshipImpl.setRelationship(getRelationship());
-		familyRelationshipImpl.setWorkUnit(getWorkUnit());
-		familyRelationshipImpl.setContactPhone(getContactPhone());
-		familyRelationshipImpl.setOnceJob(getOnceJob());
+		familyRelationshipImpl.setFrName(getFrName());
+		familyRelationshipImpl.setFrRelationship(getFrRelationship());
+		familyRelationshipImpl.setFrWorkUnit(getFrWorkUnit());
+		familyRelationshipImpl.setFrContactPhone(getFrContactPhone());
+		familyRelationshipImpl.setFrOnceJob(getFrOnceJob());
 
 		familyRelationshipImpl.resetOriginalValues();
 
@@ -412,44 +412,44 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 
 		familyRelationshipCacheModel.userId = getUserId();
 
-		familyRelationshipCacheModel.name = getName();
+		familyRelationshipCacheModel.frName = getFrName();
 
-		String name = familyRelationshipCacheModel.name;
+		String frName = familyRelationshipCacheModel.frName;
 
-		if ((name != null) && (name.length() == 0)) {
-			familyRelationshipCacheModel.name = null;
+		if ((frName != null) && (frName.length() == 0)) {
+			familyRelationshipCacheModel.frName = null;
 		}
 
-		familyRelationshipCacheModel.relationship = getRelationship();
+		familyRelationshipCacheModel.frRelationship = getFrRelationship();
 
-		String relationship = familyRelationshipCacheModel.relationship;
+		String frRelationship = familyRelationshipCacheModel.frRelationship;
 
-		if ((relationship != null) && (relationship.length() == 0)) {
-			familyRelationshipCacheModel.relationship = null;
+		if ((frRelationship != null) && (frRelationship.length() == 0)) {
+			familyRelationshipCacheModel.frRelationship = null;
 		}
 
-		familyRelationshipCacheModel.workUnit = getWorkUnit();
+		familyRelationshipCacheModel.frWorkUnit = getFrWorkUnit();
 
-		String workUnit = familyRelationshipCacheModel.workUnit;
+		String frWorkUnit = familyRelationshipCacheModel.frWorkUnit;
 
-		if ((workUnit != null) && (workUnit.length() == 0)) {
-			familyRelationshipCacheModel.workUnit = null;
+		if ((frWorkUnit != null) && (frWorkUnit.length() == 0)) {
+			familyRelationshipCacheModel.frWorkUnit = null;
 		}
 
-		familyRelationshipCacheModel.contactPhone = getContactPhone();
+		familyRelationshipCacheModel.frContactPhone = getFrContactPhone();
 
-		String contactPhone = familyRelationshipCacheModel.contactPhone;
+		String frContactPhone = familyRelationshipCacheModel.frContactPhone;
 
-		if ((contactPhone != null) && (contactPhone.length() == 0)) {
-			familyRelationshipCacheModel.contactPhone = null;
+		if ((frContactPhone != null) && (frContactPhone.length() == 0)) {
+			familyRelationshipCacheModel.frContactPhone = null;
 		}
 
-		familyRelationshipCacheModel.onceJob = getOnceJob();
+		familyRelationshipCacheModel.frOnceJob = getFrOnceJob();
 
-		String onceJob = familyRelationshipCacheModel.onceJob;
+		String frOnceJob = familyRelationshipCacheModel.frOnceJob;
 
-		if ((onceJob != null) && (onceJob.length() == 0)) {
-			familyRelationshipCacheModel.onceJob = null;
+		if ((frOnceJob != null) && (frOnceJob.length() == 0)) {
+			familyRelationshipCacheModel.frOnceJob = null;
 		}
 
 		return familyRelationshipCacheModel;
@@ -463,16 +463,16 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 		sb.append(getId());
 		sb.append(", userId=");
 		sb.append(getUserId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", relationship=");
-		sb.append(getRelationship());
-		sb.append(", workUnit=");
-		sb.append(getWorkUnit());
-		sb.append(", contactPhone=");
-		sb.append(getContactPhone());
-		sb.append(", onceJob=");
-		sb.append(getOnceJob());
+		sb.append(", frName=");
+		sb.append(getFrName());
+		sb.append(", frRelationship=");
+		sb.append(getFrRelationship());
+		sb.append(", frWorkUnit=");
+		sb.append(getFrWorkUnit());
+		sb.append(", frContactPhone=");
+		sb.append(getFrContactPhone());
+		sb.append(", frOnceJob=");
+		sb.append(getFrOnceJob());
 		sb.append("}");
 
 		return sb.toString();
@@ -495,24 +495,24 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
+			"<column><column-name>frName</column-name><column-value><![CDATA[");
+		sb.append(getFrName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>relationship</column-name><column-value><![CDATA[");
-		sb.append(getRelationship());
+			"<column><column-name>frRelationship</column-name><column-value><![CDATA[");
+		sb.append(getFrRelationship());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>workUnit</column-name><column-value><![CDATA[");
-		sb.append(getWorkUnit());
+			"<column><column-name>frWorkUnit</column-name><column-value><![CDATA[");
+		sb.append(getFrWorkUnit());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>contactPhone</column-name><column-value><![CDATA[");
-		sb.append(getContactPhone());
+			"<column><column-name>frContactPhone</column-name><column-value><![CDATA[");
+		sb.append(getFrContactPhone());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>onceJob</column-name><column-value><![CDATA[");
-		sb.append(getOnceJob());
+			"<column><column-name>frOnceJob</column-name><column-value><![CDATA[");
+		sb.append(getFrOnceJob());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -529,11 +529,11 @@ public class FamilyRelationshipModelImpl extends BaseModelImpl<FamilyRelationshi
 	private String _userUuid;
 	private long _originalUserId;
 	private boolean _setOriginalUserId;
-	private String _name;
-	private String _relationship;
-	private String _workUnit;
-	private String _contactPhone;
-	private String _onceJob;
+	private String _frName;
+	private String _frRelationship;
+	private String _frWorkUnit;
+	private String _frContactPhone;
+	private String _frOnceJob;
 	private long _columnBitmask;
 	private FamilyRelationship _escapedModel;
 }

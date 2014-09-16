@@ -104,6 +104,7 @@ public class BasicInformationClp extends BaseModelImpl<BasicInformation>
 		attributes.put("emergencyContactRelation", getEmergencyContactRelation());
 		attributes.put("emergencyContactPhone", getEmergencyContactPhone());
 		attributes.put("isLeave", getIsLeave());
+		attributes.put("departmentId", getDepartmentId());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedUserId", getModifiedUserId());
@@ -273,6 +274,12 @@ public class BasicInformationClp extends BaseModelImpl<BasicInformation>
 
 		if (isLeave != null) {
 			setIsLeave(isLeave);
+		}
+
+		Long departmentId = (Long)attributes.get("departmentId");
+
+		if (departmentId != null) {
+			setDepartmentId(departmentId);
 		}
 
 		Long createUserId = (Long)attributes.get("createUserId");
@@ -923,6 +930,29 @@ public class BasicInformationClp extends BaseModelImpl<BasicInformation>
 	}
 
 	@Override
+	public long getDepartmentId() {
+		return _departmentId;
+	}
+
+	@Override
+	public void setDepartmentId(long departmentId) {
+		_departmentId = departmentId;
+
+		if (_basicInformationRemoteModel != null) {
+			try {
+				Class<?> clazz = _basicInformationRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDepartmentId", long.class);
+
+				method.invoke(_basicInformationRemoteModel, departmentId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public long getCreateUserId() {
 		return _createUserId;
 	}
@@ -1133,6 +1163,7 @@ public class BasicInformationClp extends BaseModelImpl<BasicInformation>
 		clone.setEmergencyContactRelation(getEmergencyContactRelation());
 		clone.setEmergencyContactPhone(getEmergencyContactPhone());
 		clone.setIsLeave(getIsLeave());
+		clone.setDepartmentId(getDepartmentId());
 		clone.setCreateUserId(getCreateUserId());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedUserId(getModifiedUserId());
@@ -1184,7 +1215,7 @@ public class BasicInformationClp extends BaseModelImpl<BasicInformation>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(61);
+		StringBundler sb = new StringBundler(63);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -1238,6 +1269,8 @@ public class BasicInformationClp extends BaseModelImpl<BasicInformation>
 		sb.append(getEmergencyContactPhone());
 		sb.append(", isLeave=");
 		sb.append(getIsLeave());
+		sb.append(", departmentId=");
+		sb.append(getDepartmentId());
 		sb.append(", createUserId=");
 		sb.append(getCreateUserId());
 		sb.append(", createDate=");
@@ -1253,7 +1286,7 @@ public class BasicInformationClp extends BaseModelImpl<BasicInformation>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(94);
+		StringBundler sb = new StringBundler(97);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.BasicInformation");
@@ -1364,6 +1397,10 @@ public class BasicInformationClp extends BaseModelImpl<BasicInformation>
 		sb.append(getIsLeave());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>departmentId</column-name><column-value><![CDATA[");
+		sb.append(getDepartmentId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
 		sb.append(getCreateUserId());
 		sb.append("]]></column-value></column>");
@@ -1412,6 +1449,7 @@ public class BasicInformationClp extends BaseModelImpl<BasicInformation>
 	private String _emergencyContactRelation;
 	private String _emergencyContactPhone;
 	private int _isLeave;
+	private long _departmentId;
 	private long _createUserId;
 	private String _createUserUuid;
 	private Date _createDate;

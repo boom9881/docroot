@@ -220,18 +220,34 @@ public interface ExtInformationModel extends BaseModel<ExtInformation> {
 	public void setInduredLocation(String induredLocation);
 
 	/**
-	 * Returns the frist insured of this ext information.
+	 * Returns the frist insured year of this ext information.
 	 *
-	 * @return the frist insured of this ext information
+	 * @return the frist insured year of this ext information
 	 */
-	public Date getFristInsured();
+	@AutoEscape
+	public String getFristInsuredYear();
 
 	/**
-	 * Sets the frist insured of this ext information.
+	 * Sets the frist insured year of this ext information.
 	 *
-	 * @param fristInsured the frist insured of this ext information
+	 * @param fristInsuredYear the frist insured year of this ext information
 	 */
-	public void setFristInsured(Date fristInsured);
+	public void setFristInsuredYear(String fristInsuredYear);
+
+	/**
+	 * Returns the frist insured month of this ext information.
+	 *
+	 * @return the frist insured month of this ext information
+	 */
+	@AutoEscape
+	public String getFristInsuredMonth();
+
+	/**
+	 * Sets the frist insured month of this ext information.
+	 *
+	 * @param fristInsuredMonth the frist insured month of this ext information
+	 */
+	public void setFristInsuredMonth(String fristInsuredMonth);
 
 	/**
 	 * Returns the is insured of this ext information.

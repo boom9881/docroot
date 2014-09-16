@@ -65,6 +65,7 @@
 			<basic name="emergencyContactRelation" />
 			<basic name="emergencyContactPhone" />
 			<basic name="isLeave" />
+			<basic name="departmentId" />
 			<basic name="createUserId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
@@ -109,16 +110,22 @@
 				<column name="ID_" />
 			</id>
 			<basic name="userId" />
-			<basic name="witness" />
-			<basic name="professional" />
-			<basic name="university" />
-			<basic name="contactPhone" />
-			<basic name="startTime">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="stopTime">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
+			<basic name="eWitness" />
+			<basic name="eProfessional" />
+			<basic name="eUniversity" />
+			<basic name="eContactPhone" />
+			<basic name="eStartTimeYear" />
+			<basic name="eStartTimeMonth" />
+			<basic name="eStopTimeYear" />
+			<basic name="eStopTimeMonth" />
+			<transient name="EContactPhone" />
+			<transient name="EProfessional" />
+			<transient name="EStartTimeMonth" />
+			<transient name="EStartTimeYear" />
+			<transient name="EStopTimeMonth" />
+			<transient name="EStopTimeYear" />
+			<transient name="EUniversity" />
+			<transient name="EWitness" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -147,9 +154,8 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="induredLocation" />
-			<basic name="fristInsured">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
+			<basic name="fristInsuredYear" />
+			<basic name="fristInsuredMonth" />
 			<basic name="isInsured" />
 			<basic name="basicWage" />
 			<basic name="otherWage" />
@@ -165,11 +171,11 @@
 				<column name="ID_" />
 			</id>
 			<basic name="userId" />
-			<basic name="name" />
-			<basic name="relationship" />
-			<basic name="workUnit" />
-			<basic name="contactPhone" />
-			<basic name="onceJob" />
+			<basic name="frName" />
+			<basic name="frRelationship" />
+			<basic name="frWorkUnit" />
+			<basic name="frContactPhone" />
+			<basic name="frOnceJob" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -257,16 +263,14 @@
 				<column name="ID_" />
 			</id>
 			<basic name="userId" />
-			<basic name="witness" />
-			<basic name="onceJob" />
-			<basic name="workUnit" />
-			<basic name="contactPhone" />
-			<basic name="startTime">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="stopTime">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
+			<basic name="weWitness" />
+			<basic name="weOnceJob" />
+			<basic name="weWorkUnit" />
+			<basic name="weContactPhone" />
+			<basic name="weStartTimeYear" />
+			<basic name="weStartTimeMonth" />
+			<basic name="weStopTimeYear" />
+			<basic name="weStopTimeMonth" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

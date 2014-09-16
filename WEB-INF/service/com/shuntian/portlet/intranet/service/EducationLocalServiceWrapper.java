@@ -285,6 +285,14 @@ public class EducationLocalServiceWrapper implements EducationLocalService,
 	}
 
 	@Override
+	public void editEducation(long userId,
+		java.util.List<com.shuntian.portlet.intranet.model.Education> edus)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchEducationException {
+		_educationLocalService.editEducation(userId, edus);
+	}
+
+	@Override
 	public java.util.List<com.shuntian.portlet.intranet.model.Education> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return _educationLocalService.findByUserId(userId);

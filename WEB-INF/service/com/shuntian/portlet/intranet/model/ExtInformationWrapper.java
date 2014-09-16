@@ -60,7 +60,8 @@ public class ExtInformationWrapper implements ExtInformation,
 		attributes.put("probationPeriodStart", getProbationPeriodStart());
 		attributes.put("probationPeriodEnd", getProbationPeriodEnd());
 		attributes.put("induredLocation", getInduredLocation());
-		attributes.put("fristInsured", getFristInsured());
+		attributes.put("fristInsuredYear", getFristInsuredYear());
+		attributes.put("fristInsuredMonth", getFristInsuredMonth());
 		attributes.put("isInsured", getIsInsured());
 		attributes.put("basicWage", getBasicWage());
 		attributes.put("otherWage", getOtherWage());
@@ -130,10 +131,16 @@ public class ExtInformationWrapper implements ExtInformation,
 			setInduredLocation(induredLocation);
 		}
 
-		Date fristInsured = (Date)attributes.get("fristInsured");
+		String fristInsuredYear = (String)attributes.get("fristInsuredYear");
 
-		if (fristInsured != null) {
-			setFristInsured(fristInsured);
+		if (fristInsuredYear != null) {
+			setFristInsuredYear(fristInsuredYear);
+		}
+
+		String fristInsuredMonth = (String)attributes.get("fristInsuredMonth");
+
+		if (fristInsuredMonth != null) {
+			setFristInsuredMonth(fristInsuredMonth);
 		}
 
 		String isInsured = (String)attributes.get("isInsured");
@@ -398,23 +405,43 @@ public class ExtInformationWrapper implements ExtInformation,
 	}
 
 	/**
-	* Returns the frist insured of this ext information.
+	* Returns the frist insured year of this ext information.
 	*
-	* @return the frist insured of this ext information
+	* @return the frist insured year of this ext information
 	*/
 	@Override
-	public java.util.Date getFristInsured() {
-		return _extInformation.getFristInsured();
+	public java.lang.String getFristInsuredYear() {
+		return _extInformation.getFristInsuredYear();
 	}
 
 	/**
-	* Sets the frist insured of this ext information.
+	* Sets the frist insured year of this ext information.
 	*
-	* @param fristInsured the frist insured of this ext information
+	* @param fristInsuredYear the frist insured year of this ext information
 	*/
 	@Override
-	public void setFristInsured(java.util.Date fristInsured) {
-		_extInformation.setFristInsured(fristInsured);
+	public void setFristInsuredYear(java.lang.String fristInsuredYear) {
+		_extInformation.setFristInsuredYear(fristInsuredYear);
+	}
+
+	/**
+	* Returns the frist insured month of this ext information.
+	*
+	* @return the frist insured month of this ext information
+	*/
+	@Override
+	public java.lang.String getFristInsuredMonth() {
+		return _extInformation.getFristInsuredMonth();
+	}
+
+	/**
+	* Sets the frist insured month of this ext information.
+	*
+	* @param fristInsuredMonth the frist insured month of this ext information
+	*/
+	@Override
+	public void setFristInsuredMonth(java.lang.String fristInsuredMonth) {
+		_extInformation.setFristInsuredMonth(fristInsuredMonth);
 	}
 
 	/**

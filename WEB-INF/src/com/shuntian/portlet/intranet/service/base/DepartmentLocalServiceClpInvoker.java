@@ -106,37 +106,37 @@ public class DepartmentLocalServiceClpInvoker {
 				"com.shuntian.portlet.intranet.model.Department"
 			};
 
-		_methodName66 = "getBeanIdentifier";
+		_methodName68 = "getBeanIdentifier";
 
-		_methodParameterTypes66 = new String[] {  };
+		_methodParameterTypes68 = new String[] {  };
 
-		_methodName67 = "setBeanIdentifier";
+		_methodName69 = "setBeanIdentifier";
 
-		_methodParameterTypes67 = new String[] { "java.lang.String" };
+		_methodParameterTypes69 = new String[] { "java.lang.String" };
 
-		_methodName72 = "addDepartment";
+		_methodName74 = "addDepartment";
 
-		_methodParameterTypes72 = new String[] {
+		_methodParameterTypes74 = new String[] {
 				"long", "long", "java.lang.String", "java.util.Date"
 			};
 
-		_methodName73 = "updateDepartment";
+		_methodName75 = "updateDepartment";
 
-		_methodParameterTypes73 = new String[] {
+		_methodParameterTypes75 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.util.Date"
 			};
 
-		_methodName74 = "countByName";
-
-		_methodParameterTypes74 = new String[] { "java.lang.String" };
-
-		_methodName75 = "findByName";
-
-		_methodParameterTypes75 = new String[] { "java.lang.String", "int", "int" };
-
-		_methodName76 = "findByName";
+		_methodName76 = "countByName";
 
 		_methodParameterTypes76 = new String[] { "java.lang.String" };
+
+		_methodName77 = "findByName";
+
+		_methodParameterTypes77 = new String[] { "java.lang.String", "int", "int" };
+
+		_methodName78 = "findByName";
+
+		_methodParameterTypes78 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -228,20 +228,20 @@ public class DepartmentLocalServiceClpInvoker {
 			return DepartmentLocalServiceUtil.updateDepartment((com.shuntian.portlet.intranet.model.Department)arguments[0]);
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return DepartmentLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			DepartmentLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			DepartmentLocalServiceUtil.addDepartment(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.util.Date)arguments[3]);
@@ -249,8 +249,8 @@ public class DepartmentLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
 			DepartmentLocalServiceUtil.updateDepartment(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -259,20 +259,20 @@ public class DepartmentLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName74.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			return DepartmentLocalServiceUtil.countByName((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName75.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
+		if (_methodName77.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
 			return DepartmentLocalServiceUtil.findByName((java.lang.String)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName76.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+		if (_methodName78.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
 			return DepartmentLocalServiceUtil.findByName((java.lang.String)arguments[0]);
 		}
 
@@ -311,18 +311,18 @@ public class DepartmentLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName66;
-	private String[] _methodParameterTypes66;
-	private String _methodName67;
-	private String[] _methodParameterTypes67;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
-	private String _methodName73;
-	private String[] _methodParameterTypes73;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
 	private String _methodName74;
 	private String[] _methodParameterTypes74;
 	private String _methodName75;
 	private String[] _methodParameterTypes75;
 	private String _methodName76;
 	private String[] _methodParameterTypes76;
+	private String _methodName77;
+	private String[] _methodParameterTypes77;
+	private String _methodName78;
+	private String[] _methodParameterTypes78;
 }

@@ -274,6 +274,13 @@ public class WorkExperienceLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void editWorkExperience(long userId,
+		java.util.List<com.shuntian.portlet.intranet.model.WorkExperience> wes)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchWorkExperienceException {
+		getService().editWorkExperience(userId, wes);
+	}
+
 	public static java.util.List<com.shuntian.portlet.intranet.model.WorkExperience> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().findByUserId(userId);

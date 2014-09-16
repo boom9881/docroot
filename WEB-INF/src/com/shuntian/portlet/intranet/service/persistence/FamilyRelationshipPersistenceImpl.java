@@ -844,11 +844,11 @@ public class FamilyRelationshipPersistenceImpl extends BasePersistenceImpl<Famil
 
 		familyRelationshipImpl.setId(familyRelationship.getId());
 		familyRelationshipImpl.setUserId(familyRelationship.getUserId());
-		familyRelationshipImpl.setName(familyRelationship.getName());
-		familyRelationshipImpl.setRelationship(familyRelationship.getRelationship());
-		familyRelationshipImpl.setWorkUnit(familyRelationship.getWorkUnit());
-		familyRelationshipImpl.setContactPhone(familyRelationship.getContactPhone());
-		familyRelationshipImpl.setOnceJob(familyRelationship.getOnceJob());
+		familyRelationshipImpl.setFrName(familyRelationship.getFrName());
+		familyRelationshipImpl.setFrRelationship(familyRelationship.getFrRelationship());
+		familyRelationshipImpl.setFrWorkUnit(familyRelationship.getFrWorkUnit());
+		familyRelationshipImpl.setFrContactPhone(familyRelationship.getFrContactPhone());
+		familyRelationshipImpl.setFrOnceJob(familyRelationship.getFrOnceJob());
 
 		return familyRelationshipImpl;
 	}

@@ -116,21 +116,37 @@ public class BasicInformationLocalServiceClp
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
-		_methodName19 = "findByIsLeave";
+		_methodName19 = "editStaff";
 
-		_methodParameterTypes19 = new String[] { "boolean" };
+		_methodParameterTypes19 = new String[] {
+				"long", "long", "long", "long",
+				"com.shuntian.portlet.intranet.model.BasicInformation",
+				"com.shuntian.portlet.intranet.model.ExtInformation",
+				"java.util.List", "java.util.List", "java.util.List",
+				"com.liferay.portal.service.ServiceContext"
+			};
 
-		_methodName20 = "findByUserId";
+		_methodName20 = "leave";
 
-		_methodParameterTypes20 = new String[] { "long" };
+		_methodParameterTypes20 = new String[] { "long", "long" };
 
-		_methodName21 = "findListByUserId";
+		_methodName21 = "findByIsLeave";
 
-		_methodParameterTypes21 = new String[] { "long" };
+		_methodParameterTypes21 = new String[] { "boolean" };
 
-		_methodName22 = "countByListUserId";
+		_methodName22 = "findByUserId";
 
 		_methodParameterTypes22 = new String[] { "long" };
+
+		_methodName23 = "countByDepAndName";
+
+		_methodParameterTypes23 = new String[] { "long", "java.lang.String" };
+
+		_methodName24 = "findByDepAndName";
+
+		_methodParameterTypes24 = new String[] {
+				"long", "java.lang.String", "int", "int"
+			};
 	}
 
 	@Override
@@ -686,14 +702,99 @@ public class BasicInformationLocalServiceClp
 	}
 
 	@Override
+	public void editStaff(long companyId, long id, long userId, long curUserId,
+		com.shuntian.portlet.intranet.model.BasicInformation bi,
+		com.shuntian.portlet.intranet.model.ExtInformation ei,
+		java.util.List<com.shuntian.portlet.intranet.model.Education> edus,
+		java.util.List<com.shuntian.portlet.intranet.model.WorkExperience> wes,
+		java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship> frs,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName19,
+				_methodParameterTypes19,
+				new Object[] {
+					companyId,
+					
+				id,
+					
+				userId,
+					
+				curUserId,
+					
+				ClpSerializer.translateInput(bi),
+					
+				ClpSerializer.translateInput(ei),
+					
+				ClpSerializer.translateInput(edus),
+					
+				ClpSerializer.translateInput(wes),
+					
+				ClpSerializer.translateInput(frs),
+					
+				ClpSerializer.translateInput(serviceContext)
+				});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void leave(long id, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchBasicInformationException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName20,
+				_methodParameterTypes20, new Object[] { id, userId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.shuntian.portlet.intranet.NoSuchBasicInformationException) {
+				throw (com.shuntian.portlet.intranet.NoSuchBasicInformationException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
 	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByIsLeave(
 		boolean isLeave)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19, new Object[] { isLeave });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] { isLeave });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -720,8 +821,8 @@ public class BasicInformationLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -743,41 +844,18 @@ public class BasicInformationLocalServiceClp
 	}
 
 	@Override
-	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findListByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21, new Object[] { userId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.shuntian.portlet.intranet.model.BasicInformation>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public int countByListUserId(long userId)
+	public int countByDepAndName(long departmentId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
+					new Object[] {
+						departmentId,
+						
+					ClpSerializer.translateInput(name)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -796,6 +874,44 @@ public class BasicInformationLocalServiceClp
 		}
 
 		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByDepAndName(
+		long departmentId, java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
+					new Object[] {
+						departmentId,
+						
+					ClpSerializer.translateInput(name),
+						
+					start,
+						
+					end
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.shuntian.portlet.intranet.model.BasicInformation>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	private InvokableLocalService _invokableLocalService;
@@ -843,4 +959,8 @@ public class BasicInformationLocalServiceClp
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
+	private String _methodName23;
+	private String[] _methodParameterTypes23;
+	private String _methodName24;
+	private String[] _methodParameterTypes24;
 }

@@ -29,7 +29,6 @@ import java.io.Serializable;
 
 import java.lang.reflect.Method;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,12 +76,14 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 
 		attributes.put("id", getId());
 		attributes.put("userId", getUserId());
-		attributes.put("witness", getWitness());
-		attributes.put("onceJob", getOnceJob());
-		attributes.put("workUnit", getWorkUnit());
-		attributes.put("contactPhone", getContactPhone());
-		attributes.put("startTime", getStartTime());
-		attributes.put("stopTime", getStopTime());
+		attributes.put("weWitness", getWeWitness());
+		attributes.put("weOnceJob", getWeOnceJob());
+		attributes.put("weWorkUnit", getWeWorkUnit());
+		attributes.put("weContactPhone", getWeContactPhone());
+		attributes.put("weStartTimeYear", getWeStartTimeYear());
+		attributes.put("weStartTimeMonth", getWeStartTimeMonth());
+		attributes.put("weStopTimeYear", getWeStopTimeYear());
+		attributes.put("weStopTimeMonth", getWeStopTimeMonth());
 
 		return attributes;
 	}
@@ -101,40 +102,52 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 			setUserId(userId);
 		}
 
-		String witness = (String)attributes.get("witness");
+		String weWitness = (String)attributes.get("weWitness");
 
-		if (witness != null) {
-			setWitness(witness);
+		if (weWitness != null) {
+			setWeWitness(weWitness);
 		}
 
-		String onceJob = (String)attributes.get("onceJob");
+		String weOnceJob = (String)attributes.get("weOnceJob");
 
-		if (onceJob != null) {
-			setOnceJob(onceJob);
+		if (weOnceJob != null) {
+			setWeOnceJob(weOnceJob);
 		}
 
-		String workUnit = (String)attributes.get("workUnit");
+		String weWorkUnit = (String)attributes.get("weWorkUnit");
 
-		if (workUnit != null) {
-			setWorkUnit(workUnit);
+		if (weWorkUnit != null) {
+			setWeWorkUnit(weWorkUnit);
 		}
 
-		String contactPhone = (String)attributes.get("contactPhone");
+		String weContactPhone = (String)attributes.get("weContactPhone");
 
-		if (contactPhone != null) {
-			setContactPhone(contactPhone);
+		if (weContactPhone != null) {
+			setWeContactPhone(weContactPhone);
 		}
 
-		Date startTime = (Date)attributes.get("startTime");
+		String weStartTimeYear = (String)attributes.get("weStartTimeYear");
 
-		if (startTime != null) {
-			setStartTime(startTime);
+		if (weStartTimeYear != null) {
+			setWeStartTimeYear(weStartTimeYear);
 		}
 
-		Date stopTime = (Date)attributes.get("stopTime");
+		String weStartTimeMonth = (String)attributes.get("weStartTimeMonth");
 
-		if (stopTime != null) {
-			setStopTime(stopTime);
+		if (weStartTimeMonth != null) {
+			setWeStartTimeMonth(weStartTimeMonth);
+		}
+
+		String weStopTimeYear = (String)attributes.get("weStopTimeYear");
+
+		if (weStopTimeYear != null) {
+			setWeStopTimeYear(weStopTimeYear);
+		}
+
+		String weStopTimeMonth = (String)attributes.get("weStopTimeMonth");
+
+		if (weStopTimeMonth != null) {
+			setWeStopTimeMonth(weStopTimeMonth);
 		}
 	}
 
@@ -195,21 +208,21 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 	}
 
 	@Override
-	public String getWitness() {
-		return _witness;
+	public String getWeWitness() {
+		return _weWitness;
 	}
 
 	@Override
-	public void setWitness(String witness) {
-		_witness = witness;
+	public void setWeWitness(String weWitness) {
+		_weWitness = weWitness;
 
 		if (_workExperienceRemoteModel != null) {
 			try {
 				Class<?> clazz = _workExperienceRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setWitness", String.class);
+				Method method = clazz.getMethod("setWeWitness", String.class);
 
-				method.invoke(_workExperienceRemoteModel, witness);
+				method.invoke(_workExperienceRemoteModel, weWitness);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -218,21 +231,21 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 	}
 
 	@Override
-	public String getOnceJob() {
-		return _onceJob;
+	public String getWeOnceJob() {
+		return _weOnceJob;
 	}
 
 	@Override
-	public void setOnceJob(String onceJob) {
-		_onceJob = onceJob;
+	public void setWeOnceJob(String weOnceJob) {
+		_weOnceJob = weOnceJob;
 
 		if (_workExperienceRemoteModel != null) {
 			try {
 				Class<?> clazz = _workExperienceRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setOnceJob", String.class);
+				Method method = clazz.getMethod("setWeOnceJob", String.class);
 
-				method.invoke(_workExperienceRemoteModel, onceJob);
+				method.invoke(_workExperienceRemoteModel, weOnceJob);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -241,21 +254,21 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 	}
 
 	@Override
-	public String getWorkUnit() {
-		return _workUnit;
+	public String getWeWorkUnit() {
+		return _weWorkUnit;
 	}
 
 	@Override
-	public void setWorkUnit(String workUnit) {
-		_workUnit = workUnit;
+	public void setWeWorkUnit(String weWorkUnit) {
+		_weWorkUnit = weWorkUnit;
 
 		if (_workExperienceRemoteModel != null) {
 			try {
 				Class<?> clazz = _workExperienceRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setWorkUnit", String.class);
+				Method method = clazz.getMethod("setWeWorkUnit", String.class);
 
-				method.invoke(_workExperienceRemoteModel, workUnit);
+				method.invoke(_workExperienceRemoteModel, weWorkUnit);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -264,21 +277,22 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 	}
 
 	@Override
-	public String getContactPhone() {
-		return _contactPhone;
+	public String getWeContactPhone() {
+		return _weContactPhone;
 	}
 
 	@Override
-	public void setContactPhone(String contactPhone) {
-		_contactPhone = contactPhone;
+	public void setWeContactPhone(String weContactPhone) {
+		_weContactPhone = weContactPhone;
 
 		if (_workExperienceRemoteModel != null) {
 			try {
 				Class<?> clazz = _workExperienceRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setContactPhone", String.class);
+				Method method = clazz.getMethod("setWeContactPhone",
+						String.class);
 
-				method.invoke(_workExperienceRemoteModel, contactPhone);
+				method.invoke(_workExperienceRemoteModel, weContactPhone);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -287,21 +301,22 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 	}
 
 	@Override
-	public Date getStartTime() {
-		return _startTime;
+	public String getWeStartTimeYear() {
+		return _weStartTimeYear;
 	}
 
 	@Override
-	public void setStartTime(Date startTime) {
-		_startTime = startTime;
+	public void setWeStartTimeYear(String weStartTimeYear) {
+		_weStartTimeYear = weStartTimeYear;
 
 		if (_workExperienceRemoteModel != null) {
 			try {
 				Class<?> clazz = _workExperienceRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setStartTime", Date.class);
+				Method method = clazz.getMethod("setWeStartTimeYear",
+						String.class);
 
-				method.invoke(_workExperienceRemoteModel, startTime);
+				method.invoke(_workExperienceRemoteModel, weStartTimeYear);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -310,21 +325,70 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 	}
 
 	@Override
-	public Date getStopTime() {
-		return _stopTime;
+	public String getWeStartTimeMonth() {
+		return _weStartTimeMonth;
 	}
 
 	@Override
-	public void setStopTime(Date stopTime) {
-		_stopTime = stopTime;
+	public void setWeStartTimeMonth(String weStartTimeMonth) {
+		_weStartTimeMonth = weStartTimeMonth;
 
 		if (_workExperienceRemoteModel != null) {
 			try {
 				Class<?> clazz = _workExperienceRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setStopTime", Date.class);
+				Method method = clazz.getMethod("setWeStartTimeMonth",
+						String.class);
 
-				method.invoke(_workExperienceRemoteModel, stopTime);
+				method.invoke(_workExperienceRemoteModel, weStartTimeMonth);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getWeStopTimeYear() {
+		return _weStopTimeYear;
+	}
+
+	@Override
+	public void setWeStopTimeYear(String weStopTimeYear) {
+		_weStopTimeYear = weStopTimeYear;
+
+		if (_workExperienceRemoteModel != null) {
+			try {
+				Class<?> clazz = _workExperienceRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setWeStopTimeYear",
+						String.class);
+
+				method.invoke(_workExperienceRemoteModel, weStopTimeYear);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getWeStopTimeMonth() {
+		return _weStopTimeMonth;
+	}
+
+	@Override
+	public void setWeStopTimeMonth(String weStopTimeMonth) {
+		_weStopTimeMonth = weStopTimeMonth;
+
+		if (_workExperienceRemoteModel != null) {
+			try {
+				Class<?> clazz = _workExperienceRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setWeStopTimeMonth",
+						String.class);
+
+				method.invoke(_workExperienceRemoteModel, weStopTimeMonth);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -405,12 +469,14 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 
 		clone.setId(getId());
 		clone.setUserId(getUserId());
-		clone.setWitness(getWitness());
-		clone.setOnceJob(getOnceJob());
-		clone.setWorkUnit(getWorkUnit());
-		clone.setContactPhone(getContactPhone());
-		clone.setStartTime(getStartTime());
-		clone.setStopTime(getStopTime());
+		clone.setWeWitness(getWeWitness());
+		clone.setWeOnceJob(getWeOnceJob());
+		clone.setWeWorkUnit(getWeWorkUnit());
+		clone.setWeContactPhone(getWeContactPhone());
+		clone.setWeStartTimeYear(getWeStartTimeYear());
+		clone.setWeStartTimeMonth(getWeStartTimeMonth());
+		clone.setWeStopTimeYear(getWeStopTimeYear());
+		clone.setWeStopTimeMonth(getWeStopTimeMonth());
 
 		return clone;
 	}
@@ -465,24 +531,28 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{id=");
 		sb.append(getId());
 		sb.append(", userId=");
 		sb.append(getUserId());
-		sb.append(", witness=");
-		sb.append(getWitness());
-		sb.append(", onceJob=");
-		sb.append(getOnceJob());
-		sb.append(", workUnit=");
-		sb.append(getWorkUnit());
-		sb.append(", contactPhone=");
-		sb.append(getContactPhone());
-		sb.append(", startTime=");
-		sb.append(getStartTime());
-		sb.append(", stopTime=");
-		sb.append(getStopTime());
+		sb.append(", weWitness=");
+		sb.append(getWeWitness());
+		sb.append(", weOnceJob=");
+		sb.append(getWeOnceJob());
+		sb.append(", weWorkUnit=");
+		sb.append(getWeWorkUnit());
+		sb.append(", weContactPhone=");
+		sb.append(getWeContactPhone());
+		sb.append(", weStartTimeYear=");
+		sb.append(getWeStartTimeYear());
+		sb.append(", weStartTimeMonth=");
+		sb.append(getWeStartTimeMonth());
+		sb.append(", weStopTimeYear=");
+		sb.append(getWeStopTimeYear());
+		sb.append(", weStopTimeMonth=");
+		sb.append(getWeStopTimeMonth());
 		sb.append("}");
 
 		return sb.toString();
@@ -490,7 +560,7 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.WorkExperience");
@@ -505,28 +575,36 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>witness</column-name><column-value><![CDATA[");
-		sb.append(getWitness());
+			"<column><column-name>weWitness</column-name><column-value><![CDATA[");
+		sb.append(getWeWitness());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>onceJob</column-name><column-value><![CDATA[");
-		sb.append(getOnceJob());
+			"<column><column-name>weOnceJob</column-name><column-value><![CDATA[");
+		sb.append(getWeOnceJob());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>workUnit</column-name><column-value><![CDATA[");
-		sb.append(getWorkUnit());
+			"<column><column-name>weWorkUnit</column-name><column-value><![CDATA[");
+		sb.append(getWeWorkUnit());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>contactPhone</column-name><column-value><![CDATA[");
-		sb.append(getContactPhone());
+			"<column><column-name>weContactPhone</column-name><column-value><![CDATA[");
+		sb.append(getWeContactPhone());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>startTime</column-name><column-value><![CDATA[");
-		sb.append(getStartTime());
+			"<column><column-name>weStartTimeYear</column-name><column-value><![CDATA[");
+		sb.append(getWeStartTimeYear());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>stopTime</column-name><column-value><![CDATA[");
-		sb.append(getStopTime());
+			"<column><column-name>weStartTimeMonth</column-name><column-value><![CDATA[");
+		sb.append(getWeStartTimeMonth());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>weStopTimeYear</column-name><column-value><![CDATA[");
+		sb.append(getWeStopTimeYear());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>weStopTimeMonth</column-name><column-value><![CDATA[");
+		sb.append(getWeStopTimeMonth());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -537,11 +615,13 @@ public class WorkExperienceClp extends BaseModelImpl<WorkExperience>
 	private long _id;
 	private long _userId;
 	private String _userUuid;
-	private String _witness;
-	private String _onceJob;
-	private String _workUnit;
-	private String _contactPhone;
-	private Date _startTime;
-	private Date _stopTime;
+	private String _weWitness;
+	private String _weOnceJob;
+	private String _weWorkUnit;
+	private String _weContactPhone;
+	private String _weStartTimeYear;
+	private String _weStartTimeMonth;
+	private String _weStopTimeYear;
+	private String _weStopTimeMonth;
 	private BaseModel<?> _workExperienceRemoteModel;
 }

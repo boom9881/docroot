@@ -78,6 +78,7 @@ public class BasicInformationWrapper implements BasicInformation,
 		attributes.put("emergencyContactRelation", getEmergencyContactRelation());
 		attributes.put("emergencyContactPhone", getEmergencyContactPhone());
 		attributes.put("isLeave", getIsLeave());
+		attributes.put("departmentId", getDepartmentId());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedUserId", getModifiedUserId());
@@ -247,6 +248,12 @@ public class BasicInformationWrapper implements BasicInformation,
 
 		if (isLeave != null) {
 			setIsLeave(isLeave);
+		}
+
+		Long departmentId = (Long)attributes.get("departmentId");
+
+		if (departmentId != null) {
+			setDepartmentId(departmentId);
 		}
 
 		Long createUserId = (Long)attributes.get("createUserId");
@@ -837,6 +844,26 @@ public class BasicInformationWrapper implements BasicInformation,
 	@Override
 	public void setIsLeave(int isLeave) {
 		_basicInformation.setIsLeave(isLeave);
+	}
+
+	/**
+	* Returns the department ID of this basic information.
+	*
+	* @return the department ID of this basic information
+	*/
+	@Override
+	public long getDepartmentId() {
+		return _basicInformation.getDepartmentId();
+	}
+
+	/**
+	* Sets the department ID of this basic information.
+	*
+	* @param departmentId the department ID of this basic information
+	*/
+	@Override
+	public void setDepartmentId(long departmentId) {
+		_basicInformation.setDepartmentId(departmentId);
 	}
 
 	/**

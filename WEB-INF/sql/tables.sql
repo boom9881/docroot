@@ -38,6 +38,7 @@ create table Intranet_BasicInformation (
 	emergencyContactRelation VARCHAR(75) null,
 	emergencyContactPhone VARCHAR(75) null,
 	isLeave INTEGER,
+	departmentId LONG,
 	createUserId LONG,
 	createDate DATE null,
 	modifiedUserId LONG,
@@ -57,12 +58,14 @@ create table Intranet_Department (
 create table Intranet_Education (
 	id_ LONG not null primary key,
 	userId LONG,
-	witness VARCHAR(75) null,
-	professional VARCHAR(75) null,
-	university VARCHAR(75) null,
-	contactPhone VARCHAR(75) null,
-	startTime DATE null,
-	stopTime DATE null
+	eWitness VARCHAR(75) null,
+	eProfessional VARCHAR(75) null,
+	eUniversity VARCHAR(75) null,
+	eContactPhone VARCHAR(75) null,
+	eStartTimeYear VARCHAR(75) null,
+	eStartTimeMonth VARCHAR(75) null,
+	eStopTimeYear VARCHAR(75) null,
+	eStopTimeMonth VARCHAR(75) null
 );
 
 create table Intranet_ExtInformation (
@@ -76,7 +79,8 @@ create table Intranet_ExtInformation (
 	probationPeriodStart DATE null,
 	probationPeriodEnd DATE null,
 	induredLocation VARCHAR(75) null,
-	fristInsured DATE null,
+	fristInsuredYear VARCHAR(75) null,
+	fristInsuredMonth VARCHAR(75) null,
 	isInsured VARCHAR(75) null,
 	basicWage LONG,
 	otherWage LONG
@@ -85,11 +89,11 @@ create table Intranet_ExtInformation (
 create table Intranet_FamilyRelationship (
 	id_ LONG not null primary key,
 	userId LONG,
-	name VARCHAR(75) null,
-	relationship VARCHAR(75) null,
-	workUnit VARCHAR(75) null,
-	contactPhone VARCHAR(75) null,
-	onceJob VARCHAR(75) null
+	frName VARCHAR(75) null,
+	frRelationship VARCHAR(75) null,
+	frWorkUnit VARCHAR(75) null,
+	frContactPhone VARCHAR(75) null,
+	frOnceJob VARCHAR(75) null
 );
 
 create table Intranet_Overtime (
@@ -169,12 +173,14 @@ create table Intranet_Wages (
 create table Intranet_WorkExperience (
 	id_ LONG not null primary key,
 	userId LONG,
-	witness VARCHAR(75) null,
-	onceJob VARCHAR(75) null,
-	workUnit VARCHAR(75) null,
-	contactPhone VARCHAR(75) null,
-	startTime DATE null,
-	stopTime DATE null
+	weWitness VARCHAR(75) null,
+	weOnceJob VARCHAR(75) null,
+	weWorkUnit VARCHAR(75) null,
+	weContactPhone VARCHAR(75) null,
+	weStartTimeYear VARCHAR(75) null,
+	weStartTimeMonth VARCHAR(75) null,
+	weStopTimeYear VARCHAR(75) null,
+	weStopTimeMonth VARCHAR(75) null
 );
 
 create table Intranet_basic_information (

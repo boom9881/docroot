@@ -106,29 +106,45 @@ public class BasicInformationLocalServiceClpInvoker {
 				"com.shuntian.portlet.intranet.model.BasicInformation"
 			};
 
-		_methodName66 = "getBeanIdentifier";
+		_methodName68 = "getBeanIdentifier";
 
-		_methodParameterTypes66 = new String[] {  };
+		_methodParameterTypes68 = new String[] {  };
 
-		_methodName67 = "setBeanIdentifier";
+		_methodName69 = "setBeanIdentifier";
 
-		_methodParameterTypes67 = new String[] { "java.lang.String" };
+		_methodParameterTypes69 = new String[] { "java.lang.String" };
 
-		_methodName72 = "findByIsLeave";
+		_methodName74 = "editStaff";
 
-		_methodParameterTypes72 = new String[] { "boolean" };
+		_methodParameterTypes74 = new String[] {
+				"long", "long", "long", "long",
+				"com.shuntian.portlet.intranet.model.BasicInformation",
+				"com.shuntian.portlet.intranet.model.ExtInformation",
+				"java.util.List", "java.util.List", "java.util.List",
+				"com.liferay.portal.service.ServiceContext"
+			};
 
-		_methodName73 = "findByUserId";
+		_methodName75 = "leave";
 
-		_methodParameterTypes73 = new String[] { "long" };
+		_methodParameterTypes75 = new String[] { "long", "long" };
 
-		_methodName74 = "findListByUserId";
+		_methodName76 = "findByIsLeave";
 
-		_methodParameterTypes74 = new String[] { "long" };
+		_methodParameterTypes76 = new String[] { "boolean" };
 
-		_methodName75 = "countByListUserId";
+		_methodName77 = "findByUserId";
 
-		_methodParameterTypes75 = new String[] { "long" };
+		_methodParameterTypes77 = new String[] { "long" };
+
+		_methodName78 = "countByDepAndName";
+
+		_methodParameterTypes78 = new String[] { "long", "java.lang.String" };
+
+		_methodName79 = "findByDepAndName";
+
+		_methodParameterTypes79 = new String[] {
+				"long", "java.lang.String", "int", "int"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -220,36 +236,64 @@ public class BasicInformationLocalServiceClpInvoker {
 			return BasicInformationLocalServiceUtil.updateBasicInformation((com.shuntian.portlet.intranet.model.BasicInformation)arguments[0]);
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return BasicInformationLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			BasicInformationLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-			return BasicInformationLocalServiceUtil.findByIsLeave(((Boolean)arguments[0]).booleanValue());
-		}
-
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
-			return BasicInformationLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
-		}
-
 		if (_methodName74.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
-			return BasicInformationLocalServiceUtil.findListByUserId(((Long)arguments[0]).longValue());
+			BasicInformationLocalServiceUtil.editStaff(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue(),
+				((Long)arguments[3]).longValue(),
+				(com.shuntian.portlet.intranet.model.BasicInformation)arguments[4],
+				(com.shuntian.portlet.intranet.model.ExtInformation)arguments[5],
+				(java.util.List<com.shuntian.portlet.intranet.model.Education>)arguments[6],
+				(java.util.List<com.shuntian.portlet.intranet.model.WorkExperience>)arguments[7],
+				(java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship>)arguments[8],
+				(com.liferay.portal.service.ServiceContext)arguments[9]);
+
+			return null;
 		}
 
 		if (_methodName75.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
-			return BasicInformationLocalServiceUtil.countByListUserId(((Long)arguments[0]).longValue());
+			BasicInformationLocalServiceUtil.leave(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+
+			return null;
+		}
+
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+			return BasicInformationLocalServiceUtil.findByIsLeave(((Boolean)arguments[0]).booleanValue());
+		}
+
+		if (_methodName77.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
+			return BasicInformationLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName78.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
+			return BasicInformationLocalServiceUtil.countByDepAndName(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
+		}
+
+		if (_methodName79.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
+			return BasicInformationLocalServiceUtil.findByDepAndName(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1],
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -287,16 +331,20 @@ public class BasicInformationLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName66;
-	private String[] _methodParameterTypes66;
-	private String _methodName67;
-	private String[] _methodParameterTypes67;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
-	private String _methodName73;
-	private String[] _methodParameterTypes73;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
 	private String _methodName74;
 	private String[] _methodParameterTypes74;
 	private String _methodName75;
 	private String[] _methodParameterTypes75;
+	private String _methodName76;
+	private String[] _methodParameterTypes76;
+	private String _methodName77;
+	private String[] _methodParameterTypes77;
+	private String _methodName78;
+	private String[] _methodParameterTypes78;
+	private String _methodName79;
+	private String[] _methodParameterTypes79;
 }

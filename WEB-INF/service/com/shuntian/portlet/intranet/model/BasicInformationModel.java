@@ -459,6 +459,20 @@ public interface BasicInformationModel extends BaseModel<BasicInformation> {
 	public void setIsLeave(int isLeave);
 
 	/**
+	 * Returns the department ID of this basic information.
+	 *
+	 * @return the department ID of this basic information
+	 */
+	public long getDepartmentId();
+
+	/**
+	 * Sets the department ID of this basic information.
+	 *
+	 * @param departmentId the department ID of this basic information
+	 */
+	public void setDepartmentId(long departmentId);
+
+	/**
 	 * Returns the create user ID of this basic information.
 	 *
 	 * @return the create user ID of this basic information

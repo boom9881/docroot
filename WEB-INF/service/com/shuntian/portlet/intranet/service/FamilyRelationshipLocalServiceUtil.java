@@ -274,6 +274,13 @@ public class FamilyRelationshipLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void editFamilyRelationship(long userId,
+		java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship> frs)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException {
+		getService().editFamilyRelationship(userId, frs);
+	}
+
 	public static java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().findByUserId(userId);

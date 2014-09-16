@@ -102,79 +102,79 @@ public interface FamilyRelationshipModel extends BaseModel<FamilyRelationship> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Returns the name of this family relationship.
+	 * Returns the fr name of this family relationship.
 	 *
-	 * @return the name of this family relationship
+	 * @return the fr name of this family relationship
 	 */
 	@AutoEscape
-	public String getName();
+	public String getFrName();
 
 	/**
-	 * Sets the name of this family relationship.
+	 * Sets the fr name of this family relationship.
 	 *
-	 * @param name the name of this family relationship
+	 * @param frName the fr name of this family relationship
 	 */
-	public void setName(String name);
+	public void setFrName(String frName);
 
 	/**
-	 * Returns the relationship of this family relationship.
+	 * Returns the fr relationship of this family relationship.
 	 *
-	 * @return the relationship of this family relationship
-	 */
-	@AutoEscape
-	public String getRelationship();
-
-	/**
-	 * Sets the relationship of this family relationship.
-	 *
-	 * @param relationship the relationship of this family relationship
-	 */
-	public void setRelationship(String relationship);
-
-	/**
-	 * Returns the work unit of this family relationship.
-	 *
-	 * @return the work unit of this family relationship
+	 * @return the fr relationship of this family relationship
 	 */
 	@AutoEscape
-	public String getWorkUnit();
+	public String getFrRelationship();
 
 	/**
-	 * Sets the work unit of this family relationship.
+	 * Sets the fr relationship of this family relationship.
 	 *
-	 * @param workUnit the work unit of this family relationship
+	 * @param frRelationship the fr relationship of this family relationship
 	 */
-	public void setWorkUnit(String workUnit);
+	public void setFrRelationship(String frRelationship);
 
 	/**
-	 * Returns the contact phone of this family relationship.
+	 * Returns the fr work unit of this family relationship.
 	 *
-	 * @return the contact phone of this family relationship
-	 */
-	@AutoEscape
-	public String getContactPhone();
-
-	/**
-	 * Sets the contact phone of this family relationship.
-	 *
-	 * @param contactPhone the contact phone of this family relationship
-	 */
-	public void setContactPhone(String contactPhone);
-
-	/**
-	 * Returns the once job of this family relationship.
-	 *
-	 * @return the once job of this family relationship
+	 * @return the fr work unit of this family relationship
 	 */
 	@AutoEscape
-	public String getOnceJob();
+	public String getFrWorkUnit();
 
 	/**
-	 * Sets the once job of this family relationship.
+	 * Sets the fr work unit of this family relationship.
 	 *
-	 * @param onceJob the once job of this family relationship
+	 * @param frWorkUnit the fr work unit of this family relationship
 	 */
-	public void setOnceJob(String onceJob);
+	public void setFrWorkUnit(String frWorkUnit);
+
+	/**
+	 * Returns the fr contact phone of this family relationship.
+	 *
+	 * @return the fr contact phone of this family relationship
+	 */
+	@AutoEscape
+	public String getFrContactPhone();
+
+	/**
+	 * Sets the fr contact phone of this family relationship.
+	 *
+	 * @param frContactPhone the fr contact phone of this family relationship
+	 */
+	public void setFrContactPhone(String frContactPhone);
+
+	/**
+	 * Returns the fr once job of this family relationship.
+	 *
+	 * @return the fr once job of this family relationship
+	 */
+	@AutoEscape
+	public String getFrOnceJob();
+
+	/**
+	 * Sets the fr once job of this family relationship.
+	 *
+	 * @param frOnceJob the fr once job of this family relationship
+	 */
+	public void setFrOnceJob(String frOnceJob);
 
 	@Override
 	public boolean isNew();

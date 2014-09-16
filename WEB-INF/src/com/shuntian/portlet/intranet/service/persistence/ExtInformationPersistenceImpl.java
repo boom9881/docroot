@@ -605,7 +605,8 @@ public class ExtInformationPersistenceImpl extends BasePersistenceImpl<ExtInform
 		extInformationImpl.setProbationPeriodStart(extInformation.getProbationPeriodStart());
 		extInformationImpl.setProbationPeriodEnd(extInformation.getProbationPeriodEnd());
 		extInformationImpl.setInduredLocation(extInformation.getInduredLocation());
-		extInformationImpl.setFristInsured(extInformation.getFristInsured());
+		extInformationImpl.setFristInsuredYear(extInformation.getFristInsuredYear());
+		extInformationImpl.setFristInsuredMonth(extInformation.getFristInsuredMonth());
 		extInformationImpl.setIsInsured(extInformation.getIsInsured());
 		extInformationImpl.setBasicWage(extInformation.getBasicWage());
 		extInformationImpl.setOtherWage(extInformation.getOtherWage());

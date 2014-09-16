@@ -115,9 +115,13 @@ public class WorkExperienceLocalServiceClp implements WorkExperienceLocalService
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
-		_methodName19 = "findByUserId";
+		_methodName19 = "editWorkExperience";
 
-		_methodParameterTypes19 = new String[] { "long" };
+		_methodParameterTypes19 = new String[] { "long", "java.util.List" };
+
+		_methodName20 = "findByUserId";
+
+		_methodParameterTypes20 = new String[] { "long" };
 	}
 
 	@Override
@@ -670,13 +674,44 @@ public class WorkExperienceLocalServiceClp implements WorkExperienceLocalService
 	}
 
 	@Override
+	public void editWorkExperience(long userId,
+		java.util.List<com.shuntian.portlet.intranet.model.WorkExperience> wes)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchWorkExperienceException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName19,
+				_methodParameterTypes19,
+				new Object[] { userId, ClpSerializer.translateInput(wes) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.shuntian.portlet.intranet.NoSuchWorkExperienceException) {
+				throw (com.shuntian.portlet.intranet.NoSuchWorkExperienceException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
 	public java.util.List<com.shuntian.portlet.intranet.model.WorkExperience> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -736,4 +771,6 @@ public class WorkExperienceLocalServiceClp implements WorkExperienceLocalService
 	private String[] _methodParameterTypes17;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
 }

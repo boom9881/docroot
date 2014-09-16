@@ -289,6 +289,14 @@ public class FamilyRelationshipLocalServiceWrapper
 	}
 
 	@Override
+	public void editFamilyRelationship(long userId,
+		java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship> frs)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchFamilyRelationshipException {
+		_familyRelationshipLocalService.editFamilyRelationship(userId, frs);
+	}
+
+	@Override
 	public java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return _familyRelationshipLocalService.findByUserId(userId);

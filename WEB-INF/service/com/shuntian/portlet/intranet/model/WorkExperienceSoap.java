@@ -17,7 +17,6 @@ package com.shuntian.portlet.intranet.model;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,12 +31,14 @@ public class WorkExperienceSoap implements Serializable {
 
 		soapModel.setId(model.getId());
 		soapModel.setUserId(model.getUserId());
-		soapModel.setWitness(model.getWitness());
-		soapModel.setOnceJob(model.getOnceJob());
-		soapModel.setWorkUnit(model.getWorkUnit());
-		soapModel.setContactPhone(model.getContactPhone());
-		soapModel.setStartTime(model.getStartTime());
-		soapModel.setStopTime(model.getStopTime());
+		soapModel.setWeWitness(model.getWeWitness());
+		soapModel.setWeOnceJob(model.getWeOnceJob());
+		soapModel.setWeWorkUnit(model.getWeWorkUnit());
+		soapModel.setWeContactPhone(model.getWeContactPhone());
+		soapModel.setWeStartTimeYear(model.getWeStartTimeYear());
+		soapModel.setWeStartTimeMonth(model.getWeStartTimeMonth());
+		soapModel.setWeStopTimeYear(model.getWeStopTimeYear());
+		soapModel.setWeStopTimeMonth(model.getWeStopTimeMonth());
 
 		return soapModel;
 	}
@@ -106,60 +107,78 @@ public class WorkExperienceSoap implements Serializable {
 		_userId = userId;
 	}
 
-	public String getWitness() {
-		return _witness;
+	public String getWeWitness() {
+		return _weWitness;
 	}
 
-	public void setWitness(String witness) {
-		_witness = witness;
+	public void setWeWitness(String weWitness) {
+		_weWitness = weWitness;
 	}
 
-	public String getOnceJob() {
-		return _onceJob;
+	public String getWeOnceJob() {
+		return _weOnceJob;
 	}
 
-	public void setOnceJob(String onceJob) {
-		_onceJob = onceJob;
+	public void setWeOnceJob(String weOnceJob) {
+		_weOnceJob = weOnceJob;
 	}
 
-	public String getWorkUnit() {
-		return _workUnit;
+	public String getWeWorkUnit() {
+		return _weWorkUnit;
 	}
 
-	public void setWorkUnit(String workUnit) {
-		_workUnit = workUnit;
+	public void setWeWorkUnit(String weWorkUnit) {
+		_weWorkUnit = weWorkUnit;
 	}
 
-	public String getContactPhone() {
-		return _contactPhone;
+	public String getWeContactPhone() {
+		return _weContactPhone;
 	}
 
-	public void setContactPhone(String contactPhone) {
-		_contactPhone = contactPhone;
+	public void setWeContactPhone(String weContactPhone) {
+		_weContactPhone = weContactPhone;
 	}
 
-	public Date getStartTime() {
-		return _startTime;
+	public String getWeStartTimeYear() {
+		return _weStartTimeYear;
 	}
 
-	public void setStartTime(Date startTime) {
-		_startTime = startTime;
+	public void setWeStartTimeYear(String weStartTimeYear) {
+		_weStartTimeYear = weStartTimeYear;
 	}
 
-	public Date getStopTime() {
-		return _stopTime;
+	public String getWeStartTimeMonth() {
+		return _weStartTimeMonth;
 	}
 
-	public void setStopTime(Date stopTime) {
-		_stopTime = stopTime;
+	public void setWeStartTimeMonth(String weStartTimeMonth) {
+		_weStartTimeMonth = weStartTimeMonth;
+	}
+
+	public String getWeStopTimeYear() {
+		return _weStopTimeYear;
+	}
+
+	public void setWeStopTimeYear(String weStopTimeYear) {
+		_weStopTimeYear = weStopTimeYear;
+	}
+
+	public String getWeStopTimeMonth() {
+		return _weStopTimeMonth;
+	}
+
+	public void setWeStopTimeMonth(String weStopTimeMonth) {
+		_weStopTimeMonth = weStopTimeMonth;
 	}
 
 	private long _id;
 	private long _userId;
-	private String _witness;
-	private String _onceJob;
-	private String _workUnit;
-	private String _contactPhone;
-	private Date _startTime;
-	private Date _stopTime;
+	private String _weWitness;
+	private String _weOnceJob;
+	private String _weWorkUnit;
+	private String _weContactPhone;
+	private String _weStartTimeYear;
+	private String _weStartTimeMonth;
+	private String _weStopTimeYear;
+	private String _weStopTimeMonth;
 }

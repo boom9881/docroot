@@ -17,7 +17,6 @@ package com.shuntian.portlet.intranet.model;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,12 +50,14 @@ public class EducationWrapper implements Education, ModelWrapper<Education> {
 
 		attributes.put("id", getId());
 		attributes.put("userId", getUserId());
-		attributes.put("witness", getWitness());
-		attributes.put("professional", getProfessional());
-		attributes.put("university", getUniversity());
-		attributes.put("contactPhone", getContactPhone());
-		attributes.put("startTime", getStartTime());
-		attributes.put("stopTime", getStopTime());
+		attributes.put("eWitness", getEWitness());
+		attributes.put("eProfessional", getEProfessional());
+		attributes.put("eUniversity", getEUniversity());
+		attributes.put("eContactPhone", getEContactPhone());
+		attributes.put("eStartTimeYear", getEStartTimeYear());
+		attributes.put("eStartTimeMonth", getEStartTimeMonth());
+		attributes.put("eStopTimeYear", getEStopTimeYear());
+		attributes.put("eStopTimeMonth", getEStopTimeMonth());
 
 		return attributes;
 	}
@@ -75,40 +76,52 @@ public class EducationWrapper implements Education, ModelWrapper<Education> {
 			setUserId(userId);
 		}
 
-		String witness = (String)attributes.get("witness");
+		String eWitness = (String)attributes.get("eWitness");
 
-		if (witness != null) {
-			setWitness(witness);
+		if (eWitness != null) {
+			setEWitness(eWitness);
 		}
 
-		String professional = (String)attributes.get("professional");
+		String eProfessional = (String)attributes.get("eProfessional");
 
-		if (professional != null) {
-			setProfessional(professional);
+		if (eProfessional != null) {
+			setEProfessional(eProfessional);
 		}
 
-		String university = (String)attributes.get("university");
+		String eUniversity = (String)attributes.get("eUniversity");
 
-		if (university != null) {
-			setUniversity(university);
+		if (eUniversity != null) {
+			setEUniversity(eUniversity);
 		}
 
-		String contactPhone = (String)attributes.get("contactPhone");
+		String eContactPhone = (String)attributes.get("eContactPhone");
 
-		if (contactPhone != null) {
-			setContactPhone(contactPhone);
+		if (eContactPhone != null) {
+			setEContactPhone(eContactPhone);
 		}
 
-		Date startTime = (Date)attributes.get("startTime");
+		String eStartTimeYear = (String)attributes.get("eStartTimeYear");
 
-		if (startTime != null) {
-			setStartTime(startTime);
+		if (eStartTimeYear != null) {
+			setEStartTimeYear(eStartTimeYear);
 		}
 
-		Date stopTime = (Date)attributes.get("stopTime");
+		String eStartTimeMonth = (String)attributes.get("eStartTimeMonth");
 
-		if (stopTime != null) {
-			setStopTime(stopTime);
+		if (eStartTimeMonth != null) {
+			setEStartTimeMonth(eStartTimeMonth);
+		}
+
+		String eStopTimeYear = (String)attributes.get("eStopTimeYear");
+
+		if (eStopTimeYear != null) {
+			setEStopTimeYear(eStopTimeYear);
+		}
+
+		String eStopTimeMonth = (String)attributes.get("eStopTimeMonth");
+
+		if (eStopTimeMonth != null) {
+			setEStopTimeMonth(eStopTimeMonth);
 		}
 	}
 
@@ -195,123 +208,163 @@ public class EducationWrapper implements Education, ModelWrapper<Education> {
 	}
 
 	/**
-	* Returns the witness of this education.
+	* Returns the e witness of this education.
 	*
-	* @return the witness of this education
+	* @return the e witness of this education
 	*/
 	@Override
-	public java.lang.String getWitness() {
-		return _education.getWitness();
+	public java.lang.String getEWitness() {
+		return _education.getEWitness();
 	}
 
 	/**
-	* Sets the witness of this education.
+	* Sets the e witness of this education.
 	*
-	* @param witness the witness of this education
+	* @param eWitness the e witness of this education
 	*/
 	@Override
-	public void setWitness(java.lang.String witness) {
-		_education.setWitness(witness);
+	public void setEWitness(java.lang.String eWitness) {
+		_education.setEWitness(eWitness);
 	}
 
 	/**
-	* Returns the professional of this education.
+	* Returns the e professional of this education.
 	*
-	* @return the professional of this education
+	* @return the e professional of this education
 	*/
 	@Override
-	public java.lang.String getProfessional() {
-		return _education.getProfessional();
+	public java.lang.String getEProfessional() {
+		return _education.getEProfessional();
 	}
 
 	/**
-	* Sets the professional of this education.
+	* Sets the e professional of this education.
 	*
-	* @param professional the professional of this education
+	* @param eProfessional the e professional of this education
 	*/
 	@Override
-	public void setProfessional(java.lang.String professional) {
-		_education.setProfessional(professional);
+	public void setEProfessional(java.lang.String eProfessional) {
+		_education.setEProfessional(eProfessional);
 	}
 
 	/**
-	* Returns the university of this education.
+	* Returns the e university of this education.
 	*
-	* @return the university of this education
+	* @return the e university of this education
 	*/
 	@Override
-	public java.lang.String getUniversity() {
-		return _education.getUniversity();
+	public java.lang.String getEUniversity() {
+		return _education.getEUniversity();
 	}
 
 	/**
-	* Sets the university of this education.
+	* Sets the e university of this education.
 	*
-	* @param university the university of this education
+	* @param eUniversity the e university of this education
 	*/
 	@Override
-	public void setUniversity(java.lang.String university) {
-		_education.setUniversity(university);
+	public void setEUniversity(java.lang.String eUniversity) {
+		_education.setEUniversity(eUniversity);
 	}
 
 	/**
-	* Returns the contact phone of this education.
+	* Returns the e contact phone of this education.
 	*
-	* @return the contact phone of this education
+	* @return the e contact phone of this education
 	*/
 	@Override
-	public java.lang.String getContactPhone() {
-		return _education.getContactPhone();
+	public java.lang.String getEContactPhone() {
+		return _education.getEContactPhone();
 	}
 
 	/**
-	* Sets the contact phone of this education.
+	* Sets the e contact phone of this education.
 	*
-	* @param contactPhone the contact phone of this education
+	* @param eContactPhone the e contact phone of this education
 	*/
 	@Override
-	public void setContactPhone(java.lang.String contactPhone) {
-		_education.setContactPhone(contactPhone);
+	public void setEContactPhone(java.lang.String eContactPhone) {
+		_education.setEContactPhone(eContactPhone);
 	}
 
 	/**
-	* Returns the start time of this education.
+	* Returns the e start time year of this education.
 	*
-	* @return the start time of this education
+	* @return the e start time year of this education
 	*/
 	@Override
-	public java.util.Date getStartTime() {
-		return _education.getStartTime();
+	public java.lang.String getEStartTimeYear() {
+		return _education.getEStartTimeYear();
 	}
 
 	/**
-	* Sets the start time of this education.
+	* Sets the e start time year of this education.
 	*
-	* @param startTime the start time of this education
+	* @param eStartTimeYear the e start time year of this education
 	*/
 	@Override
-	public void setStartTime(java.util.Date startTime) {
-		_education.setStartTime(startTime);
+	public void setEStartTimeYear(java.lang.String eStartTimeYear) {
+		_education.setEStartTimeYear(eStartTimeYear);
 	}
 
 	/**
-	* Returns the stop time of this education.
+	* Returns the e start time month of this education.
 	*
-	* @return the stop time of this education
+	* @return the e start time month of this education
 	*/
 	@Override
-	public java.util.Date getStopTime() {
-		return _education.getStopTime();
+	public java.lang.String getEStartTimeMonth() {
+		return _education.getEStartTimeMonth();
 	}
 
 	/**
-	* Sets the stop time of this education.
+	* Sets the e start time month of this education.
 	*
-	* @param stopTime the stop time of this education
+	* @param eStartTimeMonth the e start time month of this education
 	*/
 	@Override
-	public void setStopTime(java.util.Date stopTime) {
-		_education.setStopTime(stopTime);
+	public void setEStartTimeMonth(java.lang.String eStartTimeMonth) {
+		_education.setEStartTimeMonth(eStartTimeMonth);
+	}
+
+	/**
+	* Returns the e stop time year of this education.
+	*
+	* @return the e stop time year of this education
+	*/
+	@Override
+	public java.lang.String getEStopTimeYear() {
+		return _education.getEStopTimeYear();
+	}
+
+	/**
+	* Sets the e stop time year of this education.
+	*
+	* @param eStopTimeYear the e stop time year of this education
+	*/
+	@Override
+	public void setEStopTimeYear(java.lang.String eStopTimeYear) {
+		_education.setEStopTimeYear(eStopTimeYear);
+	}
+
+	/**
+	* Returns the e stop time month of this education.
+	*
+	* @return the e stop time month of this education
+	*/
+	@Override
+	public java.lang.String getEStopTimeMonth() {
+		return _education.getEStopTimeMonth();
+	}
+
+	/**
+	* Sets the e stop time month of this education.
+	*
+	* @param eStopTimeMonth the e stop time month of this education
+	*/
+	@Override
+	public void setEStopTimeMonth(java.lang.String eStopTimeMonth) {
+		_education.setEStopTimeMonth(eStopTimeMonth);
 	}
 
 	@Override

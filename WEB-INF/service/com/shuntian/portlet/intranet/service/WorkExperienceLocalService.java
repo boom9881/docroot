@@ -248,6 +248,11 @@ public interface WorkExperienceLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	public void editWorkExperience(long userId,
+		java.util.List<com.shuntian.portlet.intranet.model.WorkExperience> wes)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchWorkExperienceException;
+
 	public java.util.List<com.shuntian.portlet.intranet.model.WorkExperience> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 }

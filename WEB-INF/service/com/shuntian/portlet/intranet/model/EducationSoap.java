@@ -17,7 +17,6 @@ package com.shuntian.portlet.intranet.model;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,12 +31,14 @@ public class EducationSoap implements Serializable {
 
 		soapModel.setId(model.getId());
 		soapModel.setUserId(model.getUserId());
-		soapModel.setWitness(model.getWitness());
-		soapModel.setProfessional(model.getProfessional());
-		soapModel.setUniversity(model.getUniversity());
-		soapModel.setContactPhone(model.getContactPhone());
-		soapModel.setStartTime(model.getStartTime());
-		soapModel.setStopTime(model.getStopTime());
+		soapModel.setEWitness(model.getEWitness());
+		soapModel.setEProfessional(model.getEProfessional());
+		soapModel.setEUniversity(model.getEUniversity());
+		soapModel.setEContactPhone(model.getEContactPhone());
+		soapModel.setEStartTimeYear(model.getEStartTimeYear());
+		soapModel.setEStartTimeMonth(model.getEStartTimeMonth());
+		soapModel.setEStopTimeYear(model.getEStopTimeYear());
+		soapModel.setEStopTimeMonth(model.getEStopTimeMonth());
 
 		return soapModel;
 	}
@@ -106,60 +107,78 @@ public class EducationSoap implements Serializable {
 		_userId = userId;
 	}
 
-	public String getWitness() {
-		return _witness;
+	public String getEWitness() {
+		return _eWitness;
 	}
 
-	public void setWitness(String witness) {
-		_witness = witness;
+	public void setEWitness(String eWitness) {
+		_eWitness = eWitness;
 	}
 
-	public String getProfessional() {
-		return _professional;
+	public String getEProfessional() {
+		return _eProfessional;
 	}
 
-	public void setProfessional(String professional) {
-		_professional = professional;
+	public void setEProfessional(String eProfessional) {
+		_eProfessional = eProfessional;
 	}
 
-	public String getUniversity() {
-		return _university;
+	public String getEUniversity() {
+		return _eUniversity;
 	}
 
-	public void setUniversity(String university) {
-		_university = university;
+	public void setEUniversity(String eUniversity) {
+		_eUniversity = eUniversity;
 	}
 
-	public String getContactPhone() {
-		return _contactPhone;
+	public String getEContactPhone() {
+		return _eContactPhone;
 	}
 
-	public void setContactPhone(String contactPhone) {
-		_contactPhone = contactPhone;
+	public void setEContactPhone(String eContactPhone) {
+		_eContactPhone = eContactPhone;
 	}
 
-	public Date getStartTime() {
-		return _startTime;
+	public String getEStartTimeYear() {
+		return _eStartTimeYear;
 	}
 
-	public void setStartTime(Date startTime) {
-		_startTime = startTime;
+	public void setEStartTimeYear(String eStartTimeYear) {
+		_eStartTimeYear = eStartTimeYear;
 	}
 
-	public Date getStopTime() {
-		return _stopTime;
+	public String getEStartTimeMonth() {
+		return _eStartTimeMonth;
 	}
 
-	public void setStopTime(Date stopTime) {
-		_stopTime = stopTime;
+	public void setEStartTimeMonth(String eStartTimeMonth) {
+		_eStartTimeMonth = eStartTimeMonth;
+	}
+
+	public String getEStopTimeYear() {
+		return _eStopTimeYear;
+	}
+
+	public void setEStopTimeYear(String eStopTimeYear) {
+		_eStopTimeYear = eStopTimeYear;
+	}
+
+	public String getEStopTimeMonth() {
+		return _eStopTimeMonth;
+	}
+
+	public void setEStopTimeMonth(String eStopTimeMonth) {
+		_eStopTimeMonth = eStopTimeMonth;
 	}
 
 	private long _id;
 	private long _userId;
-	private String _witness;
-	private String _professional;
-	private String _university;
-	private String _contactPhone;
-	private Date _startTime;
-	private Date _stopTime;
+	private String _eWitness;
+	private String _eProfessional;
+	private String _eUniversity;
+	private String _eContactPhone;
+	private String _eStartTimeYear;
+	private String _eStartTimeMonth;
+	private String _eStopTimeYear;
+	private String _eStopTimeMonth;
 }

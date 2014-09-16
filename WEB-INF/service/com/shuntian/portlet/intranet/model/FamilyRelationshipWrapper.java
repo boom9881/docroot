@@ -51,11 +51,11 @@ public class FamilyRelationshipWrapper implements FamilyRelationship,
 
 		attributes.put("id", getId());
 		attributes.put("userId", getUserId());
-		attributes.put("name", getName());
-		attributes.put("relationship", getRelationship());
-		attributes.put("workUnit", getWorkUnit());
-		attributes.put("contactPhone", getContactPhone());
-		attributes.put("onceJob", getOnceJob());
+		attributes.put("frName", getFrName());
+		attributes.put("frRelationship", getFrRelationship());
+		attributes.put("frWorkUnit", getFrWorkUnit());
+		attributes.put("frContactPhone", getFrContactPhone());
+		attributes.put("frOnceJob", getFrOnceJob());
 
 		return attributes;
 	}
@@ -74,34 +74,34 @@ public class FamilyRelationshipWrapper implements FamilyRelationship,
 			setUserId(userId);
 		}
 
-		String name = (String)attributes.get("name");
+		String frName = (String)attributes.get("frName");
 
-		if (name != null) {
-			setName(name);
+		if (frName != null) {
+			setFrName(frName);
 		}
 
-		String relationship = (String)attributes.get("relationship");
+		String frRelationship = (String)attributes.get("frRelationship");
 
-		if (relationship != null) {
-			setRelationship(relationship);
+		if (frRelationship != null) {
+			setFrRelationship(frRelationship);
 		}
 
-		String workUnit = (String)attributes.get("workUnit");
+		String frWorkUnit = (String)attributes.get("frWorkUnit");
 
-		if (workUnit != null) {
-			setWorkUnit(workUnit);
+		if (frWorkUnit != null) {
+			setFrWorkUnit(frWorkUnit);
 		}
 
-		String contactPhone = (String)attributes.get("contactPhone");
+		String frContactPhone = (String)attributes.get("frContactPhone");
 
-		if (contactPhone != null) {
-			setContactPhone(contactPhone);
+		if (frContactPhone != null) {
+			setFrContactPhone(frContactPhone);
 		}
 
-		String onceJob = (String)attributes.get("onceJob");
+		String frOnceJob = (String)attributes.get("frOnceJob");
 
-		if (onceJob != null) {
-			setOnceJob(onceJob);
+		if (frOnceJob != null) {
+			setFrOnceJob(frOnceJob);
 		}
 	}
 
@@ -188,103 +188,103 @@ public class FamilyRelationshipWrapper implements FamilyRelationship,
 	}
 
 	/**
-	* Returns the name of this family relationship.
+	* Returns the fr name of this family relationship.
 	*
-	* @return the name of this family relationship
+	* @return the fr name of this family relationship
 	*/
 	@Override
-	public java.lang.String getName() {
-		return _familyRelationship.getName();
+	public java.lang.String getFrName() {
+		return _familyRelationship.getFrName();
 	}
 
 	/**
-	* Sets the name of this family relationship.
+	* Sets the fr name of this family relationship.
 	*
-	* @param name the name of this family relationship
+	* @param frName the fr name of this family relationship
 	*/
 	@Override
-	public void setName(java.lang.String name) {
-		_familyRelationship.setName(name);
+	public void setFrName(java.lang.String frName) {
+		_familyRelationship.setFrName(frName);
 	}
 
 	/**
-	* Returns the relationship of this family relationship.
+	* Returns the fr relationship of this family relationship.
 	*
-	* @return the relationship of this family relationship
+	* @return the fr relationship of this family relationship
 	*/
 	@Override
-	public java.lang.String getRelationship() {
-		return _familyRelationship.getRelationship();
+	public java.lang.String getFrRelationship() {
+		return _familyRelationship.getFrRelationship();
 	}
 
 	/**
-	* Sets the relationship of this family relationship.
+	* Sets the fr relationship of this family relationship.
 	*
-	* @param relationship the relationship of this family relationship
+	* @param frRelationship the fr relationship of this family relationship
 	*/
 	@Override
-	public void setRelationship(java.lang.String relationship) {
-		_familyRelationship.setRelationship(relationship);
+	public void setFrRelationship(java.lang.String frRelationship) {
+		_familyRelationship.setFrRelationship(frRelationship);
 	}
 
 	/**
-	* Returns the work unit of this family relationship.
+	* Returns the fr work unit of this family relationship.
 	*
-	* @return the work unit of this family relationship
+	* @return the fr work unit of this family relationship
 	*/
 	@Override
-	public java.lang.String getWorkUnit() {
-		return _familyRelationship.getWorkUnit();
+	public java.lang.String getFrWorkUnit() {
+		return _familyRelationship.getFrWorkUnit();
 	}
 
 	/**
-	* Sets the work unit of this family relationship.
+	* Sets the fr work unit of this family relationship.
 	*
-	* @param workUnit the work unit of this family relationship
+	* @param frWorkUnit the fr work unit of this family relationship
 	*/
 	@Override
-	public void setWorkUnit(java.lang.String workUnit) {
-		_familyRelationship.setWorkUnit(workUnit);
+	public void setFrWorkUnit(java.lang.String frWorkUnit) {
+		_familyRelationship.setFrWorkUnit(frWorkUnit);
 	}
 
 	/**
-	* Returns the contact phone of this family relationship.
+	* Returns the fr contact phone of this family relationship.
 	*
-	* @return the contact phone of this family relationship
+	* @return the fr contact phone of this family relationship
 	*/
 	@Override
-	public java.lang.String getContactPhone() {
-		return _familyRelationship.getContactPhone();
+	public java.lang.String getFrContactPhone() {
+		return _familyRelationship.getFrContactPhone();
 	}
 
 	/**
-	* Sets the contact phone of this family relationship.
+	* Sets the fr contact phone of this family relationship.
 	*
-	* @param contactPhone the contact phone of this family relationship
+	* @param frContactPhone the fr contact phone of this family relationship
 	*/
 	@Override
-	public void setContactPhone(java.lang.String contactPhone) {
-		_familyRelationship.setContactPhone(contactPhone);
+	public void setFrContactPhone(java.lang.String frContactPhone) {
+		_familyRelationship.setFrContactPhone(frContactPhone);
 	}
 
 	/**
-	* Returns the once job of this family relationship.
+	* Returns the fr once job of this family relationship.
 	*
-	* @return the once job of this family relationship
+	* @return the fr once job of this family relationship
 	*/
 	@Override
-	public java.lang.String getOnceJob() {
-		return _familyRelationship.getOnceJob();
+	public java.lang.String getFrOnceJob() {
+		return _familyRelationship.getFrOnceJob();
 	}
 
 	/**
-	* Sets the once job of this family relationship.
+	* Sets the fr once job of this family relationship.
 	*
-	* @param onceJob the once job of this family relationship
+	* @param frOnceJob the fr once job of this family relationship
 	*/
 	@Override
-	public void setOnceJob(java.lang.String onceJob) {
-		_familyRelationship.setOnceJob(onceJob);
+	public void setFrOnceJob(java.lang.String frOnceJob) {
+		_familyRelationship.setFrOnceJob(frOnceJob);
 	}
 
 	@Override

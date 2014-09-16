@@ -287,6 +287,37 @@ public class ExtInformationLocalServiceWrapper
 			arguments);
 	}
 
+	@Override
+	public void editExtInformation(long userId,
+		com.shuntian.portlet.intranet.model.ExtInformation ei)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchExtInformationException {
+		_extInformationLocalService.editExtInformation(userId, ei);
+	}
+
+	@Override
+	public void editExtInformation(long userId, java.lang.String openCity,
+		java.lang.String bankName, java.lang.String bankId,
+		java.util.Date laborContractStart, java.util.Date laborContractEnd,
+		java.util.Date probationPeriodStart, java.util.Date probationPeriodEnd,
+		java.lang.String induredLocation, java.lang.String fristInsuredYear,
+		java.lang.String fristInsuredMonth, java.lang.String isInsured,
+		long basicWage, long otherWage)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_extInformationLocalService.editExtInformation(userId, openCity,
+			bankName, bankId, laborContractStart, laborContractEnd,
+			probationPeriodStart, probationPeriodEnd, induredLocation,
+			fristInsuredYear, fristInsuredMonth, isInsured, basicWage, otherWage);
+	}
+
+	@Override
+	public com.shuntian.portlet.intranet.model.ExtInformation findByUserId(
+		long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchExtInformationException {
+		return _extInformationLocalService.findByUserId(userId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

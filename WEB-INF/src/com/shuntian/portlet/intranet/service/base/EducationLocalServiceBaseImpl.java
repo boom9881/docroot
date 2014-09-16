@@ -34,6 +34,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 import com.shuntian.portlet.intranet.model.Education;
 import com.shuntian.portlet.intranet.service.EducationLocalService;
 import com.shuntian.portlet.intranet.service.persistence.AttendancePersistence;
+import com.shuntian.portlet.intranet.service.persistence.BasicInformationFinder;
 import com.shuntian.portlet.intranet.service.persistence.BasicInformationPersistence;
 import com.shuntian.portlet.intranet.service.persistence.DepartmentFinder;
 import com.shuntian.portlet.intranet.service.persistence.DepartmentPersistence;
@@ -361,6 +362,25 @@ public abstract class EducationLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public void setBasicInformationPersistence(
 		BasicInformationPersistence basicInformationPersistence) {
 		this.basicInformationPersistence = basicInformationPersistence;
+	}
+
+	/**
+	 * Returns the basic information finder.
+	 *
+	 * @return the basic information finder
+	 */
+	public BasicInformationFinder getBasicInformationFinder() {
+		return basicInformationFinder;
+	}
+
+	/**
+	 * Sets the basic information finder.
+	 *
+	 * @param basicInformationFinder the basic information finder
+	 */
+	public void setBasicInformationFinder(
+		BasicInformationFinder basicInformationFinder) {
+		this.basicInformationFinder = basicInformationFinder;
 	}
 
 	/**
@@ -829,6 +849,8 @@ public abstract class EducationLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.shuntian.portlet.intranet.service.BasicInformationLocalService basicInformationLocalService;
 	@BeanReference(type = BasicInformationPersistence.class)
 	protected BasicInformationPersistence basicInformationPersistence;
+	@BeanReference(type = BasicInformationFinder.class)
+	protected BasicInformationFinder basicInformationFinder;
 	@BeanReference(type = com.shuntian.portlet.intranet.service.DepartmentLocalService.class)
 	protected com.shuntian.portlet.intranet.service.DepartmentLocalService departmentLocalService;
 	@BeanReference(type = DepartmentPersistence.class)

@@ -31,11 +31,11 @@ public class FamilyRelationshipSoap implements Serializable {
 
 		soapModel.setId(model.getId());
 		soapModel.setUserId(model.getUserId());
-		soapModel.setName(model.getName());
-		soapModel.setRelationship(model.getRelationship());
-		soapModel.setWorkUnit(model.getWorkUnit());
-		soapModel.setContactPhone(model.getContactPhone());
-		soapModel.setOnceJob(model.getOnceJob());
+		soapModel.setFrName(model.getFrName());
+		soapModel.setFrRelationship(model.getFrRelationship());
+		soapModel.setFrWorkUnit(model.getFrWorkUnit());
+		soapModel.setFrContactPhone(model.getFrContactPhone());
+		soapModel.setFrOnceJob(model.getFrOnceJob());
 
 		return soapModel;
 	}
@@ -107,51 +107,51 @@ public class FamilyRelationshipSoap implements Serializable {
 		_userId = userId;
 	}
 
-	public String getName() {
-		return _name;
+	public String getFrName() {
+		return _frName;
 	}
 
-	public void setName(String name) {
-		_name = name;
+	public void setFrName(String frName) {
+		_frName = frName;
 	}
 
-	public String getRelationship() {
-		return _relationship;
+	public String getFrRelationship() {
+		return _frRelationship;
 	}
 
-	public void setRelationship(String relationship) {
-		_relationship = relationship;
+	public void setFrRelationship(String frRelationship) {
+		_frRelationship = frRelationship;
 	}
 
-	public String getWorkUnit() {
-		return _workUnit;
+	public String getFrWorkUnit() {
+		return _frWorkUnit;
 	}
 
-	public void setWorkUnit(String workUnit) {
-		_workUnit = workUnit;
+	public void setFrWorkUnit(String frWorkUnit) {
+		_frWorkUnit = frWorkUnit;
 	}
 
-	public String getContactPhone() {
-		return _contactPhone;
+	public String getFrContactPhone() {
+		return _frContactPhone;
 	}
 
-	public void setContactPhone(String contactPhone) {
-		_contactPhone = contactPhone;
+	public void setFrContactPhone(String frContactPhone) {
+		_frContactPhone = frContactPhone;
 	}
 
-	public String getOnceJob() {
-		return _onceJob;
+	public String getFrOnceJob() {
+		return _frOnceJob;
 	}
 
-	public void setOnceJob(String onceJob) {
-		_onceJob = onceJob;
+	public void setFrOnceJob(String frOnceJob) {
+		_frOnceJob = frOnceJob;
 	}
 
 	private long _id;
 	private long _userId;
-	private String _name;
-	private String _relationship;
-	private String _workUnit;
-	private String _contactPhone;
-	private String _onceJob;
+	private String _frName;
+	private String _frRelationship;
+	private String _frWorkUnit;
+	private String _frContactPhone;
+	private String _frOnceJob;
 }

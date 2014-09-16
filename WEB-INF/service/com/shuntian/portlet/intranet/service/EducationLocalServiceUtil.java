@@ -274,6 +274,13 @@ public class EducationLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void editEducation(long userId,
+		java.util.List<com.shuntian.portlet.intranet.model.Education> edus)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchEducationException {
+		getService().editEducation(userId, edus);
+	}
+
 	public static java.util.List<com.shuntian.portlet.intranet.model.Education> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().findByUserId(userId);

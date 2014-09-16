@@ -40,7 +40,8 @@ public class ExtInformationSoap implements Serializable {
 		soapModel.setProbationPeriodStart(model.getProbationPeriodStart());
 		soapModel.setProbationPeriodEnd(model.getProbationPeriodEnd());
 		soapModel.setInduredLocation(model.getInduredLocation());
-		soapModel.setFristInsured(model.getFristInsured());
+		soapModel.setFristInsuredYear(model.getFristInsuredYear());
+		soapModel.setFristInsuredMonth(model.getFristInsuredMonth());
 		soapModel.setIsInsured(model.getIsInsured());
 		soapModel.setBasicWage(model.getBasicWage());
 		soapModel.setOtherWage(model.getOtherWage());
@@ -176,12 +177,20 @@ public class ExtInformationSoap implements Serializable {
 		_induredLocation = induredLocation;
 	}
 
-	public Date getFristInsured() {
-		return _fristInsured;
+	public String getFristInsuredYear() {
+		return _fristInsuredYear;
 	}
 
-	public void setFristInsured(Date fristInsured) {
-		_fristInsured = fristInsured;
+	public void setFristInsuredYear(String fristInsuredYear) {
+		_fristInsuredYear = fristInsuredYear;
+	}
+
+	public String getFristInsuredMonth() {
+		return _fristInsuredMonth;
+	}
+
+	public void setFristInsuredMonth(String fristInsuredMonth) {
+		_fristInsuredMonth = fristInsuredMonth;
 	}
 
 	public String getIsInsured() {
@@ -218,7 +227,8 @@ public class ExtInformationSoap implements Serializable {
 	private Date _probationPeriodStart;
 	private Date _probationPeriodEnd;
 	private String _induredLocation;
-	private Date _fristInsured;
+	private String _fristInsuredYear;
+	private String _fristInsuredMonth;
 	private String _isInsured;
 	private long _basicWage;
 	private long _otherWage;

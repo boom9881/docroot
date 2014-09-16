@@ -56,6 +56,7 @@ public class BasicInformationSoap implements Serializable {
 		soapModel.setEmergencyContactRelation(model.getEmergencyContactRelation());
 		soapModel.setEmergencyContactPhone(model.getEmergencyContactPhone());
 		soapModel.setIsLeave(model.getIsLeave());
+		soapModel.setDepartmentId(model.getDepartmentId());
 		soapModel.setCreateUserId(model.getCreateUserId());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedUserId(model.getModifiedUserId());
@@ -323,6 +324,14 @@ public class BasicInformationSoap implements Serializable {
 		_isLeave = isLeave;
 	}
 
+	public long getDepartmentId() {
+		return _departmentId;
+	}
+
+	public void setDepartmentId(long departmentId) {
+		_departmentId = departmentId;
+	}
+
 	public long getCreateUserId() {
 		return _createUserId;
 	}
@@ -381,6 +390,7 @@ public class BasicInformationSoap implements Serializable {
 	private String _emergencyContactRelation;
 	private String _emergencyContactPhone;
 	private int _isLeave;
+	private long _departmentId;
 	private long _createUserId;
 	private Date _createDate;
 	private long _modifiedUserId;

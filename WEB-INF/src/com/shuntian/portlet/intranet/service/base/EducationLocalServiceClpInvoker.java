@@ -106,17 +106,21 @@ public class EducationLocalServiceClpInvoker {
 				"com.shuntian.portlet.intranet.model.Education"
 			};
 
-		_methodName66 = "getBeanIdentifier";
+		_methodName68 = "getBeanIdentifier";
 
-		_methodParameterTypes66 = new String[] {  };
+		_methodParameterTypes68 = new String[] {  };
 
-		_methodName67 = "setBeanIdentifier";
+		_methodName69 = "setBeanIdentifier";
 
-		_methodParameterTypes67 = new String[] { "java.lang.String" };
+		_methodParameterTypes69 = new String[] { "java.lang.String" };
 
-		_methodName72 = "findByUserId";
+		_methodName74 = "editEducation";
 
-		_methodParameterTypes72 = new String[] { "long" };
+		_methodParameterTypes74 = new String[] { "long", "java.util.List" };
+
+		_methodName76 = "findByUserId";
+
+		_methodParameterTypes76 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -208,20 +212,28 @@ public class EducationLocalServiceClpInvoker {
 			return EducationLocalServiceUtil.updateEducation((com.shuntian.portlet.intranet.model.Education)arguments[0]);
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return EducationLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			EducationLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+			EducationLocalServiceUtil.editEducation(((Long)arguments[0]).longValue(),
+				(java.util.List<com.shuntian.portlet.intranet.model.Education>)arguments[1]);
+
+			return null;
+		}
+
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			return EducationLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
 		}
 
@@ -260,10 +272,12 @@ public class EducationLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName66;
-	private String[] _methodParameterTypes66;
-	private String _methodName67;
-	private String[] _methodParameterTypes67;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
+	private String _methodName74;
+	private String[] _methodParameterTypes74;
+	private String _methodName76;
+	private String[] _methodParameterTypes76;
 }

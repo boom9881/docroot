@@ -29,7 +29,6 @@ import java.io.Serializable;
 
 import java.lang.reflect.Method;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,12 +75,14 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 
 		attributes.put("id", getId());
 		attributes.put("userId", getUserId());
-		attributes.put("witness", getWitness());
-		attributes.put("professional", getProfessional());
-		attributes.put("university", getUniversity());
-		attributes.put("contactPhone", getContactPhone());
-		attributes.put("startTime", getStartTime());
-		attributes.put("stopTime", getStopTime());
+		attributes.put("eWitness", getEWitness());
+		attributes.put("eProfessional", getEProfessional());
+		attributes.put("eUniversity", getEUniversity());
+		attributes.put("eContactPhone", getEContactPhone());
+		attributes.put("eStartTimeYear", getEStartTimeYear());
+		attributes.put("eStartTimeMonth", getEStartTimeMonth());
+		attributes.put("eStopTimeYear", getEStopTimeYear());
+		attributes.put("eStopTimeMonth", getEStopTimeMonth());
 
 		return attributes;
 	}
@@ -100,40 +101,52 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 			setUserId(userId);
 		}
 
-		String witness = (String)attributes.get("witness");
+		String eWitness = (String)attributes.get("eWitness");
 
-		if (witness != null) {
-			setWitness(witness);
+		if (eWitness != null) {
+			setEWitness(eWitness);
 		}
 
-		String professional = (String)attributes.get("professional");
+		String eProfessional = (String)attributes.get("eProfessional");
 
-		if (professional != null) {
-			setProfessional(professional);
+		if (eProfessional != null) {
+			setEProfessional(eProfessional);
 		}
 
-		String university = (String)attributes.get("university");
+		String eUniversity = (String)attributes.get("eUniversity");
 
-		if (university != null) {
-			setUniversity(university);
+		if (eUniversity != null) {
+			setEUniversity(eUniversity);
 		}
 
-		String contactPhone = (String)attributes.get("contactPhone");
+		String eContactPhone = (String)attributes.get("eContactPhone");
 
-		if (contactPhone != null) {
-			setContactPhone(contactPhone);
+		if (eContactPhone != null) {
+			setEContactPhone(eContactPhone);
 		}
 
-		Date startTime = (Date)attributes.get("startTime");
+		String eStartTimeYear = (String)attributes.get("eStartTimeYear");
 
-		if (startTime != null) {
-			setStartTime(startTime);
+		if (eStartTimeYear != null) {
+			setEStartTimeYear(eStartTimeYear);
 		}
 
-		Date stopTime = (Date)attributes.get("stopTime");
+		String eStartTimeMonth = (String)attributes.get("eStartTimeMonth");
 
-		if (stopTime != null) {
-			setStopTime(stopTime);
+		if (eStartTimeMonth != null) {
+			setEStartTimeMonth(eStartTimeMonth);
+		}
+
+		String eStopTimeYear = (String)attributes.get("eStopTimeYear");
+
+		if (eStopTimeYear != null) {
+			setEStopTimeYear(eStopTimeYear);
+		}
+
+		String eStopTimeMonth = (String)attributes.get("eStopTimeMonth");
+
+		if (eStopTimeMonth != null) {
+			setEStopTimeMonth(eStopTimeMonth);
 		}
 	}
 
@@ -194,21 +207,21 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 	}
 
 	@Override
-	public String getWitness() {
-		return _witness;
+	public String getEWitness() {
+		return _eWitness;
 	}
 
 	@Override
-	public void setWitness(String witness) {
-		_witness = witness;
+	public void setEWitness(String eWitness) {
+		_eWitness = eWitness;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setWitness", String.class);
+				Method method = clazz.getMethod("setEWitness", String.class);
 
-				method.invoke(_educationRemoteModel, witness);
+				method.invoke(_educationRemoteModel, eWitness);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -217,21 +230,21 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 	}
 
 	@Override
-	public String getProfessional() {
-		return _professional;
+	public String getEProfessional() {
+		return _eProfessional;
 	}
 
 	@Override
-	public void setProfessional(String professional) {
-		_professional = professional;
+	public void setEProfessional(String eProfessional) {
+		_eProfessional = eProfessional;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setProfessional", String.class);
+				Method method = clazz.getMethod("setEProfessional", String.class);
 
-				method.invoke(_educationRemoteModel, professional);
+				method.invoke(_educationRemoteModel, eProfessional);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -240,21 +253,21 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 	}
 
 	@Override
-	public String getUniversity() {
-		return _university;
+	public String getEUniversity() {
+		return _eUniversity;
 	}
 
 	@Override
-	public void setUniversity(String university) {
-		_university = university;
+	public void setEUniversity(String eUniversity) {
+		_eUniversity = eUniversity;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setUniversity", String.class);
+				Method method = clazz.getMethod("setEUniversity", String.class);
 
-				method.invoke(_educationRemoteModel, university);
+				method.invoke(_educationRemoteModel, eUniversity);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -263,21 +276,21 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 	}
 
 	@Override
-	public String getContactPhone() {
-		return _contactPhone;
+	public String getEContactPhone() {
+		return _eContactPhone;
 	}
 
 	@Override
-	public void setContactPhone(String contactPhone) {
-		_contactPhone = contactPhone;
+	public void setEContactPhone(String eContactPhone) {
+		_eContactPhone = eContactPhone;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setContactPhone", String.class);
+				Method method = clazz.getMethod("setEContactPhone", String.class);
 
-				method.invoke(_educationRemoteModel, contactPhone);
+				method.invoke(_educationRemoteModel, eContactPhone);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -286,21 +299,22 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 	}
 
 	@Override
-	public Date getStartTime() {
-		return _startTime;
+	public String getEStartTimeYear() {
+		return _eStartTimeYear;
 	}
 
 	@Override
-	public void setStartTime(Date startTime) {
-		_startTime = startTime;
+	public void setEStartTimeYear(String eStartTimeYear) {
+		_eStartTimeYear = eStartTimeYear;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setStartTime", Date.class);
+				Method method = clazz.getMethod("setEStartTimeYear",
+						String.class);
 
-				method.invoke(_educationRemoteModel, startTime);
+				method.invoke(_educationRemoteModel, eStartTimeYear);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -309,21 +323,69 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 	}
 
 	@Override
-	public Date getStopTime() {
-		return _stopTime;
+	public String getEStartTimeMonth() {
+		return _eStartTimeMonth;
 	}
 
 	@Override
-	public void setStopTime(Date stopTime) {
-		_stopTime = stopTime;
+	public void setEStartTimeMonth(String eStartTimeMonth) {
+		_eStartTimeMonth = eStartTimeMonth;
 
 		if (_educationRemoteModel != null) {
 			try {
 				Class<?> clazz = _educationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setStopTime", Date.class);
+				Method method = clazz.getMethod("setEStartTimeMonth",
+						String.class);
 
-				method.invoke(_educationRemoteModel, stopTime);
+				method.invoke(_educationRemoteModel, eStartTimeMonth);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getEStopTimeYear() {
+		return _eStopTimeYear;
+	}
+
+	@Override
+	public void setEStopTimeYear(String eStopTimeYear) {
+		_eStopTimeYear = eStopTimeYear;
+
+		if (_educationRemoteModel != null) {
+			try {
+				Class<?> clazz = _educationRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setEStopTimeYear", String.class);
+
+				method.invoke(_educationRemoteModel, eStopTimeYear);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getEStopTimeMonth() {
+		return _eStopTimeMonth;
+	}
+
+	@Override
+	public void setEStopTimeMonth(String eStopTimeMonth) {
+		_eStopTimeMonth = eStopTimeMonth;
+
+		if (_educationRemoteModel != null) {
+			try {
+				Class<?> clazz = _educationRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setEStopTimeMonth",
+						String.class);
+
+				method.invoke(_educationRemoteModel, eStopTimeMonth);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -402,12 +464,14 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 
 		clone.setId(getId());
 		clone.setUserId(getUserId());
-		clone.setWitness(getWitness());
-		clone.setProfessional(getProfessional());
-		clone.setUniversity(getUniversity());
-		clone.setContactPhone(getContactPhone());
-		clone.setStartTime(getStartTime());
-		clone.setStopTime(getStopTime());
+		clone.setEWitness(getEWitness());
+		clone.setEProfessional(getEProfessional());
+		clone.setEUniversity(getEUniversity());
+		clone.setEContactPhone(getEContactPhone());
+		clone.setEStartTimeYear(getEStartTimeYear());
+		clone.setEStartTimeMonth(getEStartTimeMonth());
+		clone.setEStopTimeYear(getEStopTimeYear());
+		clone.setEStopTimeMonth(getEStopTimeMonth());
 
 		return clone;
 	}
@@ -462,24 +526,28 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{id=");
 		sb.append(getId());
 		sb.append(", userId=");
 		sb.append(getUserId());
-		sb.append(", witness=");
-		sb.append(getWitness());
-		sb.append(", professional=");
-		sb.append(getProfessional());
-		sb.append(", university=");
-		sb.append(getUniversity());
-		sb.append(", contactPhone=");
-		sb.append(getContactPhone());
-		sb.append(", startTime=");
-		sb.append(getStartTime());
-		sb.append(", stopTime=");
-		sb.append(getStopTime());
+		sb.append(", eWitness=");
+		sb.append(getEWitness());
+		sb.append(", eProfessional=");
+		sb.append(getEProfessional());
+		sb.append(", eUniversity=");
+		sb.append(getEUniversity());
+		sb.append(", eContactPhone=");
+		sb.append(getEContactPhone());
+		sb.append(", eStartTimeYear=");
+		sb.append(getEStartTimeYear());
+		sb.append(", eStartTimeMonth=");
+		sb.append(getEStartTimeMonth());
+		sb.append(", eStopTimeYear=");
+		sb.append(getEStopTimeYear());
+		sb.append(", eStopTimeMonth=");
+		sb.append(getEStopTimeMonth());
 		sb.append("}");
 
 		return sb.toString();
@@ -487,7 +555,7 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.Education");
@@ -502,28 +570,36 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>witness</column-name><column-value><![CDATA[");
-		sb.append(getWitness());
+			"<column><column-name>eWitness</column-name><column-value><![CDATA[");
+		sb.append(getEWitness());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>professional</column-name><column-value><![CDATA[");
-		sb.append(getProfessional());
+			"<column><column-name>eProfessional</column-name><column-value><![CDATA[");
+		sb.append(getEProfessional());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>university</column-name><column-value><![CDATA[");
-		sb.append(getUniversity());
+			"<column><column-name>eUniversity</column-name><column-value><![CDATA[");
+		sb.append(getEUniversity());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>contactPhone</column-name><column-value><![CDATA[");
-		sb.append(getContactPhone());
+			"<column><column-name>eContactPhone</column-name><column-value><![CDATA[");
+		sb.append(getEContactPhone());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>startTime</column-name><column-value><![CDATA[");
-		sb.append(getStartTime());
+			"<column><column-name>eStartTimeYear</column-name><column-value><![CDATA[");
+		sb.append(getEStartTimeYear());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>stopTime</column-name><column-value><![CDATA[");
-		sb.append(getStopTime());
+			"<column><column-name>eStartTimeMonth</column-name><column-value><![CDATA[");
+		sb.append(getEStartTimeMonth());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>eStopTimeYear</column-name><column-value><![CDATA[");
+		sb.append(getEStopTimeYear());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>eStopTimeMonth</column-name><column-value><![CDATA[");
+		sb.append(getEStopTimeMonth());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -534,11 +610,13 @@ public class EducationClp extends BaseModelImpl<Education> implements Education 
 	private long _id;
 	private long _userId;
 	private String _userUuid;
-	private String _witness;
-	private String _professional;
-	private String _university;
-	private String _contactPhone;
-	private Date _startTime;
-	private Date _stopTime;
+	private String _eWitness;
+	private String _eProfessional;
+	private String _eUniversity;
+	private String _eContactPhone;
+	private String _eStartTimeYear;
+	private String _eStartTimeMonth;
+	private String _eStopTimeYear;
+	private String _eStopTimeMonth;
 	private BaseModel<?> _educationRemoteModel;
 }

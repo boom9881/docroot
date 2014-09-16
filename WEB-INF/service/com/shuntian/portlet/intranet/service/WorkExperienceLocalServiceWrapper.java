@@ -288,6 +288,14 @@ public class WorkExperienceLocalServiceWrapper
 	}
 
 	@Override
+	public void editWorkExperience(long userId,
+		java.util.List<com.shuntian.portlet.intranet.model.WorkExperience> wes)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchWorkExperienceException {
+		_workExperienceLocalService.editWorkExperience(userId, wes);
+	}
+
+	@Override
 	public java.util.List<com.shuntian.portlet.intranet.model.WorkExperience> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return _workExperienceLocalService.findByUserId(userId);

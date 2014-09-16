@@ -274,6 +274,27 @@ public class BasicInformationLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void editStaff(long companyId, long id, long userId,
+		long curUserId,
+		com.shuntian.portlet.intranet.model.BasicInformation bi,
+		com.shuntian.portlet.intranet.model.ExtInformation ei,
+		java.util.List<com.shuntian.portlet.intranet.model.Education> edus,
+		java.util.List<com.shuntian.portlet.intranet.model.WorkExperience> wes,
+		java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship> frs,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.editStaff(companyId, id, userId, curUserId, bi, ei, edus, wes,
+			frs, serviceContext);
+	}
+
+	public static void leave(long id, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchBasicInformationException {
+		getService().leave(id, userId);
+	}
+
 	public static java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByIsLeave(
 		boolean isLeave)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -285,14 +306,15 @@ public class BasicInformationLocalServiceUtil {
 		return getService().findByUserId(userId);
 	}
 
-	public static java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findListByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().findListByUserId(userId);
+	public static int countByDepAndName(long departmentId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().countByDepAndName(departmentId, name);
 	}
 
-	public static int countByListUserId(long userId)
+	public static java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByDepAndName(
+		long departmentId, java.lang.String name, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().countByListUserId(userId);
+		return getService().findByDepAndName(departmentId, name, start, end);
 	}
 
 	public static void clearService() {

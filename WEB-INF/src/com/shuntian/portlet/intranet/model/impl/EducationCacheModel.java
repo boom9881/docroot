@@ -25,8 +25,6 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import java.util.Date;
-
 /**
  * The cache model class for representing Education in entity cache.
  *
@@ -38,24 +36,28 @@ public class EducationCacheModel implements CacheModel<Education>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{id=");
 		sb.append(id);
 		sb.append(", userId=");
 		sb.append(userId);
-		sb.append(", witness=");
-		sb.append(witness);
-		sb.append(", professional=");
-		sb.append(professional);
-		sb.append(", university=");
-		sb.append(university);
-		sb.append(", contactPhone=");
-		sb.append(contactPhone);
-		sb.append(", startTime=");
-		sb.append(startTime);
-		sb.append(", stopTime=");
-		sb.append(stopTime);
+		sb.append(", eWitness=");
+		sb.append(eWitness);
+		sb.append(", eProfessional=");
+		sb.append(eProfessional);
+		sb.append(", eUniversity=");
+		sb.append(eUniversity);
+		sb.append(", eContactPhone=");
+		sb.append(eContactPhone);
+		sb.append(", eStartTimeYear=");
+		sb.append(eStartTimeYear);
+		sb.append(", eStartTimeMonth=");
+		sb.append(eStartTimeMonth);
+		sb.append(", eStopTimeYear=");
+		sb.append(eStopTimeYear);
+		sb.append(", eStopTimeMonth=");
+		sb.append(eStopTimeMonth);
 		sb.append("}");
 
 		return sb.toString();
@@ -68,46 +70,60 @@ public class EducationCacheModel implements CacheModel<Education>,
 		educationImpl.setId(id);
 		educationImpl.setUserId(userId);
 
-		if (witness == null) {
-			educationImpl.setWitness(StringPool.BLANK);
+		if (eWitness == null) {
+			educationImpl.setEWitness(StringPool.BLANK);
 		}
 		else {
-			educationImpl.setWitness(witness);
+			educationImpl.setEWitness(eWitness);
 		}
 
-		if (professional == null) {
-			educationImpl.setProfessional(StringPool.BLANK);
+		if (eProfessional == null) {
+			educationImpl.setEProfessional(StringPool.BLANK);
 		}
 		else {
-			educationImpl.setProfessional(professional);
+			educationImpl.setEProfessional(eProfessional);
 		}
 
-		if (university == null) {
-			educationImpl.setUniversity(StringPool.BLANK);
+		if (eUniversity == null) {
+			educationImpl.setEUniversity(StringPool.BLANK);
 		}
 		else {
-			educationImpl.setUniversity(university);
+			educationImpl.setEUniversity(eUniversity);
 		}
 
-		if (contactPhone == null) {
-			educationImpl.setContactPhone(StringPool.BLANK);
+		if (eContactPhone == null) {
+			educationImpl.setEContactPhone(StringPool.BLANK);
 		}
 		else {
-			educationImpl.setContactPhone(contactPhone);
+			educationImpl.setEContactPhone(eContactPhone);
 		}
 
-		if (startTime == Long.MIN_VALUE) {
-			educationImpl.setStartTime(null);
+		if (eStartTimeYear == null) {
+			educationImpl.setEStartTimeYear(StringPool.BLANK);
 		}
 		else {
-			educationImpl.setStartTime(new Date(startTime));
+			educationImpl.setEStartTimeYear(eStartTimeYear);
 		}
 
-		if (stopTime == Long.MIN_VALUE) {
-			educationImpl.setStopTime(null);
+		if (eStartTimeMonth == null) {
+			educationImpl.setEStartTimeMonth(StringPool.BLANK);
 		}
 		else {
-			educationImpl.setStopTime(new Date(stopTime));
+			educationImpl.setEStartTimeMonth(eStartTimeMonth);
+		}
+
+		if (eStopTimeYear == null) {
+			educationImpl.setEStopTimeYear(StringPool.BLANK);
+		}
+		else {
+			educationImpl.setEStopTimeYear(eStopTimeYear);
+		}
+
+		if (eStopTimeMonth == null) {
+			educationImpl.setEStopTimeMonth(StringPool.BLANK);
+		}
+		else {
+			educationImpl.setEStopTimeMonth(eStopTimeMonth);
 		}
 
 		educationImpl.resetOriginalValues();
@@ -119,12 +135,14 @@ public class EducationCacheModel implements CacheModel<Education>,
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		id = objectInput.readLong();
 		userId = objectInput.readLong();
-		witness = objectInput.readUTF();
-		professional = objectInput.readUTF();
-		university = objectInput.readUTF();
-		contactPhone = objectInput.readUTF();
-		startTime = objectInput.readLong();
-		stopTime = objectInput.readLong();
+		eWitness = objectInput.readUTF();
+		eProfessional = objectInput.readUTF();
+		eUniversity = objectInput.readUTF();
+		eContactPhone = objectInput.readUTF();
+		eStartTimeYear = objectInput.readUTF();
+		eStartTimeMonth = objectInput.readUTF();
+		eStopTimeYear = objectInput.readUTF();
+		eStopTimeMonth = objectInput.readUTF();
 	}
 
 	@Override
@@ -133,44 +151,71 @@ public class EducationCacheModel implements CacheModel<Education>,
 		objectOutput.writeLong(id);
 		objectOutput.writeLong(userId);
 
-		if (witness == null) {
+		if (eWitness == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(witness);
+			objectOutput.writeUTF(eWitness);
 		}
 
-		if (professional == null) {
+		if (eProfessional == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(professional);
+			objectOutput.writeUTF(eProfessional);
 		}
 
-		if (university == null) {
+		if (eUniversity == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(university);
+			objectOutput.writeUTF(eUniversity);
 		}
 
-		if (contactPhone == null) {
+		if (eContactPhone == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(contactPhone);
+			objectOutput.writeUTF(eContactPhone);
 		}
 
-		objectOutput.writeLong(startTime);
-		objectOutput.writeLong(stopTime);
+		if (eStartTimeYear == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(eStartTimeYear);
+		}
+
+		if (eStartTimeMonth == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(eStartTimeMonth);
+		}
+
+		if (eStopTimeYear == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(eStopTimeYear);
+		}
+
+		if (eStopTimeMonth == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(eStopTimeMonth);
+		}
 	}
 
 	public long id;
 	public long userId;
-	public String witness;
-	public String professional;
-	public String university;
-	public String contactPhone;
-	public long startTime;
-	public long stopTime;
+	public String eWitness;
+	public String eProfessional;
+	public String eUniversity;
+	public String eContactPhone;
+	public String eStartTimeYear;
+	public String eStartTimeMonth;
+	public String eStopTimeYear;
+	public String eStopTimeMonth;
 }

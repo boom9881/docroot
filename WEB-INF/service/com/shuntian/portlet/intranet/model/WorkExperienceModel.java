@@ -24,8 +24,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 
 import java.io.Serializable;
 
-import java.util.Date;
-
 /**
  * The base model interface for the WorkExperience service. Represents a row in the &quot;Intranet_WorkExperience&quot; database table, with each column mapped to a property of this class.
  *
@@ -104,92 +102,124 @@ public interface WorkExperienceModel extends BaseModel<WorkExperience> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Returns the witness of this work experience.
+	 * Returns the we witness of this work experience.
 	 *
-	 * @return the witness of this work experience
+	 * @return the we witness of this work experience
 	 */
 	@AutoEscape
-	public String getWitness();
+	public String getWeWitness();
 
 	/**
-	 * Sets the witness of this work experience.
+	 * Sets the we witness of this work experience.
 	 *
-	 * @param witness the witness of this work experience
+	 * @param weWitness the we witness of this work experience
 	 */
-	public void setWitness(String witness);
+	public void setWeWitness(String weWitness);
 
 	/**
-	 * Returns the once job of this work experience.
+	 * Returns the we once job of this work experience.
 	 *
-	 * @return the once job of this work experience
-	 */
-	@AutoEscape
-	public String getOnceJob();
-
-	/**
-	 * Sets the once job of this work experience.
-	 *
-	 * @param onceJob the once job of this work experience
-	 */
-	public void setOnceJob(String onceJob);
-
-	/**
-	 * Returns the work unit of this work experience.
-	 *
-	 * @return the work unit of this work experience
+	 * @return the we once job of this work experience
 	 */
 	@AutoEscape
-	public String getWorkUnit();
+	public String getWeOnceJob();
 
 	/**
-	 * Sets the work unit of this work experience.
+	 * Sets the we once job of this work experience.
 	 *
-	 * @param workUnit the work unit of this work experience
+	 * @param weOnceJob the we once job of this work experience
 	 */
-	public void setWorkUnit(String workUnit);
+	public void setWeOnceJob(String weOnceJob);
 
 	/**
-	 * Returns the contact phone of this work experience.
+	 * Returns the we work unit of this work experience.
 	 *
-	 * @return the contact phone of this work experience
+	 * @return the we work unit of this work experience
 	 */
 	@AutoEscape
-	public String getContactPhone();
+	public String getWeWorkUnit();
 
 	/**
-	 * Sets the contact phone of this work experience.
+	 * Sets the we work unit of this work experience.
 	 *
-	 * @param contactPhone the contact phone of this work experience
+	 * @param weWorkUnit the we work unit of this work experience
 	 */
-	public void setContactPhone(String contactPhone);
+	public void setWeWorkUnit(String weWorkUnit);
 
 	/**
-	 * Returns the start time of this work experience.
+	 * Returns the we contact phone of this work experience.
 	 *
-	 * @return the start time of this work experience
+	 * @return the we contact phone of this work experience
 	 */
-	public Date getStartTime();
+	@AutoEscape
+	public String getWeContactPhone();
 
 	/**
-	 * Sets the start time of this work experience.
+	 * Sets the we contact phone of this work experience.
 	 *
-	 * @param startTime the start time of this work experience
+	 * @param weContactPhone the we contact phone of this work experience
 	 */
-	public void setStartTime(Date startTime);
+	public void setWeContactPhone(String weContactPhone);
 
 	/**
-	 * Returns the stop time of this work experience.
+	 * Returns the we start time year of this work experience.
 	 *
-	 * @return the stop time of this work experience
+	 * @return the we start time year of this work experience
 	 */
-	public Date getStopTime();
+	@AutoEscape
+	public String getWeStartTimeYear();
 
 	/**
-	 * Sets the stop time of this work experience.
+	 * Sets the we start time year of this work experience.
 	 *
-	 * @param stopTime the stop time of this work experience
+	 * @param weStartTimeYear the we start time year of this work experience
 	 */
-	public void setStopTime(Date stopTime);
+	public void setWeStartTimeYear(String weStartTimeYear);
+
+	/**
+	 * Returns the we start time month of this work experience.
+	 *
+	 * @return the we start time month of this work experience
+	 */
+	@AutoEscape
+	public String getWeStartTimeMonth();
+
+	/**
+	 * Sets the we start time month of this work experience.
+	 *
+	 * @param weStartTimeMonth the we start time month of this work experience
+	 */
+	public void setWeStartTimeMonth(String weStartTimeMonth);
+
+	/**
+	 * Returns the we stop time year of this work experience.
+	 *
+	 * @return the we stop time year of this work experience
+	 */
+	@AutoEscape
+	public String getWeStopTimeYear();
+
+	/**
+	 * Sets the we stop time year of this work experience.
+	 *
+	 * @param weStopTimeYear the we stop time year of this work experience
+	 */
+	public void setWeStopTimeYear(String weStopTimeYear);
+
+	/**
+	 * Returns the we stop time month of this work experience.
+	 *
+	 * @return the we stop time month of this work experience
+	 */
+	@AutoEscape
+	public String getWeStopTimeMonth();
+
+	/**
+	 * Sets the we stop time month of this work experience.
+	 *
+	 * @param weStopTimeMonth the we stop time month of this work experience
+	 */
+	public void setWeStopTimeMonth(String weStopTimeMonth);
 
 	@Override
 	public boolean isNew();

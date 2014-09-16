@@ -40,6 +40,7 @@
 		<field name="emergencyContactRelation" type="String" />
 		<field name="emergencyContactPhone" type="String" />
 		<field name="isLeave" type="int" />
+		<field name="departmentId" type="long" />
 		<field name="createUserId" type="long" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedUserId" type="long" />
@@ -57,12 +58,14 @@
 	<model name="com.shuntian.portlet.intranet.model.Education">
 		<field name="id" type="long" />
 		<field name="userId" type="long" />
-		<field name="witness" type="String" />
-		<field name="professional" type="String" />
-		<field name="university" type="String" />
-		<field name="contactPhone" type="String" />
-		<field name="startTime" type="Date" />
-		<field name="stopTime" type="Date" />
+		<field name="eWitness" type="String" />
+		<field name="eProfessional" type="String" />
+		<field name="eUniversity" type="String" />
+		<field name="eContactPhone" type="String" />
+		<field name="eStartTimeYear" type="String" />
+		<field name="eStartTimeMonth" type="String" />
+		<field name="eStopTimeYear" type="String" />
+		<field name="eStopTimeMonth" type="String" />
 	</model>
 	<model name="com.shuntian.portlet.intranet.model.ExtInformation">
 		<field name="id" type="long" />
@@ -75,7 +78,8 @@
 		<field name="probationPeriodStart" type="Date" />
 		<field name="probationPeriodEnd" type="Date" />
 		<field name="induredLocation" type="String" />
-		<field name="fristInsured" type="Date" />
+		<field name="fristInsuredYear" type="String" />
+		<field name="fristInsuredMonth" type="String" />
 		<field name="isInsured" type="String" />
 		<field name="basicWage" type="long" />
 		<field name="otherWage" type="long" />
@@ -83,11 +87,11 @@
 	<model name="com.shuntian.portlet.intranet.model.FamilyRelationship">
 		<field name="id" type="long" />
 		<field name="userId" type="long" />
-		<field name="name" type="String" />
-		<field name="relationship" type="String" />
-		<field name="workUnit" type="String" />
-		<field name="contactPhone" type="String" />
-		<field name="onceJob" type="String" />
+		<field name="frName" type="String" />
+		<field name="frRelationship" type="String" />
+		<field name="frWorkUnit" type="String" />
+		<field name="frContactPhone" type="String" />
+		<field name="frOnceJob" type="String" />
 	</model>
 	<model name="com.shuntian.portlet.intranet.model.Overtime">
 		<field name="id" type="long" />
@@ -135,11 +139,13 @@
 	<model name="com.shuntian.portlet.intranet.model.WorkExperience">
 		<field name="id" type="long" />
 		<field name="userId" type="long" />
-		<field name="witness" type="String" />
-		<field name="onceJob" type="String" />
-		<field name="workUnit" type="String" />
-		<field name="contactPhone" type="String" />
-		<field name="startTime" type="Date" />
-		<field name="stopTime" type="Date" />
+		<field name="weWitness" type="String" />
+		<field name="weOnceJob" type="String" />
+		<field name="weWorkUnit" type="String" />
+		<field name="weContactPhone" type="String" />
+		<field name="weStartTimeYear" type="String" />
+		<field name="weStartTimeMonth" type="String" />
+		<field name="weStopTimeYear" type="String" />
+		<field name="weStopTimeMonth" type="String" />
 	</model>
 </model-hints>

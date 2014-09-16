@@ -38,7 +38,7 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -60,8 +60,10 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 		sb.append(probationPeriodEnd);
 		sb.append(", induredLocation=");
 		sb.append(induredLocation);
-		sb.append(", fristInsured=");
-		sb.append(fristInsured);
+		sb.append(", fristInsuredYear=");
+		sb.append(fristInsuredYear);
+		sb.append(", fristInsuredMonth=");
+		sb.append(fristInsuredMonth);
 		sb.append(", isInsured=");
 		sb.append(isInsured);
 		sb.append(", basicWage=");
@@ -139,11 +141,18 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 			extInformationImpl.setInduredLocation(induredLocation);
 		}
 
-		if (fristInsured == Long.MIN_VALUE) {
-			extInformationImpl.setFristInsured(null);
+		if (fristInsuredYear == null) {
+			extInformationImpl.setFristInsuredYear(StringPool.BLANK);
 		}
 		else {
-			extInformationImpl.setFristInsured(new Date(fristInsured));
+			extInformationImpl.setFristInsuredYear(fristInsuredYear);
+		}
+
+		if (fristInsuredMonth == null) {
+			extInformationImpl.setFristInsuredMonth(StringPool.BLANK);
+		}
+		else {
+			extInformationImpl.setFristInsuredMonth(fristInsuredMonth);
 		}
 
 		if (isInsured == null) {
@@ -173,7 +182,8 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 		probationPeriodStart = objectInput.readLong();
 		probationPeriodEnd = objectInput.readLong();
 		induredLocation = objectInput.readUTF();
-		fristInsured = objectInput.readLong();
+		fristInsuredYear = objectInput.readUTF();
+		fristInsuredMonth = objectInput.readUTF();
 		isInsured = objectInput.readUTF();
 		basicWage = objectInput.readLong();
 		otherWage = objectInput.readLong();
@@ -218,7 +228,19 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 			objectOutput.writeUTF(induredLocation);
 		}
 
-		objectOutput.writeLong(fristInsured);
+		if (fristInsuredYear == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(fristInsuredYear);
+		}
+
+		if (fristInsuredMonth == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(fristInsuredMonth);
+		}
 
 		if (isInsured == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -241,7 +263,8 @@ public class ExtInformationCacheModel implements CacheModel<ExtInformation>,
 	public long probationPeriodStart;
 	public long probationPeriodEnd;
 	public String induredLocation;
-	public long fristInsured;
+	public String fristInsuredYear;
+	public String fristInsuredMonth;
 	public String isInsured;
 	public long basicWage;
 	public long otherWage;

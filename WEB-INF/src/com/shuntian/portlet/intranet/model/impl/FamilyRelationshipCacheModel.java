@@ -42,16 +42,16 @@ public class FamilyRelationshipCacheModel implements CacheModel<FamilyRelationsh
 		sb.append(id);
 		sb.append(", userId=");
 		sb.append(userId);
-		sb.append(", name=");
-		sb.append(name);
-		sb.append(", relationship=");
-		sb.append(relationship);
-		sb.append(", workUnit=");
-		sb.append(workUnit);
-		sb.append(", contactPhone=");
-		sb.append(contactPhone);
-		sb.append(", onceJob=");
-		sb.append(onceJob);
+		sb.append(", frName=");
+		sb.append(frName);
+		sb.append(", frRelationship=");
+		sb.append(frRelationship);
+		sb.append(", frWorkUnit=");
+		sb.append(frWorkUnit);
+		sb.append(", frContactPhone=");
+		sb.append(frContactPhone);
+		sb.append(", frOnceJob=");
+		sb.append(frOnceJob);
 		sb.append("}");
 
 		return sb.toString();
@@ -64,39 +64,39 @@ public class FamilyRelationshipCacheModel implements CacheModel<FamilyRelationsh
 		familyRelationshipImpl.setId(id);
 		familyRelationshipImpl.setUserId(userId);
 
-		if (name == null) {
-			familyRelationshipImpl.setName(StringPool.BLANK);
+		if (frName == null) {
+			familyRelationshipImpl.setFrName(StringPool.BLANK);
 		}
 		else {
-			familyRelationshipImpl.setName(name);
+			familyRelationshipImpl.setFrName(frName);
 		}
 
-		if (relationship == null) {
-			familyRelationshipImpl.setRelationship(StringPool.BLANK);
+		if (frRelationship == null) {
+			familyRelationshipImpl.setFrRelationship(StringPool.BLANK);
 		}
 		else {
-			familyRelationshipImpl.setRelationship(relationship);
+			familyRelationshipImpl.setFrRelationship(frRelationship);
 		}
 
-		if (workUnit == null) {
-			familyRelationshipImpl.setWorkUnit(StringPool.BLANK);
+		if (frWorkUnit == null) {
+			familyRelationshipImpl.setFrWorkUnit(StringPool.BLANK);
 		}
 		else {
-			familyRelationshipImpl.setWorkUnit(workUnit);
+			familyRelationshipImpl.setFrWorkUnit(frWorkUnit);
 		}
 
-		if (contactPhone == null) {
-			familyRelationshipImpl.setContactPhone(StringPool.BLANK);
+		if (frContactPhone == null) {
+			familyRelationshipImpl.setFrContactPhone(StringPool.BLANK);
 		}
 		else {
-			familyRelationshipImpl.setContactPhone(contactPhone);
+			familyRelationshipImpl.setFrContactPhone(frContactPhone);
 		}
 
-		if (onceJob == null) {
-			familyRelationshipImpl.setOnceJob(StringPool.BLANK);
+		if (frOnceJob == null) {
+			familyRelationshipImpl.setFrOnceJob(StringPool.BLANK);
 		}
 		else {
-			familyRelationshipImpl.setOnceJob(onceJob);
+			familyRelationshipImpl.setFrOnceJob(frOnceJob);
 		}
 
 		familyRelationshipImpl.resetOriginalValues();
@@ -108,11 +108,11 @@ public class FamilyRelationshipCacheModel implements CacheModel<FamilyRelationsh
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		id = objectInput.readLong();
 		userId = objectInput.readLong();
-		name = objectInput.readUTF();
-		relationship = objectInput.readUTF();
-		workUnit = objectInput.readUTF();
-		contactPhone = objectInput.readUTF();
-		onceJob = objectInput.readUTF();
+		frName = objectInput.readUTF();
+		frRelationship = objectInput.readUTF();
+		frWorkUnit = objectInput.readUTF();
+		frContactPhone = objectInput.readUTF();
+		frOnceJob = objectInput.readUTF();
 	}
 
 	@Override
@@ -121,47 +121,47 @@ public class FamilyRelationshipCacheModel implements CacheModel<FamilyRelationsh
 		objectOutput.writeLong(id);
 		objectOutput.writeLong(userId);
 
-		if (name == null) {
+		if (frName == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(name);
+			objectOutput.writeUTF(frName);
 		}
 
-		if (relationship == null) {
+		if (frRelationship == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(relationship);
+			objectOutput.writeUTF(frRelationship);
 		}
 
-		if (workUnit == null) {
+		if (frWorkUnit == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(workUnit);
+			objectOutput.writeUTF(frWorkUnit);
 		}
 
-		if (contactPhone == null) {
+		if (frContactPhone == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(contactPhone);
+			objectOutput.writeUTF(frContactPhone);
 		}
 
-		if (onceJob == null) {
+		if (frOnceJob == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(onceJob);
+			objectOutput.writeUTF(frOnceJob);
 		}
 	}
 
 	public long id;
 	public long userId;
-	public String name;
-	public String relationship;
-	public String workUnit;
-	public String contactPhone;
-	public String onceJob;
+	public String frName;
+	public String frRelationship;
+	public String frWorkUnit;
+	public String frContactPhone;
+	public String frOnceJob;
 }

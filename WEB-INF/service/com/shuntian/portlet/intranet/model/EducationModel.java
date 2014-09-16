@@ -24,8 +24,6 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 
 import java.io.Serializable;
 
-import java.util.Date;
-
 /**
  * The base model interface for the Education service. Represents a row in the &quot;Intranet_Education&quot; database table, with each column mapped to a property of this class.
  *
@@ -104,92 +102,124 @@ public interface EducationModel extends BaseModel<Education> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Returns the witness of this education.
+	 * Returns the e witness of this education.
 	 *
-	 * @return the witness of this education
+	 * @return the e witness of this education
 	 */
 	@AutoEscape
-	public String getWitness();
+	public String getEWitness();
 
 	/**
-	 * Sets the witness of this education.
+	 * Sets the e witness of this education.
 	 *
-	 * @param witness the witness of this education
+	 * @param eWitness the e witness of this education
 	 */
-	public void setWitness(String witness);
+	public void setEWitness(String eWitness);
 
 	/**
-	 * Returns the professional of this education.
+	 * Returns the e professional of this education.
 	 *
-	 * @return the professional of this education
-	 */
-	@AutoEscape
-	public String getProfessional();
-
-	/**
-	 * Sets the professional of this education.
-	 *
-	 * @param professional the professional of this education
-	 */
-	public void setProfessional(String professional);
-
-	/**
-	 * Returns the university of this education.
-	 *
-	 * @return the university of this education
+	 * @return the e professional of this education
 	 */
 	@AutoEscape
-	public String getUniversity();
+	public String getEProfessional();
 
 	/**
-	 * Sets the university of this education.
+	 * Sets the e professional of this education.
 	 *
-	 * @param university the university of this education
+	 * @param eProfessional the e professional of this education
 	 */
-	public void setUniversity(String university);
+	public void setEProfessional(String eProfessional);
 
 	/**
-	 * Returns the contact phone of this education.
+	 * Returns the e university of this education.
 	 *
-	 * @return the contact phone of this education
+	 * @return the e university of this education
 	 */
 	@AutoEscape
-	public String getContactPhone();
+	public String getEUniversity();
 
 	/**
-	 * Sets the contact phone of this education.
+	 * Sets the e university of this education.
 	 *
-	 * @param contactPhone the contact phone of this education
+	 * @param eUniversity the e university of this education
 	 */
-	public void setContactPhone(String contactPhone);
+	public void setEUniversity(String eUniversity);
 
 	/**
-	 * Returns the start time of this education.
+	 * Returns the e contact phone of this education.
 	 *
-	 * @return the start time of this education
+	 * @return the e contact phone of this education
 	 */
-	public Date getStartTime();
+	@AutoEscape
+	public String getEContactPhone();
 
 	/**
-	 * Sets the start time of this education.
+	 * Sets the e contact phone of this education.
 	 *
-	 * @param startTime the start time of this education
+	 * @param eContactPhone the e contact phone of this education
 	 */
-	public void setStartTime(Date startTime);
+	public void setEContactPhone(String eContactPhone);
 
 	/**
-	 * Returns the stop time of this education.
+	 * Returns the e start time year of this education.
 	 *
-	 * @return the stop time of this education
+	 * @return the e start time year of this education
 	 */
-	public Date getStopTime();
+	@AutoEscape
+	public String getEStartTimeYear();
 
 	/**
-	 * Sets the stop time of this education.
+	 * Sets the e start time year of this education.
 	 *
-	 * @param stopTime the stop time of this education
+	 * @param eStartTimeYear the e start time year of this education
 	 */
-	public void setStopTime(Date stopTime);
+	public void setEStartTimeYear(String eStartTimeYear);
+
+	/**
+	 * Returns the e start time month of this education.
+	 *
+	 * @return the e start time month of this education
+	 */
+	@AutoEscape
+	public String getEStartTimeMonth();
+
+	/**
+	 * Sets the e start time month of this education.
+	 *
+	 * @param eStartTimeMonth the e start time month of this education
+	 */
+	public void setEStartTimeMonth(String eStartTimeMonth);
+
+	/**
+	 * Returns the e stop time year of this education.
+	 *
+	 * @return the e stop time year of this education
+	 */
+	@AutoEscape
+	public String getEStopTimeYear();
+
+	/**
+	 * Sets the e stop time year of this education.
+	 *
+	 * @param eStopTimeYear the e stop time year of this education
+	 */
+	public void setEStopTimeYear(String eStopTimeYear);
+
+	/**
+	 * Returns the e stop time month of this education.
+	 *
+	 * @return the e stop time month of this education
+	 */
+	@AutoEscape
+	public String getEStopTimeMonth();
+
+	/**
+	 * Sets the e stop time month of this education.
+	 *
+	 * @param eStopTimeMonth the e stop time month of this education
+	 */
+	public void setEStopTimeMonth(String eStopTimeMonth);
 
 	@Override
 	public boolean isNew();

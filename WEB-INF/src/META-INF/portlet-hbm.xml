@@ -56,6 +56,7 @@
 		<property name="emergencyContactRelation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="emergencyContactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="isLeave" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="departmentId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -79,12 +80,14 @@
 			<generator class="assigned" />
 		</id>
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="witness" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="professional" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="university" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="contactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="startTime" type="org.hibernate.type.TimestampType" />
-		<property name="stopTime" type="org.hibernate.type.TimestampType" />
+		<property name="eWitness" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="eProfessional" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="eUniversity" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="eContactPhone" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="eStartTimeYear" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="eStartTimeMonth" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="eStopTimeYear" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="eStopTimeMonth" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.shuntian.portlet.intranet.model.impl.ExtInformationImpl" table="Intranet_ExtInformation">
 		<cache usage="read-write" />
@@ -100,7 +103,8 @@
 		<property name="probationPeriodStart" type="org.hibernate.type.TimestampType" />
 		<property name="probationPeriodEnd" type="org.hibernate.type.TimestampType" />
 		<property name="induredLocation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="fristInsured" type="org.hibernate.type.TimestampType" />
+		<property name="fristInsuredYear" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="fristInsuredMonth" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="isInsured" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="basicWage" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="otherWage" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -111,11 +115,11 @@
 			<generator class="assigned" />
 		</id>
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="relationship" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="workUnit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="contactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="onceJob" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="frName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="frRelationship" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="frWorkUnit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="frContactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="frOnceJob" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.shuntian.portlet.intranet.model.impl.OvertimeImpl" table="Intranet_Overtime">
 		<cache usage="read-write" />
@@ -172,11 +176,13 @@
 			<generator class="assigned" />
 		</id>
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="witness" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="onceJob" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="workUnit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="contactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="startTime" type="org.hibernate.type.TimestampType" />
-		<property name="stopTime" type="org.hibernate.type.TimestampType" />
+		<property name="weWitness" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="weOnceJob" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="weWorkUnit" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="weContactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="weStartTimeYear" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="weStartTimeMonth" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="weStopTimeYear" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="weStopTimeMonth" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

@@ -832,12 +832,14 @@ public class EducationPersistenceImpl extends BasePersistenceImpl<Education>
 
 		educationImpl.setId(education.getId());
 		educationImpl.setUserId(education.getUserId());
-		educationImpl.setWitness(education.getWitness());
-		educationImpl.setProfessional(education.getProfessional());
-		educationImpl.setUniversity(education.getUniversity());
-		educationImpl.setContactPhone(education.getContactPhone());
-		educationImpl.setStartTime(education.getStartTime());
-		educationImpl.setStopTime(education.getStopTime());
+		educationImpl.setEWitness(education.getEWitness());
+		educationImpl.setEProfessional(education.getEProfessional());
+		educationImpl.setEUniversity(education.getEUniversity());
+		educationImpl.setEContactPhone(education.getEContactPhone());
+		educationImpl.setEStartTimeYear(education.getEStartTimeYear());
+		educationImpl.setEStartTimeMonth(education.getEStartTimeMonth());
+		educationImpl.setEStopTimeYear(education.getEStopTimeYear());
+		educationImpl.setEStopTimeMonth(education.getEStopTimeMonth());
 
 		return educationImpl;
 	}

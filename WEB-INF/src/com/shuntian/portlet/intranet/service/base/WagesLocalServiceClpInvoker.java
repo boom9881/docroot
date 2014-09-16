@@ -106,21 +106,21 @@ public class WagesLocalServiceClpInvoker {
 				"com.shuntian.portlet.intranet.model.Wages"
 			};
 
-		_methodName66 = "getBeanIdentifier";
+		_methodName68 = "getBeanIdentifier";
 
-		_methodParameterTypes66 = new String[] {  };
+		_methodParameterTypes68 = new String[] {  };
 
-		_methodName67 = "setBeanIdentifier";
+		_methodName69 = "setBeanIdentifier";
 
-		_methodParameterTypes67 = new String[] { "java.lang.String" };
+		_methodParameterTypes69 = new String[] { "java.lang.String" };
 
-		_methodName72 = "findByU_M";
+		_methodName74 = "findByU_M";
 
-		_methodParameterTypes72 = new String[] { "long", "long" };
+		_methodParameterTypes74 = new String[] { "long", "long" };
 
-		_methodName73 = "findByU_M";
+		_methodName75 = "findByU_M";
 
-		_methodParameterTypes73 = new String[] { "long" };
+		_methodParameterTypes75 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -212,26 +212,26 @@ public class WagesLocalServiceClpInvoker {
 			return WagesLocalServiceUtil.updateWages((com.shuntian.portlet.intranet.model.Wages)arguments[0]);
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return WagesLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			WagesLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			return WagesLocalServiceUtil.findByU_M(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
 			return WagesLocalServiceUtil.findByU_M(((Long)arguments[0]).longValue());
 		}
 
@@ -270,12 +270,12 @@ public class WagesLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName66;
-	private String[] _methodParameterTypes66;
-	private String _methodName67;
-	private String[] _methodParameterTypes67;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
-	private String _methodName73;
-	private String[] _methodParameterTypes73;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
+	private String _methodName74;
+	private String[] _methodParameterTypes74;
+	private String _methodName75;
+	private String[] _methodParameterTypes75;
 }

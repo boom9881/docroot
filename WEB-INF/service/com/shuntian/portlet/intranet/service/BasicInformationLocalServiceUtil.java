@@ -285,6 +285,16 @@ public class BasicInformationLocalServiceUtil {
 		return getService().findByUserId(userId);
 	}
 
+	public static java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findListByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().findListByUserId(userId);
+	}
+
+	public static int countByListUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().countByListUserId(userId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

@@ -301,6 +301,18 @@ public class BasicInformationLocalServiceWrapper
 		return _basicInformationLocalService.findByUserId(userId);
 	}
 
+	@Override
+	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findListByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return _basicInformationLocalService.findListByUserId(userId);
+	}
+
+	@Override
+	public int countByListUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _basicInformationLocalService.countByListUserId(userId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

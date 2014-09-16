@@ -63,4 +63,14 @@ public class BasicInformationLocalServiceImpl extends
 
 		return basicInformation;
 	}
+	
+	public List<BasicInformation> findListByUserId(long userId) throws SystemException {
+
+		return basicInformationPersistence.findByU(userId);
+	}
+	
+	public int countByListUserId(long userId) throws SystemException {
+
+		return basicInformationPersistence.countByU(userId);
+	}
 }

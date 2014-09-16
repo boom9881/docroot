@@ -1,7 +1,14 @@
 package com.shuntian.portlet.intranet.util;
 
+
+import java.util.Iterator;
+import java.util.List;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.shuntian.portlet.intranet.model.Attendance;
 import com.shuntian.portlet.intranet.model.BasicInformation;
 import com.shuntian.portlet.intranet.model.Overtime;
@@ -106,5 +113,20 @@ public class OverTimeSum {
 		return getTaxableIncome(userId, attendanceId)-getTaxes(userId, attendanceId);
 	}
 	
+	public static int isSatff(long userId) throws PortalException, SystemException {
+		User user = UserLocalServiceUtil.getUser(userId);
+		List<Role> roleList = user.getRoles();
+		for (Role role : roleList) {
+			if(SATFF.equals(role.getName())){
+				return 2;
+			}else if(HR.equals(role.getName())){
+				return 1;
+			}
+		}
+		return 0;
+	}
+	
 	public static final double SHOULDATTENDANCE = 21.75;
+	public static final String SATFF = "satff";
+	public static final String HR = "hr";
 }

@@ -12,9 +12,9 @@
 	List headerNames = new ArrayList();
 
 	headerNames.add("姓名");
-	headerNames.add("发工资月份");
-	headerNames.add("入职日期");
-	headerNames.add("离职日期");
+	//headerNames.add("发工资月份");
+	//headerNames.add("入职日期");
+	//headerNames.add("离职日期");
 	headerNames.add("基本工资");
 	headerNames.add("绩效工资");
 	headerNames.add("小计");
@@ -50,9 +50,9 @@
 		ResultRow row = new ResultRow(wages,wages.getId(), i);
 
 		row.addText(wages.getWageName());
-		row.addText(String.valueOf(wages.getDistributionMonth()));
-		row.addText(sdf.format(wages.getEntryDate()));
-		row.addText(wages.getDepartureDate()!=null?sdf.format(wages.getDepartureDate()):StringPool.BLANK);
+		//row.addText(String.valueOf(wages.getDistributionMonth()));
+		//row.addText(sdf.format(wages.getEntryDate()));
+		//row.addText(wages.getDepartureDate()!=null?sdf.format(wages.getDepartureDate()):StringPool.BLANK);
 		row.addText(String.valueOf(wages.getUserWage()));
 		row.addText(String.valueOf(wages.getUserPerformance()));
 		row.addText(String.valueOf(wages.getUserTotalWage()));
@@ -80,6 +80,15 @@
 </portlet:renderURL>
 
 <aui:form action="<%= createWagesURL.toString() %>" method="post" name="fm">
+	<aui:select label="工资月份" name="attendanceMonthly">
+	<% 
+		for(int i=1;i<13;i++){
+	%>
+		<aui:option label="<%= i %>" value="<%= i %>" />
+	<%
+		}
+	%>
+	</aui:select>
 	<aui:button type="submit" value="生成工资" />
 	
 	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />

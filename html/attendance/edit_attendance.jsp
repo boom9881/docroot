@@ -69,7 +69,7 @@ if(cmd.equals(Constants.ADD)){
 					}
 				}
 			%>
-			</aui:select>
+		</aui:select>
 		<aui:input name="actualAttendance" label="实出勤天数" value="<%=attendance!=null?attendance.getActualAttendance():OverTimeSum.SHOULDATTENDANCE %>" />
 		<aui:input name="shouldAttendance" label="应出勤天数" value="<%=OverTimeSum.SHOULDATTENDANCE %>"/>
 		<aui:button type="submit" value="保存" />

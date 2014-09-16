@@ -3,7 +3,9 @@
 
 <%
 	long userId = themeDisplay.getUserId();
-				
+	
+	int userRole = OverTimeSum.isSatff(userId);
+		
 	PortletURL portletURL = renderResponse.createRenderURL();
 
 	portletURL.setWindowState(WindowState.MAXIMIZED);
@@ -19,16 +21,26 @@
 	headerNames.add("应出勤天数");
 
 	headerNames.add("实出勤天数");
-
+	if(userRole == 1){
 	headerNames.add("操作");
-
+	}
 	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, null);
-
-	int total = BasicInformationLocalServiceUtil.getBasicInformationsCount();
-
+	
+	int total = 0;
+	if(userRole == 1){
+		total = BasicInformationLocalServiceUtil.getBasicInformationsCount();
+	}else{
+		total = BasicInformationLocalServiceUtil.countByListUserId(userId);
+	}
 	searchContainer.setTotal(total);
 
-	List results = BasicInformationLocalServiceUtil.getBasicInformations(searchContainer.getStart(), searchContainer.getEnd());
+	List results = null;
+
+	if(userRole == 1){
+		results = BasicInformationLocalServiceUtil.getBasicInformations(searchContainer.getStart(), searchContainer.getEnd());
+	}else{
+		results = BasicInformationLocalServiceUtil.findListByUserId(userId);
+	}
 	
 	searchContainer.setResults(results);
 	
@@ -54,7 +66,9 @@
 			
 			row.addText(String.valueOf(att.getActualAttendance()));
 			
-			row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/attendance/action.jsp");
+			if(userRole == 1){
+				row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/attendance/action.jsp");
+			}
 	
 			resultRows.add(row);
 		}
@@ -74,15 +88,26 @@
 </portlet:renderURL>
 
 <aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">
-	<aui:input name="searchName" label="姓名" value="" />
-	<aui:input name="searchDep" label="部门" value="" />
-	<aui:button type="submit" value="搜索" />
-	<%
-	String addURL = renderResponse.getNamespace()+"onSub('"+addAttendancetURL.toString()+"');";
-	%>
+	<c:if test='<%= userRole == 1 %>'>
+		<aui:input name="searchName" label="姓名" value="" />
+		<aui:input name="searchDep" label="部门" value="" />
+		<aui:select label="考勤月份" name="attendanceMonthly">
+		<% 
+		for(int i=1;i<13;i++){
+		%>
+			<aui:option label="<%= i %>" value="<%= i %>" />
+		<%
+		}
+		%>
+		</aui:select>
+		<aui:button type="submit" value="搜索" />
+		
+		<%
+		String addURL = renderResponse.getNamespace()+"onSub('"+addAttendancetURL.toString()+"');";
+		%>
 	
-	<aui:button value="添加考勤" onClick="<%= addURL %>" />
-	
+		<aui:button value="添加考勤" onClick="<%= addURL %>" />
+	</c:if>
 	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
 </aui:form>
 

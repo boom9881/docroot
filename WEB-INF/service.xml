@@ -57,6 +57,9 @@
 		<finder name="UserId" return-type="BasicInformation">
 			<finder-column name="userId" />
 		</finder>
+		<finder name="U" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
 		<finder name="IsLeave" return-type="Collection">
 			<finder-column name="isLeave" />
 		</finder>

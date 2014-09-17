@@ -8,8 +8,8 @@
 	
 	long searchUserId = 0;
 	long searchDepId = ParamUtil.getLong(request, "searchDep");
-	String searchAttendanceYear = ParamUtil.getString(request, "searchAttendanceYear");
-	String searchAttendanceMonth = ParamUtil.getString(request, "searchAttendanceMonth");
+	String searchYear = ParamUtil.getString(request, "searchOTimeYear");
+	String searchMonth = ParamUtil.getString(request, "searchOTimeMonth");
 	String searchName = ParamUtil.getString(request, "searchName");
 	
 	if(userRole == 2){
@@ -20,8 +20,8 @@
 	portletURL.setWindowState(WindowState.MAXIMIZED);
 	portletURL.setParameter("mvcPath","/html/overtime/view.jsp");
 	portletURL.setParameter("searchDepId",String.valueOf(searchDepId));
-	portletURL.setParameter("searchAttendanceYear",searchAttendanceYear);
-	portletURL.setParameter("searchAttendanceMonth",searchAttendanceMonth);
+	portletURL.setParameter("searchAttendanceYear",searchYear);
+	portletURL.setParameter("searchAttendanceMonth",searchMonth);
 	portletURL.setParameter("searchName",searchName);
 	
 	List headerNames = new ArrayList();
@@ -38,11 +38,11 @@
 
 	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, "没有加班信息被显示。");
 
-	int total = OvertimeLocalServiceUtil.search(searchDepId, searchUserId, searchAttendanceYear, searchAttendanceMonth, searchName);
+	int total = OvertimeLocalServiceUtil.search(searchDepId, searchUserId, searchYear, searchMonth, searchName);
 	
 	searchContainer.setTotal(total);
 
-	List<Map<String, String>> results = OvertimeLocalServiceUtil.search(searchDepId, searchUserId, searchAttendanceYear, searchAttendanceMonth, searchName, searchContainer.getStart(), searchContainer.getEnd());
+	List<Map<String, String>> results = OvertimeLocalServiceUtil.search(searchDepId, searchUserId, searchYear, searchMonth, searchName, searchContainer.getStart(), searchContainer.getEnd());
 	
 	searchContainer.setResults(results);
 	

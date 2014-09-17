@@ -14,6 +14,18 @@ if(Validator.isNotNull(biId)){
 
 request.setAttribute("user.id", userId);
 request.setAttribute("bi.id", biId);
+
+String[] _CATEGORY_NAMES = {""};
+//基本信息、（个人收款信息、劳动关系（合同信息）、社保信息）、教育经历、工作经历、家庭关系
+String[] mainSections = "basic_information,staff_information,education,work_experience,family_relationship".split(",");
+
+int userRole = OverTimeSum.isSatff(themeDisplay.getUserId());// 1=hr;2=satff
+
+if(userRole == 2){
+	mainSections = "basic_information,education,work_experience,family_relationship".split(",");
+}
+
+String[][] categorySections = {mainSections};
 %>
 
 <portlet:renderURL var="redirectURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
@@ -70,16 +82,3 @@ request.setAttribute("bi.id", biId);
 		jspPath="/html/satff/"
 	/>
 </aui:form>
-
-<%!
-private static final String[] _CATEGORY_NAMES = {""};
-// 基本信息、（个人收款信息、劳动关系（合同信息）、社保信息）、教育经历、工作经历、家庭关系
-private static final String[] mainSections = "basic_information,staff_information,education,work_experience,family_relationship".split(",");
-
-int userRole = OverTimeSum.isSatff(themeDisplay.getUserId());// 1=hr;2=satff
-if(userRole == 2){
-	mainSections = "basic_information,education,work_experience,family_relationship".split(",");
-}
-
-private static final String[][] categorySections = {mainSections};
-%>

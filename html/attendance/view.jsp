@@ -102,7 +102,7 @@
 				<td>
 					<aui:select label="考勤年份" name="attendanceYear" style="width:120px;margin-right:10px;">
 					<% 
-					for(int i=2010;i<2014;i++){
+					for(int i=2010;i<2015;i++){
 						if(year==i){
 					%>
 						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
@@ -154,15 +154,17 @@
 			<tr>
 				<td>
 					<aui:select label="考勤年份" name="attendanceYear" style="width:120px;margin-right:10px;">
-						<% 
-						for(int i=2010;i<2015;i++){
-						%>
-							<aui:option label="<%= i %>" value="<%= i %>" />
-						<%
-						}
-						%>
-						</aui:select>
-						<aui:select label="考勤月份" name="attendanceMonthly" style="width:120px;margin-right:10px;">
+					<% 
+					for(int i=2010;i<2015;i++){
+					%>
+						<aui:option label="<%= i %>" value="<%= i %>" />
+					<%
+					}
+					%>
+					</aui:select>
+				</td>
+				<td>
+					<aui:select label="考勤月份" name="attendanceMonthly" style="width:120px;margin-right:10px;">
 						<% 
 						for(int i=1;i<13;i++){
 						%>
@@ -173,7 +175,7 @@
 					</aui:select>
 				</td>
 				<td>
-					<aui:button type="submit" value="搜索" />
+					<aui:button type="submit" value="搜索"  style="margin-top:-15px;"/>
 				</td>
 			</tr>
 		</table>

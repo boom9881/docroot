@@ -45,7 +45,7 @@ public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 				sql.append(" LOWER(bi.`name`) like ? and ");
 			}
 			if (Validator.isNotNull(searchUserId)) {
-				sql.append(" bi.id_ = ? and ");
+				sql.append(" bi.userId = ? and ");
 			}
 			sql.append(" 1 = 1");
 
@@ -120,7 +120,7 @@ public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 				sql.append(" LOWER(bi.`name`) like ? and ");
 			}
 			if (Validator.isNotNull(searchUserId)) {
-				sql.append(" bi.id_ = ? and ");
+				sql.append(" bi.userId = ? and ");
 			}
 			sql.append(" 1 = 1");
 

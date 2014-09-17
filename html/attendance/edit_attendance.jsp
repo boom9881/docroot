@@ -43,52 +43,56 @@ if(cmd.equals(Constants.ADD)){
 />
 
 <aui:form action="<%= editUserActionURL.toString() %>" method="post" name="fm">
-	<aui:fieldset cssClass="span5" style="float:none;">
-		<c:if test='<%= Validator.isNotNull(basicList) %>'>
-			<aui:select label="选择员工" name="basicId">
+	<div style="overflow:hidden;">
+		<aui:fieldset cssClass="span5">
+			<c:if test='<%= Validator.isNotNull(basicList) %>'>
+				<aui:select label="选择员工" name="basicId">
+				<% 
+					for(BasicInformation basic : basicList){
+				%>
+					<aui:option label="<%= basic.getName() %>" value="<%= basic.getId() %>" />
+				<%
+					}
+				%>
+				</aui:select>
+			</c:if>
+			<aui:select label="出勤年份" name="attendanceYear">
 			<% 
-				for(BasicInformation basic : basicList){
-			%>
-				<aui:option label="<%= basic.getName() %>" value="<%= basic.getId() %>" />
-			<%
+			for(int i=2010;i<2015;i++){
+				if(attendance!=null&&attendance.getAttendanceYear()==i){
+				%>
+					<aui:option label="<%= i %>" value="<%= i %>" selected="" />
+				<%			
+				}else{
+				%>
+					<aui:option label="<%= i %>" value="<%= i %>" />
+				<%
 				}
+			}
 			%>
 			</aui:select>
-		</c:if>
-		<aui:select label="出勤年份" name="attendanceYear">
-		<% 
-		for(int i=2010;i<2015;i++){
-			if(attendance!=null&&attendance.getAttendanceYear()==i){
-			%>
-				<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-			<%			
-			}else{
-			%>
-				<aui:option label="<%= i %>" value="<%= i %>" />
-			<%
-			}
-		}
-		%>
-		</aui:select>
-		<aui:select label="出勤月份" name="attendanceMonthly">
-			<% 
-				for(int i=1;i<13;i++){
-					if(attendance!=null&&attendance.getAttendanceMonthly()==i){
-			%>
-					<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-			<%			
-					}else{
-			%>
-					<aui:option label="<%= i %>" value="<%= i %>" />
-			<%
+			<aui:select label="出勤月份" name="attendanceMonthly">
+				<% 
+					for(int i=1;i<13;i++){
+						if(attendance!=null&&attendance.getAttendanceMonthly()==i){
+				%>
+						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
+				<%			
+						}else{
+				%>
+						<aui:option label="<%= i %>" value="<%= i %>" />
+				<%
+						}
 					}
-				}
-			%>
-		</aui:select>
-		<aui:input name="actualAttendance" label="实出勤天数" value="<%=attendance!=null?attendance.getActualAttendance():OverTimeSum.SHOULDATTENDANCE %>" />
-		<aui:input name="shouldAttendance" label="应出勤天数" value="<%=OverTimeSum.SHOULDATTENDANCE %>"/>
-		<aui:button type="submit" value="保存" />
-	</aui:fieldset>
+				%>
+			</aui:select>
+		</aui:fieldset>
+		<aui:fieldset cssClass="span5">
+			<aui:input name="actualAttendance" label="实出勤天数" value="<%=attendance!=null?attendance.getActualAttendance():OverTimeSum.SHOULDATTENDANCE %>" />
+			<aui:input name="shouldAttendance" label="应出勤天数" value="<%=OverTimeSum.SHOULDATTENDANCE %>"/>
+			<aui:button type="submit" value="保存" style="margin-top:23px;" />
+		</aui:fieldset>
+	</div>
 </aui:form>
 
 

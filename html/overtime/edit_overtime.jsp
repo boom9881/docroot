@@ -43,52 +43,56 @@ if(cmd.equals(Constants.ADD)){
 />
 
 <aui:form action="<%= editUserActionURL.toString() %>" method="post" name="fm">
-	<aui:fieldset cssClass="span5" style="float:none;">
-		<c:if test='<%= Validator.isNotNull(basicList) %>'>
-			<aui:select label="选择员工" name="basicId">
+	<div style="overflow:hidden;">
+		<aui:fieldset cssClass="span5">
+			<c:if test='<%= Validator.isNotNull(basicList) %>'>
+				<aui:select label="选择员工" name="basicId">
+				<% 
+					for(BasicInformation basic : basicList){
+				%>
+					<aui:option label="<%= basic.getName() %>" value="<%= basic.getId() %>" />
+				<%
+					}
+				%>
+				</aui:select>
+			</c:if>
+			<aui:select label="加班年份" name="overtimeYear">
 			<% 
-				for(BasicInformation basic : basicList){
-			%>
-				<aui:option label="<%= basic.getName() %>" value="<%= basic.getId() %>" />
-			<%
+			for(int i=2010;i<2015;i++){
+				if(overtime!=null&&overtime.getOvertimeYear()==i){
+				%>
+					<aui:option label="<%= i %>" value="<%= i %>" selected="" />
+				<%			
+				}else{
+				%>
+					<aui:option label="<%= i %>" value="<%= i %>" />
+				<%
 				}
+			}
 			%>
 			</aui:select>
-		</c:if>
-		<aui:select label="加班年份" name="overtimeYear">
-		<% 
-		for(int i=2010;i<2015;i++){
-			if(overtime!=null&&overtime.getOvertimeYear()==i){
-			%>
-				<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-			<%			
-			}else{
-			%>
-				<aui:option label="<%= i %>" value="<%= i %>" />
-			<%
-			}
-		}
-		%>
-		</aui:select>
-		<aui:select label="加班月份" name="overtimeMonthly">
-			<% 
-				for(int i=1;i<13;i++){
-					if(overtime!=null&&overtime.getOvertimeMonthly()==i){
-			%>
-					<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-			<%			
-					}else{
-			%>
-					<aui:option label="<%= i %>" value="<%= i %>" />
-			<%
+			<aui:select label="加班月份" name="overtimeMonthly">
+				<% 
+					for(int i=1;i<13;i++){
+						if(overtime!=null&&overtime.getOvertimeMonthly()==i){
+				%>
+						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
+				<%			
+						}else{
+				%>
+						<aui:option label="<%= i %>" value="<%= i %>" />
+				<%
+						}
 					}
-				}
-			%>
-		</aui:select>
-		<aui:input name="usuallyOvertime" label="平常加班" value="<%=overtime!=null?overtime.getUsuallyOvertime():StringPool.BLANK %>" />
-		<aui:input name="restOvertime" label="周末加班" value="<%=overtime!=null?overtime.getRestOvertime():StringPool.BLANK %>"/>
-		<aui:input name="legalOvertime" label="法定加班" value="<%=overtime!=null?overtime.getLegalOvertime():StringPool.BLANK %>"/>
-		<aui:button type="submit" value="保存" />
-	</aui:fieldset>
+				%>
+			</aui:select>
+		</aui:fieldset>
+		<aui:fieldset cssClass="span5">
+			<aui:input name="usuallyOvertime" label="平常加班" value="<%=overtime!=null?overtime.getUsuallyOvertime():StringPool.BLANK %>" />
+			<aui:input name="restOvertime" label="周末加班" value="<%=overtime!=null?overtime.getRestOvertime():StringPool.BLANK %>"/>
+			<aui:input name="legalOvertime" label="法定加班" value="<%=overtime!=null?overtime.getLegalOvertime():StringPool.BLANK %>"/>
+			<aui:button type="submit" value="保存" />
+		</aui:fieldset>
+	</div>
 </aui:form>
 

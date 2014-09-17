@@ -103,67 +103,93 @@
 
 <aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">
 	<c:if test='<%= userRole == 1 %>'>
-		<aui:input name="searchName" label="姓名" value="" />
-		<aui:input name="searchDep" label="部门" value="" />
-		<aui:select label="考勤年份" name="overtimeYear">
-		<% 
-		for(int i=2010;i<2014;i++){
-			if(year==i){
-		%>
-			<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-		<%			
-			}else{
-		%>
-			<aui:option label="<%= i %>" value="<%= i %>" />
-		<%
-			}
-		}
-		%>
-		</aui:select>
-		<aui:select label="考勤月份" name="overtimeMonthly">
-		<% 
-		for(int i=1;i<13;i++){
-			if(month==i){
-		%>
-			<aui:option label="<%= i %>" value="<%= i %>" selected=""  />
-		<%			
-			}else{
-		%>
-			<aui:option label="<%= i %>" value="<%= i %>" />
-		<%
-			}
-		}
-		%>
-		</aui:select>
-		<aui:button type="submit" value="搜索" />
-		<%
-		String addURL = renderResponse.getNamespace()+"onSub('"+addOvertimeURL.toString()+"');";
-		%>
-		
-		<aui:button value="添加加班" onClick="<%= addURL %>" />
+		<table>
+			<tr>
+				<td>
+					<aui:input name="searchDep" label="部门" value="" style="width:120px;margin-right:10px;" />
+				</td>
+				<td>
+					<aui:select label="加班年份" name="overtimeYear" style="width:120px;margin-right:10px;">
+					<% 
+					for(int i=2010;i<2015;i++){
+						if(year==i){
+					%>
+						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
+					<%			
+						}else{
+					%>
+						<aui:option label="<%= i %>" value="<%= i %>" />
+					<%
+						}
+					}
+					%>
+					</aui:select>
+				</td>
+				<td>
+					<aui:select label="加班月份" name="overtimeMonthly" style="width:120px;margin-right:10px;">
+					<% 
+					for(int i=1;i<13;i++){
+						if(month==i){
+					%>
+						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
+					<%			
+						}else{
+					%>
+						<aui:option label="<%= i %>" value="<%= i %>" />
+					<%
+						}
+					}
+					%>
+					</aui:select>
+				</td>
+				<td>
+					<aui:input name="searchName" label="姓名" value="" style="width:120px;margin-right:10px;" />
+				</td>
+				<td>
+					<div style="margin-bottom:12px;">
+						<aui:button type="submit" value="搜索" />
+						<%
+						String addURL = renderResponse.getNamespace()+"onSub('"+addOvertimeURL.toString()+"');";
+						%>
+						<aui:button value="添加加班" onClick="<%= addURL %>" />
+					</div>
+				</td>
+			</tr>
+		</table>
 	</c:if>
 	<c:if test='<%= userRole == 2 %>'>
-		<aui:select label="考勤年份" name="overtimeYear">
-		<% 
-		for(int i=2010;i<2015;i++){
-		%>
-			<aui:option label="<%= i %>" value="<%= i %>" />
-		<%
-		}
-		%>
-		</aui:select>
-		<aui:select label="考勤月份" name="overtimeMonthly">
-		<% 
-		for(int i=1;i<13;i++){
-		%>
-			<aui:option label="<%= i %>" value="<%= i %>" />
-		<%
-		}
-		%>
-		</aui:select>
-		<aui:button type="submit" value="搜索" />
+		<table>
+			<tr>
+				<td>
+					<aui:select label="加班年份" name="overtimeYear" style="width:120px;margin-right:10px;">
+						<% 
+						for(int i=2010;i<2015;i++){
+						%>
+							<aui:option label="<%= i %>" value="<%= i %>" />
+						<%
+						}
+						%>
+						</aui:select>
+						<aui:select label="加班月份" name="overtimeMonthly" style="width:120px;margin-right:10px;">
+						<% 
+						for(int i=1;i<13;i++){
+						%>
+							<aui:option label="<%= i %>" value="<%= i %>" />
+						<%
+						}
+						%>
+					</aui:select>
+				</td>
+				<td>
+					<aui:button type="submit" value="搜索" />
+				</td>
+			</tr>
+		</table>
 	</c:if>
-	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
+	
+	<div style="margin-top:-20px;">
+		<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
+	</div>
 </aui:form>
 
 

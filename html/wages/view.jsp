@@ -2,9 +2,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	//SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	PortletURL portletURL = renderResponse.createRenderURL();
 
+	Date nowDate = new Date();
+	int year = nowDate.getYear()+1900;
+	int month = nowDate.getMonth();
+	
 	portletURL.setWindowState(WindowState.MAXIMIZED);
 
 	portletURL.setParameter("mvcPath","/html/attendance/view.jsp");
@@ -75,21 +79,71 @@
 	
 %>
 
-<portlet:renderURL var="createWagesURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
+<portlet:renderURL var="searchUserRenderURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
 	<portlet:param name="mvcPath" value="/html/wages/view.jsp" />
 </portlet:renderURL>
 
-<aui:form action="<%= createWagesURL.toString() %>" method="post" name="fm">
-	<aui:select label="工资月份" name="attendanceMonthly">
-	<% 
-		for(int i=1;i<13;i++){
-	%>
-		<aui:option label="<%= i %>" value="<%= i %>" />
-	<%
-		}
-	%>
-	</aui:select>
-	<aui:button type="submit" value="生成工资" />
+<portlet:renderURL var="addWagestURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
+	<portlet:param name="mvcPath" value="/html/wages/view.jsp" />
+	<portlet:param name="<%=Constants.CMD %>" value="<%=Constants.ADD %>" />
+</portlet:renderURL>
+<aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">
+	<table>
+			<tr>
+				
+				<td>
+					<aui:input name="searchDep" label="部门" value="" style="width:120px;margin-right:10px;" />
+				</td>
+				<td>
+					<aui:select label="工资年份" name="attendanceYear" style="width:120px;margin-right:10px;">
+					<% 
+					for(int i=2010;i<2014;i++){
+						if(year==i){
+					%>
+						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
+					<%			
+						}else{
+					%>
+						<aui:option label="<%= i %>" value="<%= i %>" />
+					<%
+						}
+					}
+					%>
+					</aui:select>
+				</td>
+				<td>
+					<aui:select label="工资月份" name="attendanceMonthly" style="width:120px;margin-right:10px;">
+					<% 
+					for(int i=1;i<13;i++){
+						if(month==i){
+					%>
+						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
+					<%			
+						}else{
+					%>
+						<aui:option label="<%= i %>" value="<%= i %>" />
+					<%
+						}
+					}
+					%>
+					</aui:select>
+				</td>
+				<td>
+					<aui:input name="searchName" label="姓名" value="" style="width:120px;margin-right:10px;" />
+				</td>
+				<td>
+					<div style="margin-bottom:12px;">
+						<aui:button type="submit" value="搜索" />
+			
+						<%
+						String addURL = renderResponse.getNamespace()+"onSub('"+addWagestURL.toString()+"');";
+						%>
+						<aui:button value="生成工资" onClick="<%= addURL %>" />
+					</div>
+				</td>
+			</tr>
+		</table>
+	
 	
 	<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
 </aui:form>

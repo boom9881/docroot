@@ -103,4 +103,10 @@ public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
 		return attendanceFinder.search(departmentId, searchUserId,
 				attendanceYear, attendanceMonth, name, start, end);
 	}
+
+	public Attendance findByY_M(long userId,long attendanceYear, long attendanceMonthly)
+			throws SystemException, NoSuchAttendanceException {
+		return attendancePersistence.findByY_M(userId,attendanceYear, attendanceMonthly);
+	}
+
 }

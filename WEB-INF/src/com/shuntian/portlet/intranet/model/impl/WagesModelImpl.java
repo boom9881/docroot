@@ -107,8 +107,9 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.Wages"),
 			true);
 	public static long DISTRIBUTIONMONTH_COLUMN_BITMASK = 1L;
-	public static long USERID_COLUMN_BITMASK = 2L;
-	public static long CREATEDATE_COLUMN_BITMASK = 4L;
+	public static long DISTRIBUTIONYEAR_COLUMN_BITMASK = 2L;
+	public static long USERID_COLUMN_BITMASK = 4L;
+	public static long CREATEDATE_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.Wages"));
 
@@ -441,7 +442,19 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 
 	@Override
 	public void setDistributionYear(long distributionYear) {
+		_columnBitmask |= DISTRIBUTIONYEAR_COLUMN_BITMASK;
+
+		if (!_setOriginalDistributionYear) {
+			_setOriginalDistributionYear = true;
+
+			_originalDistributionYear = _distributionYear;
+		}
+
 		_distributionYear = distributionYear;
+	}
+
+	public long getOriginalDistributionYear() {
+		return _originalDistributionYear;
 	}
 
 	@Override
@@ -817,6 +830,10 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 
 		wagesModelImpl._setOriginalDistributionMonth = false;
 
+		wagesModelImpl._originalDistributionYear = wagesModelImpl._distributionYear;
+
+		wagesModelImpl._setOriginalDistributionYear = false;
+
 		wagesModelImpl._columnBitmask = 0;
 	}
 
@@ -1120,6 +1137,8 @@ public class WagesModelImpl extends BaseModelImpl<Wages> implements WagesModel {
 	private long _originalDistributionMonth;
 	private boolean _setOriginalDistributionMonth;
 	private long _distributionYear;
+	private long _originalDistributionYear;
+	private boolean _setOriginalDistributionYear;
 	private Date _entryDate;
 	private Date _departureDate;
 	private double _userWage;

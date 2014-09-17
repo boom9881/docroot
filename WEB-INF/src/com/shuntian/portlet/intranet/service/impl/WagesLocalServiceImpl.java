@@ -39,8 +39,8 @@ import com.shuntian.portlet.intranet.service.base.WagesLocalServiceBaseImpl;
  */
 public class WagesLocalServiceImpl extends WagesLocalServiceBaseImpl {
 	
-	public Wages findByU_M(long userId,long distributionMonth) throws SystemException, NoSuchWagesException{
-		return wagesPersistence.findByU_M(userId, distributionMonth);
+	public List<Wages> findByY_M(long distributionYear,long distributionMonth) throws SystemException, NoSuchWagesException{
+		return wagesPersistence.findByY_M(distributionYear, distributionMonth);
 	}
 	public List<Wages> findByU_M(long userId) throws SystemException, NoSuchAttendanceException{
 		return wagesPersistence.findByUserId(userId);

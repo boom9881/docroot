@@ -133,6 +133,10 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 		_methodName22 = "findByUserId";
 
 		_methodParameterTypes22 = new String[] { "long" };
+
+		_methodName23 = "findByY_M";
+
+		_methodParameterTypes23 = new String[] { "long", "long", "long" };
 	}
 
 	@Override
@@ -842,6 +846,46 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 		return (java.util.List<com.shuntian.portlet.intranet.model.Overtime>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public com.shuntian.portlet.intranet.model.Overtime findByY_M(long userId,
+		long overtimeYear, long overtimeMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
+					new Object[] { userId, overtimeYear, overtimeMonthly });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.shuntian.portlet.intranet.NoSuchAttendanceException) {
+				throw (com.shuntian.portlet.intranet.NoSuchAttendanceException)t;
+			}
+
+			if (t instanceof com.shuntian.portlet.intranet.NoSuchOvertimeException) {
+				throw (com.shuntian.portlet.intranet.NoSuchOvertimeException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.shuntian.portlet.intranet.model.Overtime)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -887,4 +931,6 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
+	private String _methodName23;
+	private String[] _methodParameterTypes23;
 }

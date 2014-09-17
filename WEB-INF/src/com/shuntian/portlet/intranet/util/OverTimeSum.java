@@ -9,10 +9,10 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.shuntian.portlet.intranet.model.Attendance;
-import com.shuntian.portlet.intranet.model.BasicInformation;
+import com.shuntian.portlet.intranet.model.ExtInformation;
 import com.shuntian.portlet.intranet.model.Overtime;
 import com.shuntian.portlet.intranet.service.AttendanceLocalServiceUtil;
-import com.shuntian.portlet.intranet.service.BasicInformationLocalServiceUtil;
+import com.shuntian.portlet.intranet.service.ExtInformationLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.OvertimeLocalServiceUtil;
 
 public class OverTimeSum {
@@ -24,33 +24,36 @@ public class OverTimeSum {
 	}
 	
 	public static double getBasePay(long userId,long attendanceId) throws PortalException, SystemException {
-		BasicInformation basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(userId);
+		
+		ExtInformation extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
 		Attendance attendance = AttendanceLocalServiceUtil.getAttendance(attendanceId);
 		if (attendance.getActualAttendance()< attendance.getShouldAttendance()) {
-			return basicInformation.getBasePay()-basicInformation.getBasePay()/attendance.getShouldAttendance()*(attendance.getShouldAttendance()-attendance.getActualAttendance());
+			return extInformation.getBasicWage()-extInformation.getBasicWage()/attendance.getShouldAttendance()*(attendance.getShouldAttendance()-attendance.getActualAttendance());
 		}else {
-			return basicInformation.getBasePay();
+			return extInformation.getBasicWage();
 		}
 		
 	}
 	public static double getOvertimeWages(long userId,long attendanceId,long overtimeId) throws PortalException, SystemException {
-		BasicInformation basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(userId);
+		
+		ExtInformation extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
 		Attendance attendance = AttendanceLocalServiceUtil.getAttendance(attendanceId);
 		Overtime overtime = OvertimeLocalServiceUtil.getOvertime(overtimeId);
 		
-		return basicInformation.getBasePay()+basicInformation.getPerformancePay()+attendance.getShouldAttendance()*(OverTimeSum.sum(overtime.getUsuallyOvertime(), overtime.getRestOvertime(), overtime.getLegalOvertime()));
+		return extInformation.getBasicWage()+extInformation.getOtherWage()+attendance.getShouldAttendance()*(OverTimeSum.sum(overtime.getUsuallyOvertime(), overtime.getRestOvertime(), overtime.getLegalOvertime()));
 	}
 	public static double getPerformanceScores() {
 		return 100;
 	}
 	public static double getPerformanceSalary(long userId,long attendanceId) throws PortalException, SystemException {
-		BasicInformation basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(userId);
+		
+		ExtInformation extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
 		Attendance attendance = AttendanceLocalServiceUtil.getAttendance(attendanceId);
 		
 		if (getPerformanceScores() < 60) {
 			return 0.0;
 		}else{
-			return basicInformation.getPerformancePay()*(getPerformanceScores()/100)/attendance.getShouldAttendance()*attendance.getActualAttendance();
+			return extInformation.getOtherWage()*(getPerformanceScores()/100)/attendance.getShouldAttendance()*attendance.getActualAttendance();
 		}
 	}
 	public static double getAllowance() {
@@ -60,17 +63,21 @@ public class OverTimeSum {
 		return basicWage+preWage;
 	}
 	public static double getSocialCompanyBearPart(long userId,long attendanceId,long overtimeId) throws PortalException, SystemException {
-		BasicInformation basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(userId);
 		
-		return basicInformation.getBasePay()*0.2+basicInformation.getBasePay()*0.01+basicInformation.getBasePay()*0.005+basicInformation.getBasePay()*0.008+basicInformation.getBasePay()*0.1+basicInformation.getBasePay()*0.12;
+		ExtInformation extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
+		
+		return extInformation.getBasicWage()*0.2+extInformation.getBasicWage()*0.01+extInformation.getBasicWage()*0.005+extInformation.getBasicWage()*0.008+extInformation.getBasicWage()*0.1+extInformation.getBasicWage()*0.12;
 	}
 	public static double getSocialIndividualsBearPart(long userId,long attendanceId,long overtimeId) throws PortalException, SystemException {
-		BasicInformation basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(userId);
 		
-		return basicInformation.getBasePay()*0.08+basicInformation.getBasePay()*0.002+basicInformation.getBasePay()*0.02+basicInformation.getBasePay()*0.12;
+		ExtInformation extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
+		
+		return extInformation.getBasicWage()*0.08+extInformation.getBasicWage()*0.002+extInformation.getBasicWage()*0.02+extInformation.getBasicWage()*0.12;
 	}
 	public static double getTaxableIncome(long userId,long attendanceId) throws PortalException, SystemException {
-		return getBasePay(userId, attendanceId)-getPerformanceSalary(userId, attendanceId)-getAllowance();
+		ExtInformation extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
+		
+		return getTotalWages(extInformation.getBasicWage(), extInformation.getOtherWage())-getPerformanceSalary(userId, attendanceId)-getAllowance();
 	}
 	public static int getTaxRate(long userId,long attendanceId) throws PortalException, SystemException {
 		if (getTaxableIncome(userId, attendanceId) > 83500) {

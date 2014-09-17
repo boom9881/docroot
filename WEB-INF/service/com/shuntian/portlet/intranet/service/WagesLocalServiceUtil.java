@@ -271,11 +271,11 @@ public class WagesLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static com.shuntian.portlet.intranet.model.Wages findByU_M(
-		long userId, long distributionMonth)
+	public static java.util.List<com.shuntian.portlet.intranet.model.Wages> findByY_M(
+		long distributionYear, long distributionMonth)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchWagesException {
-		return getService().findByU_M(userId, distributionMonth);
+		return getService().findByY_M(distributionYear, distributionMonth);
 	}
 
 	public static java.util.List<com.shuntian.portlet.intranet.model.Wages> findByU_M(

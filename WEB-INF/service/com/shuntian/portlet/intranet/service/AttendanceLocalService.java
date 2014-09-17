@@ -278,4 +278,9 @@ public interface AttendanceLocalService extends BaseLocalService,
 		long departmentId, long searchUserId, java.lang.String attendanceYear,
 		java.lang.String attendanceMonth, java.lang.String name, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.shuntian.portlet.intranet.model.Attendance findByY_M(
+		long userId, long attendanceYear, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException;
 }

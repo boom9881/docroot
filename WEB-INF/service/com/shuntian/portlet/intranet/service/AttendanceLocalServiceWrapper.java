@@ -338,6 +338,15 @@ public class AttendanceLocalServiceWrapper implements AttendanceLocalService,
 			attendanceYear, attendanceMonth, name, start, end);
 	}
 
+	@Override
+	public com.shuntian.portlet.intranet.model.Attendance findByY_M(
+		long userId, long attendanceYear, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return _attendanceLocalService.findByY_M(userId, attendanceYear,
+			attendanceMonthly);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

@@ -114,7 +114,7 @@ public class WagesLocalServiceClp implements WagesLocalService {
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
-		_methodName19 = "findByU_M";
+		_methodName19 = "findByY_M";
 
 		_methodParameterTypes19 = new String[] { "long", "long" };
 
@@ -670,8 +670,8 @@ public class WagesLocalServiceClp implements WagesLocalService {
 	}
 
 	@Override
-	public com.shuntian.portlet.intranet.model.Wages findByU_M(long userId,
-		long distributionMonth)
+	public java.util.List<com.shuntian.portlet.intranet.model.Wages> findByY_M(
+		long distributionYear, long distributionMonth)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchWagesException {
 		Object returnObj = null;
@@ -679,7 +679,7 @@ public class WagesLocalServiceClp implements WagesLocalService {
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName19,
 					_methodParameterTypes19,
-					new Object[] { userId, distributionMonth });
+					new Object[] { distributionYear, distributionMonth });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -701,7 +701,7 @@ public class WagesLocalServiceClp implements WagesLocalService {
 			}
 		}
 
-		return (com.shuntian.portlet.intranet.model.Wages)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.shuntian.portlet.intranet.model.Wages>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override

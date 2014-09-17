@@ -87,7 +87,7 @@
 </portlet:renderURL>
 
 <portlet:renderURL var="addWagestURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
-	<portlet:param name="mvcPath" value="/html/wages/view.jsp" />
+	<portlet:param name="mvcPath" value="/html/wages/edit_wages.jsp" />
 	<portlet:param name="<%=Constants.CMD %>" value="<%=Constants.ADD %>" />
 </portlet:renderURL>
 <aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">
@@ -183,4 +183,12 @@
 		<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
 	</div>
 </aui:form>
+ 
+ <aui:script>
+	function <portlet:namespace />onSub(url){
+		document.<portlet:namespace />fm.action = url;
+
+		submitForm(document.<portlet:namespace />fm);
+	}
+</aui:script>
  

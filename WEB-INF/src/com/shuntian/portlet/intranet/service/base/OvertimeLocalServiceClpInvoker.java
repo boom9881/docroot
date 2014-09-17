@@ -133,6 +133,10 @@ public class OvertimeLocalServiceClpInvoker {
 		_methodName79 = "findByUserId";
 
 		_methodParameterTypes79 = new String[] { "long" };
+
+		_methodName80 = "findByY_M";
+
+		_methodParameterTypes80 = new String[] { "long", "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -273,6 +277,13 @@ public class OvertimeLocalServiceClpInvoker {
 			return OvertimeLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
 		}
 
+		if (_methodName80.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
+			return OvertimeLocalServiceUtil.findByY_M(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -320,4 +331,6 @@ public class OvertimeLocalServiceClpInvoker {
 	private String[] _methodParameterTypes78;
 	private String _methodName79;
 	private String[] _methodParameterTypes79;
+	private String _methodName80;
+	private String[] _methodParameterTypes80;
 }

@@ -148,6 +148,10 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "int", "int"
 			};
+
+		_methodName25 = "findByY_M";
+
+		_methodParameterTypes25 = new String[] { "long", "long", "long" };
 	}
 
 	@Override
@@ -935,6 +939,41 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		return (java.util.List<java.util.Map<java.lang.String, java.lang.String>>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public com.shuntian.portlet.intranet.model.Attendance findByY_M(
+		long userId, long attendanceYear, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
+					new Object[] { userId, attendanceYear, attendanceMonthly });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.shuntian.portlet.intranet.NoSuchAttendanceException) {
+				throw (com.shuntian.portlet.intranet.NoSuchAttendanceException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.shuntian.portlet.intranet.model.Attendance)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -984,4 +1023,6 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
 }

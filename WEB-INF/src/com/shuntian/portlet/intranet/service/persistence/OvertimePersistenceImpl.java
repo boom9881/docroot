@@ -810,6 +810,270 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 
 	private static final String _FINDER_COLUMN_U_M_USERID_2 = "overtime.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_M_OVERTIMEMONTHLY_2 = "overtime.overtimeMonthly = ?";
+	public static final FinderPath FINDER_PATH_FETCH_BY_Y_M = new FinderPath(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
+			OvertimeModelImpl.FINDER_CACHE_ENABLED, OvertimeImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByY_M",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			},
+			OvertimeModelImpl.USERID_COLUMN_BITMASK |
+			OvertimeModelImpl.OVERTIMEYEAR_COLUMN_BITMASK |
+			OvertimeModelImpl.OVERTIMEMONTHLY_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_Y_M = new FinderPath(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
+			OvertimeModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByY_M",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			});
+
+	/**
+	 * Returns the overtime where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchOvertimeException} if it could not be found.
+	 *
+	 * @param userId the user ID
+	 * @param overtimeYear the overtime year
+	 * @param overtimeMonthly the overtime monthly
+	 * @return the matching overtime
+	 * @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a matching overtime could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime findByY_M(long userId, long overtimeYear,
+		long overtimeMonthly) throws NoSuchOvertimeException, SystemException {
+		Overtime overtime = fetchByY_M(userId, overtimeYear, overtimeMonthly);
+
+		if (overtime == null) {
+			StringBundler msg = new StringBundler(8);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(", overtimeYear=");
+			msg.append(overtimeYear);
+
+			msg.append(", overtimeMonthly=");
+			msg.append(overtimeMonthly);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchOvertimeException(msg.toString());
+		}
+
+		return overtime;
+	}
+
+	/**
+	 * Returns the overtime where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param overtimeYear the overtime year
+	 * @param overtimeMonthly the overtime monthly
+	 * @return the matching overtime, or <code>null</code> if a matching overtime could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime fetchByY_M(long userId, long overtimeYear,
+		long overtimeMonthly) throws SystemException {
+		return fetchByY_M(userId, overtimeYear, overtimeMonthly, true);
+	}
+
+	/**
+	 * Returns the overtime where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param overtimeYear the overtime year
+	 * @param overtimeMonthly the overtime monthly
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching overtime, or <code>null</code> if a matching overtime could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime fetchByY_M(long userId, long overtimeYear,
+		long overtimeMonthly, boolean retrieveFromCache)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { userId, overtimeYear, overtimeMonthly };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_Y_M,
+					finderArgs, this);
+		}
+
+		if (result instanceof Overtime) {
+			Overtime overtime = (Overtime)result;
+
+			if ((userId != overtime.getUserId()) ||
+					(overtimeYear != overtime.getOvertimeYear()) ||
+					(overtimeMonthly != overtime.getOvertimeMonthly())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(5);
+
+			query.append(_SQL_SELECT_OVERTIME_WHERE);
+
+			query.append(_FINDER_COLUMN_Y_M_USERID_2);
+
+			query.append(_FINDER_COLUMN_Y_M_OVERTIMEYEAR_2);
+
+			query.append(_FINDER_COLUMN_Y_M_OVERTIMEMONTHLY_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				qPos.add(overtimeYear);
+
+				qPos.add(overtimeMonthly);
+
+				List<Overtime> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_Y_M,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"OvertimePersistenceImpl.fetchByY_M(long, long, long, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					Overtime overtime = list.get(0);
+
+					result = overtime;
+
+					cacheResult(overtime);
+
+					if ((overtime.getUserId() != userId) ||
+							(overtime.getOvertimeYear() != overtimeYear) ||
+							(overtime.getOvertimeMonthly() != overtimeMonthly)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_Y_M,
+							finderArgs, overtime);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_Y_M,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Overtime)result;
+		}
+	}
+
+	/**
+	 * Removes the overtime where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; from the database.
+	 *
+	 * @param userId the user ID
+	 * @param overtimeYear the overtime year
+	 * @param overtimeMonthly the overtime monthly
+	 * @return the overtime that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Overtime removeByY_M(long userId, long overtimeYear,
+		long overtimeMonthly) throws NoSuchOvertimeException, SystemException {
+		Overtime overtime = findByY_M(userId, overtimeYear, overtimeMonthly);
+
+		return remove(overtime);
+	}
+
+	/**
+	 * Returns the number of overtimes where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param overtimeYear the overtime year
+	 * @param overtimeMonthly the overtime monthly
+	 * @return the number of matching overtimes
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByY_M(long userId, long overtimeYear, long overtimeMonthly)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_Y_M;
+
+		Object[] finderArgs = new Object[] { userId, overtimeYear, overtimeMonthly };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_OVERTIME_WHERE);
+
+			query.append(_FINDER_COLUMN_Y_M_USERID_2);
+
+			query.append(_FINDER_COLUMN_Y_M_OVERTIMEYEAR_2);
+
+			query.append(_FINDER_COLUMN_Y_M_OVERTIMEMONTHLY_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				qPos.add(overtimeYear);
+
+				qPos.add(overtimeMonthly);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_Y_M_USERID_2 = "overtime.userId = ? AND ";
+	private static final String _FINDER_COLUMN_Y_M_OVERTIMEYEAR_2 = "overtime.overtimeYear = ? AND ";
+	private static final String _FINDER_COLUMN_Y_M_OVERTIMEMONTHLY_2 = "overtime.overtimeMonthly = ?";
 
 	public OvertimePersistenceImpl() {
 		setModelClass(Overtime.class);
@@ -828,6 +1092,12 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
 			new Object[] { overtime.getUserId(), overtime.getOvertimeMonthly() },
 			overtime);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_Y_M,
+			new Object[] {
+				overtime.getUserId(), overtime.getOvertimeYear(),
+				overtime.getOvertimeMonthly()
+			}, overtime);
 
 		overtime.resetOriginalValues();
 	}
@@ -911,6 +1181,15 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args, overtime);
+
+			args = new Object[] {
+					overtime.getUserId(), overtime.getOvertimeYear(),
+					overtime.getOvertimeMonthly()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_Y_M, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_Y_M, args, overtime);
 		}
 		else {
 			OvertimeModelImpl overtimeModelImpl = (OvertimeModelImpl)overtime;
@@ -924,6 +1203,19 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args,
+					overtime);
+			}
+
+			if ((overtimeModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_Y_M.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						overtime.getUserId(), overtime.getOvertimeYear(),
+						overtime.getOvertimeMonthly()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_Y_M, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_Y_M, args,
 					overtime);
 			}
 		}
@@ -948,6 +1240,26 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
+		}
+
+		args = new Object[] {
+				overtime.getUserId(), overtime.getOvertimeYear(),
+				overtime.getOvertimeMonthly()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_Y_M, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_Y_M, args);
+
+		if ((overtimeModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_Y_M.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					overtimeModelImpl.getOriginalUserId(),
+					overtimeModelImpl.getOriginalOvertimeYear(),
+					overtimeModelImpl.getOriginalOvertimeMonthly()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_Y_M, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_Y_M, args);
 		}
 	}
 

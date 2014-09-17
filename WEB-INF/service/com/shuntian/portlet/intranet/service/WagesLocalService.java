@@ -245,8 +245,8 @@ public interface WagesLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public com.shuntian.portlet.intranet.model.Wages findByU_M(long userId,
-		long distributionMonth)
+	public java.util.List<com.shuntian.portlet.intranet.model.Wages> findByY_M(
+		long distributionYear, long distributionMonth)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchWagesException;
 

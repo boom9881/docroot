@@ -308,6 +308,14 @@ public class OvertimeLocalServiceUtil {
 		return getService().findByUserId(userId);
 	}
 
+	public static com.shuntian.portlet.intranet.model.Overtime findByY_M(
+		long userId, long overtimeYear, long overtimeMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		return getService().findByY_M(userId, overtimeYear, overtimeMonthly);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

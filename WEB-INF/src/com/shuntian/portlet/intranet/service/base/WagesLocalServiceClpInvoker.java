@@ -114,7 +114,7 @@ public class WagesLocalServiceClpInvoker {
 
 		_methodParameterTypes71 = new String[] { "java.lang.String" };
 
-		_methodName76 = "findByU_M";
+		_methodName76 = "findByY_M";
 
 		_methodParameterTypes76 = new String[] { "long", "long" };
 
@@ -226,7 +226,7 @@ public class WagesLocalServiceClpInvoker {
 
 		if (_methodName76.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
-			return WagesLocalServiceUtil.findByU_M(((Long)arguments[0]).longValue(),
+			return WagesLocalServiceUtil.findByY_M(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 

@@ -281,11 +281,11 @@ public class WagesLocalServiceWrapper implements WagesLocalService,
 	}
 
 	@Override
-	public com.shuntian.portlet.intranet.model.Wages findByU_M(long userId,
-		long distributionMonth)
+	public java.util.List<com.shuntian.portlet.intranet.model.Wages> findByY_M(
+		long distributionYear, long distributionMonth)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchWagesException {
-		return _wagesLocalService.findByU_M(userId, distributionMonth);
+		return _wagesLocalService.findByY_M(distributionYear, distributionMonth);
 	}
 
 	@Override

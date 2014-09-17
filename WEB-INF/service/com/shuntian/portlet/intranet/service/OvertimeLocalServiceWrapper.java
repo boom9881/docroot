@@ -318,6 +318,16 @@ public class OvertimeLocalServiceWrapper implements OvertimeLocalService,
 		return _overtimeLocalService.findByUserId(userId);
 	}
 
+	@Override
+	public com.shuntian.portlet.intranet.model.Overtime findByY_M(long userId,
+		long overtimeYear, long overtimeMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		return _overtimeLocalService.findByY_M(userId, overtimeYear,
+			overtimeMonthly);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

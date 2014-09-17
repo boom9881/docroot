@@ -256,6 +256,11 @@
 			<finder-column name="userId"/>
 			<finder-column name="attendanceMonthly"/>
 		</finder>
+		<finder name="Y_M" return-type="Attendance">
+			<finder-column name="userId"/>
+			<finder-column name="attendanceYear"/>
+			<finder-column name="attendanceMonthly"/>
+		</finder>
 	</entity>
 	
 	<entity name="Overtime" local-service="true" remote-service="false">
@@ -284,6 +289,11 @@
 		</finder>
 		<finder name="U_M" return-type="Overtime">
 			<finder-column name="userId"/>
+			<finder-column name="overtimeMonthly"/>
+		</finder>
+		<finder name="Y_M" return-type="Overtime">
+			<finder-column name="userId"/>
+			<finder-column name="overtimeYear"/>
 			<finder-column name="overtimeMonthly"/>
 		</finder>
 	</entity>
@@ -330,8 +340,8 @@
 		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId"></finder-column>
 		</finder>
-		<finder name="U_M" return-type="Wages">
-			<finder-column name="userId"/>
+		<finder name="Y_M" return-type="Collection">
+			<finder-column name="distributionYear"/>
 			<finder-column name="distributionMonth"/>
 		</finder>
 	</entity>

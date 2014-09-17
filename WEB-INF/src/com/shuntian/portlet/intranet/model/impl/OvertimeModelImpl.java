@@ -90,8 +90,9 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.Overtime"),
 			true);
 	public static long OVERTIMEMONTHLY_COLUMN_BITMASK = 1L;
-	public static long USERID_COLUMN_BITMASK = 2L;
-	public static long CREATEDATE_COLUMN_BITMASK = 4L;
+	public static long OVERTIMEYEAR_COLUMN_BITMASK = 2L;
+	public static long USERID_COLUMN_BITMASK = 4L;
+	public static long CREATEDATE_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.Overtime"));
 
@@ -295,7 +296,19 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 
 	@Override
 	public void setOvertimeYear(long overtimeYear) {
+		_columnBitmask |= OVERTIMEYEAR_COLUMN_BITMASK;
+
+		if (!_setOriginalOvertimeYear) {
+			_setOriginalOvertimeYear = true;
+
+			_originalOvertimeYear = _overtimeYear;
+		}
+
 		_overtimeYear = overtimeYear;
+	}
+
+	public long getOriginalOvertimeYear() {
+		return _originalOvertimeYear;
 	}
 
 	@Override
@@ -482,6 +495,10 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 
 		overtimeModelImpl._setOriginalUserId = false;
 
+		overtimeModelImpl._originalOvertimeYear = overtimeModelImpl._overtimeYear;
+
+		overtimeModelImpl._setOriginalOvertimeYear = false;
+
 		overtimeModelImpl._originalOvertimeMonthly = overtimeModelImpl._overtimeMonthly;
 
 		overtimeModelImpl._setOriginalOvertimeMonthly = false;
@@ -634,6 +651,8 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 	private double _restOvertime;
 	private double _legalOvertime;
 	private long _overtimeYear;
+	private long _originalOvertimeYear;
+	private boolean _setOriginalOvertimeYear;
 	private long _overtimeMonthly;
 	private long _originalOvertimeMonthly;
 	private boolean _setOriginalOvertimeMonthly;

@@ -1,6 +1,5 @@
 package com.shuntian.portlet.intranet.action;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
@@ -10,6 +9,7 @@ import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.shuntian.portlet.intranet.model.Attendance;
 import com.shuntian.portlet.intranet.model.BasicInformation;
@@ -22,28 +22,29 @@ import com.shuntian.portlet.intranet.service.WagesLocalServiceUtil;
 import com.shuntian.portlet.intranet.util.OverTimeSum;
 
 public class WagesPortlet extends MVCPortlet {
-	public void addWages(ActionRequest actionRequest,
+	public void editWages(ActionRequest actionRequest,
 			ActionResponse actionResponse) throws SystemException, PortalException {
-
-		long userId = ParamUtil.getLong(actionRequest, "userId");
-		long month = ParamUtil.getLong(actionRequest, "month");
 		
-		Wages Wages = WagesLocalServiceUtil.findByU_M(userId, month);
+		long distributionYear = ParamUtil.getLong(actionRequest, "distributionYear");
+		long distributionMonth = ParamUtil.getLong(actionRequest, "distributionMonth");
 		
-		if(Wages != null){
-			return;
-		}else {
+		List<Wages> wageList = WagesLocalServiceUtil.findByY_M(distributionYear, distributionMonth);
+		
+		if(wageList.size() == 0){
 			List<BasicInformation> biList = BasicInformationLocalServiceUtil.getBasicInformations(0, BasicInformationLocalServiceUtil.getBasicInformationsCount());
 			for (BasicInformation basicInformation : biList) {
+				long userId = basicInformation.getUserId();
 				Wages wages = WagesLocalServiceUtil.createWages(CounterLocalServiceUtil.increment());
-				Attendance attendance = AttendanceLocalServiceUtil.findByU_M(userId, month);
-				Overtime overtime = OvertimeLocalServiceUtil.findByU_M(userId, month);
+				Attendance attendance = AttendanceLocalServiceUtil.findByY_M(basicInformation.getId(), distributionYear, distributionMonth);
+				Overtime overtime = OvertimeLocalServiceUtil.findByY_M(basicInformation.getId(), distributionYear, distributionMonth);
+				
 				long attendanceId = attendance.getId();
 				long overtimeId = overtime.getId();
+				
 				wages.setUserId(basicInformation.getId());
 				wages.setWageName(basicInformation.getName());
-				wages.setDistributionMonth(month);
-				wages.setEntryDate(new Date());
+				wages.setDistributionMonth(distributionMonth);
+				//wages.setEntryDate(new Date());
 				//wages.getDepartureDate()
 				wages.setUserWage(basicInformation.getBasePay());
 				wages.setUserPerformance(basicInformation.getPerformancePay());

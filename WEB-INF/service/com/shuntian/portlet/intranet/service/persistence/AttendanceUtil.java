@@ -344,6 +344,92 @@ public class AttendanceUtil {
 	}
 
 	/**
+	* Returns the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonthly = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchAttendanceException} if it could not be found.
+	*
+	* @param userId the user ID
+	* @param attendanceYear the attendance year
+	* @param attendanceMonthly the attendance monthly
+	* @return the matching attendance
+	* @throws com.shuntian.portlet.intranet.NoSuchAttendanceException if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance findByY_M(
+		long userId, long attendanceYear, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return getPersistence()
+				   .findByY_M(userId, attendanceYear, attendanceMonthly);
+	}
+
+	/**
+	* Returns the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonthly = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user ID
+	* @param attendanceYear the attendance year
+	* @param attendanceMonthly the attendance monthly
+	* @return the matching attendance, or <code>null</code> if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance fetchByY_M(
+		long userId, long attendanceYear, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByY_M(userId, attendanceYear, attendanceMonthly);
+	}
+
+	/**
+	* Returns the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonthly = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user ID
+	* @param attendanceYear the attendance year
+	* @param attendanceMonthly the attendance monthly
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching attendance, or <code>null</code> if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance fetchByY_M(
+		long userId, long attendanceYear, long attendanceMonthly,
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByY_M(userId, attendanceYear, attendanceMonthly,
+			retrieveFromCache);
+	}
+
+	/**
+	* Removes the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonthly = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param attendanceYear the attendance year
+	* @param attendanceMonthly the attendance monthly
+	* @return the attendance that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance removeByY_M(
+		long userId, long attendanceYear, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return getPersistence()
+				   .removeByY_M(userId, attendanceYear, attendanceMonthly);
+	}
+
+	/**
+	* Returns the number of attendances where userId = &#63; and attendanceYear = &#63; and attendanceMonthly = &#63;.
+	*
+	* @param userId the user ID
+	* @param attendanceYear the attendance year
+	* @param attendanceMonthly the attendance monthly
+	* @return the number of matching attendances
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByY_M(long userId, long attendanceYear,
+		long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByY_M(userId, attendanceYear, attendanceMonthly);
+	}
+
+	/**
 	* Caches the attendance in the entity cache if it is enabled.
 	*
 	* @param attendance the attendance

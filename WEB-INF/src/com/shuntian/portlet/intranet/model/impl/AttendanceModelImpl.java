@@ -89,8 +89,9 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.Attendance"),
 			true);
 	public static long ATTENDANCEMONTHLY_COLUMN_BITMASK = 1L;
-	public static long USERID_COLUMN_BITMASK = 2L;
-	public static long CREATEDATE_COLUMN_BITMASK = 4L;
+	public static long ATTENDANCEYEAR_COLUMN_BITMASK = 2L;
+	public static long USERID_COLUMN_BITMASK = 4L;
+	public static long CREATEDATE_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.Attendance"));
 
@@ -277,7 +278,19 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 
 	@Override
 	public void setAttendanceYear(long attendanceYear) {
+		_columnBitmask |= ATTENDANCEYEAR_COLUMN_BITMASK;
+
+		if (!_setOriginalAttendanceYear) {
+			_setOriginalAttendanceYear = true;
+
+			_originalAttendanceYear = _attendanceYear;
+		}
+
 		_attendanceYear = attendanceYear;
+	}
+
+	public long getOriginalAttendanceYear() {
+		return _originalAttendanceYear;
 	}
 
 	@Override
@@ -463,6 +476,10 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 
 		attendanceModelImpl._setOriginalUserId = false;
 
+		attendanceModelImpl._originalAttendanceYear = attendanceModelImpl._attendanceYear;
+
+		attendanceModelImpl._setOriginalAttendanceYear = false;
+
 		attendanceModelImpl._originalAttendanceMonthly = attendanceModelImpl._attendanceMonthly;
 
 		attendanceModelImpl._setOriginalAttendanceMonthly = false;
@@ -606,6 +623,8 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 	private double _shouldAttendance;
 	private double _actualAttendance;
 	private long _attendanceYear;
+	private long _originalAttendanceYear;
+	private boolean _setOriginalAttendanceYear;
 	private long _attendanceMonthly;
 	private long _originalAttendanceMonthly;
 	private boolean _setOriginalAttendanceMonthly;

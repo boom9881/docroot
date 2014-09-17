@@ -178,6 +178,164 @@ public class BasicInformationUtil {
 	}
 
 	/**
+	* Returns all the basic informations where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the matching basic informations
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByU(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU(userId);
+	}
+
+	/**
+	* Returns a range of all the basic informations where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.BasicInformationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param start the lower bound of the range of basic informations
+	* @param end the upper bound of the range of basic informations (not inclusive)
+	* @return the range of matching basic informations
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByU(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU(userId, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the basic informations where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.shuntian.portlet.intranet.model.impl.BasicInformationModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param start the lower bound of the range of basic informations
+	* @param end the upper bound of the range of basic informations (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching basic informations
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByU(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU(userId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first basic information in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching basic information
+	* @throws com.shuntian.portlet.intranet.NoSuchBasicInformationException if a matching basic information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.BasicInformation findByU_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchBasicInformationException {
+		return getPersistence().findByU_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the first basic information in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching basic information, or <code>null</code> if a matching basic information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.BasicInformation fetchByU_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByU_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last basic information in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching basic information
+	* @throws com.shuntian.portlet.intranet.NoSuchBasicInformationException if a matching basic information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.BasicInformation findByU_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchBasicInformationException {
+		return getPersistence().findByU_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last basic information in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching basic information, or <code>null</code> if a matching basic information could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.BasicInformation fetchByU_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByU_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the basic informations before and after the current basic information in the ordered set where userId = &#63;.
+	*
+	* @param id the primary key of the current basic information
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next basic information
+	* @throws com.shuntian.portlet.intranet.NoSuchBasicInformationException if a basic information with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.BasicInformation[] findByU_PrevAndNext(
+		long id, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchBasicInformationException {
+		return getPersistence()
+				   .findByU_PrevAndNext(id, userId, orderByComparator);
+	}
+
+	/**
+	* Removes all the basic informations where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByU(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByU(userId);
+	}
+
+	/**
+	* Returns the number of basic informations where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching basic informations
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU(userId);
+	}
+
+	/**
 	* Returns all the basic informations where isLeave = &#63;.
 	*
 	* @param isLeave the is leave

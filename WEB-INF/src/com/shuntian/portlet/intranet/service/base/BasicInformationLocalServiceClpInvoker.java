@@ -145,6 +145,14 @@ public class BasicInformationLocalServiceClpInvoker {
 		_methodParameterTypes79 = new String[] {
 				"long", "java.lang.String", "int", "int"
 			};
+
+		_methodName80 = "findListByUserId";
+
+		_methodParameterTypes80 = new String[] { "long" };
+
+		_methodName81 = "countByListUserId";
+
+		_methodParameterTypes81 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -296,6 +304,16 @@ public class BasicInformationLocalServiceClpInvoker {
 				((Integer)arguments[3]).intValue());
 		}
 
+		if (_methodName80.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
+			return BasicInformationLocalServiceUtil.findListByUserId(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName81.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
+			return BasicInformationLocalServiceUtil.countByListUserId(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -347,4 +365,8 @@ public class BasicInformationLocalServiceClpInvoker {
 	private String[] _methodParameterTypes78;
 	private String _methodName79;
 	private String[] _methodParameterTypes79;
+	private String _methodName80;
+	private String[] _methodParameterTypes80;
+	private String _methodName81;
+	private String[] _methodParameterTypes81;
 }

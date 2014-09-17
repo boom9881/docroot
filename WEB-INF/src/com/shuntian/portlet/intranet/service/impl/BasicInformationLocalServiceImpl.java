@@ -178,6 +178,16 @@ public class BasicInformationLocalServiceImpl extends
 		return basicInformationFinder.findByDepAndName(departmentId, name,
 				start, end);
 	}
+	
+	public List<BasicInformation> findListByUserId(long userId) throws SystemException {
+
+		return basicInformationPersistence.findByU(userId);
+	}
+	
+	public int countByListUserId(long userId) throws SystemException {
+
+		return basicInformationPersistence.countByU(userId);
+	}
 
 	private static final int isLeave = 1;
 	private static final int zero = 0;

@@ -275,4 +275,10 @@ public interface BasicInformationLocalService extends BaseLocalService,
 	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByDepAndName(
 		long departmentId, java.lang.String name, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findListByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByListUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

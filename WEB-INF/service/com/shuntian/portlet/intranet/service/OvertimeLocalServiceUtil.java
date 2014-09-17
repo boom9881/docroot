@@ -316,6 +316,24 @@ public class OvertimeLocalServiceUtil {
 		return getService().findByY_M(userId, overtimeYear, overtimeMonthly);
 	}
 
+	public static int search(long departmentId, long searchUserId,
+		java.lang.String attendanceYear, java.lang.String attendanceMonth,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .search(departmentId, searchUserId, attendanceYear,
+			attendanceMonth, name);
+	}
+
+	public static java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
+		long departmentId, long searchUserId, java.lang.String attendanceYear,
+		java.lang.String attendanceMonth, java.lang.String name, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .search(departmentId, searchUserId, attendanceYear,
+			attendanceMonth, name, start, end);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

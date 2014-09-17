@@ -42,6 +42,7 @@ import com.shuntian.portlet.intranet.service.persistence.DepartmentPersistence;
 import com.shuntian.portlet.intranet.service.persistence.EducationPersistence;
 import com.shuntian.portlet.intranet.service.persistence.ExtInformationPersistence;
 import com.shuntian.portlet.intranet.service.persistence.FamilyRelationshipPersistence;
+import com.shuntian.portlet.intranet.service.persistence.OvertimeFinder;
 import com.shuntian.portlet.intranet.service.persistence.OvertimePersistence;
 import com.shuntian.portlet.intranet.service.persistence.WagesPersistence;
 import com.shuntian.portlet.intranet.service.persistence.WorkExperiencePersistence;
@@ -610,6 +611,24 @@ public abstract class EducationLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the overtime finder.
+	 *
+	 * @return the overtime finder
+	 */
+	public OvertimeFinder getOvertimeFinder() {
+		return overtimeFinder;
+	}
+
+	/**
+	 * Sets the overtime finder.
+	 *
+	 * @param overtimeFinder the overtime finder
+	 */
+	public void setOvertimeFinder(OvertimeFinder overtimeFinder) {
+		this.overtimeFinder = overtimeFinder;
+	}
+
+	/**
 	 * Returns the wages local service.
 	 *
 	 * @return the wages local service
@@ -894,6 +913,8 @@ public abstract class EducationLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.shuntian.portlet.intranet.service.OvertimeLocalService overtimeLocalService;
 	@BeanReference(type = OvertimePersistence.class)
 	protected OvertimePersistence overtimePersistence;
+	@BeanReference(type = OvertimeFinder.class)
+	protected OvertimeFinder overtimeFinder;
 	@BeanReference(type = com.shuntian.portlet.intranet.service.WagesLocalService.class)
 	protected com.shuntian.portlet.intranet.service.WagesLocalService wagesLocalService;
 	@BeanReference(type = WagesPersistence.class)

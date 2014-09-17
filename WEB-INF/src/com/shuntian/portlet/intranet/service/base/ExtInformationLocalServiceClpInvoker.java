@@ -106,23 +106,23 @@ public class ExtInformationLocalServiceClpInvoker {
 				"com.shuntian.portlet.intranet.model.ExtInformation"
 			};
 
-		_methodName70 = "getBeanIdentifier";
+		_methodName72 = "getBeanIdentifier";
 
-		_methodParameterTypes70 = new String[] {  };
+		_methodParameterTypes72 = new String[] {  };
 
-		_methodName71 = "setBeanIdentifier";
+		_methodName73 = "setBeanIdentifier";
 
-		_methodParameterTypes71 = new String[] { "java.lang.String" };
+		_methodParameterTypes73 = new String[] { "java.lang.String" };
 
-		_methodName76 = "editExtInformation";
+		_methodName78 = "editExtInformation";
 
-		_methodParameterTypes76 = new String[] {
+		_methodParameterTypes78 = new String[] {
 				"long", "com.shuntian.portlet.intranet.model.ExtInformation"
 			};
 
-		_methodName77 = "editExtInformation";
+		_methodName79 = "editExtInformation";
 
-		_methodParameterTypes77 = new String[] {
+		_methodParameterTypes79 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.util.Date", "java.util.Date",
 				"java.util.Date", "java.util.Date", "java.lang.String",
@@ -130,9 +130,9 @@ public class ExtInformationLocalServiceClpInvoker {
 				"long", "long"
 			};
 
-		_methodName78 = "findByUserId";
+		_methodName80 = "findByUserId";
 
-		_methodParameterTypes78 = new String[] { "long" };
+		_methodParameterTypes80 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -224,28 +224,28 @@ public class ExtInformationLocalServiceClpInvoker {
 			return ExtInformationLocalServiceUtil.updateExtInformation((com.shuntian.portlet.intranet.model.ExtInformation)arguments[0]);
 		}
 
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			return ExtInformationLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName71.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
 			ExtInformationLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName76.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+		if (_methodName78.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
 			ExtInformationLocalServiceUtil.editExtInformation(((Long)arguments[0]).longValue(),
 				(com.shuntian.portlet.intranet.model.ExtInformation)arguments[1]);
 
 			return null;
 		}
 
-		if (_methodName77.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
+		if (_methodName79.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
 			ExtInformationLocalServiceUtil.editExtInformation(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.util.Date)arguments[4],
@@ -260,8 +260,8 @@ public class ExtInformationLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName78.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
+		if (_methodName80.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
 			return ExtInformationLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
 		}
 
@@ -300,14 +300,14 @@ public class ExtInformationLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName70;
-	private String[] _methodParameterTypes70;
-	private String _methodName71;
-	private String[] _methodParameterTypes71;
-	private String _methodName76;
-	private String[] _methodParameterTypes76;
-	private String _methodName77;
-	private String[] _methodParameterTypes77;
+	private String _methodName72;
+	private String[] _methodParameterTypes72;
+	private String _methodName73;
+	private String[] _methodParameterTypes73;
 	private String _methodName78;
 	private String[] _methodParameterTypes78;
+	private String _methodName79;
+	private String[] _methodParameterTypes79;
+	private String _methodName80;
+	private String[] _methodParameterTypes80;
 }

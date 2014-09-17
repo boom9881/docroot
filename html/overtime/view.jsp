@@ -1,95 +1,82 @@
 <%@ include file="/html/overtime/init-ext.jsp" %>
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%
 	long userId = themeDisplay.getUserId();
-	
 	int userRole = OverTimeSum.isSatff(userId);
 	
-	Date nowDate = new Date();
-	int year = nowDate.getYear()+1900;
-	int month = nowDate.getMonth();
+	long searchUserId = 0;
+	long searchDepId = ParamUtil.getLong(request, "searchDep");
+	String searchAttendanceYear = ParamUtil.getString(request, "searchAttendanceYear");
+	String searchAttendanceMonth = ParamUtil.getString(request, "searchAttendanceMonth");
+	String searchName = ParamUtil.getString(request, "searchName");
+	
+	if(userRole == 2){
+		searchUserId = userId;
+	}
 	
 	PortletURL portletURL = renderResponse.createRenderURL();
-
 	portletURL.setWindowState(WindowState.MAXIMIZED);
-
 	portletURL.setParameter("mvcPath","/html/overtime/view.jsp");
-
+	portletURL.setParameter("searchDepId",String.valueOf(searchDepId));
+	portletURL.setParameter("searchAttendanceYear",searchAttendanceYear);
+	portletURL.setParameter("searchAttendanceMonth",searchAttendanceMonth);
+	portletURL.setParameter("searchName",searchName);
+	
 	List headerNames = new ArrayList();
-
 	headerNames.add("姓名");
-
-	headerNames.add("加班月份");
-
+	headerNames.add("部门");
+	headerNames.add("加班时间");
 	headerNames.add("平常加班");
-
 	headerNames.add("周末加班");
-	
 	headerNames.add("法定加班");
-	
 	headerNames.add("加班合计");
-
 	if(userRole == 1){
-	headerNames.add("操作");
+		headerNames.add("操作");
 	}
 
-	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, null);
+	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, "没有加班信息被显示。");
 
-	int total = 0;
-	
-	if(userRole == 1){
-		total = BasicInformationLocalServiceUtil.getBasicInformationsCount();
-	}else{
-		total = BasicInformationLocalServiceUtil.countByListUserId(userId);
-	}
+	int total = OvertimeLocalServiceUtil.search(searchDepId, searchUserId, searchAttendanceYear, searchAttendanceMonth, searchName);
 	
 	searchContainer.setTotal(total);
 
-	List results = null;
-	
-	if(userRole == 1){
-		results = BasicInformationLocalServiceUtil.getBasicInformations(searchContainer.getStart(), searchContainer.getEnd());
-	}else{
-		results = BasicInformationLocalServiceUtil.findListByUserId(userId);
-	}
+	List<Map<String, String>> results = OvertimeLocalServiceUtil.search(searchDepId, searchUserId, searchAttendanceYear, searchAttendanceMonth, searchName, searchContainer.getStart(), searchContainer.getEnd());
 	
 	searchContainer.setResults(results);
 	
 	List resultRows = searchContainer.getResultRows();
 
 	for (int i = 0; i < results.size(); i++) {
-
-		BasicInformation basicInformation = (BasicInformation) results.get(i);
-
-		List<Overtime> overtime = OvertimeLocalServiceUtil.findByUserId(basicInformation.getId());
-
-		for (int j = 0; j < overtime.size(); j++) {
-		
-			Overtime over= overtime.get(j);
-		
-			ResultRow row = new ResultRow(over,over.getId(), i);
+		Map<String, String> map = results.get(i);
 	
-			row.addText(basicInformation.getName());
-			
-			row.addText(String.valueOf(over.getOvertimeYear()+"-"+over.getOvertimeMonthly()));
-			
-			row.addText(String.valueOf(over.getUsuallyOvertime()));
-			
-			row.addText(String.valueOf(over.getRestOvertime()));
-			
-			row.addText(String.valueOf(over.getLegalOvertime()));
-			
-			row.addText(String.valueOf(OverTimeSum.sum(over.getUsuallyOvertime(), over.getRestOvertime(), over.getLegalOvertime())));
-			
-			if(userRole == 1){
+		ResultRow row = new ResultRow(map,map.get("id"), i);
+
+		row.addText(map.get("name"));
+		
+		row.addText(map.get("dep"));
+		
+		row.addText(map.get("year")+"/"+map.get("month"));
+		
+		String usuallyOvertime = map.get("usuallyOvertime");
+		String restOvertime = map.get("restOvertime");
+		String legalOvertime = map.get("legalOvertime");
+		
+		row.addText(usuallyOvertime);
+		
+		row.addText(restOvertime);
+		
+		row.addText(legalOvertime);
+		
+		row.addText(OverTimeSum.sum(usuallyOvertime, restOvertime, legalOvertime));
+		
+		if(userRole == 1){
 			row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/overtime/action.jsp");
-			}
-			
-			resultRows.add(row);
 		}
+			
+		resultRows.add(row);
 	}
-	
 %>
 
 <portlet:renderURL var="searchUserRenderURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
@@ -102,98 +89,54 @@
 </portlet:renderURL>
 
 <aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">
-	<c:if test='<%= userRole == 1 %>'>
-		<table>
-			<tr>
+	
+	<table>
+		<tr>
+			<td>
+				<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
+					<liferay-util:param name="name" value="searchOTime" />
+					<liferay-util:param name="label" value="加班时间（年月）" />
+					<liferay-util:param name="showMonthEmpty" value="true" />
+				</liferay-util:include>
+			</td>
+			<c:if test='<%= userRole == 1 %>'>
 				<td>
-					<aui:input name="searchDep" label="部门" value="" style="width:120px;margin-right:10px;" />
-				</td>
-				<td>
-					<aui:select label="加班年份" name="overtimeYear" style="width:120px;margin-right:10px;">
-					<% 
-					for(int i=2010;i<2015;i++){
-						if(year==i){
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-					<%			
-						}else{
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
-					<%
+					<aui:select label="部门" name="searchDep" style="width:120px;margin-right:10px;">
+						<aui:option label="所有" value="" />
+						<%
+						int end = DepartmentLocalServiceUtil.getDepartmentsCount();
+						List<Department> depResult = DepartmentLocalServiceUtil.getDepartments(0, end);
+						
+						for(Department d : depResult){
+						%>
+							<aui:option label="<%= d.getName() %>" value="<%= d.getId() %>" />
+						<%
 						}
-					}
-					%>
-					</aui:select>
-				</td>
-				<td>
-					<aui:select label="加班月份" name="overtimeMonthly" style="width:120px;margin-right:10px;">
-					<% 
-					for(int i=1;i<13;i++){
-						if(month==i){
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-					<%			
-						}else{
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
-					<%
-						}
-					}
-					%>
+						%>
 					</aui:select>
 				</td>
 				<td>
 					<aui:input name="searchName" label="姓名" value="" style="width:120px;margin-right:10px;" />
 				</td>
-				<td>
-					<div style="margin-bottom:12px;">
-						<aui:button type="submit" value="搜索" />
+			</c:if>
+			<td>
+				<div style="margin-bottom:12px;">
+					<aui:button type="submit" value="搜索" />
+					<c:if test='<%= userRole == 1 %>'>
 						<%
 						String addURL = renderResponse.getNamespace()+"onSub('"+addOvertimeURL.toString()+"');";
 						%>
 						<aui:button value="添加加班" onClick="<%= addURL %>" />
-					</div>
-				</td>
-			</tr>
-		</table>
-	</c:if>
-	<c:if test='<%= userRole == 2 %>'>
-		<table>
-			<tr>
-				<td>
-					<aui:select label="加班年份" name="overtimeYear" style="width:120px;margin-right:10px;">
-					<% 
-					for(int i=2010;i<2015;i++){
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
-					<%
-					}
-					%>
-					</aui:select>
-				</td>
-				<td>
-					<aui:select label="加班月份" name="overtimeMonthly" style="width:120px;margin-right:10px;">
-					<% 
-					for(int i=1;i<13;i++){
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
-					<%
-					}
-					%>
-					</aui:select>
-				</td>
-				<td>
-					<aui:button type="submit" style="margin-top:-15px;"/>
-				</td>
-			</tr>
-		</table>
-	</c:if>
+					</c:if>
+				</div>
+			</td>
+		</tr>
+	</table>
 	
 	<div style="margin-top:-20px;">
 		<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
 	</div>
 </aui:form>
-
 
 <aui:script>
 	function <portlet:namespace />onSub(url){

@@ -106,21 +106,21 @@ public class WorkExperienceLocalServiceClpInvoker {
 				"com.shuntian.portlet.intranet.model.WorkExperience"
 			};
 
-		_methodName70 = "getBeanIdentifier";
+		_methodName72 = "getBeanIdentifier";
 
-		_methodParameterTypes70 = new String[] {  };
+		_methodParameterTypes72 = new String[] {  };
 
-		_methodName71 = "setBeanIdentifier";
+		_methodName73 = "setBeanIdentifier";
 
-		_methodParameterTypes71 = new String[] { "java.lang.String" };
+		_methodParameterTypes73 = new String[] { "java.lang.String" };
 
-		_methodName76 = "editWorkExperience";
+		_methodName78 = "editWorkExperience";
 
-		_methodParameterTypes76 = new String[] { "long", "java.util.List" };
+		_methodParameterTypes78 = new String[] { "long", "java.util.List" };
 
-		_methodName78 = "findByUserId";
+		_methodName80 = "findByUserId";
 
-		_methodParameterTypes78 = new String[] { "long" };
+		_methodParameterTypes80 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -212,28 +212,28 @@ public class WorkExperienceLocalServiceClpInvoker {
 			return WorkExperienceLocalServiceUtil.updateWorkExperience((com.shuntian.portlet.intranet.model.WorkExperience)arguments[0]);
 		}
 
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			return WorkExperienceLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName71.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
 			WorkExperienceLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName76.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
-			WorkExperienceLocalServiceUtil.editWorkExperience(((Long)arguments[0]).longValue(),
-				(java.util.List<com.shuntian.portlet.intranet.model.WorkExperience>)arguments[1]);
 
 			return null;
 		}
 
 		if (_methodName78.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
+			WorkExperienceLocalServiceUtil.editWorkExperience(((Long)arguments[0]).longValue(),
+				(java.util.List<com.shuntian.portlet.intranet.model.WorkExperience>)arguments[1]);
+
+			return null;
+		}
+
+		if (_methodName80.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
 			return WorkExperienceLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
 		}
 
@@ -272,12 +272,12 @@ public class WorkExperienceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName70;
-	private String[] _methodParameterTypes70;
-	private String _methodName71;
-	private String[] _methodParameterTypes71;
-	private String _methodName76;
-	private String[] _methodParameterTypes76;
+	private String _methodName72;
+	private String[] _methodParameterTypes72;
+	private String _methodName73;
+	private String[] _methodParameterTypes73;
 	private String _methodName78;
 	private String[] _methodParameterTypes78;
+	private String _methodName80;
+	private String[] _methodParameterTypes80;
 }

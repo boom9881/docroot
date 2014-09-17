@@ -18,6 +18,7 @@
 	<bean id="com.shuntian.portlet.intranet.service.persistence.FamilyRelationshipPersistence" class="com.shuntian.portlet.intranet.service.persistence.FamilyRelationshipPersistenceImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.OvertimeLocalService" class="com.shuntian.portlet.intranet.service.impl.OvertimeLocalServiceImpl" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.OvertimePersistence" class="com.shuntian.portlet.intranet.service.persistence.OvertimePersistenceImpl" parent="basePersistence" />
+	<bean id="com.shuntian.portlet.intranet.service.persistence.OvertimeFinder" class="com.shuntian.portlet.intranet.service.persistence.OvertimeFinderImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.WagesLocalService" class="com.shuntian.portlet.intranet.service.impl.WagesLocalServiceImpl" />
 	<bean id="com.shuntian.portlet.intranet.service.persistence.WagesPersistence" class="com.shuntian.portlet.intranet.service.persistence.WagesPersistenceImpl" parent="basePersistence" />
 	<bean id="com.shuntian.portlet.intranet.service.WorkExperienceLocalService" class="com.shuntian.portlet.intranet.service.impl.WorkExperienceLocalServiceImpl" />

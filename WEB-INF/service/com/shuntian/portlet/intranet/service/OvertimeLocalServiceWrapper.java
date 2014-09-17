@@ -328,6 +328,24 @@ public class OvertimeLocalServiceWrapper implements OvertimeLocalService,
 			overtimeMonthly);
 	}
 
+	@Override
+	public int search(long departmentId, long searchUserId,
+		java.lang.String attendanceYear, java.lang.String attendanceMonth,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _overtimeLocalService.search(departmentId, searchUserId,
+			attendanceYear, attendanceMonth, name);
+	}
+
+	@Override
+	public java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
+		long departmentId, long searchUserId, java.lang.String attendanceYear,
+		java.lang.String attendanceMonth, java.lang.String name, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return _overtimeLocalService.search(departmentId, searchUserId,
+			attendanceYear, attendanceMonth, name, start, end);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

@@ -110,6 +110,7 @@
 			<td>
 				<div style="margin-bottom:12px;">
 					<aui:button type="submit" value="搜索" />
+					
 					<c:if test='<%= userRole == 1 %>'>
 						<%
 						String addURL = renderResponse.getNamespace()+"onSub('"+addAttendancetURL.toString()+"');";

@@ -16,6 +16,7 @@ package com.shuntian.portlet.intranet.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -66,7 +67,7 @@ public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
 			long overtimeMonthly, double usuallyOvertime, double restOvertime,
 			double legalOvertime) throws SystemException, PortalException {
 		Overtime overtime = overtimeLocalService.getOvertime(overtimeId);
-		
+
 		overtime.setOvertimeYear(overtimeYear);
 		overtime.setOvertimeMonthly(overtimeMonthly);
 		overtime.setUsuallyOvertime(usuallyOvertime);
@@ -87,9 +88,26 @@ public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
 			NoSuchAttendanceException {
 		return overtimePersistence.findByUserId(userId);
 	}
-	
-	public Overtime findByY_M(long userId, long overtimeYear, long overtimeMonthly)
-			throws SystemException, NoSuchAttendanceException, NoSuchOvertimeException {
-		return overtimePersistence.findByY_M(userId,overtimeYear, overtimeMonthly);
+
+	public Overtime findByY_M(long userId, long overtimeYear,
+			long overtimeMonthly) throws SystemException,
+			NoSuchAttendanceException, NoSuchOvertimeException {
+		return overtimePersistence.findByY_M(userId, overtimeYear,
+				overtimeMonthly);
+	}
+
+	public int search(long departmentId, long searchUserId, String searchYear,
+			String searchMonth, String name) throws SystemException {
+
+		return overtimeFinder.search(departmentId, searchUserId, searchYear,
+				searchMonth, name);
+	}
+
+	public List<Map<String, String>> search(long departmentId,
+			long searchUserId, String searchYear, String searchMonth,
+			String name, int start, int end) throws SystemException {
+
+		return overtimeFinder.search(departmentId, searchUserId, searchYear,
+				searchMonth, name, start, end);
 	}
 }

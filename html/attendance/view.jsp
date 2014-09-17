@@ -175,7 +175,7 @@
 					</aui:select>
 				</td>
 				<td>
-					<aui:button type="submit" value="搜索"  style="margin-top:-15px;"/>
+					<aui:button type="submit" value="搜索" style="margin-top:-15px;"/>
 				</td>
 			</tr>
 		</table>

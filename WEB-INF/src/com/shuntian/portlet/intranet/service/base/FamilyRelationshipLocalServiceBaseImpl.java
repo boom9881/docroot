@@ -33,6 +33,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.shuntian.portlet.intranet.model.FamilyRelationship;
 import com.shuntian.portlet.intranet.service.FamilyRelationshipLocalService;
+import com.shuntian.portlet.intranet.service.persistence.AttendanceFinder;
 import com.shuntian.portlet.intranet.service.persistence.AttendancePersistence;
 import com.shuntian.portlet.intranet.service.persistence.BasicInformationFinder;
 import com.shuntian.portlet.intranet.service.persistence.BasicInformationPersistence;
@@ -326,6 +327,24 @@ public abstract class FamilyRelationshipLocalServiceBaseImpl
 	public void setAttendancePersistence(
 		AttendancePersistence attendancePersistence) {
 		this.attendancePersistence = attendancePersistence;
+	}
+
+	/**
+	 * Returns the attendance finder.
+	 *
+	 * @return the attendance finder
+	 */
+	public AttendanceFinder getAttendanceFinder() {
+		return attendanceFinder;
+	}
+
+	/**
+	 * Sets the attendance finder.
+	 *
+	 * @param attendanceFinder the attendance finder
+	 */
+	public void setAttendanceFinder(AttendanceFinder attendanceFinder) {
+		this.attendanceFinder = attendanceFinder;
 	}
 
 	/**
@@ -847,6 +866,8 @@ public abstract class FamilyRelationshipLocalServiceBaseImpl
 	protected com.shuntian.portlet.intranet.service.AttendanceLocalService attendanceLocalService;
 	@BeanReference(type = AttendancePersistence.class)
 	protected AttendancePersistence attendancePersistence;
+	@BeanReference(type = AttendanceFinder.class)
+	protected AttendanceFinder attendanceFinder;
 	@BeanReference(type = com.shuntian.portlet.intranet.service.BasicInformationLocalService.class)
 	protected com.shuntian.portlet.intranet.service.BasicInformationLocalService basicInformationLocalService;
 	@BeanReference(type = BasicInformationPersistence.class)

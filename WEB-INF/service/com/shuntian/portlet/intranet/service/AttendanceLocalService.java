@@ -266,4 +266,16 @@ public interface AttendanceLocalService extends BaseLocalService,
 		long userId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchAttendanceException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int search(long departmentId, long searchUserId,
+		java.lang.String attendanceYear, java.lang.String attendanceMonth,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
+		long departmentId, long searchUserId, java.lang.String attendanceYear,
+		java.lang.String attendanceMonth, java.lang.String name, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
 }

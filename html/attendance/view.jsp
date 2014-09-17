@@ -3,83 +3,69 @@
 
 <%
 	long userId = themeDisplay.getUserId();
-	
 	int userRole = OverTimeSum.isSatff(userId);
 	
-	Date nowDate = new Date();
-	int year = nowDate.getYear()+1900;
-	int month = nowDate.getMonth();
+	long searchUserId = 0;
+	long searchDepId = ParamUtil.getLong(request, "searchDep");
+	String searchAttendanceYear = ParamUtil.getString(request, "searchAttendanceYear");
+	String searchAttendanceMonth = ParamUtil.getString(request, "searchAttendanceMonth");
+	String searchName = ParamUtil.getString(request, "searchName");
+	
+	if(userRole == 2){
+		searchUserId = userId;
+	}
 	
 	PortletURL portletURL = renderResponse.createRenderURL();
-
 	portletURL.setWindowState(WindowState.MAXIMIZED);
-
 	portletURL.setParameter("mvcPath","/html/attendance/view.jsp");
+	portletURL.setParameter("searchDepId",String.valueOf(searchDepId));
+	portletURL.setParameter("searchAttendanceYear",searchAttendanceYear);
+	portletURL.setParameter("searchAttendanceMonth",searchAttendanceMonth);
+	portletURL.setParameter("searchName",searchName);
 
 	List headerNames = new ArrayList();
-
 	headerNames.add("姓名");
-	
-	headerNames.add("考勤月份");
-
+	headerNames.add("部门");
+	headerNames.add("考勤时间");
 	headerNames.add("应出勤天数");
-
 	headerNames.add("实出勤天数");
 	if(userRole == 1){
-	headerNames.add("操作");
+		headerNames.add("操作");
 	}
-	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL,headerNames, null);
 	
-	int total = 0;
-	if(userRole == 1){
-		total = BasicInformationLocalServiceUtil.getBasicInformationsCount();
-	}else{
-		total = BasicInformationLocalServiceUtil.countByListUserId(userId);
-	}
+	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL,headerNames, "没有考勤被显示。");
+	
+	int total = AttendanceLocalServiceUtil.search(searchDepId, searchUserId, searchAttendanceYear, searchAttendanceMonth, searchName);
+	
 	searchContainer.setTotal(total);
 
-	List results = null;
+	List<Map<String,String>> results = AttendanceLocalServiceUtil.search(searchDepId, searchUserId, searchAttendanceYear, searchAttendanceMonth, searchName, searchContainer.getStart(), searchContainer.getEnd());
 
-	if(userRole == 1){
-		results = BasicInformationLocalServiceUtil.getBasicInformations(searchContainer.getStart(), searchContainer.getEnd());
-	}else{
-		results = BasicInformationLocalServiceUtil.findListByUserId(userId);
-	}
-	
 	searchContainer.setResults(results);
 	
 	List resultRows = searchContainer.getResultRows();
 
 	for (int i = 0; i < results.size(); i++) {
+		Map<String,String> obj = (Map<String,String>) results.get(i);
 
-		BasicInformation basicInformation = (BasicInformation) results.get(i);
+		ResultRow row = new ResultRow(obj,obj.get("id"), i);
 
-		List<Attendance> attendance = AttendanceLocalServiceUtil.findByUserId(basicInformation.getId());
-
-		for (int j = 0; j < attendance.size(); j++) {
+		row.addText(obj.get("name"));
 		
-			Attendance att = attendance.get(j);
-			
-			ResultRow row = new ResultRow(att,att.getId(), i);
-	
-			row.addText(basicInformation.getName());
-			
-			row.addText(String.valueOf(att.getAttendanceYear()+"-"+att.getAttendanceMonthly()));
-			
-			row.addText(String.valueOf(att.getShouldAttendance()));
-			
-			row.addText(String.valueOf(att.getActualAttendance()));
-			
-			if(userRole == 1){
-				row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/attendance/action.jsp");
-			}
-	
-			resultRows.add(row);
+		row.addText(obj.get("department"));
+		
+		row.addText(obj.get("year")+"/"+obj.get("month"));
+		
+		row.addText(obj.get("should"));
+		
+		row.addText(obj.get("actual"));
+		
+		if(userRole == 1){
+			row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/attendance/action.jsp");
 		}
 
+		resultRows.add(row);
 	}
-	
-	BasicInformation basicInformation = BasicInformationLocalServiceUtil.findByUserId(userId);
 %>
 
 <portlet:renderURL var="searchUserRenderURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
@@ -92,100 +78,53 @@
 </portlet:renderURL>
 
 <aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">
-	<c:if test='<%= userRole == 1 %>'>
-		<table>
-			<tr>
-				
+	<table>
+		<tr>
+			<td>
+				<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
+					<liferay-util:param name="name" value="searchAttendance" />
+					<liferay-util:param name="label" value="考勤时间（年月）" />
+					<liferay-util:param name="showMonthEmpty" value="true" />
+				</liferay-util:include>
+			</td>
+			<c:if test='<%= userRole == 1 %>'>
 				<td>
-					<aui:input name="searchDep" label="部门" value="" style="width:120px;margin-right:10px;" />
-				</td>
-				<td>
-					<aui:select label="考勤年份" name="attendanceYear" style="width:120px;margin-right:10px;">
-					<% 
-					for(int i=2010;i<2015;i++){
-						if(year==i){
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-					<%			
-						}else{
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
-					<%
+					<aui:select label="部门" name="searchDep" style="width:120px;margin-right:10px;">
+						<aui:option label="所有" value="" />
+						<%
+						int end = DepartmentLocalServiceUtil.getDepartmentsCount();
+						List<Department> depResult = DepartmentLocalServiceUtil.getDepartments(0, end);
+						
+						for(Department d : depResult){
+						%>
+							<aui:option label="<%= d.getName() %>" value="<%= d.getId() %>" />
+						<%
 						}
-					}
-					%>
-					</aui:select>
-				</td>
-				<td>
-					<aui:select label="考勤月份" name="attendanceMonthly" style="width:120px;margin-right:10px;">
-					<% 
-					for(int i=1;i<13;i++){
-						if(month==i){
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-					<%			
-						}else{
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
-					<%
-						}
-					}
-					%>
+						%>
 					</aui:select>
 				</td>
 				<td>
 					<aui:input name="searchName" label="姓名" value="" style="width:120px;margin-right:10px;" />
 				</td>
-				<td>
-					<div style="margin-bottom:12px;">
-						<aui:button type="submit" value="搜索" />
-			
+			</c:if>
+			<td>
+				<div style="margin-bottom:12px;">
+					<aui:button type="submit" value="搜索" />
+					<c:if test='<%= userRole == 1 %>'>
 						<%
 						String addURL = renderResponse.getNamespace()+"onSub('"+addAttendancetURL.toString()+"');";
 						%>
 						<aui:button value="添加考勤" onClick="<%= addURL %>" />
-					</div>
-				</td>
-			</tr>
-		</table>
-	</c:if>
-	<c:if test='<%= userRole == 2 %>'>
-		<table>
-			<tr>
-				<td>
-					<aui:select label="考勤年份" name="attendanceYear" style="width:120px;margin-right:10px;">
-					<% 
-					for(int i=2010;i<2015;i++){
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
-					<%
-					}
-					%>
-					</aui:select>
-				</td>
-				<td>
-					<aui:select label="考勤月份" name="attendanceMonthly" style="width:120px;margin-right:10px;">
-						<% 
-						for(int i=1;i<13;i++){
-						%>
-							<aui:option label="<%= i %>" value="<%= i %>" />
-						<%
-						}
-						%>
-					</aui:select>
-				</td>
-				<td>
-					<aui:button type="submit" value="搜索" style="margin-top:-15px;"/>
-				</td>
-			</tr>
-		</table>
-	</c:if>
+					</c:if>
+				</div>
+			</td>
+		</tr>
+	</table>
 	
 	<div style="margin-top:-20px;">
 		<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
 	</div>
 </aui:form>
-
 
 <aui:script>
 	function <portlet:namespace />onSub(url){
@@ -194,5 +133,3 @@
 		submitForm(document.<portlet:namespace />fm);
 	}
 </aui:script>
-
-

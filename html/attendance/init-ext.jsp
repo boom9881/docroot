@@ -22,3 +22,6 @@
 <%@ page import="com.shuntian.portlet.intranet.model.FamilyRelationship" %>
 <%@ page import="com.shuntian.portlet.intranet.model.impl.FamilyRelationshipImpl" %>
 <%@ page import="com.shuntian.portlet.intranet.service.FamilyRelationshipLocalServiceUtil" %>
+
+<%@ page import="com.shuntian.portlet.intranet.model.Department" %>
+<%@ page import="com.shuntian.portlet.intranet.service.DepartmentLocalServiceUtil" %>

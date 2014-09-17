@@ -16,6 +16,7 @@ package com.shuntian.portlet.intranet.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -85,5 +86,21 @@ public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
 	public List<Attendance> findByUserId(long userId) throws SystemException,
 			NoSuchAttendanceException {
 		return attendancePersistence.findByUserId(userId);
+	}
+
+	public int search(long departmentId, long searchUserId,
+			String attendanceYear, String attendanceMonth, String name)
+			throws SystemException {
+
+		return attendanceFinder.search(departmentId, searchUserId,
+				attendanceYear, attendanceMonth, name);
+	}
+
+	public List<Map<String, String>> search(long departmentId,
+			long searchUserId, String attendanceYear, String attendanceMonth,
+			String name, int start, int end) throws SystemException {
+
+		return attendanceFinder.search(departmentId, searchUserId,
+				attendanceYear, attendanceMonth, name, start, end);
 	}
 }

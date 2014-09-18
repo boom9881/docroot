@@ -1,86 +1,93 @@
 <%@ include file="/html/wages/init-ext.jsp" %>
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%
-	long userId = themeDisplay.getUserId();
-	//SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-	DecimalFormat df = new DecimalFormat("0.00");
-	PortletURL portletURL = renderResponse.createRenderURL();
+DecimalFormat df = new DecimalFormat("0.00");
 
-	int userRole = OverTimeSum.isSatff(userId);
+long userId = themeDisplay.getUserId();
 
-	Date nowDate = new Date();
-	int year = nowDate.getYear()+1900;
-	int month = nowDate.getMonth();
+int userRole = OverTimeSum.isSatff(userId);
+
+long searchUserId = 0;
+long searchDepId = ParamUtil.getLong(request, "searchDep");
+String searchWagesYear = ParamUtil.getString(request, "searchWagesYear");
+String searchWagesMonth = ParamUtil.getString(request, "searchWagesMonth");
+String searchName = ParamUtil.getString(request, "searchName");
+
+if(userRole == 2){
+	searchUserId = userId;
+}
+
+PortletURL portletURL = renderResponse.createRenderURL();
+portletURL.setWindowState(WindowState.MAXIMIZED);
+portletURL.setParameter("mvcPath","/html/attendance/view.jsp");
+portletURL.setParameter("searchDepId",String.valueOf(searchDepId));
+portletURL.setParameter("searchWagesYear",searchWagesYear);
+portletURL.setParameter("searchWagesMonth",searchWagesMonth);
+portletURL.setParameter("searchName",searchName);
+
+List headerNames = new ArrayList();
+headerNames.add("姓名");
+headerNames.add("发工资月份");
+//headerNames.add("入职日期");
+//headerNames.add("离职日期");
+headerNames.add("基本工资");
+headerNames.add("绩效工资");
+headerNames.add("工资小计");
+headerNames.add("应出勤(天）");
+headerNames.add("实出勤(天）");
+headerNames.add("应发基本工资");
+headerNames.add("绩效得分应发");
+headerNames.add("绩效工资");
+headerNames.add("应发工资合计");
+headerNames.add("社保公司承担部分");
+headerNames.add("社保个人承担部分");
+headerNames.add("应纳税所得额");
+headerNames.add("税率");
+headerNames.add("税金");
+headerNames.add("实发工资");
+
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, "没有工资信息被显示。");
+
+int total = WagesLocalServiceUtil.getWagesesCount();
+
+searchContainer.setTotal(total);
+
+List results = WagesLocalServiceUtil.getWageses(searchContainer.getStart(), searchContainer.getEnd());
+
+searchContainer.setResults(results);
+
+List resultRows = searchContainer.getResultRows();
+
+for (int i = 0; i < results.size(); i++) {
+
+	Wages wages = (Wages) results.get(i);
+
+	ResultRow row = new ResultRow(wages,wages.getId(), i);
+
+	row.addText(wages.getWageName());
+	row.addText(String.valueOf(wages.getDistributionMonth()));
+	//row.addText(sdf.format(wages.getEntryDate()));
+	//row.addText(wages.getDepartureDate()!=null?sdf.format(wages.getDepartureDate()):StringPool.BLANK);
+	row.addText(String.valueOf(df.format(wages.getUserWage())));
+	row.addText(String.valueOf(df.format(wages.getUserPerformance())));
+	row.addText(String.valueOf(df.format(wages.getUserTotalWage())));
+	row.addText(String.valueOf(wages.getAttendance()));
+	row.addText(String.valueOf(wages.getRealAttendance()));
+	row.addText(String.valueOf(df.format(wages.getBasePay())));
+	row.addText(String.valueOf(df.format(wages.getOvertimeWages())));
+	row.addText(String.valueOf(df.format(wages.getPerformanceSalary())));
+	row.addText(String.valueOf(df.format(wages.getTotalWages())));
+	row.addText(String.valueOf(df.format(wages.getSocialCompanyBearPart())));
+	row.addText(String.valueOf(df.format(wages.getSocialIndividualsBearPart())));
+	row.addText(String.valueOf(df.format(wages.getTaxableIncome())));
+	row.addText(String.valueOf(wages.getTaxRate())+"%");
+	row.addText(String.valueOf(df.format((wages.getTaxes()))));
+	row.addText(String.valueOf(df.format(wages.getRealWages())));
 	
-	portletURL.setWindowState(WindowState.MAXIMIZED);
-
-	portletURL.setParameter("mvcPath","/html/attendance/view.jsp");
-
-	List headerNames = new ArrayList();
-
-	headerNames.add("姓名");
-	headerNames.add("发工资月份");
-	//headerNames.add("入职日期");
-	//headerNames.add("离职日期");
-	headerNames.add("基本工资");
-	headerNames.add("绩效工资");
-	headerNames.add("工资小计");
-	headerNames.add("应出勤(天）");
-	headerNames.add("实出勤(天）");
-	headerNames.add("应发基本工资");
-	headerNames.add("绩效得分应发");
-	headerNames.add("绩效工资");
-	headerNames.add("应发工资合计");
-	headerNames.add("社保公司承担部分");
-	headerNames.add("社保个人承担部分");
-	headerNames.add("应纳税所得额");
-	headerNames.add("税率");
-	headerNames.add("税金");
-	headerNames.add("实发工资");
-	
-	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, null);
-
-	int total = WagesLocalServiceUtil.getWagesesCount();
-
-	searchContainer.setTotal(total);
-
-	List results = WagesLocalServiceUtil.getWageses(searchContainer.getStart(), searchContainer.getEnd());
-	
-	searchContainer.setResults(results);
-	
-	List resultRows = searchContainer.getResultRows();
-
-	for (int i = 0; i < results.size(); i++) {
-
-		Wages wages = (Wages) results.get(i);
-
-		ResultRow row = new ResultRow(wages,wages.getId(), i);
-
-		row.addText(wages.getWageName());
-		row.addText(String.valueOf(wages.getDistributionMonth()));
-		//row.addText(sdf.format(wages.getEntryDate()));
-		//row.addText(wages.getDepartureDate()!=null?sdf.format(wages.getDepartureDate()):StringPool.BLANK);
-		row.addText(String.valueOf(df.format(wages.getUserWage())));
-		row.addText(String.valueOf(df.format(wages.getUserPerformance())));
-		row.addText(String.valueOf(df.format(wages.getUserTotalWage())));
-		row.addText(String.valueOf(wages.getAttendance()));
-		row.addText(String.valueOf(wages.getRealAttendance()));
-		row.addText(String.valueOf(df.format(wages.getBasePay())));
-		row.addText(String.valueOf(df.format(wages.getOvertimeWages())));
-		row.addText(String.valueOf(df.format(wages.getPerformanceSalary())));
-		row.addText(String.valueOf(df.format(wages.getTotalWages())));
-		row.addText(String.valueOf(df.format(wages.getSocialCompanyBearPart())));
-		row.addText(String.valueOf(df.format(wages.getSocialIndividualsBearPart())));
-		row.addText(String.valueOf(df.format(wages.getTaxableIncome())));
-		row.addText(String.valueOf(wages.getTaxRate())+"%");
-		row.addText(String.valueOf(df.format((wages.getTaxes()))));
-		row.addText(String.valueOf(df.format(wages.getRealWages())));
-		
-		resultRows.add(row);
-
-	}
-	
+	resultRows.add(row);
+}
 %>
 
 <portlet:renderURL var="searchUserRenderURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
@@ -91,95 +98,50 @@
 	<portlet:param name="mvcPath" value="/html/wages/edit_wages.jsp" />
 	<portlet:param name="<%=Constants.CMD %>" value="<%=Constants.ADD %>" />
 </portlet:renderURL>
+
 <aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">
-	<c:if test='<%= userRole == 1 %>'>
-		<table>
-			<tr>
+	<table>
+		<tr>
+			<td width="145px">
+				<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
+					<liferay-util:param name="name" value="searchWages" />
+					<liferay-util:param name="label" value="考勤时间" />
+					<liferay-util:param name="showMonthEmpty" value="true" />
+				</liferay-util:include>
+			</td>
+			<c:if test='<%= userRole == 1 %>'>
 				<td>
-					<aui:input name="searchDep" label="部门" value="" style="width:120px;margin-right:10px;" />
-				</td>
-				<td>
-					<aui:select label="工资年份" name="attendanceYear" style="width:120px;margin-right:10px;">
-					<% 
-					for(int i=2010;i<2015;i++){
-						if(year==i){
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-					<%			
-						}else{
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
-					<%
+					<aui:select label="部门" name="searchDep" style="width:120px;margin-right:10px;">
+						<aui:option label="所有" value="" />
+						<%
+						int end = DepartmentLocalServiceUtil.getDepartmentsCount();
+						List<Department> depResult = DepartmentLocalServiceUtil.getDepartments(0, end);
+						
+						for(Department d : depResult){
+						%>
+							<aui:option label="<%= d.getName() %>" value="<%= d.getId() %>" />
+						<%
 						}
-					}
-					%>
-					</aui:select>
-				</td>
-				<td>
-					<aui:select label="工资月份" name="attendanceMonthly" style="width:120px;margin-right:10px;">
-					<% 
-					for(int i=1;i<13;i++){
-						if(month==i){
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-					<%			
-						}else{
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
-					<%
-						}
-					}
-					%>
+						%>
 					</aui:select>
 				</td>
 				<td>
 					<aui:input name="searchName" label="姓名" value="" style="width:120px;margin-right:10px;" />
 				</td>
-				<td>
-					<div style="margin-bottom:12px;">
-						<aui:button type="submit" value="搜索" />
-			
+			</c:if>
+			<td>
+				<div style="margin-bottom:12px;">
+					<aui:button type="submit" value="搜索" />
+					<c:if test='<%= userRole == 1 %>'>
 						<%
 						String addURL = renderResponse.getNamespace()+"onSub('"+addWagestURL.toString()+"');";
 						%>
 						<aui:button value="生成工资" onClick="<%= addURL %>" />
-					</div>
-				</td>
-			</tr>
-		</table>
-	</c:if>
-	<c:if test='<%= userRole == 2 %>'>
-		<table>
-			<tr>
-				<td>
-					<aui:select label="工资年份" name="distributionYear" style="width:120px;margin-right:10px;">
-					<% 
-					for(int i=2010;i<2015;i++){
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
-					<%
-					}
-					%>
-					</aui:select>
-					</td>
-				<td>
-					<aui:select label="工资月份" name="distributionMonth" style="width:120px;margin-right:10px;">
-					<% 
-					for(int i=1;i<13;i++){
-					%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
-					<%
-					}
-					%>
-					</aui:select>
-				</td>
-				<td>
-					<aui:button type="submit" value="搜索" style="margin-top:-15px;"/>
-				</td>
-			</tr>
-		</table>
-	</c:if>
-	
+					</c:if>
+				</div>
+			</td>
+		</tr>
+	</table>
 	<div style="margin-top:-20px;">
 		<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />
 	</div>

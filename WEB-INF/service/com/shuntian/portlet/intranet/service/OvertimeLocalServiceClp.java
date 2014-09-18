@@ -902,7 +902,7 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 
 	@Override
 	public int search(long departmentId, long searchUserId,
-		java.lang.String attendanceYear, java.lang.String attendanceMonth,
+		java.lang.String searchYear, java.lang.String searchMonth,
 		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -915,9 +915,9 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 						
 					searchUserId,
 						
-					ClpSerializer.translateInput(attendanceYear),
+					ClpSerializer.translateInput(searchYear),
 						
-					ClpSerializer.translateInput(attendanceMonth),
+					ClpSerializer.translateInput(searchMonth),
 						
 					ClpSerializer.translateInput(name)
 					});
@@ -943,9 +943,9 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 
 	@Override
 	public java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
-		long departmentId, long searchUserId, java.lang.String attendanceYear,
-		java.lang.String attendanceMonth, java.lang.String name, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		long departmentId, long searchUserId, java.lang.String searchYear,
+		java.lang.String searchMonth, java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -956,9 +956,9 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 						
 					searchUserId,
 						
-					ClpSerializer.translateInput(attendanceYear),
+					ClpSerializer.translateInput(searchYear),
 						
-					ClpSerializer.translateInput(attendanceMonth),
+					ClpSerializer.translateInput(searchMonth),
 						
 					ClpSerializer.translateInput(name),
 						

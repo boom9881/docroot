@@ -4,6 +4,7 @@
 <%
 	long userId = themeDisplay.getUserId();
 	//SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	DecimalFormat df = new DecimalFormat("0.00");
 	PortletURL portletURL = renderResponse.createRenderURL();
 
 	int userRole = OverTimeSum.isSatff(userId);
@@ -19,22 +20,22 @@
 	List headerNames = new ArrayList();
 
 	headerNames.add("姓名");
-	//headerNames.add("发工资月份");
+	headerNames.add("发工资月份");
 	//headerNames.add("入职日期");
 	//headerNames.add("离职日期");
-	//headerNames.add("基本工资");
-	//headerNames.add("绩效工资");
-	//headerNames.add("工资小计");
-	//headerNames.add("应出勤(天）");
-	//headerNames.add("实出勤(天）");
-	//headerNames.add("应发基本工资");
-	//headerNames.add("绩效得分应发");
-	//headerNames.add("绩效工资");
+	headerNames.add("基本工资");
+	headerNames.add("绩效工资");
+	headerNames.add("工资小计");
+	headerNames.add("应出勤(天）");
+	headerNames.add("实出勤(天）");
+	headerNames.add("应发基本工资");
+	headerNames.add("绩效得分应发");
+	headerNames.add("绩效工资");
 	headerNames.add("应发工资合计");
-	//headerNames.add("社保公司承担部分");
+	headerNames.add("社保公司承担部分");
 	headerNames.add("社保个人承担部分");
-	//headerNames.add("应纳税所得额");
-	//headerNames.add("税率");
+	headerNames.add("应纳税所得额");
+	headerNames.add("税率");
 	headerNames.add("税金");
 	headerNames.add("实发工资");
 	
@@ -57,24 +58,24 @@
 		ResultRow row = new ResultRow(wages,wages.getId(), i);
 
 		row.addText(wages.getWageName());
-		//row.addText(String.valueOf(wages.getDistributionMonth()));
+		row.addText(String.valueOf(wages.getDistributionMonth()));
 		//row.addText(sdf.format(wages.getEntryDate()));
 		//row.addText(wages.getDepartureDate()!=null?sdf.format(wages.getDepartureDate()):StringPool.BLANK);
-		//row.addText(String.valueOf(wages.getUserWage()));
-		//row.addText(String.valueOf(wages.getUserPerformance()));
-		//row.addText(String.valueOf(wages.getUserTotalWage()));
-		//row.addText(String.valueOf(wages.getAttendance()));
-		//row.addText(String.valueOf(wages.getRealAttendance()));
-		//row.addText(String.valueOf(wages.getBasePay()));
-		//row.addText(String.valueOf(wages.getOvertimeWages()));
-		//row.addText(String.valueOf(wages.getPerformanceSalary()));
-		row.addText(String.valueOf(wages.getTotalWages()));
-		//row.addText(String.valueOf(wages.getSocialCompanyBearPart()));
-		row.addText(String.valueOf(wages.getSocialIndividualsBearPart()));
-		//row.addText(String.valueOf(wages.getTaxableIncome()));
-		//row.addText(String.valueOf(wages.getTaxRate())+"%");
-		row.addText(String.valueOf(wages.getTaxes()));
-		row.addText(String.valueOf(wages.getRealWages()));
+		row.addText(String.valueOf(df.format(wages.getUserWage())));
+		row.addText(String.valueOf(df.format(wages.getUserPerformance())));
+		row.addText(String.valueOf(df.format(wages.getUserTotalWage())));
+		row.addText(String.valueOf(wages.getAttendance()));
+		row.addText(String.valueOf(wages.getRealAttendance()));
+		row.addText(String.valueOf(df.format(wages.getBasePay())));
+		row.addText(String.valueOf(df.format(wages.getOvertimeWages())));
+		row.addText(String.valueOf(df.format(wages.getPerformanceSalary())));
+		row.addText(String.valueOf(df.format(wages.getTotalWages())));
+		row.addText(String.valueOf(df.format(wages.getSocialCompanyBearPart())));
+		row.addText(String.valueOf(df.format(wages.getSocialIndividualsBearPart())));
+		row.addText(String.valueOf(df.format(wages.getTaxableIncome())));
+		row.addText(String.valueOf(wages.getTaxRate())+"%");
+		row.addText(String.valueOf(df.format((wages.getTaxes()))));
+		row.addText(String.valueOf(df.format(wages.getRealWages())));
 		
 		resultRows.add(row);
 

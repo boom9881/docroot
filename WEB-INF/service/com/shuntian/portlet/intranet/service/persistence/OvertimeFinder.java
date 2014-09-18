@@ -19,12 +19,12 @@ package com.shuntian.portlet.intranet.service.persistence;
  */
 public interface OvertimeFinder {
 	public int search(long departmentId, long searchUserId,
-		java.lang.String attendanceYear, java.lang.String attendanceMonth,
+		java.lang.String searchYear, java.lang.String searchMonth,
 		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
-		long departmentId, long searchUserId, java.lang.String attendanceYear,
-		java.lang.String attendanceMonth, java.lang.String name, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		long departmentId, long searchUserId, java.lang.String searchYear,
+		java.lang.String searchMonth, java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

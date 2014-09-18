@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.shuntian.portlet.intranet.NoSuchBasicInformationException;
 import com.shuntian.portlet.intranet.model.BasicInformation;
@@ -77,16 +78,16 @@ public class SatffPortlet extends MVCPortlet {
 	// }
 
 	private BasicInformation getBasicInformation(ActionRequest request) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-
 		int sex = ParamUtil.getInteger(request, "sex");
 		int health = ParamUtil.getInteger(request, "health");
+		int birthDateYear = ParamUtil.getInteger(request, "birthDateYear");
+		int birthDateMonth = ParamUtil.getInteger(request, "birthDateMonth");
+		int birthDateDay = ParamUtil.getInteger(request, "birthDateDay");
 		long departmentId = ParamUtil.getLong(request, "departmentId");
 		String name = ParamUtil.getString(request, "name");
 		String nation = ParamUtil.getString(request, "nation");
 		String maritalStatus = ParamUtil.getString(request, "maritalStatus");
 		String placeOfOrigin = ParamUtil.getString(request, "placeOfOrigin");
-		String birthDate = ParamUtil.getString(request, "birthDate");
 		String idNumber = ParamUtil.getString(request, "idNumber");
 		String accountProperties = ParamUtil.getString(request,
 				"accountProperties");
@@ -131,12 +132,8 @@ public class SatffPortlet extends MVCPortlet {
 		bi.setEmergencyContact(emergencyContact);
 		bi.setEmergencyContactPhone(emergencyContactPhone);
 		bi.setEmergencyContactRelation(emergencyContactRelation);
-
-		try {
-			bi.setBirthDate(sdf.parse(birthDate));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		bi.setBirthDate(PortalUtil.getDate(birthDateMonth, birthDateDay,
+				birthDateYear));
 
 		return bi;
 	}
@@ -149,29 +146,29 @@ public class SatffPortlet extends MVCPortlet {
 		String openCity = ParamUtil.getString(request, "openCity");
 		String bankName = ParamUtil.getString(request, "bankName");
 		String bankId = ParamUtil.getString(request, "bankId");
-		String laborContractStartYear = ParamUtil.getString(request,
+		int laborContractStartYear = ParamUtil.getInteger(request,
 				"laborContractStartYear");
-		String laborContractStartMonth = ParamUtil.getString(request,
+		int laborContractStartMonth = ParamUtil.getInteger(request,
 				"laborContractStartMonth");
-		String laborContractStartDay = ParamUtil.getString(request,
+		int laborContractStartDay = ParamUtil.getInteger(request,
 				"laborContractStartDay");
-		String laborContractEndYear = ParamUtil.getString(request,
+		int laborContractEndYear = ParamUtil.getInteger(request,
 				"laborContractEndYear");
-		String laborContractEndMonth = ParamUtil.getString(request,
+		int laborContractEndMonth = ParamUtil.getInteger(request,
 				"laborContractEndMonth");
-		String laborContractEndDay = ParamUtil.getString(request,
+		int laborContractEndDay = ParamUtil.getInteger(request,
 				"laborContractEndDay");
-		String probationPeriodStartYear = ParamUtil.getString(request,
+		int probationPeriodStartYear = ParamUtil.getInteger(request,
 				"probationPeriodStartYear");
-		String probationPeriodStartMonth = ParamUtil.getString(request,
+		int probationPeriodStartMonth = ParamUtil.getInteger(request,
 				"probationPeriodStartMonth");
-		String probationPeriodStartDay = ParamUtil.getString(request,
+		int probationPeriodStartDay = ParamUtil.getInteger(request,
 				"probationPeriodStartDay");
-		String probationPeriodEndYear = ParamUtil.getString(request,
+		int probationPeriodEndYear = ParamUtil.getInteger(request,
 				"probationPeriodEndYear");
-		String probationPeriodEndMonth = ParamUtil.getString(request,
+		int probationPeriodEndMonth = ParamUtil.getInteger(request,
 				"probationPeriodEndMonth");
-		String probationPeriodEndDay = ParamUtil.getString(request,
+		int probationPeriodEndDay = ParamUtil.getInteger(request,
 				"probationPeriodEndDay");
 		String induredLocation = ParamUtil
 				.getString(request, "induredLocation");
@@ -190,25 +187,17 @@ public class SatffPortlet extends MVCPortlet {
 		ei.setInduredLocation(induredLocation);
 		ei.setIsInsured(isInsured);
 
-		try {
-			Date laborContractStart = sdf.parse(laborContractStartYear
-					+ laborContractStartMonth + laborContractStartDay);
-			Date laborContractEnd = sdf.parse(laborContractEndYear
-					+ laborContractEndMonth + laborContractEndDay);
-			Date probationPeriodStart = sdf.parse(probationPeriodStartYear
-					+ probationPeriodStartMonth + probationPeriodStartDay);
-			Date probationPeriodEnd = sdf.parse(probationPeriodEndYear
-					+ probationPeriodEndMonth + probationPeriodEndDay);
+		ei.setLaborContractStart(PortalUtil.getDate(laborContractStartMonth,
+				laborContractStartDay, laborContractStartYear));
+		ei.setLaborContractEnd(PortalUtil.getDate(laborContractEndMonth,
+				laborContractEndDay, laborContractEndYear));
+		ei.setProbationPeriodStart(PortalUtil.getDate(probationPeriodStartDay,
+				probationPeriodStartMonth, probationPeriodStartYear));
+		ei.setProbationPeriodEnd(PortalUtil.getDate(probationPeriodEndDay,
+				probationPeriodEndMonth, probationPeriodEndYear));
 
-			ei.setLaborContractStart(laborContractStart);
-			ei.setLaborContractEnd(laborContractEnd);
-			ei.setProbationPeriodStart(probationPeriodStart);
-			ei.setProbationPeriodEnd(probationPeriodEnd);
-			ei.setFristInsuredYear(fristInsuredYear);
-			ei.setFristInsuredMonth(fristInsuredMonth);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		ei.setFristInsuredYear(fristInsuredYear);
+		ei.setFristInsuredMonth(fristInsuredMonth);
 
 		return ei;
 	}
@@ -233,13 +222,13 @@ public class SatffPortlet extends MVCPortlet {
 
 			long eduId = ParamUtil.getLong(request, "eduId" + edusIndexValue);
 			String startTimeYear = ParamUtil.getString(request,
-					"eStartTimedYear" + edusIndexValue);
+					"eStartTimeYear" + edusIndexValue);
 			String startTimeMonth = ParamUtil.getString(request,
-					"eStartTimedMonth" + edusIndexValue);
-			String stopTimeYear = ParamUtil.getString(request, "eStopTimedYear"
+					"eStartTimeMonth" + edusIndexValue);
+			String stopTimeYear = ParamUtil.getString(request, "eStopTimeYear"
 					+ edusIndexValue);
 			String stopTimeMonth = ParamUtil.getString(request,
-					"eStopTimedMonth" + edusIndexValue);
+					"eStopTimeMonth" + edusIndexValue);
 			String university = ParamUtil.getString(request, "eUniversity"
 					+ edusIndexValue);
 			String witness = ParamUtil.getString(request, "eWitness"

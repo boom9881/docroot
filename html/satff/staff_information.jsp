@@ -15,6 +15,23 @@ if(Validator.isNotNull(biId)){
 if(Validator.isNotNull(userId)){
 	extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
 }
+
+String fiy = StringPool.BLANK;
+String fim = StringPool.BLANK;
+Calendar laborContractStart = CalendarFactoryUtil.getCalendar();
+Calendar laborContractEnd = CalendarFactoryUtil.getCalendar();
+Calendar probationPeriodStart = CalendarFactoryUtil.getCalendar();
+Calendar probationPeriodEnd = CalendarFactoryUtil.getCalendar();
+
+if(extInformation != null){
+	laborContractStart.setTime(extInformation.getLaborContractStart());
+	laborContractEnd.setTime(extInformation.getLaborContractEnd());
+	probationPeriodStart.setTime(extInformation.getProbationPeriodStart());
+	probationPeriodEnd.setTime(extInformation.getProbationPeriodEnd());
+
+	fiy = String.valueOf(extInformation.getFristInsuredYear());
+	fim = String.valueOf(extInformation.getFristInsuredMonth());
+}
 %>
 
 <portlet:renderURL var="portletURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
@@ -45,7 +62,7 @@ if(Validator.isNotNull(userId)){
 		<aui:input bean="<%= extInformation %>" name="bankId" label="银行账号" />
 	</liferay-ui:section>
 	<liferay-ui:section>
-		<table>
+		<table width="250px">
 			<tr>
 				<td colspan="7">
 					<h3>劳动合同期限</h3>
@@ -53,25 +70,29 @@ if(Validator.isNotNull(userId)){
 			</tr>
 			<tr>
 				<td>
-					<aui:input name="laborContractStartYear" label="年" value=""  style="width:60px;"/>
-				</td>
-				<td>
-					<aui:input name="laborContractStartMonth" label="月" value="" style="width:40px;"/>
-				</td>
-				<td>
-					<aui:input name="laborContractStartDay" label="日" value="" style="width:40px;"/>
+					<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
+						<liferay-util:param name="name" value="laborContractStart" />
+						<liferay-util:param name="label" value="&nbsp;" />
+						<liferay-util:param name="showDay" value="true" />
+						<liferay-util:param name="year_start" value="2012" />
+						<liferay-util:param name="yearValue" value="<%= String.valueOf(laborContractStart.get(Calendar.YEAR)) %>" />
+						<liferay-util:param name="monthValue" value="<%= String.valueOf(laborContractStart.get(Calendar.MONTH)) %>" />
+						<liferay-util:param name="dayValue" value="<%= String.valueOf(laborContractStart.get(Calendar.DATE)) %>" />
+					</liferay-util:include>
 				</td>
 				<td>
 					至
 				</td>
 				<td>
-					<aui:input name="laborContractEndYear" label="年" value=""  style="width:60px;"/>
-				</td>
-				<td>
-					<aui:input name="laborContractEndMonth" label="月" value="" style="width:40px;"/>
-				</td>
-				<td>
-					<aui:input name="laborContractEndDay" label="日" value="" style="width:40px;"/>
+					<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
+						<liferay-util:param name="name" value="laborContractEnd" />
+						<liferay-util:param name="label" value="&nbsp;" />
+						<liferay-util:param name="showDay" value="true" />
+						<liferay-util:param name="year_start" value="2012" />
+						<liferay-util:param name="yearValue" value="<%= String.valueOf(laborContractEnd.get(Calendar.YEAR)) %>" />
+						<liferay-util:param name="monthValue" value="<%= String.valueOf(laborContractEnd.get(Calendar.MONTH)) %>" />
+						<liferay-util:param name="dayValue" value="<%= String.valueOf(laborContractEnd.get(Calendar.DATE)) %>" />
+					</liferay-util:include>
 				</td>
 			</tr>
 			<tr>
@@ -81,25 +102,29 @@ if(Validator.isNotNull(userId)){
 			</tr>
 			<tr>
 				<td>
-					<aui:input name="probationPeriodStartYear" label="年" value=""  style="width:60px;"/>
-				</td>
-				<td>
-					<aui:input name="probationPeriodStartMonth" label="月" value="" style="width:40px;"/>
-				</td>
-				<td>
-					<aui:input name="probationPeriodStartDay" label="日" value="" style="width:40px;"/>
+					<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
+						<liferay-util:param name="name" value="probationPeriodStart" />
+						<liferay-util:param name="label" value="&nbsp;" />
+						<liferay-util:param name="showDay" value="true" />
+						<liferay-util:param name="year_start" value="2012" />
+						<liferay-util:param name="yearValue" value="<%= String.valueOf(probationPeriodStart.get(Calendar.YEAR)) %>" />
+						<liferay-util:param name="monthValue" value="<%= String.valueOf(probationPeriodStart.get(Calendar.MONTH)) %>" />
+						<liferay-util:param name="dayValue" value="<%= String.valueOf(probationPeriodStart.get(Calendar.DATE)) %>" />
+					</liferay-util:include>
 				</td>
 				<td>
 					至
 				</td>
 				<td>
-					<aui:input name="probationPeriodEndYear" label="年" value=""  style="width:60px;"/>
-				</td>
-				<td>
-					<aui:input name="probationPeriodEndMonth" label="月" value="" style="width:40px;"/>
-				</td>
-				<td>
-					<aui:input name="probationPeriodEndDay" label="日" value="" style="width:40px;"/>
+					<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
+						<liferay-util:param name="name" value="probationPeriodEnd" />
+						<liferay-util:param name="label" value="&nbsp;" />
+						<liferay-util:param name="showDay" value="true" />
+						<liferay-util:param name="year_start" value="2012" />
+						<liferay-util:param name="yearValue" value="<%= String.valueOf(probationPeriodEnd.get(Calendar.YEAR)) %>" />
+						<liferay-util:param name="monthValue" value="<%= String.valueOf(probationPeriodEnd.get(Calendar.MONTH)) %>" />
+						<liferay-util:param name="dayValue" value="<%= String.valueOf(probationPeriodEnd.get(Calendar.DATE)) %>" />
+					</liferay-util:include>
 				</td>
 			</tr>
 		</table>
@@ -111,6 +136,9 @@ if(Validator.isNotNull(userId)){
 		<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
 			<liferay-util:param name="name" value="fristInsured" />
 			<liferay-util:param name="label" value="参加社会保险时间" />
+			<liferay-util:param name="year_end" value="<%= String.valueOf(IntranetUtil.getCurYear()) %>" />
+			<liferay-util:param name="yearValue" value="<%= fiy %>" />
+			<liferay-util:param name="monthValue" value="<%= fim %>" />
 		</liferay-util:include>
 		
 	</liferay-ui:section>

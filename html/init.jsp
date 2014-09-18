@@ -100,6 +100,8 @@
 <%@ page import="com.liferay.portal.service.OrganizationServiceUtil" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>
 
+<%@ page import="com.shuntian.portlet.intranet.util.IntranetUtil" %>
+
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />

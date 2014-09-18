@@ -70,19 +70,27 @@ else {
 					<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
 						<liferay-util:param name="name" value="eStartTime" />
 						<liferay-util:param name="label" value="开始时间（年月）" />
+						<liferay-util:param name="year_start" value="1980" />
+						<liferay-util:param name="year_end" value="<%= String.valueOf(IntranetUtil.getCurYear()) %>" />
+						<liferay-util:param name="yearValue" value="<%= edu.getEStartTimeYear() %>" />
+						<liferay-util:param name="monthValue" value="<%= edu.getEStartTimeMonth() %>" />
 					</liferay-util:include>
 					
-					<aui:input name="eUniversity" label="毕业院校" value="" />
-					<aui:input name="eWitness" label="证明人" value="" />
+					<aui:input name="eUniversity" label="毕业院校" value="<%= edu.getEUniversity() %>" />
+					<aui:input name="eWitness" label="证明人" value="<%= edu.getEWitness() %>" />
 				</aui:fieldset>
 				<aui:fieldset cssClass="span5">
 					<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
 						<liferay-util:param name="name" value="eStopTime" />
 						<liferay-util:param name="label" value="结束时间（年月）" />
+						<liferay-util:param name="year_start" value="1980" />
+						<liferay-util:param name="year_end" value="<%= String.valueOf(IntranetUtil.getCurYear()) %>" />
+						<liferay-util:param name="yearValue" value="<%= edu.getEStopTimeYear() %>" />
+						<liferay-util:param name="monthValue" value="<%= edu.getEStopTimeMonth() %>" />
 					</liferay-util:include>
 					
-					<aui:input name="eProfessional" label="专业" value="" />
-					<aui:input name="eContactPhone" label="联系电话" value="" />
+					<aui:input name="eProfessional" label="专业" value="<%= edu.getEProfessional() %>" />
+					<aui:input name="eContactPhone" label="联系电话" value="<%= edu.getEContactPhone() %>" />
 				</aui:fieldset>
 			</div>
 		</div>

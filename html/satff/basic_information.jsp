@@ -16,7 +16,24 @@ if(Validator.isNotNull(biId)){
 <aui:fieldset cssClass="span5">
 	<aui:input bean="<%= basicInformation %>" name="name" label="姓名" />
 	<aui:input bean="<%= basicInformation %>" name="idNumber" label="身份证号" />
-	<aui:input bean="<%= basicInformation %>" name="birthDate" label="出生年月" />
+	<%--
+	<aui:input bean="<%= basicInformation %>" name="birthDate" label="出生年月(yyyyMMdd)" value="<%= birthDateValue %>" />
+	--%>
+	<% 
+	Calendar birthDate = CalendarFactoryUtil.getCalendar();
+	if(basicInformation != null)
+		birthDate.setTime(basicInformation.getBirthDate());
+	%>
+	<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
+		<liferay-util:param name="name" value="birthDate" />
+		<liferay-util:param name="label" value="出生日期" />
+		<liferay-util:param name="showDay" value="true" />
+		<liferay-util:param name="year_start" value="1960" />
+		<liferay-util:param name="yearValue" value="<%= String.valueOf(birthDate.get(Calendar.YEAR)) %>" />
+		<liferay-util:param name="monthValue" value="<%= String.valueOf(birthDate.get(Calendar.MONTH)) %>" />
+		<liferay-util:param name="dayValue" value="<%= String.valueOf(birthDate.get(Calendar.DATE)) %>" />
+	</liferay-util:include>
+	
 	<aui:input bean="<%= basicInformation %>" name="maritalStatus" label="婚姻状况"/>
 	<aui:input bean="<%= basicInformation %>" name="nation" label="民族" />
 	<aui:input bean="<%= basicInformation %>" name="health" label="健康状况" />

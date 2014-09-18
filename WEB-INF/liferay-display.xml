@@ -8,5 +8,6 @@
 		<portlet id="overtime" />
 		<portlet id="attendance" />
 		<portlet id="wages" />
+		<portlet id="individual_info" />
 	</category>
 </display>

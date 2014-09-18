@@ -37,6 +37,42 @@
 	</portlet>
 	
 	<portlet>
+		<portlet-name>individual_info</portlet-name>
+		<display-name>Individual Information</display-name>
+		<portlet-class>com.shuntian.portlet.intranet.action.SatffPortlet</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/html/satff/edit_satff.jsp</value>
+		</init-param>
+		<init-param>
+			<name>copy-request-parameters</name>
+			<value>true</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<resource-bundle>content.satff.Language</resource-bundle>
+		<portlet-info>
+			<title>Individual Information</title>
+			<short-title>Individual Information</short-title>
+			<keywords>Individual Information</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	
+	<portlet>
 		<portlet-name>satff</portlet-name>
 		<display-name>satff</display-name>
 		<portlet-class>com.shuntian.portlet.intranet.action.SatffPortlet</portlet-class>

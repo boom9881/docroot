@@ -32,6 +32,7 @@ import com.shuntian.portlet.intranet.model.FamilyRelationship;
 import com.shuntian.portlet.intranet.model.WorkExperience;
 import com.shuntian.portlet.intranet.model.impl.BasicInformationImpl;
 import com.shuntian.portlet.intranet.service.base.BasicInformationLocalServiceBaseImpl;
+import com.shuntian.portlet.intranet.util.IntranetUtil;
 import com.shuntian.portlet.intranet.util.ProperiesUtil;
 
 /**
@@ -79,13 +80,15 @@ public class BasicInformationLocalServiceImpl extends
 
 			birthday.setTime(bi.getBirthDate());
 
+			long[] roleIds = { IntranetUtil.getSatffRoleId(companyId) };
+
 			User user = userLocalService.addUser(curUserId, companyId, false,
 					ProperiesUtil.DEFAULT_PASSSWORD,
 					ProperiesUtil.DEFAULT_PASSSWORD, true, BLANK, bi.getMail(),
 					0, BLANK, LocaleUtil.getDefault(), bi.getName(), BLANK,
 					BLANK, 0, 0, male, birthday.get(Calendar.MONTH),
 					birthday.get(Calendar.DATE), birthday.get(Calendar.YEAR),
-					BLANK, null, null, null, null, false, serviceContext);
+					BLANK, null, null, roleIds, null, false, serviceContext);
 
 			userId = user.getUserId();
 		} else {
@@ -178,12 +181,13 @@ public class BasicInformationLocalServiceImpl extends
 		return basicInformationFinder.findByDepAndName(departmentId, name,
 				start, end);
 	}
-	
-	public List<BasicInformation> findListByUserId(long userId) throws SystemException {
+
+	public List<BasicInformation> findListByUserId(long userId)
+			throws SystemException {
 
 		return basicInformationPersistence.findByU(userId);
 	}
-	
+
 	public int countByListUserId(long userId) throws SystemException {
 
 		return basicInformationPersistence.countByU(userId);

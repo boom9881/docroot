@@ -40,9 +40,13 @@ for (int i = 0; i < results.size(); i++) {
 
 	row.addText(bi.getName());
 	
-	Department dep = DepartmentLocalServiceUtil.getDepartment(bi.getDepartmentId());
-	
-	row.addText(dep.getName());
+	if(Validator.isNotNull(bi.getDepartmentId())){
+		Department dep = DepartmentLocalServiceUtil.getDepartment(bi.getDepartmentId());
+		
+		row.addText(dep.getName());
+	}else{
+		row.addText(StringPool.BLANK);
+	}
 	row.addText(bi.getContactPhone());
 	row.addText(bi.getMail());
 	row.addText(bi.getIdNumber());

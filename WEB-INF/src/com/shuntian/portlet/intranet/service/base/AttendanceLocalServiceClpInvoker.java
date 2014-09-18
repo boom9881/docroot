@@ -106,51 +106,51 @@ public class AttendanceLocalServiceClpInvoker {
 				"com.shuntian.portlet.intranet.model.Attendance"
 			};
 
-		_methodName72 = "getBeanIdentifier";
+		_methodName74 = "getBeanIdentifier";
 
-		_methodParameterTypes72 = new String[] {  };
+		_methodParameterTypes74 = new String[] {  };
 
-		_methodName73 = "setBeanIdentifier";
+		_methodName75 = "setBeanIdentifier";
 
-		_methodParameterTypes73 = new String[] { "java.lang.String" };
+		_methodParameterTypes75 = new String[] { "java.lang.String" };
 
-		_methodName78 = "addAttendance";
+		_methodName80 = "addAttendance";
 
-		_methodParameterTypes78 = new String[] {
+		_methodParameterTypes80 = new String[] {
 				"long", "long", "long", "long", "double", "double"
 			};
 
-		_methodName79 = "updateAttendance";
+		_methodName81 = "updateAttendance";
 
-		_methodParameterTypes79 = new String[] {
+		_methodParameterTypes81 = new String[] {
 				"long", "long", "long", "long", "double", "double"
 			};
 
-		_methodName80 = "findByU_M";
+		_methodName82 = "findByU_M";
 
-		_methodParameterTypes80 = new String[] { "long", "long" };
+		_methodParameterTypes82 = new String[] { "long", "long" };
 
-		_methodName81 = "findByUserId";
+		_methodName83 = "findByUserId";
 
-		_methodParameterTypes81 = new String[] { "long" };
+		_methodParameterTypes83 = new String[] { "long" };
 
-		_methodName82 = "search";
+		_methodName84 = "search";
 
-		_methodParameterTypes82 = new String[] {
+		_methodParameterTypes84 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
 
-		_methodName83 = "search";
+		_methodName85 = "search";
 
-		_methodParameterTypes83 = new String[] {
+		_methodParameterTypes85 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "int", "int"
 			};
 
-		_methodName84 = "findByY_M";
+		_methodName86 = "findByY_M";
 
-		_methodParameterTypes84 = new String[] { "long", "long", "long" };
+		_methodParameterTypes86 = new String[] { "long", "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -242,20 +242,20 @@ public class AttendanceLocalServiceClpInvoker {
 			return AttendanceLocalServiceUtil.updateAttendance((com.shuntian.portlet.intranet.model.Attendance)arguments[0]);
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			return AttendanceLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
 			AttendanceLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName78.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
+		if (_methodName80.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
 			AttendanceLocalServiceUtil.addAttendance(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -266,8 +266,8 @@ public class AttendanceLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName79.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
+		if (_methodName81.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
 			AttendanceLocalServiceUtil.updateAttendance(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -278,27 +278,27 @@ public class AttendanceLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName80.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
+		if (_methodName82.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
 			return AttendanceLocalServiceUtil.findByU_M(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName81.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
+		if (_methodName83.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
 			return AttendanceLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName82.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
+		if (_methodName84.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
 			return AttendanceLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(java.lang.String)arguments[4]);
 		}
 
-		if (_methodName83.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
+		if (_methodName85.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
 			return AttendanceLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -307,8 +307,8 @@ public class AttendanceLocalServiceClpInvoker {
 				((Integer)arguments[6]).intValue());
 		}
 
-		if (_methodName84.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
+		if (_methodName86.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
 			return AttendanceLocalServiceUtil.findByY_M(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue());
@@ -349,14 +349,10 @@ public class AttendanceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
-	private String _methodName73;
-	private String[] _methodParameterTypes73;
-	private String _methodName78;
-	private String[] _methodParameterTypes78;
-	private String _methodName79;
-	private String[] _methodParameterTypes79;
+	private String _methodName74;
+	private String[] _methodParameterTypes74;
+	private String _methodName75;
+	private String[] _methodParameterTypes75;
 	private String _methodName80;
 	private String[] _methodParameterTypes80;
 	private String _methodName81;
@@ -367,4 +363,8 @@ public class AttendanceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes83;
 	private String _methodName84;
 	private String[] _methodParameterTypes84;
+	private String _methodName85;
+	private String[] _methodParameterTypes85;
+	private String _methodName86;
+	private String[] _methodParameterTypes86;
 }

@@ -285,6 +285,24 @@ public class WagesLocalServiceUtil {
 		return getService().findByU_M(userId);
 	}
 
+	public static int search(long departmentId, long searchUserId,
+		java.lang.String searchYear, java.lang.String searchMonth,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .search(departmentId, searchUserId, searchYear, searchMonth,
+			name);
+	}
+
+	public static java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
+		long departmentId, long searchUserId, java.lang.String searchYear,
+		java.lang.String searchMonth, java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .search(departmentId, searchUserId, searchYear, searchMonth,
+			name, start, end);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

@@ -44,6 +44,7 @@ import com.shuntian.portlet.intranet.service.persistence.ExtInformationPersisten
 import com.shuntian.portlet.intranet.service.persistence.FamilyRelationshipPersistence;
 import com.shuntian.portlet.intranet.service.persistence.OvertimeFinder;
 import com.shuntian.portlet.intranet.service.persistence.OvertimePersistence;
+import com.shuntian.portlet.intranet.service.persistence.WagesFinder;
 import com.shuntian.portlet.intranet.service.persistence.WagesPersistence;
 import com.shuntian.portlet.intranet.service.persistence.WorkExperiencePersistence;
 
@@ -668,6 +669,24 @@ public abstract class ExtInformationLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the wages finder.
+	 *
+	 * @return the wages finder
+	 */
+	public WagesFinder getWagesFinder() {
+		return wagesFinder;
+	}
+
+	/**
+	 * Sets the wages finder.
+	 *
+	 * @param wagesFinder the wages finder
+	 */
+	public void setWagesFinder(WagesFinder wagesFinder) {
+		this.wagesFinder = wagesFinder;
+	}
+
+	/**
 	 * Returns the work experience local service.
 	 *
 	 * @return the work experience local service
@@ -921,6 +940,8 @@ public abstract class ExtInformationLocalServiceBaseImpl
 	protected com.shuntian.portlet.intranet.service.WagesLocalService wagesLocalService;
 	@BeanReference(type = WagesPersistence.class)
 	protected WagesPersistence wagesPersistence;
+	@BeanReference(type = WagesFinder.class)
+	protected WagesFinder wagesFinder;
 	@BeanReference(type = com.shuntian.portlet.intranet.service.WorkExperienceLocalService.class)
 	protected com.shuntian.portlet.intranet.service.WorkExperienceLocalService workExperienceLocalService;
 	@BeanReference(type = WorkExperiencePersistence.class)

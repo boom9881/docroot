@@ -121,6 +121,20 @@ public class WagesLocalServiceClp implements WagesLocalService {
 		_methodName20 = "findByU_M";
 
 		_methodParameterTypes20 = new String[] { "long" };
+
+		_methodName21 = "search";
+
+		_methodParameterTypes21 = new String[] {
+				"long", "long", "java.lang.String", "java.lang.String",
+				"java.lang.String"
+			};
+
+		_methodName22 = "search";
+
+		_methodParameterTypes22 = new String[] {
+				"long", "long", "java.lang.String", "java.lang.String",
+				"java.lang.String", "int", "int"
+			};
 	}
 
 	@Override
@@ -738,6 +752,92 @@ public class WagesLocalServiceClp implements WagesLocalService {
 		return (java.util.List<com.shuntian.portlet.intranet.model.Wages>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public int search(long departmentId, long searchUserId,
+		java.lang.String searchYear, java.lang.String searchMonth,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
+					new Object[] {
+						departmentId,
+						
+					searchUserId,
+						
+					ClpSerializer.translateInput(searchYear),
+						
+					ClpSerializer.translateInput(searchMonth),
+						
+					ClpSerializer.translateInput(name)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
+		long departmentId, long searchUserId, java.lang.String searchYear,
+		java.lang.String searchMonth, java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
+					new Object[] {
+						departmentId,
+						
+					searchUserId,
+						
+					ClpSerializer.translateInput(searchYear),
+						
+					ClpSerializer.translateInput(searchMonth),
+						
+					ClpSerializer.translateInput(name),
+						
+					start,
+						
+					end
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<java.util.Map<java.lang.String, java.lang.String>>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -779,4 +879,8 @@ public class WagesLocalServiceClp implements WagesLocalService {
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
 }

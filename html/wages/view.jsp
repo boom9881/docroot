@@ -105,8 +105,10 @@ for (int i = 0; i < results.size(); i++) {
 			<td width="145px">
 				<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
 					<liferay-util:param name="name" value="searchWages" />
-					<liferay-util:param name="label" value="考勤时间" />
+					<liferay-util:param name="label" value="时间" />
 					<liferay-util:param name="showMonthEmpty" value="true" />
+					<liferay-util:param name="year_start" value="2012" />
+					<liferay-util:param name="year_end" value="<%= IntranetUtil.getCurYear() %>" />
 				</liferay-util:include>
 			</td>
 			<c:if test='<%= userRole == 1 %>'>

@@ -1,10 +1,7 @@
 package com.shuntian.portlet.intranet.action;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
@@ -139,8 +136,6 @@ public class SatffPortlet extends MVCPortlet {
 	}
 
 	private ExtInformation getExtInformation(ActionRequest request) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-
 		long basicWage = ParamUtil.getLong(request, "basicWage");
 		long otherWage = ParamUtil.getLong(request, "otherWage");
 		String openCity = ParamUtil.getString(request, "openCity");

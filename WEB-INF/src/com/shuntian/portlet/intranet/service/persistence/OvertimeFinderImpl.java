@@ -153,15 +153,15 @@ public class OvertimeFinderImpl extends BasePersistenceImpl<Overtime> implements
 			for (Object[] obj : list) {
 				Map<String, String> m = new HashMap<String, String>();
 
-				m.put("id", obj[0].toString());
-				m.put("name", obj[1].toString());
-				m.put("biId", obj[7].toString());
-				m.put("usuallyOvertime", obj[2].toString());
-				m.put("restOvertime", obj[3].toString());
-				m.put("legalOvertime", obj[4].toString());
-				m.put("year", obj[5].toString());
-				m.put("month", obj[6].toString());
-				m.put("dep", obj[8].toString());
+				m.put("id", getValue(obj[0]));
+				m.put("name", getValue(obj[1]));
+				m.put("biId", getValue(obj[7]));
+				m.put("usuallyOvertime", getValue(obj[2]));
+				m.put("restOvertime", getValue(obj[3]));
+				m.put("legalOvertime", getValue(obj[4]));
+				m.put("year", getValue(obj[5]));
+				m.put("month", getValue(obj[6]));
+				m.put("dep", getValue(obj[8]));
 
 				result.add(m);
 			}
@@ -172,5 +172,13 @@ public class OvertimeFinderImpl extends BasePersistenceImpl<Overtime> implements
 		} finally {
 			closeSession(session);
 		}
+	}
+
+	private String getValue(Object v) {
+		if (Validator.isNull(v)) {
+			return StringPool.BLANK;
+		}
+
+		return v.toString();
 	}
 }

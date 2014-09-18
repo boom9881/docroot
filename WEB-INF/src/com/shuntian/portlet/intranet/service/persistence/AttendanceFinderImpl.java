@@ -152,14 +152,14 @@ public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 			for (Object[] obj : list) {
 				Map<String, String> m = new HashMap<String, String>();
 
-				m.put("id", obj[0].toString());
-				m.put("name", obj[5].toString());
-				m.put("department", obj[6].toString());
-				m.put("year", obj[3].toString());
-				m.put("month", obj[4].toString());
-				m.put("should", obj[1].toString());
-				m.put("actual", obj[2].toString());
-				m.put("biId", obj[7].toString());
+				m.put("id", getValue(obj[0]));
+				m.put("name", getValue(obj[5]));
+				m.put("department", getValue(obj[6]));
+				m.put("year", getValue(obj[3]));
+				m.put("month", getValue(obj[4]));
+				m.put("should", getValue(obj[1]));
+				m.put("actual", getValue(obj[2]));
+				m.put("biId", getValue(obj[7]));
 
 				result.add(m);
 			}
@@ -170,5 +170,13 @@ public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 		} finally {
 			closeSession(session);
 		}
+	}
+
+	private String getValue(Object v) {
+		if (Validator.isNull(v)) {
+			return StringPool.BLANK;
+		}
+
+		return v.toString();
 	}
 }

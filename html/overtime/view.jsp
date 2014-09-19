@@ -98,7 +98,7 @@
 					<liferay-util:param name="label" value="加班时间" />
 					<liferay-util:param name="showMonthEmpty" value="true" />
 					<liferay-util:param name="year_start" value="2012" />
-					<liferay-util:param name="year_end" value="<%= IntranetUtil.getCurYear() %>" />
+					<liferay-util:param name="year_end" value="<%= String.valueOf(IntranetUtil.getCurYear()) %>" />
 				</liferay-util:include>
 			</td>
 			<c:if test='<%= userRole == 1 %>'>

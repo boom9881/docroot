@@ -22,8 +22,11 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.UserServiceUtil;
 import com.shuntian.portlet.intranet.NoSuchBasicInformationException;
 import com.shuntian.portlet.intranet.model.BasicInformation;
 import com.shuntian.portlet.intranet.model.Education;
@@ -138,8 +141,8 @@ public class BasicInformationLocalServiceImpl extends
 		familyRelationshipLocalService.editFamilyRelationship(userId, frs);
 	}
 
-	public void leave(long id, long userId)
-			throws NoSuchBasicInformationException, SystemException {
+	public void leave(long id, long userId) throws SystemException,
+			PortalException {
 		BasicInformation bi = basicInformationPersistence.findByPrimaryKey(id);
 
 		bi.setIsLeave(isLeave);
@@ -147,6 +150,8 @@ public class BasicInformationLocalServiceImpl extends
 		bi.setModifiedUserId(userId);
 
 		basicInformationPersistence.update(bi);
+
+		UserServiceUtil.updateStatus(bi.getUserId(), WorkflowConstants.STATUS_INACTIVE);
 	}
 
 	public List<BasicInformation> findByIsLeave(boolean isLeave)

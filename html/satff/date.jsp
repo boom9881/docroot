@@ -45,7 +45,7 @@ String dayValue = ParamUtil.getString(request, "dayValue");
 						v = "0" + v;
 					}
 				%>
-					<aui:option label="<%= v %>" value="<%= v %>" selected='<%= Boolean.parseBoolean(monthValue.equals(String.valueOf(j)) || monthValue.equals(v) ? "true":"false") %>' />
+					<aui:option label="<%= v %>" value="<%= (j - 1) %>" selected='<%= Boolean.parseBoolean(monthValue.equals(String.valueOf(j-1)) ? "true":"false") %>' />
 				<%
 				}
 				%>

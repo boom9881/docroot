@@ -188,7 +188,13 @@ public class BasicInformationCacheModel implements CacheModel<BasicInformation>,
 
 		basicInformationImpl.setBasePay(basePay);
 		basicInformationImpl.setPerformancePay(performancePay);
-		basicInformationImpl.setHealth(health);
+
+		if (health == null) {
+			basicInformationImpl.setHealth(StringPool.BLANK);
+		}
+		else {
+			basicInformationImpl.setHealth(health);
+		}
 
 		if (contactPhone == null) {
 			basicInformationImpl.setContactPhone(StringPool.BLANK);
@@ -295,7 +301,7 @@ public class BasicInformationCacheModel implements CacheModel<BasicInformation>,
 		fileLocation = objectInput.readUTF();
 		basePay = objectInput.readDouble();
 		performancePay = objectInput.readDouble();
-		health = objectInput.readInt();
+		health = objectInput.readUTF();
 		contactPhone = objectInput.readUTF();
 		mail = objectInput.readUTF();
 		domicile = objectInput.readUTF();
@@ -388,7 +394,13 @@ public class BasicInformationCacheModel implements CacheModel<BasicInformation>,
 
 		objectOutput.writeDouble(basePay);
 		objectOutput.writeDouble(performancePay);
-		objectOutput.writeInt(health);
+
+		if (health == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(health);
+		}
 
 		if (contactPhone == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -476,7 +488,7 @@ public class BasicInformationCacheModel implements CacheModel<BasicInformation>,
 	public String fileLocation;
 	public double basePay;
 	public double performancePay;
-	public int health;
+	public String health;
 	public String contactPhone;
 	public String mail;
 	public String domicile;

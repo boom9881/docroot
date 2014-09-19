@@ -235,11 +235,11 @@ public class BasicInformationSoap implements Serializable {
 		_performancePay = performancePay;
 	}
 
-	public int getHealth() {
+	public String getHealth() {
 		return _health;
 	}
 
-	public void setHealth(int health) {
+	public void setHealth(String health) {
 		_health = health;
 	}
 
@@ -379,7 +379,7 @@ public class BasicInformationSoap implements Serializable {
 	private String _fileLocation;
 	private double _basePay;
 	private double _performancePay;
-	private int _health;
+	private String _health;
 	private String _contactPhone;
 	private String _mail;
 	private String _domicile;

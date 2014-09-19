@@ -9,11 +9,14 @@ long biId = Long.parseLong(String.valueOf(request.getAttribute("bi.id")));
 BasicInformation basicInformation = null;
 ExtInformation extInformation = null;
 
-if(Validator.isNotNull(biId)){
-	basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(biId);
-}
-if(Validator.isNotNull(userId)){
-	extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
+try{
+	if(Validator.isNotNull(biId)){
+		basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(biId);
+	}
+	if(Validator.isNotNull(userId)){
+		extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
+	}
+}catch(Exception e){
 }
 
 String fiy = StringPool.BLANK;
@@ -52,15 +55,10 @@ if(extInformation != null){
 </aui:select>
 
 <liferay-ui:tabs
-	names="收款信息,劳动关系,社保信息,工资"
+	names="劳动关系,工资,社保信息,收款信息"
 	url="<%= portletURL.toString() %>"
 	refresh="false"
 >
-	<liferay-ui:section>
-		<aui:input bean="<%= extInformation %>" name="openCity" label="开户城市" />
-		<aui:input bean="<%= extInformation %>" name="bankName" label="开户行全称" />
-		<aui:input bean="<%= extInformation %>" name="bankId" label="银行账号" />
-	</liferay-ui:section>
 	<liferay-ui:section>
 		<table width="250px">
 			<tr>
@@ -130,20 +128,47 @@ if(extInformation != null){
 		</table>
 	</liferay-ui:section>
 	<liferay-ui:section>
-		<aui:input type="checkbox" bean="<%= extInformation %>" name="isInsured" label="从未参加过社会保险" />
-		<aui:input bean="<%= extInformation %>" name="induredLocation" label="参加社保保险地点(城市)" />
-		
-		<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
-			<liferay-util:param name="name" value="fristInsured" />
-			<liferay-util:param name="label" value="参加社会保险时间" />
-			<liferay-util:param name="year_end" value="<%= String.valueOf(IntranetUtil.getCurYear()) %>" />
-			<liferay-util:param name="yearValue" value="<%= fiy %>" />
-			<liferay-util:param name="monthValue" value="<%= fim %>" />
-		</liferay-util:include>
-		
-	</liferay-ui:section>
-	<liferay-ui:section>
 		<aui:input bean="<%= extInformation %>" name="basicWage" label="基本工资" />
 		<aui:input bean="<%= extInformation %>" name="otherWage" label="绩效工资" />
 	</liferay-ui:section>
+	<liferay-ui:section>
+		<%
+		String isInsuredFunction = renderResponse.getNamespace()+"changeStates()";
+		%>
+		<aui:input type="checkbox" bean="<%= extInformation %>" name="isInsured" label="从未参加过社会保险" onChange="<%= isInsuredFunction %>" />
+		
+		<div id="<portlet:namespace />insuredInfo" style="margin-top:20px;">
+			<aui:input bean="<%= extInformation %>" name="induredLocation" label="参加社保保险地点(城市)" />
+			
+			<div  style="margin-top:-15px;">
+				<liferay-util:include page="/html/satff/date.jsp"  servletContext="<%= application %>" >
+					<liferay-util:param name="name" value="fristInsured" />
+					<liferay-util:param name="label" value="参加社保时间" />
+					<liferay-util:param name="year_end" value="<%= String.valueOf(IntranetUtil.getCurYear()) %>" />
+					<liferay-util:param name="yearValue" value="<%= fiy %>" />
+					<liferay-util:param name="monthValue" value="<%= fim %>" />
+				</liferay-util:include>
+			</div>
+		</div>
+	</liferay-ui:section>
+	<liferay-ui:section>
+		<aui:input bean="<%= extInformation %>" name="openCity" label="开户城市" />
+		<aui:input bean="<%= extInformation %>" name="bankName" label="开户行全称" />
+		<aui:input bean="<%= extInformation %>" name="bankId" label="银行账号" />
+	</liferay-ui:section>
 </liferay-ui:tabs>
+
+<aui:script>
+	function <portlet:namespace />changeStates(){
+		var ele = document.getElementById('<portlet:namespace />isInsured');
+		var con = document.getElementById('<portlet:namespace />insuredInfo');
+		
+		if((ele.value+'') == 'true'){
+			con.style.display = 'none';
+		}
+		
+		if((ele.value+'') == 'false'){
+			con.style.display = 'inline';
+		}
+	}
+</aui:script>

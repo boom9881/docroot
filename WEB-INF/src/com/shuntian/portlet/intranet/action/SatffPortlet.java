@@ -7,18 +7,21 @@ import java.util.List;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
+import com.liferay.portal.DuplicateUserEmailAddressException;
+import com.liferay.portal.UserEmailAddressException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
-import com.shuntian.portlet.intranet.NoSuchBasicInformationException;
 import com.shuntian.portlet.intranet.model.BasicInformation;
 import com.shuntian.portlet.intranet.model.Education;
 import com.shuntian.portlet.intranet.model.ExtInformation;
@@ -49,12 +52,21 @@ public class SatffPortlet extends MVCPortlet {
 		List<WorkExperience> wes = getWorkExperiences(request);
 		List<Education> edus = getEducations(request);
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				BasicInformation.class.getName(), request);
+		if (SessionErrors.isEmpty(request)) {
+			try {
+				ServiceContext serviceContext = ServiceContextFactory
+						.getInstance(BasicInformation.class.getName(), request);
 
-		BasicInformationLocalServiceUtil
-				.editStaff(themeDisplay.getCompanyId(), biId, userId,
-						curUserId, bi, ei, edus, wes, frs, serviceContext);
+				BasicInformationLocalServiceUtil.editStaff(
+						themeDisplay.getCompanyId(), biId, userId, curUserId,
+						bi, ei, edus, wes, frs, serviceContext);
+			} catch (Exception e) {
+				if (e instanceof DuplicateUserEmailAddressException
+						|| e instanceof UserEmailAddressException) {
+					SessionErrors.add(request, e.getClass(), e);
+				}
+			}
+		}
 	}
 
 	public void leaveSatff(ActionRequest request, ActionResponse response)
@@ -76,11 +88,11 @@ public class SatffPortlet extends MVCPortlet {
 
 	private BasicInformation getBasicInformation(ActionRequest request) {
 		int sex = ParamUtil.getInteger(request, "sex");
-		int health = ParamUtil.getInteger(request, "health");
 		int birthDateYear = ParamUtil.getInteger(request, "birthDateYear");
 		int birthDateMonth = ParamUtil.getInteger(request, "birthDateMonth");
 		int birthDateDay = ParamUtil.getInteger(request, "birthDateDay");
 		long departmentId = ParamUtil.getLong(request, "departmentId");
+		String health = ParamUtil.getString(request, "health");
 		String name = ParamUtil.getString(request, "name");
 		String nation = ParamUtil.getString(request, "nation");
 		String maritalStatus = ParamUtil.getString(request, "maritalStatus");
@@ -233,6 +245,21 @@ public class SatffPortlet extends MVCPortlet {
 			String contactPhone = ParamUtil.getString(request, "eContactPhone"
 					+ edusIndexValue);
 
+			if (Validator.isNull(university) && Validator.isNull(professional)
+					&& Validator.isNull(witness)
+					&& Validator.isNull(contactPhone)) {
+				continue;
+			}
+
+			if (Validator.isNull(university)) {
+				SessionErrors.add(request,
+						"dhst.intranet.satff.edu.university.null");
+			}
+			if (Validator.isNull(professional)) {
+				SessionErrors.add(request,
+						"dhst.intranet.satff.edu.professional.null");
+			}
+
 			Education edu = EducationLocalServiceUtil.createEducation(eduId);
 
 			edu.setEUniversity(university);
@@ -287,6 +314,21 @@ public class SatffPortlet extends MVCPortlet {
 			String contactPhone = ParamUtil.getString(request, "weContactPhone"
 					+ worksIndexValue);
 
+			if (Validator.isNull(workUnit) && Validator.isNull(witness)
+					&& Validator.isNull(onceJob)
+					&& Validator.isNull(contactPhone)) {
+				continue;
+			}
+
+			if (Validator.isNull(workUnit)) {
+				SessionErrors.add(request,
+						"dhst.intranet.satff.we.workUnit.null");
+			}
+			if (Validator.isNull(onceJob)) {
+				SessionErrors.add(request,
+						"dhst.intranet.satff.we.onceJob.null");
+			}
+
 			WorkExperience we = WorkExperienceLocalServiceUtil
 					.createWorkExperience(workId);
 
@@ -335,6 +377,25 @@ public class SatffPortlet extends MVCPortlet {
 					+ frsIndexValue);
 			String onceJob = ParamUtil.getString(request, "frOnceJob"
 					+ frsIndexValue);
+
+			if (Validator.isNull(workUnit) && Validator.isNull(name)
+					&& Validator.isNull(onceJob)
+					&& Validator.isNull(contactPhone)
+					&& Validator.isNull(relationship)) {
+				continue;
+			}
+
+			if (Validator.isNull(name)) {
+				SessionErrors.add(request, "dhst.intranet.satff.fr.name.null");
+			}
+			if (Validator.isNull(relationship)) {
+				SessionErrors.add(request,
+						"dhst.intranet.satff.fr.relationship.null");
+			}
+			if (Validator.isNull(contactPhone)) {
+				SessionErrors.add(request,
+						"dhst.intranet.satff.fr.contactPhone.null");
+			}
 
 			FamilyRelationship fr = FamilyRelationshipLocalServiceUtil
 					.createFamilyRelationship(frId);

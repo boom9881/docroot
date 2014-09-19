@@ -180,7 +180,7 @@ public class BasicInformationWrapper implements BasicInformation,
 			setPerformancePay(performancePay);
 		}
 
-		Integer health = (Integer)attributes.get("health");
+		String health = (String)attributes.get("health");
 
 		if (health != null) {
 			setHealth(health);
@@ -629,7 +629,7 @@ public class BasicInformationWrapper implements BasicInformation,
 	* @return the health of this basic information
 	*/
 	@Override
-	public int getHealth() {
+	public java.lang.String getHealth() {
 		return _basicInformation.getHealth();
 	}
 
@@ -639,7 +639,7 @@ public class BasicInformationWrapper implements BasicInformation,
 	* @param health the health of this basic information
 	*/
 	@Override
-	public void setHealth(int health) {
+	public void setHealth(java.lang.String health) {
 		_basicInformation.setHealth(health);
 	}
 

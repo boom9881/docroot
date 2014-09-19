@@ -77,7 +77,7 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 			{ "fileLocation", Types.VARCHAR },
 			{ "basePay", Types.DOUBLE },
 			{ "performancePay", Types.DOUBLE },
-			{ "health", Types.INTEGER },
+			{ "health", Types.VARCHAR },
 			{ "contactPhone", Types.VARCHAR },
 			{ "mail", Types.VARCHAR },
 			{ "domicile", Types.VARCHAR },
@@ -94,7 +94,7 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 			{ "modifiedUserId", Types.BIGINT },
 			{ "modifiedDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_BasicInformation (id_ LONG not null primary key,userId LONG,name VARCHAR(75) null,sex INTEGER,idNumber VARCHAR(75) null,nation VARCHAR(75) null,placeOfOrigin VARCHAR(75) null,accountProperties VARCHAR(75) null,birthDate DATE null,maritalStatus VARCHAR(75) null,highestDegree VARCHAR(75) null,politicalBackground VARCHAR(75) null,fileLocation VARCHAR(75) null,basePay DOUBLE,performancePay DOUBLE,health INTEGER,contactPhone VARCHAR(75) null,mail VARCHAR(75) null,domicile VARCHAR(75) null,residencePhone VARCHAR(75) null,currentResidentialAddress VARCHAR(75) null,currentResidentialAddressPhone VARCHAR(75) null,emergencyContact VARCHAR(75) null,emergencyContactRelation VARCHAR(75) null,emergencyContactPhone VARCHAR(75) null,isLeave INTEGER,departmentId LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_BasicInformation (id_ LONG not null primary key,userId LONG,name VARCHAR(75) null,sex INTEGER,idNumber VARCHAR(75) null,nation VARCHAR(75) null,placeOfOrigin VARCHAR(75) null,accountProperties VARCHAR(75) null,birthDate DATE null,maritalStatus VARCHAR(75) null,highestDegree VARCHAR(75) null,politicalBackground VARCHAR(75) null,fileLocation VARCHAR(75) null,basePay DOUBLE,performancePay DOUBLE,health VARCHAR(75) null,contactPhone VARCHAR(75) null,mail VARCHAR(75) null,domicile VARCHAR(75) null,residencePhone VARCHAR(75) null,currentResidentialAddress VARCHAR(75) null,currentResidentialAddressPhone VARCHAR(75) null,emergencyContact VARCHAR(75) null,emergencyContactRelation VARCHAR(75) null,emergencyContactPhone VARCHAR(75) null,isLeave INTEGER,departmentId LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_BasicInformation";
 	public static final String ORDER_BY_JPQL = " ORDER BY basicInformation.createDate ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Intranet_BasicInformation.createDate ASC";
@@ -283,7 +283,7 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 			setPerformancePay(performancePay);
 		}
 
-		Integer health = (Integer)attributes.get("health");
+		String health = (String)attributes.get("health");
 
 		if (health != null) {
 			setHealth(health);
@@ -602,12 +602,17 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 	}
 
 	@Override
-	public int getHealth() {
-		return _health;
+	public String getHealth() {
+		if (_health == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _health;
+		}
 	}
 
 	@Override
-	public void setHealth(int health) {
+	public void setHealth(String health) {
 		_health = health;
 	}
 
@@ -1065,6 +1070,12 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 
 		basicInformationCacheModel.health = getHealth();
 
+		String health = basicInformationCacheModel.health;
+
+		if ((health != null) && (health.length() == 0)) {
+			basicInformationCacheModel.health = null;
+		}
+
 		basicInformationCacheModel.contactPhone = getContactPhone();
 
 		String contactPhone = basicInformationCacheModel.contactPhone;
@@ -1401,7 +1412,7 @@ public class BasicInformationModelImpl extends BaseModelImpl<BasicInformation>
 	private String _fileLocation;
 	private double _basePay;
 	private double _performancePay;
-	private int _health;
+	private String _health;
 	private String _contactPhone;
 	private String _mail;
 	private String _domicile;

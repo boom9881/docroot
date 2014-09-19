@@ -27,7 +27,7 @@ create table Intranet_BasicInformation (
 	fileLocation VARCHAR(75) null,
 	basePay DOUBLE,
 	performancePay DOUBLE,
-	health INTEGER,
+	health VARCHAR(75) null,
 	contactPhone VARCHAR(75) null,
 	mail VARCHAR(75) null,
 	domicile VARCHAR(75) null,

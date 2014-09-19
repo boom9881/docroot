@@ -27,7 +27,7 @@
 		<column name="fileLocation" type="String" />
 		<column name="basePay" type="double" />
 		<column name="performancePay" type="double" />
-		<column name="health" type="int" />
+		<column name="health" type="String" />
 		<column name="contactPhone" type="String" />
 		<column name="mail" type="String" />
 		<column name="domicile" type="String" />

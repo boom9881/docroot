@@ -14,8 +14,12 @@ if(Validator.isNotNull(biId)){
 %>
 
 <aui:fieldset cssClass="span5">
-	<aui:input bean="<%= basicInformation %>" name="name" label="姓名" />
-	<aui:input bean="<%= basicInformation %>" name="idNumber" label="身份证号" />
+	<aui:input bean="<%= basicInformation %>" name="name" label="姓名">
+		<aui:validator name="required" />
+	</aui:input>
+	<aui:input bean="<%= basicInformation %>" name="idNumber" label="身份证号" >
+		<aui:validator name="required" />
+	</aui:input>
 	<%--
 	<aui:input bean="<%= basicInformation %>" name="birthDate" label="出生年月(yyyyMMdd)" value="<%= birthDateValue %>" />
 	--%>
@@ -28,7 +32,8 @@ if(Validator.isNotNull(biId)){
 		<liferay-util:param name="name" value="birthDate" />
 		<liferay-util:param name="label" value="出生日期" />
 		<liferay-util:param name="showDay" value="true" />
-		<liferay-util:param name="year_start" value="1960" />
+		<liferay-util:param name="year_start" value="<%= String.valueOf(IntranetUtil.getCurYear() - 65) %>" />
+		<liferay-util:param name="year_end" value="<%= String.valueOf(IntranetUtil.getCurYear() - 16) %>" />
 		<liferay-util:param name="yearValue" value="<%= String.valueOf(birthDate.get(Calendar.YEAR)) %>" />
 		<liferay-util:param name="monthValue" value="<%= String.valueOf(birthDate.get(Calendar.MONTH)) %>" />
 		<liferay-util:param name="dayValue" value="<%= String.valueOf(birthDate.get(Calendar.DATE)) %>" />
@@ -44,7 +49,9 @@ if(Validator.isNotNull(biId)){
 	<aui:input bean="<%= basicInformation %>" name="fileLocation" label="存档地点" />
 </aui:fieldset>
 <aui:fieldset  cssClass="span5">
-	<aui:input bean="<%= basicInformation %>" name="mail" label="常用邮箱" />
+	<aui:input bean="<%= basicInformation %>" name="mail" label="常用邮箱" >
+		<aui:validator name="required" />
+	</aui:input>
 	<aui:input bean="<%= basicInformation %>" name="contactPhone" label="联系电话" />
 	<aui:select bean="<%= basicInformation %>" name="sex" label="性别">
 		<aui:option label="男" value="1" />

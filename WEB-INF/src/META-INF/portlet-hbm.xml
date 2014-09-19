@@ -45,7 +45,7 @@
 		<property name="fileLocation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="basePay" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="performancePay" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="health" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="health" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="contactPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="mail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="domicile" type="com.liferay.portal.dao.orm.hibernate.StringType" />

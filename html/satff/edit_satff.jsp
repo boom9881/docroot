@@ -8,7 +8,7 @@ int userRole = OverTimeSum.isSatff(themeDisplay.getUserId());// 1=hr;2=satff
 long biId = ParamUtil.getLong(request, "biId");
 long userId = ParamUtil.getLong(request, "userId");
 
-if(userRole == 2){
+if(portletName.equals("individual_info")){
 	userId = themeDisplay.getUserId();
 }
 
@@ -57,10 +57,30 @@ String[][] categorySections = {mainSections};
 	<portlet:param name="mvcPath" value="/html/satff/view.jsp" />
 </portlet:renderURL>
 
-<liferay-ui:header
-	backURL="<%= backURL.toString() %>"
-	title='<%= (basicInformation == null) ? "员工信息登记" : "员工信息： " + basicInformation.getName() %>'
-/>
+<liferay-ui:error exception="<%= com.liferay.portal.DuplicateUserEmailAddressException.class %>" message="常用邮箱已经存在。" focusField="mail" />
+<liferay-ui:error exception="<%= com.liferay.portal.UserEmailAddressException.class %>" message="邮箱格式错误。" focusField="mail" />
+
+<liferay-ui:error key="dhst.intranet.satff.edu.university.null" message="教育经历的毕业院校不能为空。" />
+<liferay-ui:error key="dhst.intranet.satff.edu.professional.null" message="教育经历的专业不能为空。" />
+<liferay-ui:error key="dhst.intranet.satff.we.workUnit.null" message="工作经历的工作单位不能为空。" />
+<liferay-ui:error key="dhst.intranet.satff.we.onceJob.null" message="工作经历的曾任职务不能为空。" />
+<liferay-ui:error key="dhst.intranet.satff.fr.name.null" message="家庭关系的姓名不能为空。" />
+<liferay-ui:error key="dhst.intranet.satff.fr.relationship.null" message="家庭关系的与本人关系不能为空。" />
+<liferay-ui:error key="dhst.intranet.satff.fr.contactPhone.null" message="家庭关系的联系电话不能为空。" />
+
+<c:choose>
+	<c:when test='<%= portletName.equals("individual_info") %>'>
+		<liferay-ui:header
+			title='<%= (basicInformation == null) ? "员工信息登记" : "员工信息： " + basicInformation.getName() %>'
+		/>
+	</c:when>
+	<c:otherwise>
+		<liferay-ui:header
+			backURL="<%= backURL.toString() %>"
+			title='<%= (basicInformation == null) ? "员工信息登记" : "员工信息： " + basicInformation.getName() %>'
+		/>
+	</c:otherwise>
+</c:choose>
 
 <aui:form action="<%= editUserActionURL.toString() %>" method="post" name="fm">
 	<aui:input type="hidden" name="biId" value="<%= biId %>" />
@@ -79,12 +99,25 @@ String[][] categorySections = {mainSections};
 	<liferay-util:buffer var="htmlBottom">
 	</liferay-util:buffer>
 	
-	<liferay-ui:form-navigator
-		backURL="<%= backURL %>"
-		categoryNames="<%= _CATEGORY_NAMES %>"
-		categorySections="<%= categorySections %>"
-		htmlBottom="<%= htmlBottom %>"
-		htmlTop="<%= htmlTop %>"
-		jspPath="/html/satff/"
-	/>
+	<c:choose>
+		<c:when test='<%= portletName.equals("individual_info") %>'>
+			<liferay-ui:form-navigator
+				categoryNames="<%= _CATEGORY_NAMES %>"
+				categorySections="<%= categorySections %>"
+				htmlBottom="<%= htmlBottom %>"
+				htmlTop="<%= htmlTop %>"
+				jspPath="/html/satff/"
+			/>
+		</c:when>
+		<c:otherwise>
+			<liferay-ui:form-navigator
+				backURL="<%= backURL %>"
+				categoryNames="<%= _CATEGORY_NAMES %>"
+				categorySections="<%= categorySections %>"
+				htmlBottom="<%= htmlBottom %>"
+				htmlTop="<%= htmlTop %>"
+				jspPath="/html/satff/"
+			/>
+		</c:otherwise>
+	</c:choose>
 </aui:form>

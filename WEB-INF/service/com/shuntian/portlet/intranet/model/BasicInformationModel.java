@@ -299,14 +299,15 @@ public interface BasicInformationModel extends BaseModel<BasicInformation> {
 	 *
 	 * @return the health of this basic information
 	 */
-	public int getHealth();
+	@AutoEscape
+	public String getHealth();
 
 	/**
 	 * Sets the health of this basic information.
 	 *
 	 * @param health the health of this basic information
 	 */
-	public void setHealth(int health);
+	public void setHealth(String health);
 
 	/**
 	 * Returns the contact phone of this basic information.

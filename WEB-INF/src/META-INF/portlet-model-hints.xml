@@ -29,7 +29,7 @@
 		<field name="fileLocation" type="String" />
 		<field name="basePay" type="double" />
 		<field name="performancePay" type="double" />
-		<field name="health" type="int" />
+		<field name="health" type="String" />
 		<field name="contactPhone" type="String" />
 		<field name="mail" type="String" />
 		<field name="domicile" type="String" />

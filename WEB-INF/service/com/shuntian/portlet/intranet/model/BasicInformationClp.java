@@ -206,7 +206,7 @@ public class BasicInformationClp extends BaseModelImpl<BasicInformation>
 			setPerformancePay(performancePay);
 		}
 
-		Integer health = (Integer)attributes.get("health");
+		String health = (String)attributes.get("health");
 
 		if (health != null) {
 			setHealth(health);
@@ -666,19 +666,19 @@ public class BasicInformationClp extends BaseModelImpl<BasicInformation>
 	}
 
 	@Override
-	public int getHealth() {
+	public String getHealth() {
 		return _health;
 	}
 
 	@Override
-	public void setHealth(int health) {
+	public void setHealth(String health) {
 		_health = health;
 
 		if (_basicInformationRemoteModel != null) {
 			try {
 				Class<?> clazz = _basicInformationRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setHealth", int.class);
+				Method method = clazz.getMethod("setHealth", String.class);
 
 				method.invoke(_basicInformationRemoteModel, health);
 			}
@@ -1438,7 +1438,7 @@ public class BasicInformationClp extends BaseModelImpl<BasicInformation>
 	private String _fileLocation;
 	private double _basePay;
 	private double _performancePay;
-	private int _health;
+	private String _health;
 	private String _contactPhone;
 	private String _mail;
 	private String _domicile;

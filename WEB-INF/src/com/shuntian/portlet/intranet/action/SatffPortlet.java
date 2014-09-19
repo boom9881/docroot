@@ -58,7 +58,7 @@ public class SatffPortlet extends MVCPortlet {
 	}
 
 	public void leaveSatff(ActionRequest request, ActionResponse response)
-			throws NoSuchBasicInformationException, SystemException {
+			throws SystemException, PortalException {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay) request
 				.getAttribute(WebKeys.THEME_DISPLAY);

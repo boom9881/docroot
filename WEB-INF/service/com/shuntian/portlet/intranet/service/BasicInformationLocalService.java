@@ -259,8 +259,8 @@ public interface BasicInformationLocalService extends BaseLocalService,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public void leave(long id, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchBasicInformationException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByIsLeave(
 		boolean isLeave)

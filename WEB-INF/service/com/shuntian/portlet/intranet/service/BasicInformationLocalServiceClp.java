@@ -767,8 +767,8 @@ public class BasicInformationLocalServiceClp
 
 	@Override
 	public void leave(long id, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchBasicInformationException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName20,
 				_methodParameterTypes20, new Object[] { id, userId });
@@ -776,12 +776,12 @@ public class BasicInformationLocalServiceClp
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.shuntian.portlet.intranet.NoSuchBasicInformationException) {
-				throw (com.shuntian.portlet.intranet.NoSuchBasicInformationException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

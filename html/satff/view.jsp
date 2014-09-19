@@ -35,21 +35,28 @@ List resultRows = searchContainer.getResultRows();
 
 for (int i = 0; i < results.size(); i++) {
 	BasicInformation bi = (BasicInformation) results.get(i);
-		
+	
 	ResultRow row = new ResultRow(bi,bi.getId(), i);
-
-	row.addText(bi.getName());
+	
+	String fontStyleS = StringPool.BLANK;
+	String fontStyleE = StringPool.BLANK;
+	if(bi.getIsLeave() == 1){
+		fontStyleS = "<p style='color:red;'>";
+		fontStyleE = "</p>";
+	}
+	
+	row.addText(fontStyleS + bi.getName() + fontStyleE);
 	
 	if(Validator.isNotNull(bi.getDepartmentId())){
 		Department dep = DepartmentLocalServiceUtil.getDepartment(bi.getDepartmentId());
 		
-		row.addText(dep.getName());
+		row.addText(fontStyleS + dep.getName() + fontStyleE);
 	}else{
 		row.addText(StringPool.BLANK);
 	}
-	row.addText(bi.getContactPhone());
-	row.addText(bi.getMail());
-	row.addText(bi.getIdNumber());
+	row.addText(fontStyleS + bi.getContactPhone() + fontStyleE);
+	row.addText(fontStyleS + bi.getMail() + fontStyleE);
+	row.addText(fontStyleS + bi.getIdNumber() + fontStyleE);
 	
 	row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/satff/action.jsp");
 

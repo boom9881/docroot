@@ -94,12 +94,6 @@
 	<portlet:param name="<%=Constants.CMD %>" value="<%=Constants.PREVIEW %>" />
 </portlet:renderURL>
 
-<portlet:renderURL var="backURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
-	<portlet:param name="mvcPath" value="/html/wages/view.jsp" />
-</portlet:renderURL>
-
-<liferay-ui:header	backURL="<%= backURL.toString() %>"	title='生成工资'/>
-
 <aui:form action="<%= editUserActionURL.toString() %>" method="post" name="fm">
 	<table>
 		<tr>
@@ -131,7 +125,6 @@
 					String preURL = renderResponse.getNamespace()+"onSub('"+previewURL.toString()+"');";
 					%>
 					<aui:button value="生成工资预览" onClick="<%= preURL %>" />
-					<aui:button type="submit" value="保存" />
 				</div>
 			</td>
 		</tr>
@@ -139,6 +132,8 @@
 	
 	<c:if test='<%= cmd.equals(Constants.PREVIEW)%>'>
 		<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />	
+		<br/>
+		<aui:button type="submit" value="保存" />
 	</c:if>
 </aui:form>
 

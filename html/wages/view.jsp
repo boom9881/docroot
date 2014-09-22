@@ -47,6 +47,7 @@ headerNames.add("社保个人承担部分");
 //headerNames.add("税率");
 headerNames.add("税金");
 headerNames.add("实发工资");
+headerNames.add("操作");
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, "没有工资信息被显示。");
 
@@ -85,6 +86,8 @@ for (int i = 0; i < results.size(); i++) {
 	//row.addText(String.valueOf(wages.getTaxRate())+"%");
 	row.addText(String.valueOf(df.format((wages.getTaxes()))));
 	row.addText(String.valueOf(df.format(wages.getRealWages())));
+	
+	row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/wages/action.jsp");
 	
 	resultRows.add(row);
 }

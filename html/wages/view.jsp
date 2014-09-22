@@ -94,10 +94,10 @@ for (int i = 0; i < results.size(); i++) {
 	<portlet:param name="mvcPath" value="/html/wages/view.jsp" />
 </portlet:renderURL>
 
-<portlet:renderURL var="addWagestURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
+<liferay-portlet:renderURL var="addWagestURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 	<portlet:param name="mvcPath" value="/html/wages/edit_wages.jsp" />
 	<portlet:param name="<%=Constants.CMD %>" value="<%=Constants.ADD %>" />
-</portlet:renderURL>
+</liferay-portlet:renderURL>
 
 <aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">
 	<table>
@@ -136,7 +136,7 @@ for (int i = 0; i < results.size(); i++) {
 					<aui:button type="submit" value="搜索" />
 					<c:if test='<%= userRole == 1 %>'>
 						<%
-						String addURL = renderResponse.getNamespace()+"onSub('"+addWagestURL.toString()+"');";
+						String addURL = renderResponse.getNamespace()+"generateWages('"+addWagestURL.toString()+"');";
 						%>
 						<aui:button value="生成工资" onClick="<%= addURL %>" />
 					</c:if>
@@ -149,11 +149,35 @@ for (int i = 0; i < results.size(); i++) {
 	</div>
 </aui:form>
  
- <aui:script>
-	function <portlet:namespace />onSub(url){
-		document.<portlet:namespace />fm.action = url;
+ <aui:script use="aui-base">
+ 	Liferay.provide(
+		window,
+		'<portlet:namespace />generateWages',
+		function(url) {
+			var instance = this;
 
-		submitForm(document.<portlet:namespace />fm);
-	}
+			Liferay.Util.openWindow(
+				{
+					cache: false,
+					dialog: {
+						align: Liferay.Util.Window.ALIGN_CENTER,
+						after: {
+							render: function(event) {
+								this.set('y', this.get('y') + 50);
+							}
+						},
+						width: 1020
+					},
+					dialogIframe: {
+						id: 'generateWagesIframe',
+						uri: url
+					},
+					title: '生成工资',
+					uri: url
+				}
+			);
+		},
+		['liferay-util-window']
+	);
 </aui:script>
  

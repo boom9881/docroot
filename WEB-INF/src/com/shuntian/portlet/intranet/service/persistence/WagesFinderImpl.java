@@ -30,14 +30,14 @@ public class WagesFinderImpl extends BasePersistenceImpl<Wages> implements
 			session = openSession();
 
 			StringBuffer sql = new StringBuffer(
-					"SELECT COUNT(ot.id_) as COUNT_VALUE ");
-			sql.append("FROM intranet_overtime ot LEFT JOIN intranet_basicinformation bi ON ot.userId = bi.id_ ");
+					"SELECT COUNT(wages.id_) as COUNT_VALUE ");
+			sql.append("FROM intranet_wages wages LEFT JOIN intranet_basicinformation bi ON wages.userId = bi.id_ ");
 			sql.append("LEFT JOIN intranet_department dep ON bi.departmentId = dep.id_ WHERE ");
 			if (Validator.isNotNull(searchYear)) {
-				sql.append(" ot.overtimeYear = ? and ");
+				sql.append(" wages.distributionYear = ? and ");
 			}
 			if (Validator.isNotNull(searchMonth)) {
-				sql.append(" ot.overtimeMonthly = ? and ");
+				sql.append(" wages.distributionMonth = ? and ");
 			}
 			if (Validator.isNotNull(departmentId)) {
 				sql.append(" bi.departmentId = ? and ");
@@ -103,15 +103,16 @@ public class WagesFinderImpl extends BasePersistenceImpl<Wages> implements
 			session = openSession();
 
 			StringBuffer sql = new StringBuffer(
-					"SELECT ot.id_,bi.name,ot.usuallyOvertime,ot.restOvertime,ot.legalOvertime,");
-			sql.append("ot.overtimeYear,ot.overtimeMonthly,bi.id_ as biId,dep.`name` AS dn ");
-			sql.append("FROM intranet_overtime ot LEFT JOIN intranet_basicinformation bi ON ot.userId = bi.id_ ");
+					"SELECT wages.id_,bi.name,wages.distributionYear,wages.distributionMonth,wages.basePay, ");
+			sql.append("wages.performanceSalary,wages.totalWages,wages.socialCompanyBearPart, ");
+			sql.append("wages.socialIndividualsBearPart,wages.taxes,wages.realWages,bi.id_ as biId,dep.`name` AS dn ");
+			sql.append("FROM intranet_wages wages LEFT JOIN intranet_basicinformation bi ON wages.userId = bi.id_ ");
 			sql.append("LEFT JOIN intranet_department dep ON bi.departmentId = dep.id_ WHERE ");
 			if (Validator.isNotNull(searchYear)) {
-				sql.append(" ot.overtimeYear = ? and ");
+				sql.append(" wages.distributionYear = ? and ");
 			}
 			if (Validator.isNotNull(searchMonth)) {
-				sql.append(" ot.overtimeMonthly = ? and ");
+				sql.append(" wages.distributionMonth = ? and ");
 			}
 			if (Validator.isNotNull(departmentId)) {
 				sql.append(" bi.departmentId = ? and ");
@@ -154,13 +155,17 @@ public class WagesFinderImpl extends BasePersistenceImpl<Wages> implements
 
 				m.put("id", getValue(obj[0]));
 				m.put("name", getValue(obj[1]));
-				m.put("biId", getValue(obj[7]));
-				m.put("usuallyOvertime", getValue(obj[2]));
-				m.put("restOvertime", getValue(obj[3]));
-				m.put("legalOvertime", getValue(obj[4]));
-				m.put("year", getValue(obj[5]));
-				m.put("month", getValue(obj[6]));
-				m.put("dep", getValue(obj[8]));
+				m.put("distributionYear", getValue(obj[2]));
+				m.put("distributionMonth", getValue(obj[3]));
+				m.put("basePay", getValue(obj[4]));
+				m.put("performanceSalary", getValue(obj[5]));
+				m.put("totalWages", getValue(obj[6]));
+				m.put("socialCompanyBearPart", getValue(obj[7]));
+				m.put("socialIndividualsBearPart", getValue(obj[8]));
+				m.put("taxes", getValue(obj[9]));
+				m.put("realWages", getValue(obj[10]));
+				m.put("biId", getValue(obj[11]));
+				m.put("dn", getValue(obj[12]));
 
 				result.add(m);
 			}

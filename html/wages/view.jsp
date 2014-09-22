@@ -51,24 +51,23 @@ headerNames.add("操作");
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL,headerNames, "没有工资信息被显示。");
 
-int total = WagesLocalServiceUtil.getWagesesCount();
+int total = WagesLocalServiceUtil.search(searchDepId, searchUserId, searchWagesYear, searchWagesMonth, searchName);
 
 searchContainer.setTotal(total);
 
-List results = WagesLocalServiceUtil.getWageses(searchContainer.getStart(), searchContainer.getEnd());
+List<Map<String, String>> results = WagesLocalServiceUtil.search(searchDepId, searchUserId, searchWagesYear, searchWagesMonth, searchName, searchContainer.getStart(), searchContainer.getEnd());
 
 searchContainer.setResults(results);
 
 List resultRows = searchContainer.getResultRows();
 
 for (int i = 0; i < results.size(); i++) {
+	Map<String, String> map = results.get(i);
+	
+	ResultRow row = new ResultRow(map,map.get("id"), i);
 
-	Wages wages = (Wages) results.get(i);
-
-	ResultRow row = new ResultRow(wages,wages.getId(), i);
-
-	row.addText(wages.getWageName());
-	row.addText(String.valueOf(wages.getDistributionYear())+"-"+String.valueOf(wages.getDistributionMonth()));
+	row.addText(map.get("name"));
+	row.addText(map.get("distributionYear")+"-"+map.get("distributionMonth"));
 	//row.addText(sdf.format(wages.getEntryDate()));
 	//row.addText(wages.getDepartureDate()!=null?sdf.format(wages.getDepartureDate()):StringPool.BLANK);
 	//row.addText(String.valueOf(df.format(wages.getUserWage())));
@@ -77,15 +76,15 @@ for (int i = 0; i < results.size(); i++) {
 	//row.addText(String.valueOf(wages.getAttendance()));
 	//row.addText(String.valueOf(wages.getRealAttendance()));
 	//row.addText(String.valueOf(df.format(wages.getOvertimeWages())));
-	row.addText(String.valueOf(df.format(wages.getBasePay())));
-	row.addText(String.valueOf(df.format(wages.getPerformanceSalary())));
-	row.addText(String.valueOf(df.format(wages.getTotalWages())));
-	row.addText(String.valueOf(df.format(wages.getSocialCompanyBearPart())));
-	row.addText(String.valueOf(df.format(wages.getSocialIndividualsBearPart())));
+	row.addText(df.format(Double.parseDouble(map.get("basePay"))));
+	row.addText(df.format(Double.parseDouble(map.get("performanceSalary"))));
+	row.addText(df.format(Double.parseDouble(map.get("totalWages"))));
+	row.addText(df.format(Double.parseDouble(map.get("socialCompanyBearPart"))));
+	row.addText(df.format(Double.parseDouble(map.get("socialIndividualsBearPart"))));
 	//row.addText(String.valueOf(df.format(wages.getTaxableIncome())));
 	//row.addText(String.valueOf(wages.getTaxRate())+"%");
-	row.addText(String.valueOf(df.format((wages.getTaxes()))));
-	row.addText(String.valueOf(df.format(wages.getRealWages())));
+	row.addText(df.format(Double.parseDouble(map.get("taxes"))));
+	row.addText(df.format(Double.parseDouble(map.get("realWages"))));
 	
 	row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/wages/action.jsp");
 	

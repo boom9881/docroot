@@ -27,10 +27,18 @@ Calendar probationPeriodStart = CalendarFactoryUtil.getCalendar();
 Calendar probationPeriodEnd = CalendarFactoryUtil.getCalendar();
 
 if(extInformation != null){
-	laborContractStart.setTime(extInformation.getLaborContractStart());
-	laborContractEnd.setTime(extInformation.getLaborContractEnd());
-	probationPeriodStart.setTime(extInformation.getProbationPeriodStart());
-	probationPeriodEnd.setTime(extInformation.getProbationPeriodEnd());
+	if(Validator.isNotNull(extInformation.getLaborContractStart())){
+		laborContractStart.setTime(extInformation.getLaborContractStart());
+	}
+	if(Validator.isNotNull(extInformation.getLaborContractEnd())){
+		laborContractEnd.setTime(extInformation.getLaborContractEnd());
+	}
+	if(Validator.isNotNull(extInformation.getProbationPeriodStart())){
+		probationPeriodStart.setTime(extInformation.getProbationPeriodStart());
+	}
+	if(Validator.isNotNull(extInformation.getProbationPeriodEnd())){
+		probationPeriodEnd.setTime(extInformation.getProbationPeriodEnd());
+	}
 
 	fiy = String.valueOf(extInformation.getFristInsuredYear());
 	fim = String.valueOf(extInformation.getFristInsuredMonth());

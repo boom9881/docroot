@@ -89,6 +89,7 @@
 <%@ page import="com.liferay.portal.service.OrganizationLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.journal.model.JournalArticle" %>
 <%@ page import="com.liferay.portlet.journal.NoSuchArticleException" %>
 <%@ page import="com.liferay.portal.kernel.util.OrderByComparator" %>

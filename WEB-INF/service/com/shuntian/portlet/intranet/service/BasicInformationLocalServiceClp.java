@@ -119,7 +119,8 @@ public class BasicInformationLocalServiceClp
 		_methodName19 = "editStaff";
 
 		_methodParameterTypes19 = new String[] {
-				"long", "long", "long", "long",
+				"long", "long", "long", "long", "java.lang.String",
+				"java.lang.String",
 				"com.shuntian.portlet.intranet.model.BasicInformation",
 				"com.shuntian.portlet.intranet.model.ExtInformation",
 				"java.util.List", "java.util.List", "java.util.List",
@@ -711,6 +712,7 @@ public class BasicInformationLocalServiceClp
 
 	@Override
 	public void editStaff(long companyId, long id, long userId, long curUserId,
+		java.lang.String newPassword1, java.lang.String newPassword2,
 		com.shuntian.portlet.intranet.model.BasicInformation bi,
 		com.shuntian.portlet.intranet.model.ExtInformation ei,
 		java.util.List<com.shuntian.portlet.intranet.model.Education> edus,
@@ -730,6 +732,10 @@ public class BasicInformationLocalServiceClp
 				userId,
 					
 				curUserId,
+					
+				ClpSerializer.translateInput(newPassword1),
+					
+				ClpSerializer.translateInput(newPassword2),
 					
 				ClpSerializer.translateInput(bi),
 					

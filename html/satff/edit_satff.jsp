@@ -26,9 +26,16 @@ request.setAttribute("bi.id", biId);
 String[] _CATEGORY_NAMES = {""};
 //基本信息、（个人收款信息、劳动关系（合同信息）、社保信息）、教育经历、工作经历、家庭关系
 String[] mainSections = "basic_information,staff_information,education,work_experience,family_relationship".split(",");
+if(Validator.isNotNull(basicInformation)){
+	mainSections = "basic_information,password,staff_information,education,work_experience,family_relationship".split(",");
+}
 
 if(userRole == 2){
 	mainSections = "basic_information,education,work_experience,family_relationship".split(",");
+	
+	if(Validator.isNotNull(basicInformation)){
+		mainSections = "basic_information,password,education,work_experience,family_relationship".split(",");
+	}
 }
 
 String[][] categorySections = {mainSections};
@@ -60,6 +67,7 @@ String[][] categorySections = {mainSections};
 <liferay-ui:error exception="<%= com.liferay.portal.DuplicateUserEmailAddressException.class %>" message="常用邮箱已经存在。" focusField="mail" />
 <liferay-ui:error exception="<%= com.liferay.portal.UserEmailAddressException.class %>" message="邮箱格式错误。" focusField="mail" />
 
+<liferay-ui:error key="dhst.intranet.satff.pwd.invalid" message="修改密码失败：请确认输入密码是否一致。" />
 <liferay-ui:error key="dhst.intranet.satff.edu.university.null" message="教育经历的毕业院校不能为空。" />
 <liferay-ui:error key="dhst.intranet.satff.edu.professional.null" message="教育经历的专业不能为空。" />
 <liferay-ui:error key="dhst.intranet.satff.we.workUnit.null" message="工作经历的工作单位不能为空。" />

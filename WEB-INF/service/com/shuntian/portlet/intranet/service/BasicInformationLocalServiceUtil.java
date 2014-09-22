@@ -275,7 +275,8 @@ public class BasicInformationLocalServiceUtil {
 	}
 
 	public static void editStaff(long companyId, long id, long userId,
-		long curUserId,
+		long curUserId, java.lang.String newPassword1,
+		java.lang.String newPassword2,
 		com.shuntian.portlet.intranet.model.BasicInformation bi,
 		com.shuntian.portlet.intranet.model.ExtInformation ei,
 		java.util.List<com.shuntian.portlet.intranet.model.Education> edus,
@@ -285,8 +286,8 @@ public class BasicInformationLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.editStaff(companyId, id, userId, curUserId, bi, ei, edus, wes,
-			frs, serviceContext);
+			.editStaff(companyId, id, userId, curUserId, newPassword1,
+			newPassword2, bi, ei, edus, wes, frs, serviceContext);
 	}
 
 	public static void leave(long id, long userId)

@@ -45,12 +45,16 @@ public class SatffPortlet extends MVCPortlet {
 		long biId = ParamUtil.getLong(request, "biId");
 		long userId = ParamUtil.getLong(request, "userId");
 		long curUserId = themeDisplay.getUserId();
+		String newPassword1 = ParamUtil.getString(request, "newPassword1");
+		String newPassword2 = ParamUtil.getString(request, "newPassword2");
 
 		BasicInformation bi = getBasicInformation(request);
 		ExtInformation ei = getExtInformation(request);
 		List<FamilyRelationship> frs = getFamilyRelationships(request);
 		List<WorkExperience> wes = getWorkExperiences(request);
 		List<Education> edus = getEducations(request);
+
+		validatorPassword(request, newPassword1, newPassword2);
 
 		if (SessionErrors.isEmpty(request)) {
 			try {
@@ -59,7 +63,8 @@ public class SatffPortlet extends MVCPortlet {
 
 				BasicInformationLocalServiceUtil.editStaff(
 						themeDisplay.getCompanyId(), biId, userId, curUserId,
-						bi, ei, edus, wes, frs, serviceContext);
+						newPassword1, newPassword2, bi, ei, edus, wes, frs,
+						serviceContext);
 			} catch (Exception e) {
 				if (e instanceof DuplicateUserEmailAddressException
 						|| e instanceof UserEmailAddressException) {
@@ -410,5 +415,12 @@ public class SatffPortlet extends MVCPortlet {
 		}
 
 		return frs;
+	}
+
+	private void validatorPassword(ActionRequest request, String password1,
+			String password2) {
+		if (!password1.equals(password2)) {
+			SessionErrors.add(request, "dhst.intranet.satff.pwd.invalid");
+		}
 	}
 }

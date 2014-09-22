@@ -22,9 +22,11 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserServiceUtil;
 import com.shuntian.portlet.intranet.NoSuchBasicInformationException;
 import com.shuntian.portlet.intranet.model.BasicInformation;
@@ -60,10 +62,10 @@ public class BasicInformationLocalServiceImpl extends
 		BasicInformationLocalServiceBaseImpl {
 
 	public void editStaff(long companyId, long id, long userId, long curUserId,
-			BasicInformation bi, ExtInformation ei, List<Education> edus,
-			List<WorkExperience> wes, List<FamilyRelationship> frs,
-			ServiceContext serviceContext) throws SystemException,
-			PortalException {
+			String newPassword1, String newPassword2, BasicInformation bi,
+			ExtInformation ei, List<Education> edus, List<WorkExperience> wes,
+			List<FamilyRelationship> frs, ServiceContext serviceContext)
+			throws SystemException, PortalException {
 
 		BasicInformation model = null;
 
@@ -134,6 +136,12 @@ public class BasicInformationLocalServiceImpl extends
 
 		basicInformationPersistence.update(model);
 
+		if (Validator.isNotNull(newPassword1)
+				&& Validator.isNotNull(newPassword2)) {
+			UserLocalServiceUtil.updatePassword(userId, newPassword1,
+					newPassword2, false);
+		}
+
 		extInformationLocalService.editExtInformation(userId, ei);
 		educationLocalService.editEducation(userId, edus);
 		workExperienceLocalService.editWorkExperience(userId, wes);
@@ -150,7 +158,8 @@ public class BasicInformationLocalServiceImpl extends
 
 		basicInformationPersistence.update(bi);
 
-		UserServiceUtil.updateStatus(bi.getUserId(), WorkflowConstants.STATUS_INACTIVE);
+		UserServiceUtil.updateStatus(bi.getUserId(),
+				WorkflowConstants.STATUS_INACTIVE);
 	}
 
 	public List<BasicInformation> findByIsLeave(boolean isLeave)

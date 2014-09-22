@@ -117,7 +117,8 @@ public class BasicInformationLocalServiceClpInvoker {
 		_methodName80 = "editStaff";
 
 		_methodParameterTypes80 = new String[] {
-				"long", "long", "long", "long",
+				"long", "long", "long", "long", "java.lang.String",
+				"java.lang.String",
 				"com.shuntian.portlet.intranet.model.BasicInformation",
 				"com.shuntian.portlet.intranet.model.ExtInformation",
 				"java.util.List", "java.util.List", "java.util.List",
@@ -262,12 +263,13 @@ public class BasicInformationLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				((Long)arguments[3]).longValue(),
-				(com.shuntian.portlet.intranet.model.BasicInformation)arguments[4],
-				(com.shuntian.portlet.intranet.model.ExtInformation)arguments[5],
-				(java.util.List<com.shuntian.portlet.intranet.model.Education>)arguments[6],
-				(java.util.List<com.shuntian.portlet.intranet.model.WorkExperience>)arguments[7],
-				(java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship>)arguments[8],
-				(com.liferay.portal.service.ServiceContext)arguments[9]);
+				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
+				(com.shuntian.portlet.intranet.model.BasicInformation)arguments[6],
+				(com.shuntian.portlet.intranet.model.ExtInformation)arguments[7],
+				(java.util.List<com.shuntian.portlet.intranet.model.Education>)arguments[8],
+				(java.util.List<com.shuntian.portlet.intranet.model.WorkExperience>)arguments[9],
+				(java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship>)arguments[10],
+				(com.liferay.portal.service.ServiceContext)arguments[11]);
 
 			return null;
 		}

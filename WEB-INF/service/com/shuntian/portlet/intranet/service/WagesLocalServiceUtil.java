@@ -278,13 +278,6 @@ public class WagesLocalServiceUtil {
 		return getService().findByY_M(distributionYear, distributionMonth);
 	}
 
-	public static java.util.List<com.shuntian.portlet.intranet.model.Wages> findByU_M(
-		long userId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException {
-		return getService().findByU_M(userId);
-	}
-
 	public static int search(long departmentId, long searchUserId,
 		java.lang.String searchYear, java.lang.String searchMonth,
 		java.lang.String name)

@@ -571,245 +571,6 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 	}
 
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "attendance.userId = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_U_M = new FinderPath(AttendanceModelImpl.ENTITY_CACHE_ENABLED,
-			AttendanceModelImpl.FINDER_CACHE_ENABLED, AttendanceImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByU_M",
-			new String[] { Long.class.getName(), Long.class.getName() },
-			AttendanceModelImpl.USERID_COLUMN_BITMASK |
-			AttendanceModelImpl.ATTENDANCEMONTHLY_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_M = new FinderPath(AttendanceModelImpl.ENTITY_CACHE_ENABLED,
-			AttendanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_M",
-			new String[] { Long.class.getName(), Long.class.getName() });
-
-	/**
-	 * Returns the attendance where userId = &#63; and attendanceMonthly = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchAttendanceException} if it could not be found.
-	 *
-	 * @param userId the user ID
-	 * @param attendanceMonthly the attendance monthly
-	 * @return the matching attendance
-	 * @throws com.shuntian.portlet.intranet.NoSuchAttendanceException if a matching attendance could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Attendance findByU_M(long userId, long attendanceMonthly)
-		throws NoSuchAttendanceException, SystemException {
-		Attendance attendance = fetchByU_M(userId, attendanceMonthly);
-
-		if (attendance == null) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(", attendanceMonthly=");
-			msg.append(attendanceMonthly);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchAttendanceException(msg.toString());
-		}
-
-		return attendance;
-	}
-
-	/**
-	 * Returns the attendance where userId = &#63; and attendanceMonthly = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param userId the user ID
-	 * @param attendanceMonthly the attendance monthly
-	 * @return the matching attendance, or <code>null</code> if a matching attendance could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Attendance fetchByU_M(long userId, long attendanceMonthly)
-		throws SystemException {
-		return fetchByU_M(userId, attendanceMonthly, true);
-	}
-
-	/**
-	 * Returns the attendance where userId = &#63; and attendanceMonthly = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param userId the user ID
-	 * @param attendanceMonthly the attendance monthly
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching attendance, or <code>null</code> if a matching attendance could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Attendance fetchByU_M(long userId, long attendanceMonthly,
-		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { userId, attendanceMonthly };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_M,
-					finderArgs, this);
-		}
-
-		if (result instanceof Attendance) {
-			Attendance attendance = (Attendance)result;
-
-			if ((userId != attendance.getUserId()) ||
-					(attendanceMonthly != attendance.getAttendanceMonthly())) {
-				result = null;
-			}
-		}
-
-		if (result == null) {
-			StringBundler query = new StringBundler(4);
-
-			query.append(_SQL_SELECT_ATTENDANCE_WHERE);
-
-			query.append(_FINDER_COLUMN_U_M_USERID_2);
-
-			query.append(_FINDER_COLUMN_U_M_ATTENDANCEMONTHLY_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(userId);
-
-				qPos.add(attendanceMonthly);
-
-				List<Attendance> list = q.list();
-
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
-						finderArgs, list);
-				}
-				else {
-					if ((list.size() > 1) && _log.isWarnEnabled()) {
-						_log.warn(
-							"AttendancePersistenceImpl.fetchByU_M(long, long, boolean) with parameters (" +
-							StringUtil.merge(finderArgs) +
-							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-					}
-
-					Attendance attendance = list.get(0);
-
-					result = attendance;
-
-					cacheResult(attendance);
-
-					if ((attendance.getUserId() != userId) ||
-							(attendance.getAttendanceMonthly() != attendanceMonthly)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
-							finderArgs, attendance);
-					}
-				}
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
-					finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		if (result instanceof List<?>) {
-			return null;
-		}
-		else {
-			return (Attendance)result;
-		}
-	}
-
-	/**
-	 * Removes the attendance where userId = &#63; and attendanceMonthly = &#63; from the database.
-	 *
-	 * @param userId the user ID
-	 * @param attendanceMonthly the attendance monthly
-	 * @return the attendance that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Attendance removeByU_M(long userId, long attendanceMonthly)
-		throws NoSuchAttendanceException, SystemException {
-		Attendance attendance = findByU_M(userId, attendanceMonthly);
-
-		return remove(attendance);
-	}
-
-	/**
-	 * Returns the number of attendances where userId = &#63; and attendanceMonthly = &#63;.
-	 *
-	 * @param userId the user ID
-	 * @param attendanceMonthly the attendance monthly
-	 * @return the number of matching attendances
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public int countByU_M(long userId, long attendanceMonthly)
-		throws SystemException {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_M;
-
-		Object[] finderArgs = new Object[] { userId, attendanceMonthly };
-
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_ATTENDANCE_WHERE);
-
-			query.append(_FINDER_COLUMN_U_M_USERID_2);
-
-			query.append(_FINDER_COLUMN_U_M_ATTENDANCEMONTHLY_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(userId);
-
-				qPos.add(attendanceMonthly);
-
-				count = (Long)q.uniqueResult();
-
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	private static final String _FINDER_COLUMN_U_M_USERID_2 = "attendance.userId = ? AND ";
-	private static final String _FINDER_COLUMN_U_M_ATTENDANCEMONTHLY_2 = "attendance.attendanceMonthly = ?";
 	public static final FinderPath FINDER_PATH_FETCH_BY_Y_M = new FinderPath(AttendanceModelImpl.ENTITY_CACHE_ENABLED,
 			AttendanceModelImpl.FINDER_CACHE_ENABLED, AttendanceImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByY_M",
@@ -1097,11 +858,6 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 		EntityCacheUtil.putResult(AttendanceModelImpl.ENTITY_CACHE_ENABLED,
 			AttendanceImpl.class, attendance.getPrimaryKey(), attendance);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
-			new Object[] {
-				attendance.getUserId(), attendance.getAttendanceMonthly()
-			}, attendance);
-
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_Y_M,
 			new Object[] {
 				attendance.getUserId(), attendance.getAttendanceYear(),
@@ -1184,14 +940,6 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 	protected void cacheUniqueFindersCache(Attendance attendance) {
 		if (attendance.isNew()) {
 			Object[] args = new Object[] {
-					attendance.getUserId(), attendance.getAttendanceMonthly()
-				};
-
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
-				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args, attendance);
-
-			args = new Object[] {
 					attendance.getUserId(), attendance.getAttendanceYear(),
 					attendance.getAttendanceMonthly()
 				};
@@ -1202,19 +950,6 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 		}
 		else {
 			AttendanceModelImpl attendanceModelImpl = (AttendanceModelImpl)attendance;
-
-			if ((attendanceModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						attendance.getUserId(),
-						attendance.getAttendanceMonthly()
-					};
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
-					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args,
-					attendance);
-			}
 
 			if ((attendanceModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_Y_M.getColumnBitmask()) != 0) {
@@ -1235,24 +970,6 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 		AttendanceModelImpl attendanceModelImpl = (AttendanceModelImpl)attendance;
 
 		Object[] args = new Object[] {
-				attendance.getUserId(), attendance.getAttendanceMonthly()
-			};
-
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
-
-		if ((attendanceModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
-			args = new Object[] {
-					attendanceModelImpl.getOriginalUserId(),
-					attendanceModelImpl.getOriginalAttendanceMonthly()
-				};
-
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
-		}
-
-		args = new Object[] {
 				attendance.getUserId(), attendance.getAttendanceYear(),
 				attendance.getAttendanceMonthly()
 			};
@@ -1458,6 +1175,8 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 		attendanceImpl.setActualAttendance(attendance.getActualAttendance());
 		attendanceImpl.setAttendanceYear(attendance.getAttendanceYear());
 		attendanceImpl.setAttendanceMonthly(attendance.getAttendanceMonthly());
+		attendanceImpl.setStatus(attendance.getStatus());
+		attendanceImpl.setApprover(attendance.getApprover());
 		attendanceImpl.setCreateUserId(attendance.getCreateUserId());
 		attendanceImpl.setCreateDate(attendance.getCreateDate());
 		attendanceImpl.setModifiedUserId(attendance.getModifiedUserId());

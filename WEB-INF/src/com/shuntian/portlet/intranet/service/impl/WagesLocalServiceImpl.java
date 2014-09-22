@@ -49,11 +49,6 @@ public class WagesLocalServiceImpl extends WagesLocalServiceBaseImpl {
 		return wagesPersistence.findByY_M(distributionYear, distributionMonth);
 	}
 
-	public List<Wages> findByU_M(long userId) throws SystemException,
-			NoSuchAttendanceException {
-		return wagesPersistence.findByUserId(userId);
-	}
-
 	public int search(long departmentId, long searchUserId, String searchYear,
 			String searchMonth, String name) throws SystemException {
 

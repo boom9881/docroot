@@ -118,20 +118,16 @@ public class WagesLocalServiceClp implements WagesLocalService {
 
 		_methodParameterTypes19 = new String[] { "long", "long" };
 
-		_methodName20 = "findByU_M";
+		_methodName20 = "search";
 
-		_methodParameterTypes20 = new String[] { "long" };
-
-		_methodName21 = "search";
-
-		_methodParameterTypes21 = new String[] {
+		_methodParameterTypes20 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
 
-		_methodName22 = "search";
+		_methodName21 = "search";
 
-		_methodParameterTypes22 = new String[] {
+		_methodParameterTypes21 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "int", "int"
 			};
@@ -719,40 +715,6 @@ public class WagesLocalServiceClp implements WagesLocalService {
 	}
 
 	@Override
-	public java.util.List<com.shuntian.portlet.intranet.model.Wages> findByU_M(
-		long userId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] { userId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof com.shuntian.portlet.intranet.NoSuchAttendanceException) {
-				throw (com.shuntian.portlet.intranet.NoSuchAttendanceException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.shuntian.portlet.intranet.model.Wages>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public int search(long departmentId, long searchUserId,
 		java.lang.String searchYear, java.lang.String searchMonth,
 		java.lang.String name)
@@ -760,8 +722,8 @@ public class WagesLocalServiceClp implements WagesLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] {
 						departmentId,
 						
@@ -801,8 +763,8 @@ public class WagesLocalServiceClp implements WagesLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
 					new Object[] {
 						departmentId,
 						
@@ -881,6 +843,4 @@ public class WagesLocalServiceClp implements WagesLocalService {
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
-	private String _methodName22;
-	private String[] _methodParameterTypes22;
 }

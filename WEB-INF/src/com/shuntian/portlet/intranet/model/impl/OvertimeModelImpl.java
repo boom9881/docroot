@@ -68,12 +68,14 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 			{ "legalOvertime", Types.DOUBLE },
 			{ "overtimeYear", Types.BIGINT },
 			{ "overtimeMonthly", Types.BIGINT },
+			{ "status", Types.INTEGER },
+			{ "approver", Types.BIGINT },
 			{ "createUserId", Types.BIGINT },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedUserId", Types.BIGINT },
 			{ "modifiedDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_Overtime (id_ LONG not null primary key,userId LONG,usuallyOvertime DOUBLE,restOvertime DOUBLE,legalOvertime DOUBLE,overtimeYear LONG,overtimeMonthly LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_Overtime (id_ LONG not null primary key,userId LONG,usuallyOvertime DOUBLE,restOvertime DOUBLE,legalOvertime DOUBLE,overtimeYear LONG,overtimeMonthly LONG,status INTEGER,approver LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_Overtime";
 	public static final String ORDER_BY_JPQL = " ORDER BY overtime.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY Intranet_Overtime.createDate DESC";
@@ -140,6 +142,8 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 		attributes.put("legalOvertime", getLegalOvertime());
 		attributes.put("overtimeYear", getOvertimeYear());
 		attributes.put("overtimeMonthly", getOvertimeMonthly());
+		attributes.put("status", getStatus());
+		attributes.put("approver", getApprover());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedUserId", getModifiedUserId());
@@ -190,6 +194,18 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 
 		if (overtimeMonthly != null) {
 			setOvertimeMonthly(overtimeMonthly);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
+
+		Long approver = (Long)attributes.get("approver");
+
+		if (approver != null) {
+			setApprover(approver);
 		}
 
 		Long createUserId = (Long)attributes.get("createUserId");
@@ -334,6 +350,26 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 	}
 
 	@Override
+	public int getStatus() {
+		return _status;
+	}
+
+	@Override
+	public void setStatus(int status) {
+		_status = status;
+	}
+
+	@Override
+	public long getApprover() {
+		return _approver;
+	}
+
+	@Override
+	public void setApprover(long approver) {
+		_approver = approver;
+	}
+
+	@Override
 	public long getCreateUserId() {
 		return _createUserId;
 	}
@@ -435,6 +471,8 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 		overtimeImpl.setLegalOvertime(getLegalOvertime());
 		overtimeImpl.setOvertimeYear(getOvertimeYear());
 		overtimeImpl.setOvertimeMonthly(getOvertimeMonthly());
+		overtimeImpl.setStatus(getStatus());
+		overtimeImpl.setApprover(getApprover());
 		overtimeImpl.setCreateUserId(getCreateUserId());
 		overtimeImpl.setCreateDate(getCreateDate());
 		overtimeImpl.setModifiedUserId(getModifiedUserId());
@@ -524,6 +562,10 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 
 		overtimeCacheModel.overtimeMonthly = getOvertimeMonthly();
 
+		overtimeCacheModel.status = getStatus();
+
+		overtimeCacheModel.approver = getApprover();
+
 		overtimeCacheModel.createUserId = getCreateUserId();
 
 		Date createDate = getCreateDate();
@@ -551,7 +593,7 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -567,6 +609,10 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 		sb.append(getOvertimeYear());
 		sb.append(", overtimeMonthly=");
 		sb.append(getOvertimeMonthly());
+		sb.append(", status=");
+		sb.append(getStatus());
+		sb.append(", approver=");
+		sb.append(getApprover());
 		sb.append(", createUserId=");
 		sb.append(getCreateUserId());
 		sb.append(", createDate=");
@@ -582,7 +628,7 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.Overtime");
@@ -615,6 +661,14 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 		sb.append(
 			"<column><column-name>overtimeMonthly</column-name><column-value><![CDATA[");
 		sb.append(getOvertimeMonthly());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>approver</column-name><column-value><![CDATA[");
+		sb.append(getApprover());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
@@ -656,6 +710,8 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 	private long _overtimeMonthly;
 	private long _originalOvertimeMonthly;
 	private boolean _setOriginalOvertimeMonthly;
+	private int _status;
+	private long _approver;
 	private long _createUserId;
 	private String _createUserUuid;
 	private Date _createDate;

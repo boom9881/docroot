@@ -118,20 +118,16 @@ public class WagesLocalServiceClpInvoker {
 
 		_methodParameterTypes80 = new String[] { "long", "long" };
 
-		_methodName81 = "findByU_M";
+		_methodName81 = "search";
 
-		_methodParameterTypes81 = new String[] { "long" };
-
-		_methodName82 = "search";
-
-		_methodParameterTypes82 = new String[] {
+		_methodParameterTypes81 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
 
-		_methodName83 = "search";
+		_methodName82 = "search";
 
-		_methodParameterTypes83 = new String[] {
+		_methodParameterTypes82 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "int", "int"
 			};
@@ -246,19 +242,14 @@ public class WagesLocalServiceClpInvoker {
 
 		if (_methodName81.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
-			return WagesLocalServiceUtil.findByU_M(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName82.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
 			return WagesLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(java.lang.String)arguments[4]);
 		}
 
-		if (_methodName83.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
+		if (_methodName82.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
 			return WagesLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -312,6 +303,4 @@ public class WagesLocalServiceClpInvoker {
 	private String[] _methodParameterTypes81;
 	private String _methodName82;
 	private String[] _methodParameterTypes82;
-	private String _methodName83;
-	private String[] _methodParameterTypes83;
 }

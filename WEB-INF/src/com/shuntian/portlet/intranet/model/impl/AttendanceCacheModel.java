@@ -37,7 +37,7 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -51,6 +51,10 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 		sb.append(attendanceYear);
 		sb.append(", attendanceMonthly=");
 		sb.append(attendanceMonthly);
+		sb.append(", status=");
+		sb.append(status);
+		sb.append(", approver=");
+		sb.append(approver);
 		sb.append(", createUserId=");
 		sb.append(createUserId);
 		sb.append(", createDate=");
@@ -74,6 +78,8 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 		attendanceImpl.setActualAttendance(actualAttendance);
 		attendanceImpl.setAttendanceYear(attendanceYear);
 		attendanceImpl.setAttendanceMonthly(attendanceMonthly);
+		attendanceImpl.setStatus(status);
+		attendanceImpl.setApprover(approver);
 		attendanceImpl.setCreateUserId(createUserId);
 
 		if (createDate == Long.MIN_VALUE) {
@@ -105,6 +111,8 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 		actualAttendance = objectInput.readDouble();
 		attendanceYear = objectInput.readLong();
 		attendanceMonthly = objectInput.readLong();
+		status = objectInput.readInt();
+		approver = objectInput.readLong();
 		createUserId = objectInput.readLong();
 		createDate = objectInput.readLong();
 		modifiedUserId = objectInput.readLong();
@@ -120,6 +128,8 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 		objectOutput.writeDouble(actualAttendance);
 		objectOutput.writeLong(attendanceYear);
 		objectOutput.writeLong(attendanceMonthly);
+		objectOutput.writeInt(status);
+		objectOutput.writeLong(approver);
 		objectOutput.writeLong(createUserId);
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedUserId);
@@ -132,6 +142,8 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 	public double actualAttendance;
 	public long attendanceYear;
 	public long attendanceMonthly;
+	public int status;
+	public long approver;
 	public long createUserId;
 	public long createDate;
 	public long modifiedUserId;

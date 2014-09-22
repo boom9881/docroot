@@ -36,7 +36,7 @@ import java.util.Date;
 public class OvertimeCacheModel implements CacheModel<Overtime>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{id=");
 		sb.append(id);
@@ -52,6 +52,10 @@ public class OvertimeCacheModel implements CacheModel<Overtime>, Externalizable 
 		sb.append(overtimeYear);
 		sb.append(", overtimeMonthly=");
 		sb.append(overtimeMonthly);
+		sb.append(", status=");
+		sb.append(status);
+		sb.append(", approver=");
+		sb.append(approver);
 		sb.append(", createUserId=");
 		sb.append(createUserId);
 		sb.append(", createDate=");
@@ -76,6 +80,8 @@ public class OvertimeCacheModel implements CacheModel<Overtime>, Externalizable 
 		overtimeImpl.setLegalOvertime(legalOvertime);
 		overtimeImpl.setOvertimeYear(overtimeYear);
 		overtimeImpl.setOvertimeMonthly(overtimeMonthly);
+		overtimeImpl.setStatus(status);
+		overtimeImpl.setApprover(approver);
 		overtimeImpl.setCreateUserId(createUserId);
 
 		if (createDate == Long.MIN_VALUE) {
@@ -108,6 +114,8 @@ public class OvertimeCacheModel implements CacheModel<Overtime>, Externalizable 
 		legalOvertime = objectInput.readDouble();
 		overtimeYear = objectInput.readLong();
 		overtimeMonthly = objectInput.readLong();
+		status = objectInput.readInt();
+		approver = objectInput.readLong();
 		createUserId = objectInput.readLong();
 		createDate = objectInput.readLong();
 		modifiedUserId = objectInput.readLong();
@@ -124,6 +132,8 @@ public class OvertimeCacheModel implements CacheModel<Overtime>, Externalizable 
 		objectOutput.writeDouble(legalOvertime);
 		objectOutput.writeLong(overtimeYear);
 		objectOutput.writeLong(overtimeMonthly);
+		objectOutput.writeInt(status);
+		objectOutput.writeLong(approver);
 		objectOutput.writeLong(createUserId);
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedUserId);
@@ -137,6 +147,8 @@ public class OvertimeCacheModel implements CacheModel<Overtime>, Externalizable 
 	public double legalOvertime;
 	public long overtimeYear;
 	public long overtimeMonthly;
+	public int status;
+	public long approver;
 	public long createUserId;
 	public long createDate;
 	public long modifiedUserId;

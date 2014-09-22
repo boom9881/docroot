@@ -37,6 +37,8 @@ public class OvertimeSoap implements Serializable {
 		soapModel.setLegalOvertime(model.getLegalOvertime());
 		soapModel.setOvertimeYear(model.getOvertimeYear());
 		soapModel.setOvertimeMonthly(model.getOvertimeMonthly());
+		soapModel.setStatus(model.getStatus());
+		soapModel.setApprover(model.getApprover());
 		soapModel.setCreateUserId(model.getCreateUserId());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedUserId(model.getModifiedUserId());
@@ -149,6 +151,22 @@ public class OvertimeSoap implements Serializable {
 		_overtimeMonthly = overtimeMonthly;
 	}
 
+	public int getStatus() {
+		return _status;
+	}
+
+	public void setStatus(int status) {
+		_status = status;
+	}
+
+	public long getApprover() {
+		return _approver;
+	}
+
+	public void setApprover(long approver) {
+		_approver = approver;
+	}
+
 	public long getCreateUserId() {
 		return _createUserId;
 	}
@@ -188,6 +206,8 @@ public class OvertimeSoap implements Serializable {
 	private double _legalOvertime;
 	private long _overtimeYear;
 	private long _overtimeMonthly;
+	private int _status;
+	private long _approver;
 	private long _createUserId;
 	private Date _createDate;
 	private long _modifiedUserId;

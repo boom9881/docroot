@@ -55,6 +55,8 @@ public class AttendanceWrapper implements Attendance, ModelWrapper<Attendance> {
 		attributes.put("actualAttendance", getActualAttendance());
 		attributes.put("attendanceYear", getAttendanceYear());
 		attributes.put("attendanceMonthly", getAttendanceMonthly());
+		attributes.put("status", getStatus());
+		attributes.put("approver", getApprover());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedUserId", getModifiedUserId());
@@ -99,6 +101,18 @@ public class AttendanceWrapper implements Attendance, ModelWrapper<Attendance> {
 
 		if (attendanceMonthly != null) {
 			setAttendanceMonthly(attendanceMonthly);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
+
+		Long approver = (Long)attributes.get("approver");
+
+		if (approver != null) {
+			setApprover(approver);
 		}
 
 		Long createUserId = (Long)attributes.get("createUserId");
@@ -286,6 +300,46 @@ public class AttendanceWrapper implements Attendance, ModelWrapper<Attendance> {
 	@Override
 	public void setAttendanceMonthly(long attendanceMonthly) {
 		_attendance.setAttendanceMonthly(attendanceMonthly);
+	}
+
+	/**
+	* Returns the status of this attendance.
+	*
+	* @return the status of this attendance
+	*/
+	@Override
+	public int getStatus() {
+		return _attendance.getStatus();
+	}
+
+	/**
+	* Sets the status of this attendance.
+	*
+	* @param status the status of this attendance
+	*/
+	@Override
+	public void setStatus(int status) {
+		_attendance.setStatus(status);
+	}
+
+	/**
+	* Returns the approver of this attendance.
+	*
+	* @return the approver of this attendance
+	*/
+	@Override
+	public long getApprover() {
+		return _attendance.getApprover();
+	}
+
+	/**
+	* Sets the approver of this attendance.
+	*
+	* @param approver the approver of this attendance
+	*/
+	@Override
+	public void setApprover(long approver) {
+		_attendance.setApprover(approver);
 	}
 
 	/**

@@ -159,6 +159,34 @@ public interface AttendanceModel extends BaseModel<Attendance> {
 	public void setAttendanceMonthly(long attendanceMonthly);
 
 	/**
+	 * Returns the status of this attendance.
+	 *
+	 * @return the status of this attendance
+	 */
+	public int getStatus();
+
+	/**
+	 * Sets the status of this attendance.
+	 *
+	 * @param status the status of this attendance
+	 */
+	public void setStatus(int status);
+
+	/**
+	 * Returns the approver of this attendance.
+	 *
+	 * @return the approver of this attendance
+	 */
+	public long getApprover();
+
+	/**
+	 * Sets the approver of this attendance.
+	 *
+	 * @param approver the approver of this attendance
+	 */
+	public void setApprover(long approver);
+
+	/**
 	 * Returns the create user ID of this attendance.
 	 *
 	 * @return the create user ID of this attendance

@@ -256,12 +256,6 @@ public interface OvertimeLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public com.shuntian.portlet.intranet.model.Overtime findByU_M(long userId,
-		long overtimeMonthly)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException,
-			com.shuntian.portlet.intranet.NoSuchOvertimeException;
-
 	public java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByUserId(
 		long userId)
 		throws com.liferay.portal.kernel.exception.SystemException,

@@ -571,245 +571,6 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 	}
 
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "overtime.userId = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_U_M = new FinderPath(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
-			OvertimeModelImpl.FINDER_CACHE_ENABLED, OvertimeImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByU_M",
-			new String[] { Long.class.getName(), Long.class.getName() },
-			OvertimeModelImpl.USERID_COLUMN_BITMASK |
-			OvertimeModelImpl.OVERTIMEMONTHLY_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_M = new FinderPath(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
-			OvertimeModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_M",
-			new String[] { Long.class.getName(), Long.class.getName() });
-
-	/**
-	 * Returns the overtime where userId = &#63; and overtimeMonthly = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchOvertimeException} if it could not be found.
-	 *
-	 * @param userId the user ID
-	 * @param overtimeMonthly the overtime monthly
-	 * @return the matching overtime
-	 * @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a matching overtime could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Overtime findByU_M(long userId, long overtimeMonthly)
-		throws NoSuchOvertimeException, SystemException {
-		Overtime overtime = fetchByU_M(userId, overtimeMonthly);
-
-		if (overtime == null) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(", overtimeMonthly=");
-			msg.append(overtimeMonthly);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchOvertimeException(msg.toString());
-		}
-
-		return overtime;
-	}
-
-	/**
-	 * Returns the overtime where userId = &#63; and overtimeMonthly = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param userId the user ID
-	 * @param overtimeMonthly the overtime monthly
-	 * @return the matching overtime, or <code>null</code> if a matching overtime could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Overtime fetchByU_M(long userId, long overtimeMonthly)
-		throws SystemException {
-		return fetchByU_M(userId, overtimeMonthly, true);
-	}
-
-	/**
-	 * Returns the overtime where userId = &#63; and overtimeMonthly = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param userId the user ID
-	 * @param overtimeMonthly the overtime monthly
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching overtime, or <code>null</code> if a matching overtime could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Overtime fetchByU_M(long userId, long overtimeMonthly,
-		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { userId, overtimeMonthly };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_M,
-					finderArgs, this);
-		}
-
-		if (result instanceof Overtime) {
-			Overtime overtime = (Overtime)result;
-
-			if ((userId != overtime.getUserId()) ||
-					(overtimeMonthly != overtime.getOvertimeMonthly())) {
-				result = null;
-			}
-		}
-
-		if (result == null) {
-			StringBundler query = new StringBundler(4);
-
-			query.append(_SQL_SELECT_OVERTIME_WHERE);
-
-			query.append(_FINDER_COLUMN_U_M_USERID_2);
-
-			query.append(_FINDER_COLUMN_U_M_OVERTIMEMONTHLY_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(userId);
-
-				qPos.add(overtimeMonthly);
-
-				List<Overtime> list = q.list();
-
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
-						finderArgs, list);
-				}
-				else {
-					if ((list.size() > 1) && _log.isWarnEnabled()) {
-						_log.warn(
-							"OvertimePersistenceImpl.fetchByU_M(long, long, boolean) with parameters (" +
-							StringUtil.merge(finderArgs) +
-							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-					}
-
-					Overtime overtime = list.get(0);
-
-					result = overtime;
-
-					cacheResult(overtime);
-
-					if ((overtime.getUserId() != userId) ||
-							(overtime.getOvertimeMonthly() != overtimeMonthly)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
-							finderArgs, overtime);
-					}
-				}
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
-					finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		if (result instanceof List<?>) {
-			return null;
-		}
-		else {
-			return (Overtime)result;
-		}
-	}
-
-	/**
-	 * Removes the overtime where userId = &#63; and overtimeMonthly = &#63; from the database.
-	 *
-	 * @param userId the user ID
-	 * @param overtimeMonthly the overtime monthly
-	 * @return the overtime that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Overtime removeByU_M(long userId, long overtimeMonthly)
-		throws NoSuchOvertimeException, SystemException {
-		Overtime overtime = findByU_M(userId, overtimeMonthly);
-
-		return remove(overtime);
-	}
-
-	/**
-	 * Returns the number of overtimes where userId = &#63; and overtimeMonthly = &#63;.
-	 *
-	 * @param userId the user ID
-	 * @param overtimeMonthly the overtime monthly
-	 * @return the number of matching overtimes
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public int countByU_M(long userId, long overtimeMonthly)
-		throws SystemException {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_M;
-
-		Object[] finderArgs = new Object[] { userId, overtimeMonthly };
-
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_OVERTIME_WHERE);
-
-			query.append(_FINDER_COLUMN_U_M_USERID_2);
-
-			query.append(_FINDER_COLUMN_U_M_OVERTIMEMONTHLY_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(userId);
-
-				qPos.add(overtimeMonthly);
-
-				count = (Long)q.uniqueResult();
-
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
-			}
-			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	private static final String _FINDER_COLUMN_U_M_USERID_2 = "overtime.userId = ? AND ";
-	private static final String _FINDER_COLUMN_U_M_OVERTIMEMONTHLY_2 = "overtime.overtimeMonthly = ?";
 	public static final FinderPath FINDER_PATH_FETCH_BY_Y_M = new FinderPath(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
 			OvertimeModelImpl.FINDER_CACHE_ENABLED, OvertimeImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByY_M",
@@ -1089,10 +850,6 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 		EntityCacheUtil.putResult(OvertimeModelImpl.ENTITY_CACHE_ENABLED,
 			OvertimeImpl.class, overtime.getPrimaryKey(), overtime);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
-			new Object[] { overtime.getUserId(), overtime.getOvertimeMonthly() },
-			overtime);
-
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_Y_M,
 			new Object[] {
 				overtime.getUserId(), overtime.getOvertimeYear(),
@@ -1175,14 +932,6 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 	protected void cacheUniqueFindersCache(Overtime overtime) {
 		if (overtime.isNew()) {
 			Object[] args = new Object[] {
-					overtime.getUserId(), overtime.getOvertimeMonthly()
-				};
-
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
-				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args, overtime);
-
-			args = new Object[] {
 					overtime.getUserId(), overtime.getOvertimeYear(),
 					overtime.getOvertimeMonthly()
 				};
@@ -1193,18 +942,6 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 		}
 		else {
 			OvertimeModelImpl overtimeModelImpl = (OvertimeModelImpl)overtime;
-
-			if ((overtimeModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						overtime.getUserId(), overtime.getOvertimeMonthly()
-					};
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
-					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args,
-					overtime);
-			}
 
 			if ((overtimeModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_Y_M.getColumnBitmask()) != 0) {
@@ -1225,24 +962,6 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 		OvertimeModelImpl overtimeModelImpl = (OvertimeModelImpl)overtime;
 
 		Object[] args = new Object[] {
-				overtime.getUserId(), overtime.getOvertimeMonthly()
-			};
-
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
-
-		if ((overtimeModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
-			args = new Object[] {
-					overtimeModelImpl.getOriginalUserId(),
-					overtimeModelImpl.getOriginalOvertimeMonthly()
-				};
-
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
-		}
-
-		args = new Object[] {
 				overtime.getUserId(), overtime.getOvertimeYear(),
 				overtime.getOvertimeMonthly()
 			};
@@ -1448,6 +1167,8 @@ public class OvertimePersistenceImpl extends BasePersistenceImpl<Overtime>
 		overtimeImpl.setLegalOvertime(overtime.getLegalOvertime());
 		overtimeImpl.setOvertimeYear(overtime.getOvertimeYear());
 		overtimeImpl.setOvertimeMonthly(overtime.getOvertimeMonthly());
+		overtimeImpl.setStatus(overtime.getStatus());
+		overtimeImpl.setApprover(overtime.getApprover());
 		overtimeImpl.setCreateUserId(overtime.getCreateUserId());
 		overtimeImpl.setCreateDate(overtime.getCreateDate());
 		overtimeImpl.setModifiedUserId(overtime.getModifiedUserId());

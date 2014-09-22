@@ -78,11 +78,6 @@ public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
 		attendanceLocalService.updateAttendance(attendance);
 	}
 
-	public Attendance findByU_M(long userId, long attendanceMonthly)
-			throws SystemException, NoSuchAttendanceException {
-		return attendancePersistence.findByU_M(userId, attendanceMonthly);
-	}
-
 	public List<Attendance> findByUserId(long userId) throws SystemException,
 			NoSuchAttendanceException {
 		return attendancePersistence.findByUserId(userId);

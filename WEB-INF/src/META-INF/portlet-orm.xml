@@ -17,6 +17,8 @@
 			<basic name="actualAttendance" />
 			<basic name="attendanceYear" />
 			<basic name="attendanceMonthly" />
+			<basic name="status" />
+			<basic name="approver" />
 			<basic name="createUserId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
@@ -193,6 +195,8 @@
 			<basic name="legalOvertime" />
 			<basic name="overtimeYear" />
 			<basic name="overtimeMonthly" />
+			<basic name="status" />
+			<basic name="approver" />
 			<basic name="createUserId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>

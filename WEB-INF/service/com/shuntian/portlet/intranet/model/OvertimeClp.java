@@ -82,6 +82,8 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 		attributes.put("legalOvertime", getLegalOvertime());
 		attributes.put("overtimeYear", getOvertimeYear());
 		attributes.put("overtimeMonthly", getOvertimeMonthly());
+		attributes.put("status", getStatus());
+		attributes.put("approver", getApprover());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedUserId", getModifiedUserId());
@@ -132,6 +134,18 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 
 		if (overtimeMonthly != null) {
 			setOvertimeMonthly(overtimeMonthly);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
+
+		Long approver = (Long)attributes.get("approver");
+
+		if (approver != null) {
+			setApprover(approver);
 		}
 
 		Long createUserId = (Long)attributes.get("createUserId");
@@ -332,6 +346,52 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 	}
 
 	@Override
+	public int getStatus() {
+		return _status;
+	}
+
+	@Override
+	public void setStatus(int status) {
+		_status = status;
+
+		if (_overtimeRemoteModel != null) {
+			try {
+				Class<?> clazz = _overtimeRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatus", int.class);
+
+				method.invoke(_overtimeRemoteModel, status);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getApprover() {
+		return _approver;
+	}
+
+	@Override
+	public void setApprover(long approver) {
+		_approver = approver;
+
+		if (_overtimeRemoteModel != null) {
+			try {
+				Class<?> clazz = _overtimeRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setApprover", long.class);
+
+				method.invoke(_overtimeRemoteModel, approver);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public long getCreateUserId() {
 		return _createUserId;
 	}
@@ -521,6 +581,8 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 		clone.setLegalOvertime(getLegalOvertime());
 		clone.setOvertimeYear(getOvertimeYear());
 		clone.setOvertimeMonthly(getOvertimeMonthly());
+		clone.setStatus(getStatus());
+		clone.setApprover(getApprover());
 		clone.setCreateUserId(getCreateUserId());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedUserId(getModifiedUserId());
@@ -573,7 +635,7 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -589,6 +651,10 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 		sb.append(getOvertimeYear());
 		sb.append(", overtimeMonthly=");
 		sb.append(getOvertimeMonthly());
+		sb.append(", status=");
+		sb.append(getStatus());
+		sb.append(", approver=");
+		sb.append(getApprover());
 		sb.append(", createUserId=");
 		sb.append(getCreateUserId());
 		sb.append(", createDate=");
@@ -604,7 +670,7 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.Overtime");
@@ -639,6 +705,14 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 		sb.append(getOvertimeMonthly());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>approver</column-name><column-value><![CDATA[");
+		sb.append(getApprover());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
 		sb.append(getCreateUserId());
 		sb.append("]]></column-value></column>");
@@ -668,6 +742,8 @@ public class OvertimeClp extends BaseModelImpl<Overtime> implements Overtime {
 	private double _legalOvertime;
 	private long _overtimeYear;
 	private long _overtimeMonthly;
+	private int _status;
+	private long _approver;
 	private long _createUserId;
 	private String _createUserUuid;
 	private Date _createDate;

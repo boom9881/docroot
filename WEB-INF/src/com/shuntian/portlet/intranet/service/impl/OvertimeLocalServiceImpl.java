@@ -78,12 +78,6 @@ public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
 		overtimeLocalService.updateOvertime(overtime);
 	}
 
-	public Overtime findByU_M(long userId, long overtimeMonthly)
-			throws SystemException, NoSuchAttendanceException,
-			NoSuchOvertimeException {
-		return overtimePersistence.findByU_M(userId, overtimeMonthly);
-	}
-
 	public List<Overtime> findByUserId(long userId) throws SystemException,
 			NoSuchAttendanceException {
 		return overtimePersistence.findByUserId(userId);

@@ -250,11 +250,6 @@ public interface WagesLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchWagesException;
 
-	public java.util.List<com.shuntian.portlet.intranet.model.Wages> findByU_M(
-		long userId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int search(long departmentId, long searchUserId,
 		java.lang.String searchYear, java.lang.String searchMonth,

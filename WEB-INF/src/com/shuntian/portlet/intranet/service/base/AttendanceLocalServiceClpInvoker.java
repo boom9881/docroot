@@ -126,31 +126,27 @@ public class AttendanceLocalServiceClpInvoker {
 				"long", "long", "long", "long", "double", "double"
 			};
 
-		_methodName82 = "findByU_M";
+		_methodName82 = "findByUserId";
 
-		_methodParameterTypes82 = new String[] { "long", "long" };
+		_methodParameterTypes82 = new String[] { "long" };
 
-		_methodName83 = "findByUserId";
+		_methodName83 = "search";
 
-		_methodParameterTypes83 = new String[] { "long" };
+		_methodParameterTypes83 = new String[] {
+				"long", "long", "java.lang.String", "java.lang.String",
+				"java.lang.String"
+			};
 
 		_methodName84 = "search";
 
 		_methodParameterTypes84 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String"
-			};
-
-		_methodName85 = "search";
-
-		_methodParameterTypes85 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "int", "int"
 			};
 
-		_methodName86 = "findByY_M";
+		_methodName85 = "findByY_M";
 
-		_methodParameterTypes86 = new String[] { "long", "long", "long" };
+		_methodParameterTypes85 = new String[] { "long", "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -280,25 +276,19 @@ public class AttendanceLocalServiceClpInvoker {
 
 		if (_methodName82.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
-			return AttendanceLocalServiceUtil.findByU_M(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+			return AttendanceLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName83.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
-			return AttendanceLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName84.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
 			return AttendanceLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(java.lang.String)arguments[4]);
 		}
 
-		if (_methodName85.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
+		if (_methodName84.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
 			return AttendanceLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -307,8 +297,8 @@ public class AttendanceLocalServiceClpInvoker {
 				((Integer)arguments[6]).intValue());
 		}
 
-		if (_methodName86.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
+		if (_methodName85.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
 			return AttendanceLocalServiceUtil.findByY_M(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue());
@@ -365,6 +355,4 @@ public class AttendanceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes84;
 	private String _methodName85;
 	private String[] _methodParameterTypes85;
-	private String _methodName86;
-	private String[] _methodParameterTypes86;
 }

@@ -56,6 +56,8 @@ public class OvertimeWrapper implements Overtime, ModelWrapper<Overtime> {
 		attributes.put("legalOvertime", getLegalOvertime());
 		attributes.put("overtimeYear", getOvertimeYear());
 		attributes.put("overtimeMonthly", getOvertimeMonthly());
+		attributes.put("status", getStatus());
+		attributes.put("approver", getApprover());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedUserId", getModifiedUserId());
@@ -106,6 +108,18 @@ public class OvertimeWrapper implements Overtime, ModelWrapper<Overtime> {
 
 		if (overtimeMonthly != null) {
 			setOvertimeMonthly(overtimeMonthly);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
+
+		Long approver = (Long)attributes.get("approver");
+
+		if (approver != null) {
+			setApprover(approver);
 		}
 
 		Long createUserId = (Long)attributes.get("createUserId");
@@ -313,6 +327,46 @@ public class OvertimeWrapper implements Overtime, ModelWrapper<Overtime> {
 	@Override
 	public void setOvertimeMonthly(long overtimeMonthly) {
 		_overtime.setOvertimeMonthly(overtimeMonthly);
+	}
+
+	/**
+	* Returns the status of this overtime.
+	*
+	* @return the status of this overtime
+	*/
+	@Override
+	public int getStatus() {
+		return _overtime.getStatus();
+	}
+
+	/**
+	* Sets the status of this overtime.
+	*
+	* @param status the status of this overtime
+	*/
+	@Override
+	public void setStatus(int status) {
+		_overtime.setStatus(status);
+	}
+
+	/**
+	* Returns the approver of this overtime.
+	*
+	* @return the approver of this overtime
+	*/
+	@Override
+	public long getApprover() {
+		return _overtime.getApprover();
+	}
+
+	/**
+	* Sets the approver of this overtime.
+	*
+	* @param approver the approver of this overtime
+	*/
+	@Override
+	public void setApprover(long approver) {
+		_overtime.setApprover(approver);
 	}
 
 	/**

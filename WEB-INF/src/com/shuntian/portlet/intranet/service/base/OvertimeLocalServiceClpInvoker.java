@@ -126,28 +126,24 @@ public class OvertimeLocalServiceClpInvoker {
 				"long", "long", "long", "long", "double", "double", "double"
 			};
 
-		_methodName82 = "findByU_M";
+		_methodName82 = "findByUserId";
 
-		_methodParameterTypes82 = new String[] { "long", "long" };
+		_methodParameterTypes82 = new String[] { "long" };
 
-		_methodName83 = "findByUserId";
+		_methodName83 = "findByY_M";
 
-		_methodParameterTypes83 = new String[] { "long" };
+		_methodParameterTypes83 = new String[] { "long", "long", "long" };
 
-		_methodName84 = "findByY_M";
+		_methodName84 = "search";
 
-		_methodParameterTypes84 = new String[] { "long", "long", "long" };
-
-		_methodName85 = "search";
-
-		_methodParameterTypes85 = new String[] {
+		_methodParameterTypes84 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
 
-		_methodName86 = "search";
+		_methodName85 = "search";
 
-		_methodParameterTypes86 = new String[] {
+		_methodParameterTypes85 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "int", "int"
 			};
@@ -282,32 +278,26 @@ public class OvertimeLocalServiceClpInvoker {
 
 		if (_methodName82.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
-			return OvertimeLocalServiceUtil.findByU_M(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+			return OvertimeLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName83.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
-			return OvertimeLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName84.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
 			return OvertimeLocalServiceUtil.findByY_M(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue());
 		}
 
-		if (_methodName85.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
+		if (_methodName84.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
 			return OvertimeLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(java.lang.String)arguments[4]);
 		}
 
-		if (_methodName86.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
+		if (_methodName85.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
 			return OvertimeLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -367,6 +357,4 @@ public class OvertimeLocalServiceClpInvoker {
 	private String[] _methodParameterTypes84;
 	private String _methodName85;
 	private String[] _methodParameterTypes85;
-	private String _methodName86;
-	private String[] _methodParameterTypes86;
 }

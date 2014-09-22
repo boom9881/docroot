@@ -126,28 +126,24 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 				"long", "long", "long", "long", "double", "double", "double"
 			};
 
-		_methodName21 = "findByU_M";
+		_methodName21 = "findByUserId";
 
-		_methodParameterTypes21 = new String[] { "long", "long" };
+		_methodParameterTypes21 = new String[] { "long" };
 
-		_methodName22 = "findByUserId";
+		_methodName22 = "findByY_M";
 
-		_methodParameterTypes22 = new String[] { "long" };
+		_methodParameterTypes22 = new String[] { "long", "long", "long" };
 
-		_methodName23 = "findByY_M";
+		_methodName23 = "search";
 
-		_methodParameterTypes23 = new String[] { "long", "long", "long" };
-
-		_methodName24 = "search";
-
-		_methodParameterTypes24 = new String[] {
+		_methodParameterTypes23 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
 
-		_methodName25 = "search";
+		_methodName24 = "search";
 
-		_methodParameterTypes25 = new String[] {
+		_methodParameterTypes24 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "int", "int"
 			};
@@ -787,46 +783,6 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 	}
 
 	@Override
-	public com.shuntian.portlet.intranet.model.Overtime findByU_M(long userId,
-		long overtimeMonthly)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException,
-			com.shuntian.portlet.intranet.NoSuchOvertimeException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
-					new Object[] { userId, overtimeMonthly });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof com.shuntian.portlet.intranet.NoSuchAttendanceException) {
-				throw (com.shuntian.portlet.intranet.NoSuchAttendanceException)t;
-			}
-
-			if (t instanceof com.shuntian.portlet.intranet.NoSuchOvertimeException) {
-				throw (com.shuntian.portlet.intranet.NoSuchOvertimeException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.shuntian.portlet.intranet.model.Overtime)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByUserId(
 		long userId)
 		throws com.liferay.portal.kernel.exception.SystemException,
@@ -834,8 +790,8 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -869,8 +825,8 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] { userId, overtimeYear, overtimeMonthly });
 		}
 		catch (Throwable t) {
@@ -908,8 +864,8 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] {
 						departmentId,
 						
@@ -949,8 +905,8 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] {
 						departmentId,
 						
@@ -1035,6 +991,4 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
 }

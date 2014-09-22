@@ -21,6 +21,8 @@
 		<property name="actualAttendance" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="attendanceYear" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="attendanceMonthly" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="approver" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -132,6 +134,8 @@
 		<property name="legalOvertime" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="overtimeYear" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="overtimeMonthly" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="approver" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />

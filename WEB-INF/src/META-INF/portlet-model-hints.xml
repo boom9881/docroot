@@ -8,6 +8,8 @@
 		<field name="actualAttendance" type="double" />
 		<field name="attendanceYear" type="long" />
 		<field name="attendanceMonthly" type="long" />
+		<field name="status" type="int" />
+		<field name="approver" type="long" />
 		<field name="createUserId" type="long" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedUserId" type="long" />
@@ -101,6 +103,8 @@
 		<field name="legalOvertime" type="double" />
 		<field name="overtimeYear" type="long" />
 		<field name="overtimeMonthly" type="long" />
+		<field name="status" type="int" />
+		<field name="approver" type="long" />
 		<field name="createUserId" type="long" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedUserId" type="long" />

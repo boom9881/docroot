@@ -127,31 +127,27 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 				"long", "long", "long", "long", "double", "double"
 			};
 
-		_methodName21 = "findByU_M";
+		_methodName21 = "findByUserId";
 
-		_methodParameterTypes21 = new String[] { "long", "long" };
+		_methodParameterTypes21 = new String[] { "long" };
 
-		_methodName22 = "findByUserId";
+		_methodName22 = "search";
 
-		_methodParameterTypes22 = new String[] { "long" };
+		_methodParameterTypes22 = new String[] {
+				"long", "long", "java.lang.String", "java.lang.String",
+				"java.lang.String"
+			};
 
 		_methodName23 = "search";
 
 		_methodParameterTypes23 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String"
-			};
-
-		_methodName24 = "search";
-
-		_methodParameterTypes24 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "int", "int"
 			};
 
-		_methodName25 = "findByY_M";
+		_methodName24 = "findByY_M";
 
-		_methodParameterTypes25 = new String[] { "long", "long", "long" };
+		_methodParameterTypes24 = new String[] { "long", "long", "long" };
 	}
 
 	@Override
@@ -785,41 +781,6 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 	}
 
 	@Override
-	public com.shuntian.portlet.intranet.model.Attendance findByU_M(
-		long userId, long attendanceMonthly)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
-					new Object[] { userId, attendanceMonthly });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof com.shuntian.portlet.intranet.NoSuchAttendanceException) {
-				throw (com.shuntian.portlet.intranet.NoSuchAttendanceException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.shuntian.portlet.intranet.model.Attendance)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public java.util.List<com.shuntian.portlet.intranet.model.Attendance> findByUserId(
 		long userId)
 		throws com.liferay.portal.kernel.exception.SystemException,
@@ -827,8 +788,8 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -861,8 +822,8 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] {
 						departmentId,
 						
@@ -902,8 +863,8 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] {
 						departmentId,
 						
@@ -947,8 +908,8 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { userId, attendanceYear, attendanceMonthly });
 		}
 		catch (Throwable t) {
@@ -1023,6 +984,4 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
 }

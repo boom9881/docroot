@@ -82,6 +82,8 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 		attributes.put("actualAttendance", getActualAttendance());
 		attributes.put("attendanceYear", getAttendanceYear());
 		attributes.put("attendanceMonthly", getAttendanceMonthly());
+		attributes.put("status", getStatus());
+		attributes.put("approver", getApprover());
 		attributes.put("createUserId", getCreateUserId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedUserId", getModifiedUserId());
@@ -126,6 +128,18 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 
 		if (attendanceMonthly != null) {
 			setAttendanceMonthly(attendanceMonthly);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
+
+		Long approver = (Long)attributes.get("approver");
+
+		if (approver != null) {
+			setApprover(approver);
 		}
 
 		Long createUserId = (Long)attributes.get("createUserId");
@@ -297,6 +311,52 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 						long.class);
 
 				method.invoke(_attendanceRemoteModel, attendanceMonthly);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getStatus() {
+		return _status;
+	}
+
+	@Override
+	public void setStatus(int status) {
+		_status = status;
+
+		if (_attendanceRemoteModel != null) {
+			try {
+				Class<?> clazz = _attendanceRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatus", int.class);
+
+				method.invoke(_attendanceRemoteModel, status);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getApprover() {
+		return _approver;
+	}
+
+	@Override
+	public void setApprover(long approver) {
+		_approver = approver;
+
+		if (_attendanceRemoteModel != null) {
+			try {
+				Class<?> clazz = _attendanceRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setApprover", long.class);
+
+				method.invoke(_attendanceRemoteModel, approver);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -493,6 +553,8 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 		clone.setActualAttendance(getActualAttendance());
 		clone.setAttendanceYear(getAttendanceYear());
 		clone.setAttendanceMonthly(getAttendanceMonthly());
+		clone.setStatus(getStatus());
+		clone.setApprover(getApprover());
 		clone.setCreateUserId(getCreateUserId());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedUserId(getModifiedUserId());
@@ -545,7 +607,7 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{id=");
 		sb.append(getId());
@@ -559,6 +621,10 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 		sb.append(getAttendanceYear());
 		sb.append(", attendanceMonthly=");
 		sb.append(getAttendanceMonthly());
+		sb.append(", status=");
+		sb.append(getStatus());
+		sb.append(", approver=");
+		sb.append(getApprover());
 		sb.append(", createUserId=");
 		sb.append(getCreateUserId());
 		sb.append(", createDate=");
@@ -574,7 +640,7 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.shuntian.portlet.intranet.model.Attendance");
@@ -605,6 +671,14 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 		sb.append(getAttendanceMonthly());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>approver</column-name><column-value><![CDATA[");
+		sb.append(getApprover());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>createUserId</column-name><column-value><![CDATA[");
 		sb.append(getCreateUserId());
 		sb.append("]]></column-value></column>");
@@ -633,6 +707,8 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 	private double _actualAttendance;
 	private long _attendanceYear;
 	private long _attendanceMonthly;
+	private int _status;
+	private long _approver;
 	private long _createUserId;
 	private String _createUserUuid;
 	private Date _createDate;

@@ -173,6 +173,34 @@ public interface OvertimeModel extends BaseModel<Overtime> {
 	public void setOvertimeMonthly(long overtimeMonthly);
 
 	/**
+	 * Returns the status of this overtime.
+	 *
+	 * @return the status of this overtime
+	 */
+	public int getStatus();
+
+	/**
+	 * Sets the status of this overtime.
+	 *
+	 * @param status the status of this overtime
+	 */
+	public void setStatus(int status);
+
+	/**
+	 * Returns the approver of this overtime.
+	 *
+	 * @return the approver of this overtime
+	 */
+	public long getApprover();
+
+	/**
+	 * Sets the approver of this overtime.
+	 *
+	 * @param approver the approver of this overtime
+	 */
+	public void setApprover(long approver);
+
+	/**
 	 * Returns the create user ID of this overtime.
 	 *
 	 * @return the create user ID of this overtime

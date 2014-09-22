@@ -2,6 +2,7 @@ package com.shuntian.portlet.intranet.action;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
@@ -47,9 +48,13 @@ public class SatffPortlet extends MVCPortlet {
 		long curUserId = themeDisplay.getUserId();
 		String newPassword1 = ParamUtil.getString(request, "newPassword1");
 		String newPassword2 = ParamUtil.getString(request, "newPassword2");
+		String portletName = ParamUtil.getString(request, "portletName");
 
 		BasicInformation bi = getBasicInformation(request);
-		ExtInformation ei = getExtInformation(request);
+		ExtInformation ei = null;
+		if (!portletName.equals("individual_info")) {
+			ei = getExtInformation(request);
+		}
 		List<FamilyRelationship> frs = getFamilyRelationships(request);
 		List<WorkExperience> wes = getWorkExperiences(request);
 		List<Education> edus = getEducations(request);
@@ -189,6 +194,24 @@ public class SatffPortlet extends MVCPortlet {
 				"fristInsuredYear");
 		String fristInsuredMonth = ParamUtil.getString(request,
 				"fristInsuredMonth");
+		Date laborContractStart = PortalUtil.getDate(laborContractStartMonth,
+				laborContractStartDay, laborContractStartYear);
+		Date laborContractEnd = PortalUtil.getDate(laborContractEndMonth,
+				laborContractEndDay, laborContractEndYear);
+		Date probationPeriodStart = PortalUtil.getDate(
+				probationPeriodStartMonth, probationPeriodStartDay,
+				probationPeriodStartYear);
+		Date probationPeriodEnd = PortalUtil.getDate(probationPeriodEndMonth,
+				probationPeriodEndDay, probationPeriodEndYear);
+
+		if (laborContractStart.compareTo(laborContractEnd) > 0) {
+			SessionErrors.add(request,
+					"dhst.intranet.satff.time.invalid.ei.laborContract");
+		}
+		if (probationPeriodStart.compareTo(probationPeriodEnd) > 0) {
+			SessionErrors.add(request,
+					"dhst.intranet.satff.time.invalid.ei.probationPeriod");
+		}
 
 		ExtInformation ei = new ExtInformationImpl();
 		ei.setBankId(bankId);
@@ -198,15 +221,10 @@ public class SatffPortlet extends MVCPortlet {
 		ei.setOpenCity(openCity);
 		ei.setInduredLocation(induredLocation);
 		ei.setIsInsured(isInsured);
-
-		ei.setLaborContractStart(PortalUtil.getDate(laborContractStartMonth,
-				laborContractStartDay, laborContractStartYear));
-		ei.setLaborContractEnd(PortalUtil.getDate(laborContractEndMonth,
-				laborContractEndDay, laborContractEndYear));
-		ei.setProbationPeriodStart(PortalUtil.getDate(probationPeriodStartDay,
-				probationPeriodStartMonth, probationPeriodStartYear));
-		ei.setProbationPeriodEnd(PortalUtil.getDate(probationPeriodEndDay,
-				probationPeriodEndMonth, probationPeriodEndYear));
+		ei.setLaborContractStart(laborContractStart);
+		ei.setLaborContractEnd(laborContractEnd);
+		ei.setProbationPeriodStart(probationPeriodStart);
+		ei.setProbationPeriodEnd(probationPeriodEnd);
 
 		ei.setFristInsuredYear(fristInsuredYear);
 		ei.setFristInsuredMonth(fristInsuredMonth);
@@ -264,6 +282,8 @@ public class SatffPortlet extends MVCPortlet {
 				SessionErrors.add(request,
 						"dhst.intranet.satff.edu.professional.null");
 			}
+			validatorDate(request, "edu", startTimeYear, startTimeMonth,
+					stopTimeYear, stopTimeMonth);
 
 			Education edu = EducationLocalServiceUtil.createEducation(eduId);
 
@@ -333,6 +353,9 @@ public class SatffPortlet extends MVCPortlet {
 				SessionErrors.add(request,
 						"dhst.intranet.satff.we.onceJob.null");
 			}
+
+			validatorDate(request, "we", startTimeYear, startTimeMonth,
+					stopTimeYear, stopTimeMonth);
 
 			WorkExperience we = WorkExperienceLocalServiceUtil
 					.createWorkExperience(workId);
@@ -421,6 +444,19 @@ public class SatffPortlet extends MVCPortlet {
 			String password2) {
 		if (!password1.equals(password2)) {
 			SessionErrors.add(request, "dhst.intranet.satff.pwd.invalid");
+		}
+	}
+
+	private void validatorDate(ActionRequest request, String obj,
+			String startYear, String startMonth, String endYear, String endMonth) {
+		int sy = Integer.parseInt(startYear);
+		int sm = Integer.parseInt(startMonth);
+		int ey = Integer.parseInt(endYear);
+		int em = Integer.parseInt(endMonth);
+
+		if ((sy == ey && sm >= em) || sy > ey) {
+			SessionErrors.add(request, "dhst.intranet.satff.time.invalid."
+					+ obj);
 		}
 	}
 }

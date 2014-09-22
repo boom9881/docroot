@@ -31,9 +31,9 @@ BasicInformation obj = (BasicInformation)row.getObject();
 		<liferay-ui:icon image="activate" message="离职" url="<%= leaveURLValue %>" />
 	</c:if>
 	
+	<%--
 	<liferay-ui:icon image="view" message="打印" url="alert('');" />
 	
-	<%--
 	<liferay-ui:icon-deactivate url="<%= leaveURL %>" />
 	
 	<c:if test='<%= obj.getIsLeave() == 1 %>'>

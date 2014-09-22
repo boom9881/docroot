@@ -142,7 +142,9 @@ public class BasicInformationLocalServiceImpl extends
 					newPassword2, false);
 		}
 
-		extInformationLocalService.editExtInformation(userId, ei);
+		if (Validator.isNotNull(ei)) {
+			extInformationLocalService.editExtInformation(userId, ei);
+		}
 		educationLocalService.editEducation(userId, edus);
 		workExperienceLocalService.editWorkExperience(userId, wes);
 		familyRelationshipLocalService.editFamilyRelationship(userId, frs);

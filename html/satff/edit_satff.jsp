@@ -68,8 +68,12 @@ String[][] categorySections = {mainSections};
 <liferay-ui:error exception="<%= com.liferay.portal.UserEmailAddressException.class %>" message="邮箱格式错误。" focusField="mail" />
 
 <liferay-ui:error key="dhst.intranet.satff.pwd.invalid" message="修改密码失败：请确认输入密码是否一致。" />
+<liferay-ui:error key="dhst.intranet.satff.time.invalid.ei.laborContract" message="劳动合同期限的开始时间不能晚于结束时间" />
+<liferay-ui:error key="dhst.intranet.satff.time.invalid.ei.probationPeriod" message="试用期限的开始时间不能晚于结束时间" />
+<liferay-ui:error key="dhst.intranet.satff.time.invalid.edu" message="教育经历的开始时间不能晚于结束时间。" />
 <liferay-ui:error key="dhst.intranet.satff.edu.university.null" message="教育经历的毕业院校不能为空。" />
 <liferay-ui:error key="dhst.intranet.satff.edu.professional.null" message="教育经历的专业不能为空。" />
+<liferay-ui:error key="dhst.intranet.satff.time.invalid.we" message="工作经历的开始时间不能晚于结束时间。" />
 <liferay-ui:error key="dhst.intranet.satff.we.workUnit.null" message="工作经历的工作单位不能为空。" />
 <liferay-ui:error key="dhst.intranet.satff.we.onceJob.null" message="工作经历的曾任职务不能为空。" />
 <liferay-ui:error key="dhst.intranet.satff.fr.name.null" message="家庭关系的姓名不能为空。" />
@@ -93,6 +97,7 @@ String[][] categorySections = {mainSections};
 <aui:form action="<%= editUserActionURL.toString() %>" method="post" name="fm">
 	<aui:input type="hidden" name="biId" value="<%= biId %>" />
 	<aui:input type="hidden" name="userId" value="<%= userId %>" />
+	<aui:input type="hidden" name="portletName" value="<%= portletName %>" />
 	
 	<liferay-util:buffer var="htmlTop">
 		<c:if test="<%= basicInformation != null %>">

@@ -116,7 +116,7 @@ public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
 			long attendanceMonthly) throws SystemException {
 		try {
 			return attendancePersistence.findByY_M(userId, attendanceYear,
-					attendanceMonthly);
+					attendanceMonthly, 1);
 		} catch (NoSuchAttendanceException nsae) {
 			return null;
 		}

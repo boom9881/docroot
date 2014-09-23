@@ -92,8 +92,9 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 			true);
 	public static long ATTENDANCEMONTH_COLUMN_BITMASK = 1L;
 	public static long ATTENDANCEYEAR_COLUMN_BITMASK = 2L;
-	public static long USERID_COLUMN_BITMASK = 4L;
-	public static long CREATEDATE_COLUMN_BITMASK = 8L;
+	public static long STATUS_COLUMN_BITMASK = 4L;
+	public static long USERID_COLUMN_BITMASK = 8L;
+	public static long CREATEDATE_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.Attendance"));
 
@@ -338,7 +339,19 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 
 	@Override
 	public void setStatus(int status) {
+		_columnBitmask |= STATUS_COLUMN_BITMASK;
+
+		if (!_setOriginalStatus) {
+			_setOriginalStatus = true;
+
+			_originalStatus = _status;
+		}
+
 		_status = status;
+	}
+
+	public int getOriginalStatus() {
+		return _originalStatus;
 	}
 
 	@Override
@@ -522,6 +535,10 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 
 		attendanceModelImpl._setOriginalAttendanceMonth = false;
 
+		attendanceModelImpl._originalStatus = attendanceModelImpl._status;
+
+		attendanceModelImpl._setOriginalStatus = false;
+
 		attendanceModelImpl._columnBitmask = 0;
 	}
 
@@ -683,6 +700,8 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 	private long _originalAttendanceMonth;
 	private boolean _setOriginalAttendanceMonth;
 	private int _status;
+	private int _originalStatus;
+	private boolean _setOriginalStatus;
 	private long _approver;
 	private long _createUserId;
 	private String _createUserUuid;

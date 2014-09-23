@@ -263,6 +263,7 @@
 			<finder-column name="userId"/>
 			<finder-column name="attendanceYear"/>
 			<finder-column name="attendanceMonth"/>
+			<finder-column name="status"/>
 		</finder>
 	</entity>
 	
@@ -301,6 +302,7 @@
 			<finder-column name="userId"/>
 			<finder-column name="overtimeYear"/>
 			<finder-column name="overtimeMonthly"/>
+			<finder-column name="status"/>
 		</finder>
 	</entity>
 	

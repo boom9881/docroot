@@ -93,8 +93,9 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 			true);
 	public static long OVERTIMEMONTHLY_COLUMN_BITMASK = 1L;
 	public static long OVERTIMEYEAR_COLUMN_BITMASK = 2L;
-	public static long USERID_COLUMN_BITMASK = 4L;
-	public static long CREATEDATE_COLUMN_BITMASK = 8L;
+	public static long STATUS_COLUMN_BITMASK = 4L;
+	public static long USERID_COLUMN_BITMASK = 8L;
+	public static long CREATEDATE_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.shuntian.portlet.intranet.model.Overtime"));
 
@@ -356,7 +357,19 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 
 	@Override
 	public void setStatus(int status) {
+		_columnBitmask |= STATUS_COLUMN_BITMASK;
+
+		if (!_setOriginalStatus) {
+			_setOriginalStatus = true;
+
+			_originalStatus = _status;
+		}
+
 		_status = status;
+	}
+
+	public int getOriginalStatus() {
+		return _originalStatus;
 	}
 
 	@Override
@@ -541,6 +554,10 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 
 		overtimeModelImpl._setOriginalOvertimeMonthly = false;
 
+		overtimeModelImpl._originalStatus = overtimeModelImpl._status;
+
+		overtimeModelImpl._setOriginalStatus = false;
+
 		overtimeModelImpl._columnBitmask = 0;
 	}
 
@@ -711,6 +728,8 @@ public class OvertimeModelImpl extends BaseModelImpl<Overtime>
 	private long _originalOvertimeMonthly;
 	private boolean _setOriginalOvertimeMonthly;
 	private int _status;
+	private int _originalStatus;
+	private boolean _setOriginalStatus;
 	private long _approver;
 	private long _createUserId;
 	private String _createUserUuid;

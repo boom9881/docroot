@@ -575,36 +575,41 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 			AttendanceModelImpl.FINDER_CACHE_ENABLED, AttendanceImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByY_M",
 			new String[] {
-				Long.class.getName(), Long.class.getName(), Long.class.getName()
+				Long.class.getName(), Long.class.getName(), Long.class.getName(),
+				Integer.class.getName()
 			},
 			AttendanceModelImpl.USERID_COLUMN_BITMASK |
 			AttendanceModelImpl.ATTENDANCEYEAR_COLUMN_BITMASK |
-			AttendanceModelImpl.ATTENDANCEMONTH_COLUMN_BITMASK);
+			AttendanceModelImpl.ATTENDANCEMONTH_COLUMN_BITMASK |
+			AttendanceModelImpl.STATUS_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_Y_M = new FinderPath(AttendanceModelImpl.ENTITY_CACHE_ENABLED,
 			AttendanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByY_M",
 			new String[] {
-				Long.class.getName(), Long.class.getName(), Long.class.getName()
+				Long.class.getName(), Long.class.getName(), Long.class.getName(),
+				Integer.class.getName()
 			});
 
 	/**
-	 * Returns the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchAttendanceException} if it could not be found.
+	 * Returns the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; and status = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchAttendanceException} if it could not be found.
 	 *
 	 * @param userId the user ID
 	 * @param attendanceYear the attendance year
 	 * @param attendanceMonth the attendance month
+	 * @param status the status
 	 * @return the matching attendance
 	 * @throws com.shuntian.portlet.intranet.NoSuchAttendanceException if a matching attendance could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Attendance findByY_M(long userId, long attendanceYear,
-		long attendanceMonth) throws NoSuchAttendanceException, SystemException {
+		long attendanceMonth, int status)
+		throws NoSuchAttendanceException, SystemException {
 		Attendance attendance = fetchByY_M(userId, attendanceYear,
-				attendanceMonth);
+				attendanceMonth, status);
 
 		if (attendance == null) {
-			StringBundler msg = new StringBundler(8);
+			StringBundler msg = new StringBundler(10);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
@@ -616,6 +621,9 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 
 			msg.append(", attendanceMonth=");
 			msg.append(attendanceMonth);
+
+			msg.append(", status=");
+			msg.append(status);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -630,36 +638,38 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 	}
 
 	/**
-	 * Returns the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; and status = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
 	 * @param userId the user ID
 	 * @param attendanceYear the attendance year
 	 * @param attendanceMonth the attendance month
+	 * @param status the status
 	 * @return the matching attendance, or <code>null</code> if a matching attendance could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Attendance fetchByY_M(long userId, long attendanceYear,
-		long attendanceMonth) throws SystemException {
-		return fetchByY_M(userId, attendanceYear, attendanceMonth, true);
+		long attendanceMonth, int status) throws SystemException {
+		return fetchByY_M(userId, attendanceYear, attendanceMonth, status, true);
 	}
 
 	/**
-	 * Returns the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; and status = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param userId the user ID
 	 * @param attendanceYear the attendance year
 	 * @param attendanceMonth the attendance month
+	 * @param status the status
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching attendance, or <code>null</code> if a matching attendance could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Attendance fetchByY_M(long userId, long attendanceYear,
-		long attendanceMonth, boolean retrieveFromCache)
+		long attendanceMonth, int status, boolean retrieveFromCache)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				userId, attendanceYear, attendanceMonth
+				userId, attendanceYear, attendanceMonth, status
 			};
 
 		Object result = null;
@@ -674,13 +684,14 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 
 			if ((userId != attendance.getUserId()) ||
 					(attendanceYear != attendance.getAttendanceYear()) ||
-					(attendanceMonth != attendance.getAttendanceMonth())) {
+					(attendanceMonth != attendance.getAttendanceMonth()) ||
+					(status != attendance.getStatus())) {
 				result = null;
 			}
 		}
 
 		if (result == null) {
-			StringBundler query = new StringBundler(5);
+			StringBundler query = new StringBundler(6);
 
 			query.append(_SQL_SELECT_ATTENDANCE_WHERE);
 
@@ -689,6 +700,8 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 			query.append(_FINDER_COLUMN_Y_M_ATTENDANCEYEAR_2);
 
 			query.append(_FINDER_COLUMN_Y_M_ATTENDANCEMONTH_2);
+
+			query.append(_FINDER_COLUMN_Y_M_STATUS_2);
 
 			String sql = query.toString();
 
@@ -707,6 +720,8 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 
 				qPos.add(attendanceMonth);
 
+				qPos.add(status);
+
 				List<Attendance> list = q.list();
 
 				if (list.isEmpty()) {
@@ -716,7 +731,7 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 				else {
 					if ((list.size() > 1) && _log.isWarnEnabled()) {
 						_log.warn(
-							"AttendancePersistenceImpl.fetchByY_M(long, long, long, boolean) with parameters (" +
+							"AttendancePersistenceImpl.fetchByY_M(long, long, long, int, boolean) with parameters (" +
 							StringUtil.merge(finderArgs) +
 							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
 					}
@@ -729,7 +744,8 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 
 					if ((attendance.getUserId() != userId) ||
 							(attendance.getAttendanceYear() != attendanceYear) ||
-							(attendance.getAttendanceMonth() != attendanceMonth)) {
+							(attendance.getAttendanceMonth() != attendanceMonth) ||
+							(attendance.getStatus() != status)) {
 						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_Y_M,
 							finderArgs, attendance);
 					}
@@ -755,46 +771,49 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 	}
 
 	/**
-	 * Removes the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; from the database.
+	 * Removes the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; and status = &#63; from the database.
 	 *
 	 * @param userId the user ID
 	 * @param attendanceYear the attendance year
 	 * @param attendanceMonth the attendance month
+	 * @param status the status
 	 * @return the attendance that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Attendance removeByY_M(long userId, long attendanceYear,
-		long attendanceMonth) throws NoSuchAttendanceException, SystemException {
+		long attendanceMonth, int status)
+		throws NoSuchAttendanceException, SystemException {
 		Attendance attendance = findByY_M(userId, attendanceYear,
-				attendanceMonth);
+				attendanceMonth, status);
 
 		return remove(attendance);
 	}
 
 	/**
-	 * Returns the number of attendances where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63;.
+	 * Returns the number of attendances where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; and status = &#63;.
 	 *
 	 * @param userId the user ID
 	 * @param attendanceYear the attendance year
 	 * @param attendanceMonth the attendance month
+	 * @param status the status
 	 * @return the number of matching attendances
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByY_M(long userId, long attendanceYear, long attendanceMonth)
-		throws SystemException {
+	public int countByY_M(long userId, long attendanceYear,
+		long attendanceMonth, int status) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_Y_M;
 
 		Object[] finderArgs = new Object[] {
-				userId, attendanceYear, attendanceMonth
+				userId, attendanceYear, attendanceMonth, status
 			};
 
 		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
 				this);
 
 		if (count == null) {
-			StringBundler query = new StringBundler(4);
+			StringBundler query = new StringBundler(5);
 
 			query.append(_SQL_COUNT_ATTENDANCE_WHERE);
 
@@ -803,6 +822,8 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 			query.append(_FINDER_COLUMN_Y_M_ATTENDANCEYEAR_2);
 
 			query.append(_FINDER_COLUMN_Y_M_ATTENDANCEMONTH_2);
+
+			query.append(_FINDER_COLUMN_Y_M_STATUS_2);
 
 			String sql = query.toString();
 
@@ -820,6 +841,8 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 				qPos.add(attendanceYear);
 
 				qPos.add(attendanceMonth);
+
+				qPos.add(status);
 
 				count = (Long)q.uniqueResult();
 
@@ -840,7 +863,8 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 
 	private static final String _FINDER_COLUMN_Y_M_USERID_2 = "attendance.userId = ? AND ";
 	private static final String _FINDER_COLUMN_Y_M_ATTENDANCEYEAR_2 = "attendance.attendanceYear = ? AND ";
-	private static final String _FINDER_COLUMN_Y_M_ATTENDANCEMONTH_2 = "attendance.attendanceMonth = ?";
+	private static final String _FINDER_COLUMN_Y_M_ATTENDANCEMONTH_2 = "attendance.attendanceMonth = ? AND ";
+	private static final String _FINDER_COLUMN_Y_M_STATUS_2 = "attendance.status = ?";
 
 	public AttendancePersistenceImpl() {
 		setModelClass(Attendance.class);
@@ -859,7 +883,7 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_Y_M,
 			new Object[] {
 				attendance.getUserId(), attendance.getAttendanceYear(),
-				attendance.getAttendanceMonth()
+				attendance.getAttendanceMonth(), attendance.getStatus()
 			}, attendance);
 
 		attendance.resetOriginalValues();
@@ -939,7 +963,7 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 		if (attendance.isNew()) {
 			Object[] args = new Object[] {
 					attendance.getUserId(), attendance.getAttendanceYear(),
-					attendance.getAttendanceMonth()
+					attendance.getAttendanceMonth(), attendance.getStatus()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_Y_M, args,
@@ -953,7 +977,7 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 					FINDER_PATH_FETCH_BY_Y_M.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						attendance.getUserId(), attendance.getAttendanceYear(),
-						attendance.getAttendanceMonth()
+						attendance.getAttendanceMonth(), attendance.getStatus()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_Y_M, args,
@@ -969,7 +993,7 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 
 		Object[] args = new Object[] {
 				attendance.getUserId(), attendance.getAttendanceYear(),
-				attendance.getAttendanceMonth()
+				attendance.getAttendanceMonth(), attendance.getStatus()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_Y_M, args);
@@ -980,7 +1004,8 @@ public class AttendancePersistenceImpl extends BasePersistenceImpl<Attendance>
 			args = new Object[] {
 					attendanceModelImpl.getOriginalUserId(),
 					attendanceModelImpl.getOriginalAttendanceYear(),
-					attendanceModelImpl.getOriginalAttendanceMonth()
+					attendanceModelImpl.getOriginalAttendanceMonth(),
+					attendanceModelImpl.getOriginalStatus()
 				};
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_Y_M, args);

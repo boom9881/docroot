@@ -175,73 +175,78 @@ public interface OvertimePersistence extends BasePersistence<Overtime> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the overtime where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchOvertimeException} if it could not be found.
+	* Returns the overtime where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; and status = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchOvertimeException} if it could not be found.
 	*
 	* @param userId the user ID
 	* @param overtimeYear the overtime year
 	* @param overtimeMonthly the overtime monthly
+	* @param status the status
 	* @return the matching overtime
 	* @throws com.shuntian.portlet.intranet.NoSuchOvertimeException if a matching overtime could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.shuntian.portlet.intranet.model.Overtime findByY_M(long userId,
-		long overtimeYear, long overtimeMonthly)
+		long overtimeYear, long overtimeMonthly, int status)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchOvertimeException;
 
 	/**
-	* Returns the overtime where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the overtime where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; and status = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
 	* @param userId the user ID
 	* @param overtimeYear the overtime year
 	* @param overtimeMonthly the overtime monthly
+	* @param status the status
 	* @return the matching overtime, or <code>null</code> if a matching overtime could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.shuntian.portlet.intranet.model.Overtime fetchByY_M(
-		long userId, long overtimeYear, long overtimeMonthly)
+		long userId, long overtimeYear, long overtimeMonthly, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the overtime where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the overtime where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; and status = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
 	* @param userId the user ID
 	* @param overtimeYear the overtime year
 	* @param overtimeMonthly the overtime monthly
+	* @param status the status
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching overtime, or <code>null</code> if a matching overtime could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.shuntian.portlet.intranet.model.Overtime fetchByY_M(
-		long userId, long overtimeYear, long overtimeMonthly,
+		long userId, long overtimeYear, long overtimeMonthly, int status,
 		boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes the overtime where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; from the database.
+	* Removes the overtime where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; and status = &#63; from the database.
 	*
 	* @param userId the user ID
 	* @param overtimeYear the overtime year
 	* @param overtimeMonthly the overtime monthly
+	* @param status the status
 	* @return the overtime that was removed
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.shuntian.portlet.intranet.model.Overtime removeByY_M(
-		long userId, long overtimeYear, long overtimeMonthly)
+		long userId, long overtimeYear, long overtimeMonthly, int status)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchOvertimeException;
 
 	/**
-	* Returns the number of overtimes where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63;.
+	* Returns the number of overtimes where userId = &#63; and overtimeYear = &#63; and overtimeMonthly = &#63; and status = &#63;.
 	*
 	* @param userId the user ID
 	* @param overtimeYear the overtime year
 	* @param overtimeMonthly the overtime monthly
+	* @param status the status
 	* @return the number of matching overtimes
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByY_M(long userId, long overtimeYear, long overtimeMonthly)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByY_M(long userId, long overtimeYear, long overtimeMonthly,
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Caches the overtime in the entity cache if it is enabled.

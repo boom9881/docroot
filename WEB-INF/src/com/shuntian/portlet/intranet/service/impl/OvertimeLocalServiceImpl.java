@@ -90,7 +90,7 @@ public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
 
 	public void updateOTStatus(long overtimeId, int status)
 			throws NoSuchOvertimeException, SystemException {
-		
+
 		Overtime overtime = overtimePersistence.findByPrimaryKey(overtimeId);
 
 		overtime.setStatus(status);
@@ -109,7 +109,7 @@ public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
 
 		try {
 			return overtimePersistence.findByY_M(userId, overtimeYear,
-					overtimeMonthly);
+					overtimeMonthly, 1);
 		} catch (NoSuchOvertimeException e) {
 			return null;
 		}

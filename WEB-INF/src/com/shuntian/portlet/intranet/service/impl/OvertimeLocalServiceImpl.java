@@ -18,12 +18,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.shuntian.portlet.intranet.NoSuchAttendanceException;
 import com.shuntian.portlet.intranet.NoSuchOvertimeException;
+import com.shuntian.portlet.intranet.model.BasicInformation;
+import com.shuntian.portlet.intranet.model.Department;
 import com.shuntian.portlet.intranet.model.Overtime;
+import com.shuntian.portlet.intranet.service.DepartmentLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.base.OvertimeLocalServiceBaseImpl;
+import com.shuntian.portlet.intranet.util.IntranetUtil;
 
 /**
  * The implementation of the overtime local service.
@@ -44,30 +47,36 @@ import com.shuntian.portlet.intranet.service.base.OvertimeLocalServiceBaseImpl;
  * @see com.shuntian.portlet.intranet.service.OvertimeLocalServiceUtil
  */
 public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
-	public void addOvertime(long userId, long basicId, long overtimeYear,
+
+	public void editOvertime(long userId, long overtimeId, long overtimeYear,
 			long overtimeMonthly, double usuallyOvertime, double restOvertime,
 			double legalOvertime) throws SystemException {
 
-		long id = counterLocalService.increment();
+		Overtime overtime = null;
 
-		Overtime overtime = overtimeLocalService.createOvertime(id);
+		try {
+			overtime = overtimePersistence.findByPrimaryKey(overtimeId);
+		} catch (Exception e) {
+			long id = counterLocalService.increment();
 
-		overtime.setUserId(basicId);
-		overtime.setOvertimeYear(overtimeYear);
-		overtime.setOvertimeMonthly(overtimeMonthly);
-		overtime.setUsuallyOvertime(usuallyOvertime);
-		overtime.setRestOvertime(restOvertime);
-		overtime.setLegalOvertime(legalOvertime);
-		overtime.setCreateUserId(userId);
-		overtime.setCreateDate(new Date());
-		overtimeLocalService.updateOvertime(overtime);
-	}
+			overtime = overtimePersistence.create(id);
 
-	public void updateOvertime(long userId, long overtimeId, long overtimeYear,
-			long overtimeMonthly, double usuallyOvertime, double restOvertime,
-			double legalOvertime) throws SystemException, PortalException {
-		Overtime overtime = overtimeLocalService.getOvertime(overtimeId);
+			overtime.setCreateUserId(userId);
+			overtime.setCreateDate(new Date());
+		}
 
+		try {
+			BasicInformation bi = basicInformationPersistence
+					.findByUserId(userId);
+			Department dep = DepartmentLocalServiceUtil.getDepartment(bi
+					.getDepartmentId());
+
+			overtime.setApprover(dep.getLeader());
+			overtime.setUserId(bi.getId());
+		} catch (Exception e) {
+		}
+
+		overtime.setStatus(IntranetUtil.STATUS_0);
 		overtime.setOvertimeYear(overtimeYear);
 		overtime.setOvertimeMonthly(overtimeMonthly);
 		overtime.setUsuallyOvertime(usuallyOvertime);
@@ -75,16 +84,29 @@ public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
 		overtime.setLegalOvertime(legalOvertime);
 		overtime.setModifiedUserId(userId);
 		overtime.setModifiedDate(new Date());
-		overtimeLocalService.updateOvertime(overtime);
+
+		overtimePersistence.update(overtime);
+	}
+
+	public void updateOTStatus(long overtimeId, int status)
+			throws NoSuchOvertimeException, SystemException {
+		
+		Overtime overtime = overtimePersistence.findByPrimaryKey(overtimeId);
+
+		overtime.setStatus(status);
+
+		overtimePersistence.update(overtime);
 	}
 
 	public List<Overtime> findByUserId(long userId) throws SystemException,
 			NoSuchAttendanceException {
+
 		return overtimePersistence.findByUserId(userId);
 	}
 
 	public Overtime findByY_M(long userId, long overtimeYear,
 			long overtimeMonthly) throws SystemException {
+
 		try {
 			return overtimePersistence.findByY_M(userId, overtimeYear,
 					overtimeMonthly);

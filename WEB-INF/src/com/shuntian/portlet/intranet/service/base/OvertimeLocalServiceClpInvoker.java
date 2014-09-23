@@ -114,17 +114,15 @@ public class OvertimeLocalServiceClpInvoker {
 
 		_methodParameterTypes75 = new String[] { "java.lang.String" };
 
-		_methodName80 = "addOvertime";
+		_methodName80 = "editOvertime";
 
 		_methodParameterTypes80 = new String[] {
 				"long", "long", "long", "long", "double", "double", "double"
 			};
 
-		_methodName81 = "updateOvertime";
+		_methodName81 = "updateOTStatus";
 
-		_methodParameterTypes81 = new String[] {
-				"long", "long", "long", "long", "double", "double", "double"
-			};
+		_methodParameterTypes81 = new String[] { "long", "int" };
 
 		_methodName82 = "findByUserId";
 
@@ -252,7 +250,7 @@ public class OvertimeLocalServiceClpInvoker {
 
 		if (_methodName80.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
-			OvertimeLocalServiceUtil.addOvertime(((Long)arguments[0]).longValue(),
+			OvertimeLocalServiceUtil.editOvertime(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				((Long)arguments[3]).longValue(),
@@ -265,13 +263,8 @@ public class OvertimeLocalServiceClpInvoker {
 
 		if (_methodName81.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
-			OvertimeLocalServiceUtil.updateOvertime(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				((Long)arguments[2]).longValue(),
-				((Long)arguments[3]).longValue(),
-				((Double)arguments[4]).doubleValue(),
-				((Double)arguments[5]).doubleValue(),
-				((Double)arguments[6]).doubleValue());
+			OvertimeLocalServiceUtil.updateOTStatus(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue());
 
 			return null;
 		}

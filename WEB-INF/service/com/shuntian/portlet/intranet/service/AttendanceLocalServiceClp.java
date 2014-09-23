@@ -900,25 +900,20 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 
 	@Override
 	public com.shuntian.portlet.intranet.model.Attendance findByY_M(
-		long userId, long attendanceYear, long attendanceMonth)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		long userId, long attendanceYear, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName24,
 					_methodParameterTypes24,
-					new Object[] { userId, attendanceYear, attendanceMonth });
+					new Object[] { userId, attendanceYear, attendanceMonthly });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof com.shuntian.portlet.intranet.NoSuchAttendanceException) {
-				throw (com.shuntian.portlet.intranet.NoSuchAttendanceException)t;
 			}
 
 			if (t instanceof RuntimeException) {

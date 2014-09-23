@@ -274,23 +274,19 @@ public class OvertimeLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static void addOvertime(long userId, long basicId,
+	public static void editOvertime(long userId, long overtimeId,
 		long overtimeYear, long overtimeMonthly, double usuallyOvertime,
 		double restOvertime, double legalOvertime)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.addOvertime(userId, basicId, overtimeYear, overtimeMonthly,
+			.editOvertime(userId, overtimeId, overtimeYear, overtimeMonthly,
 			usuallyOvertime, restOvertime, legalOvertime);
 	}
 
-	public static void updateOvertime(long userId, long overtimeId,
-		long overtimeYear, long overtimeMonthly, double usuallyOvertime,
-		double restOvertime, double legalOvertime)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.updateOvertime(userId, overtimeId, overtimeYear, overtimeMonthly,
-			usuallyOvertime, restOvertime, legalOvertime);
+	public static void updateOTStatus(long overtimeId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		getService().updateOTStatus(overtimeId, status);
 	}
 
 	public static java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByUserId(
@@ -302,9 +298,7 @@ public class OvertimeLocalServiceUtil {
 
 	public static com.shuntian.portlet.intranet.model.Overtime findByY_M(
 		long userId, long overtimeYear, long overtimeMonthly)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException,
-			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().findByY_M(userId, overtimeYear, overtimeMonthly);
 	}
 

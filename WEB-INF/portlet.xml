@@ -124,6 +124,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.overtime.Language</resource-bundle>
 		<portlet-info>
 			<title>overtime</title>
 			<short-title>overtime</short-title>

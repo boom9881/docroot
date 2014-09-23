@@ -114,17 +114,15 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
-		_methodName19 = "addOvertime";
+		_methodName19 = "editOvertime";
 
 		_methodParameterTypes19 = new String[] {
 				"long", "long", "long", "long", "double", "double", "double"
 			};
 
-		_methodName20 = "updateOvertime";
+		_methodName20 = "updateOTStatus";
 
-		_methodParameterTypes20 = new String[] {
-				"long", "long", "long", "long", "double", "double", "double"
-			};
+		_methodParameterTypes20 = new String[] { "long", "int" };
 
 		_methodName21 = "findByUserId";
 
@@ -696,7 +694,7 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 	}
 
 	@Override
-	public void addOvertime(long userId, long basicId, long overtimeYear,
+	public void editOvertime(long userId, long overtimeId, long overtimeYear,
 		long overtimeMonthly, double usuallyOvertime, double restOvertime,
 		double legalOvertime)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -706,7 +704,7 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 				new Object[] {
 					userId,
 					
-				basicId,
+				overtimeId,
 					
 				overtimeYear,
 					
@@ -737,39 +735,22 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 	}
 
 	@Override
-	public void updateOvertime(long userId, long overtimeId, long overtimeYear,
-		long overtimeMonthly, double usuallyOvertime, double restOvertime,
-		double legalOvertime)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+	public void updateOTStatus(long overtimeId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20,
-				new Object[] {
-					userId,
-					
-				overtimeId,
-					
-				overtimeYear,
-					
-				overtimeMonthly,
-					
-				usuallyOvertime,
-					
-				restOvertime,
-					
-				legalOvertime
-				});
+				_methodParameterTypes20, new Object[] { overtimeId, status });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.shuntian.portlet.intranet.NoSuchOvertimeException) {
+				throw (com.shuntian.portlet.intranet.NoSuchOvertimeException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -819,9 +800,7 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 	@Override
 	public com.shuntian.portlet.intranet.model.Overtime findByY_M(long userId,
 		long overtimeYear, long overtimeMonthly)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException,
-			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -834,14 +813,6 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof com.shuntian.portlet.intranet.NoSuchAttendanceException) {
-				throw (com.shuntian.portlet.intranet.NoSuchAttendanceException)t;
-			}
-
-			if (t instanceof com.shuntian.portlet.intranet.NoSuchOvertimeException) {
-				throw (com.shuntian.portlet.intranet.NoSuchOvertimeException)t;
 			}
 
 			if (t instanceof RuntimeException) {

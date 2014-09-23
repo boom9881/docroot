@@ -11,7 +11,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
-import com.shuntian.portlet.intranet.NoSuchAttendanceException;
 import com.shuntian.portlet.intranet.model.BasicInformation;
 import com.shuntian.portlet.intranet.service.AttendanceLocalServiceUtil;
 import com.shuntian.portlet.intranet.service.BasicInformationLocalServiceUtil;
@@ -69,8 +68,7 @@ public class AttendancePortlet extends MVCPortlet {
 
 	private void validatorAttendance(ActionRequest actionRequest, long userId,
 			String attendanceYear, String attendanceMonth,
-			String actualAttendance) throws NoSuchAttendanceException,
-			NumberFormatException, SystemException {
+			String actualAttendance) {
 
 		try {
 			BasicInformation bi = BasicInformationLocalServiceUtil
@@ -82,7 +80,7 @@ public class AttendancePortlet extends MVCPortlet {
 				SessionErrors
 						.add(actionRequest, "dhst.intranet.attendance.rep");
 			}
-		} catch (PortalException e) {
+		} catch (SystemException e) {
 		}
 
 		try {

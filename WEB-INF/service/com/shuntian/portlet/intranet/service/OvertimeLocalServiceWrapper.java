@@ -283,22 +283,19 @@ public class OvertimeLocalServiceWrapper implements OvertimeLocalService,
 	}
 
 	@Override
-	public void addOvertime(long userId, long basicId, long overtimeYear,
+	public void editOvertime(long userId, long overtimeId, long overtimeYear,
 		long overtimeMonthly, double usuallyOvertime, double restOvertime,
 		double legalOvertime)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_overtimeLocalService.addOvertime(userId, basicId, overtimeYear,
+		_overtimeLocalService.editOvertime(userId, overtimeId, overtimeYear,
 			overtimeMonthly, usuallyOvertime, restOvertime, legalOvertime);
 	}
 
 	@Override
-	public void updateOvertime(long userId, long overtimeId, long overtimeYear,
-		long overtimeMonthly, double usuallyOvertime, double restOvertime,
-		double legalOvertime)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_overtimeLocalService.updateOvertime(userId, overtimeId, overtimeYear,
-			overtimeMonthly, usuallyOvertime, restOvertime, legalOvertime);
+	public void updateOTStatus(long overtimeId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		_overtimeLocalService.updateOTStatus(overtimeId, status);
 	}
 
 	@Override
@@ -312,9 +309,7 @@ public class OvertimeLocalServiceWrapper implements OvertimeLocalService,
 	@Override
 	public com.shuntian.portlet.intranet.model.Overtime findByY_M(long userId,
 		long overtimeYear, long overtimeMonthly)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException,
-			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _overtimeLocalService.findByY_M(userId, overtimeYear,
 			overtimeMonthly);
 	}

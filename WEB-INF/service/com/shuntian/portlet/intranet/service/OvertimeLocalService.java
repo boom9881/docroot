@@ -245,16 +245,14 @@ public interface OvertimeLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public void addOvertime(long userId, long basicId, long overtimeYear,
+	public void editOvertime(long userId, long overtimeId, long overtimeYear,
 		long overtimeMonthly, double usuallyOvertime, double restOvertime,
 		double legalOvertime)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void updateOvertime(long userId, long overtimeId, long overtimeYear,
-		long overtimeMonthly, double usuallyOvertime, double restOvertime,
-		double legalOvertime)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+	public void updateOTStatus(long overtimeId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchOvertimeException;
 
 	public java.util.List<com.shuntian.portlet.intranet.model.Overtime> findByUserId(
 		long userId)
@@ -263,9 +261,7 @@ public interface OvertimeLocalService extends BaseLocalService,
 
 	public com.shuntian.portlet.intranet.model.Overtime findByY_M(long userId,
 		long overtimeYear, long overtimeMonthly)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException,
-			com.shuntian.portlet.intranet.NoSuchOvertimeException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int search(long departmentId, long searchUserId,

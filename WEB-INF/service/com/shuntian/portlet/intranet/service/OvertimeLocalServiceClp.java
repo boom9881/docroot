@@ -819,9 +819,7 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 	@Override
 	public com.shuntian.portlet.intranet.model.Overtime findByY_M(long userId,
 		long overtimeYear, long overtimeMonthly)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException,
-			com.shuntian.portlet.intranet.NoSuchOvertimeException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -834,14 +832,6 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof com.shuntian.portlet.intranet.NoSuchAttendanceException) {
-				throw (com.shuntian.portlet.intranet.NoSuchAttendanceException)t;
-			}
-
-			if (t instanceof com.shuntian.portlet.intranet.NoSuchOvertimeException) {
-				throw (com.shuntian.portlet.intranet.NoSuchOvertimeException)t;
 			}
 
 			if (t instanceof RuntimeException) {

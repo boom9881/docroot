@@ -67,7 +67,7 @@ public class AttendancePortlet extends MVCPortlet {
 			String attendanceYear, String attendanceMonth,
 			String actualAttendance, String shouldAttendance) {
 
-		AttendanceLocalServiceUtil.findByY_M(userId, attendanceYear,
-				attendanceMonth);
+		//AttendanceLocalServiceUtil.findByY_M(userId, attendanceYear,
+		//		attendanceMonth);
 	}
 }

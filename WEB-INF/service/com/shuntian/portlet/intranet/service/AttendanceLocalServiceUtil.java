@@ -317,10 +317,9 @@ public class AttendanceLocalServiceUtil {
 	}
 
 	public static com.shuntian.portlet.intranet.model.Attendance findByY_M(
-		long userId, long attendanceYear, long attendanceMonth)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.shuntian.portlet.intranet.NoSuchAttendanceException {
-		return getService().findByY_M(userId, attendanceYear, attendanceMonth);
+		long userId, long attendanceYear, long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().findByY_M(userId, attendanceYear, attendanceMonthly);
 	}
 
 	public static void clearService() {

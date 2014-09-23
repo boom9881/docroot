@@ -84,10 +84,13 @@ public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
 	}
 
 	public Overtime findByY_M(long userId, long overtimeYear,
-			long overtimeMonthly) throws SystemException,
-			NoSuchAttendanceException, NoSuchOvertimeException {
-		return overtimePersistence.findByY_M(userId, overtimeYear,
-				overtimeMonthly);
+			long overtimeMonthly) throws SystemException {
+		try {
+			return overtimePersistence.findByY_M(userId, overtimeYear,
+					overtimeMonthly);
+		} catch (NoSuchOvertimeException e) {
+			return null;
+		}
 	}
 
 	public int search(long departmentId, long searchUserId, String searchYear,

@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.shuntian.portlet.intranet.NoSuchAttendanceException;
 import com.shuntian.portlet.intranet.model.Attendance;
 import com.shuntian.portlet.intranet.model.ExtInformation;
 import com.shuntian.portlet.intranet.model.Overtime;
@@ -35,8 +37,13 @@ public class OverTimeSum {
 
 		ExtInformation extInformation = ExtInformationLocalServiceUtil
 				.findByUserId(userId);
-		Attendance attendance = AttendanceLocalServiceUtil
-				.getAttendance(attendanceId);
+		Attendance attendance = null;
+		try {
+			attendance = AttendanceLocalServiceUtil.getAttendance(attendanceId);
+		} catch (NoSuchAttendanceException nsae) {
+			return 0;
+		}
+		
 		if (attendance.getActualAttendance() < attendance.getShouldAttendance()) {
 			return extInformation.getBasicWage()
 					- extInformation.getBasicWage()
@@ -54,16 +61,28 @@ public class OverTimeSum {
 
 		ExtInformation extInformation = ExtInformationLocalServiceUtil
 				.findByUserId(userId);
-		Attendance attendance = AttendanceLocalServiceUtil
-				.getAttendance(attendanceId);
-		Overtime overtime = OvertimeLocalServiceUtil.getOvertime(overtimeId);
+		Attendance attendance = null;
+		try {
+			attendance = AttendanceLocalServiceUtil.getAttendance(attendanceId);
+		} catch (NoSuchAttendanceException nsae) {
+			return 0;
+		}
+		Overtime overtime = null;
+		double overtimeWages = 0;
+		if (Validator.isNotNull(overtimeId)) {
+			overtime = OvertimeLocalServiceUtil.getOvertime(overtimeId);
 
-		return (extInformation.getBasicWage() + extInformation.getOtherWage())
-				/ attendance.getShouldAttendance()
-				* (OverTimeSum
-						.sum(overtime.getUsuallyOvertime(),
-								overtime.getRestOvertime(),
-								overtime.getLegalOvertime()));
+			overtimeWages = (extInformation.getBasicWage() + extInformation
+					.getOtherWage())
+					/ attendance.getShouldAttendance()
+					* (OverTimeSum.sum(overtime.getUsuallyOvertime(),
+							overtime.getRestOvertime(),
+							overtime.getLegalOvertime()));
+		} else {
+			overtimeWages = 0;
+		}
+
+		return overtimeWages;
 	}
 
 	public static double getPerformanceScores() {
@@ -75,8 +94,12 @@ public class OverTimeSum {
 
 		ExtInformation extInformation = ExtInformationLocalServiceUtil
 				.findByUserId(userId);
-		Attendance attendance = AttendanceLocalServiceUtil
-				.getAttendance(attendanceId);
+		Attendance attendance = null;
+		try {
+			attendance = AttendanceLocalServiceUtil.getAttendance(attendanceId);
+		} catch (NoSuchAttendanceException nsae) {
+			return 0;
+		}
 
 		if (getPerformanceScores() < 60) {
 			return 0.0;
@@ -92,8 +115,9 @@ public class OverTimeSum {
 		return 0.0;
 	}
 
-	public static double getTotalWages(double basicWage, double preWage,double overtimeWages) {
-		return basicWage + preWage+overtimeWages;
+	public static double getTotalWages(double basicWage, double preWage,
+			double overtimeWages) {
+		return basicWage + preWage + overtimeWages;
 	}
 
 	public static double getSocialCompanyBearPart(long userId,
@@ -112,8 +136,7 @@ public class OverTimeSum {
 	}
 
 	public static double getSocialIndividualsBearPart(long userId,
-			long attendanceId) throws PortalException,
-			SystemException {
+			long attendanceId) throws PortalException, SystemException {
 
 		ExtInformation extInformation = ExtInformationLocalServiceUtil
 				.findByUserId(userId);
@@ -124,60 +147,61 @@ public class OverTimeSum {
 				+ extInformation.getBasicWage() * 0.12;
 	}
 
-	public static double getTaxableIncome(long userId, long attendanceId, double overtimeWages) throws PortalException, SystemException {
+	public static double getTaxableIncome(long userId, long attendanceId,
+			double overtimeWages) throws PortalException, SystemException {
 		ExtInformation extInformation = ExtInformationLocalServiceUtil
 				.findByUserId(userId);
 
 		return getTotalWages(extInformation.getBasicWage(),
-				extInformation.getOtherWage(),overtimeWages)
+				extInformation.getOtherWage(), overtimeWages)
 				- getSocialIndividualsBearPart(userId, attendanceId)
 				- getAllowance();
 	}
 
-	public static int getTaxRate(long userId, long attendanceId, double overtimeWages)
-			throws PortalException, SystemException {
-		if (getTaxableIncome(userId, attendanceId,overtimeWages) > 83500) {
+	public static int getTaxRate(long userId, long attendanceId,
+			double overtimeWages) throws PortalException, SystemException {
+		if (getTaxableIncome(userId, attendanceId, overtimeWages) > 83500) {
 			return 45;
-		} else if (getTaxableIncome(userId, attendanceId,overtimeWages) >= 58500) {
+		} else if (getTaxableIncome(userId, attendanceId, overtimeWages) >= 58500) {
 			return 35;
-		} else if (getTaxableIncome(userId, attendanceId,overtimeWages) >= 38500) {
+		} else if (getTaxableIncome(userId, attendanceId, overtimeWages) >= 38500) {
 			return 30;
-		} else if (getTaxableIncome(userId, attendanceId,overtimeWages) >= 12500) {
+		} else if (getTaxableIncome(userId, attendanceId, overtimeWages) >= 12500) {
 			return 25;
-		} else if (getTaxableIncome(userId, attendanceId,overtimeWages) >= 8000) {
+		} else if (getTaxableIncome(userId, attendanceId, overtimeWages) >= 8000) {
 			return 20;
-		} else if (getTaxableIncome(userId, attendanceId,overtimeWages) >= 5000) {
+		} else if (getTaxableIncome(userId, attendanceId, overtimeWages) >= 5000) {
 			return 10;
-		} else if (getTaxableIncome(userId, attendanceId,overtimeWages) >= 3500) {
+		} else if (getTaxableIncome(userId, attendanceId, overtimeWages) >= 3500) {
 			return 3;
 		}
 		return 0;
 	}
 
-	public static double getTaxes(long userId, long attendanceId, double overtimeWages)
-			throws PortalException, SystemException {
-		if ((getTaxableIncome(userId, attendanceId,overtimeWages)-3500) >= 80000) {
-			return (getTaxableIncome(userId, attendanceId,overtimeWages)-3500) * 0.45 - 13505;
-		} else if ((getTaxableIncome(userId, attendanceId,overtimeWages)-3500) >= 55000) {
-			return (getTaxableIncome(userId, attendanceId,overtimeWages)-3500) * 0.35 - 5505;
-		} else if ((getTaxableIncome(userId, attendanceId,overtimeWages)-3500) >= 35000) {
-			return (getTaxableIncome(userId, attendanceId,overtimeWages)-3500) * 0.3 - 2755;
-		} else if ((getTaxableIncome(userId, attendanceId,overtimeWages)-3500) >= 9000) {
-			return (getTaxableIncome(userId, attendanceId,overtimeWages)-3500) * 0.25 - 1005;
-		} else if ((getTaxableIncome(userId, attendanceId,overtimeWages)-3500) >= 4500) {
-			return (getTaxableIncome(userId, attendanceId,overtimeWages)-3500) * 0.2 - 555;
-		} else if ((getTaxableIncome(userId, attendanceId,overtimeWages)-3500) >= 1500) {
-			return (getTaxableIncome(userId, attendanceId,overtimeWages)-3500) * 0.1 - 105;
-		} else if ((getTaxableIncome(userId, attendanceId,overtimeWages)-3500) >= 0) {
-			return (getTaxableIncome(userId, attendanceId,overtimeWages)-3500) * 0.03;
+	public static double getTaxes(long userId, long attendanceId,
+			double overtimeWages) throws PortalException, SystemException {
+		if ((getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) >= 80000) {
+			return (getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) * 0.45 - 13505;
+		} else if ((getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) >= 55000) {
+			return (getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) * 0.35 - 5505;
+		} else if ((getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) >= 35000) {
+			return (getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) * 0.3 - 2755;
+		} else if ((getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) >= 9000) {
+			return (getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) * 0.25 - 1005;
+		} else if ((getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) >= 4500) {
+			return (getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) * 0.2 - 555;
+		} else if ((getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) >= 1500) {
+			return (getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) * 0.1 - 105;
+		} else if ((getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) >= 0) {
+			return (getTaxableIncome(userId, attendanceId, overtimeWages) - 3500) * 0.03;
 		}
 		return 0;
 	}
 
-	public static double getRealWages(long userId, long attendanceId,double overtimeWages)
-			throws PortalException, SystemException {
-		return getTaxableIncome(userId, attendanceId,overtimeWages)
-				- getTaxes(userId, attendanceId,overtimeWages);
+	public static double getRealWages(long userId, long attendanceId,
+			double overtimeWages) throws PortalException, SystemException {
+		return getTaxableIncome(userId, attendanceId, overtimeWages)
+				- getTaxes(userId, attendanceId, overtimeWages);
 	}
 
 	public static int isSatff(long userId) throws PortalException,

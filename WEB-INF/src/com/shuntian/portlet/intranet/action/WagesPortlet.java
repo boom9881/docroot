@@ -63,22 +63,34 @@ public class WagesPortlet extends MVCPortlet {
 				if(Validator.isNotNull(attendance)){
 					wages.setAttendance(attendance.getShouldAttendance());
 					wages.setRealAttendance(attendance.getActualAttendance());
+					wages.setBasePay(OverTimeSum.getBasePay(userId, attendanceId));
+					wages.setOvertimeWages(OverTimeSum.getOvertimeWages(userId, attendanceId, overtimeId));
+					wages.setPerformanceScores(OverTimeSum.getPerformanceScores());
+					wages.setPerformanceSalary(OverTimeSum.getPerformanceSalary(userId, attendanceId));
+					wages.setAllowance(OverTimeSum.getAllowance());
+					wages.setTotalWages(OverTimeSum.getTotalWages(OverTimeSum.getBasePay(userId, attendanceId), OverTimeSum.getPerformanceSalary(userId, attendanceId),wages.getOvertimeWages()));
+					wages.setSocialCompanyBearPart(OverTimeSum.getSocialCompanyBearPart(userId, attendanceId, overtimeId));
+					wages.setSocialIndividualsBearPart(OverTimeSum.getSocialIndividualsBearPart(userId, attendanceId));
+					wages.setTaxableIncome(OverTimeSum.getTaxableIncome(userId, attendanceId,wages.getOvertimeWages()));
+					wages.setTaxRate(OverTimeSum.getTaxRate(userId, attendanceId,wages.getOvertimeWages()));
+					wages.setTaxes(OverTimeSum.getTaxes(userId, attendanceId,wages.getOvertimeWages()));
+					wages.setRealWages(OverTimeSum.getRealWages(userId, attendanceId,wages.getOvertimeWages()));
 				}else{
 					wages.setAttendance(21.75);
 					wages.setRealAttendance(0);
+					wages.setBasePay(0);
+					wages.setOvertimeWages(0);
+					wages.setPerformanceScores(0);
+					wages.setPerformanceSalary(0);
+					wages.setAllowance(0);
+					wages.setTotalWages(0);
+					wages.setSocialCompanyBearPart(0);
+					wages.setSocialIndividualsBearPart(0);
+					wages.setTaxableIncome(0);
+					wages.setTaxRate(0);
+					wages.setTaxes(0);
+					wages.setRealWages(0);
 				}
-				wages.setBasePay(OverTimeSum.getBasePay(userId, attendanceId));
-				wages.setOvertimeWages(OverTimeSum.getOvertimeWages(userId, attendanceId, overtimeId));
-				wages.setPerformanceScores(OverTimeSum.getPerformanceScores());
-				wages.setPerformanceSalary(OverTimeSum.getPerformanceSalary(userId, attendanceId));
-				wages.setAllowance(OverTimeSum.getAllowance());
-				wages.setTotalWages(OverTimeSum.getTotalWages(OverTimeSum.getBasePay(userId, attendanceId), OverTimeSum.getPerformanceSalary(userId, attendanceId),wages.getOvertimeWages()));
-				wages.setSocialCompanyBearPart(OverTimeSum.getSocialCompanyBearPart(userId, attendanceId, overtimeId));
-				wages.setSocialIndividualsBearPart(OverTimeSum.getSocialIndividualsBearPart(userId, attendanceId));
-				wages.setTaxableIncome(OverTimeSum.getTaxableIncome(userId, attendanceId,wages.getOvertimeWages()));
-				wages.setTaxRate(OverTimeSum.getTaxRate(userId, attendanceId,wages.getOvertimeWages()));
-				wages.setTaxes(OverTimeSum.getTaxes(userId, attendanceId,wages.getOvertimeWages()));
-				wages.setRealWages(OverTimeSum.getRealWages(userId, attendanceId,wages.getOvertimeWages()));
 				
 				WagesLocalServiceUtil.updateWages(wages);
 			}

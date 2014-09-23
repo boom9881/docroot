@@ -57,23 +57,21 @@
 				
 				long userId = basicInformation.getUserId();
 				long attendanceId = 0;
-				long overtimeId = 0;				
+				long overtimeId = 0;	
+							
 				ExtInformation extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
 				Attendance attendance = AttendanceLocalServiceUtil.findByY_M(basicInformation.getId(), distributionYear, distributionMonth);
 				Overtime overtime = OvertimeLocalServiceUtil.findByY_M(basicInformation.getId(), distributionYear, distributionMonth);
 				
 				if(Validator.isNotNull(attendance)){
 					attendanceId = attendance.getId();
-					if(!isAttIdNull){
-						isAttIdNull = true;
-					}
 				}
 				if(Validator.isNotNull(overtime)){
 					overtimeId = overtime.getId();
 				}
 				
 				row.addText(basicInformation.getName());
-				row.addText(String.valueOf(distributionMonth));
+				row.addText(String.valueOf(distributionYear+"-"+(distributionMonth+1)));
 				row.addText(String.valueOf(df.format(extInformation.getBasicWage())));
 				row.addText(String.valueOf(df.format(extInformation.getOtherWage())));
 				row.addText(String.valueOf(df.format(extInformation.getBasicWage()+extInformation.getOtherWage())));
@@ -141,7 +139,7 @@
 				<% 
 					for(int i=1;i<13;i++){
 				%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
+						<aui:option label="<%= i %>" value="<%= i-1 %>" />
 				<%
 					}
 				%>
@@ -162,9 +160,7 @@
 		<c:if test='<%= cmd.equals(Constants.PREVIEW)%>'>
 			<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />	
 			<br/>
-			<c:if test='<%= isAttIdNull%>'>
-				<aui:button type="submit" value="保存" />
-			</c:if>
+			<aui:button type="submit" value="保存" />
 		</c:if>
 	</c:if>
 	<c:if test='<%= wageList.size() != 0 %>'>

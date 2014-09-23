@@ -67,7 +67,7 @@ for (int i = 0; i < results.size(); i++) {
 	ResultRow row = new ResultRow(map,map.get("id"), i);
 
 	row.addText(map.get("name"));
-	row.addText(map.get("distributionYear")+"-"+map.get("distributionMonth"));
+	row.addText(map.get("distributionYear")+"年"+(Long.parseLong(map.get("distributionMonth").toString())+1)+"月");
 	//row.addText(sdf.format(wages.getEntryDate()));
 	//row.addText(wages.getDepartureDate()!=null?sdf.format(wages.getDepartureDate()):StringPool.BLANK);
 	//row.addText(String.valueOf(df.format(wages.getUserWage())));

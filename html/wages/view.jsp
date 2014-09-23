@@ -21,7 +21,7 @@ if(userRole == 2){
 
 PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setWindowState(WindowState.MAXIMIZED);
-portletURL.setParameter("mvcPath","/html/attendance/view.jsp");
+portletURL.setParameter("mvcPath","/html/wages/view.jsp");
 portletURL.setParameter("searchDepId",String.valueOf(searchDepId));
 portletURL.setParameter("searchWagesYear",searchWagesYear);
 portletURL.setParameter("searchWagesMonth",searchWagesMonth);

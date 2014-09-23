@@ -9,6 +9,7 @@ import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.shuntian.portlet.intranet.model.Attendance;
 import com.shuntian.portlet.intranet.model.BasicInformation;
@@ -35,13 +36,20 @@ public class WagesPortlet extends MVCPortlet {
 			List<BasicInformation> biList = BasicInformationLocalServiceUtil.getBasicInformations(0, BasicInformationLocalServiceUtil.getBasicInformationsCount());
 			for (BasicInformation basicInformation : biList) {
 				long userId = basicInformation.getUserId();
+				long attendanceId = 0;
+				long overtimeId = 0;
+				
 				ExtInformation extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
 				Wages wages = WagesLocalServiceUtil.createWages(CounterLocalServiceUtil.increment());
 				Attendance attendance = AttendanceLocalServiceUtil.findByY_M(basicInformation.getId(), distributionYear, distributionMonth);
 				Overtime overtime = OvertimeLocalServiceUtil.findByY_M(basicInformation.getId(), distributionYear, distributionMonth);
 				
-				long attendanceId = attendance.getId();
-				long overtimeId = overtime.getId();
+				if(Validator.isNotNull(attendance)){
+					attendanceId = attendance.getId();
+				}
+				if(Validator.isNotNull(overtime)){
+					overtimeId = overtime.getId();
+				}
 				
 				wages.setUserId(basicInformation.getId());
 				wages.setWageName(basicInformation.getName());
@@ -52,8 +60,13 @@ public class WagesPortlet extends MVCPortlet {
 				wages.setUserWage(extInformation.getBasicWage());
 				wages.setUserPerformance(extInformation.getOtherWage());
 				wages.setUserTotalWage(extInformation.getBasicWage()+extInformation.getOtherWage());
-				wages.setAttendance(attendance.getShouldAttendance());
-				wages.setRealAttendance(attendance.getActualAttendance());
+				if(Validator.isNotNull(attendance)){
+					wages.setAttendance(attendance.getShouldAttendance());
+					wages.setRealAttendance(attendance.getActualAttendance());
+				}else{
+					wages.setAttendance(21.75);
+					wages.setRealAttendance(0);
+				}
 				wages.setBasePay(OverTimeSum.getBasePay(userId, attendanceId));
 				wages.setOvertimeWages(OverTimeSum.getOvertimeWages(userId, attendanceId, overtimeId));
 				wages.setPerformanceScores(OverTimeSum.getPerformanceScores());

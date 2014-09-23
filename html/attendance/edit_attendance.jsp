@@ -1,98 +1,93 @@
 <%@ include file="/html/attendance/init-ext.jsp" %>
+
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <% 
 String cmd = ParamUtil.getString(request, Constants.CMD, Constants.ADD);
 
-long basicId = ParamUtil.getLong(request, "basicId");
 long attendanceId = ParamUtil.getLong(request, "attendanceId");
 
-BasicInformation basicInformation = null;
 Attendance attendance = null;
-List<BasicInformation> basicList = null;
 
-if(cmd.equals(Constants.ADD)){
-	basicList = BasicInformationLocalServiceUtil.getBasicInformations(0, BasicInformationLocalServiceUtil.getBasicInformationsCount());
-}else{
-	basicInformation = BasicInformationLocalServiceUtil.getBasicInformation(basicId);
+String attendanceYear = String.valueOf(IntranetUtil.getCurYear());
+String attendanceMonth = String.valueOf(IntranetUtil.getCurMonth());
+
+if(Validator.isNotNull(attendanceId)){
 	attendance = AttendanceLocalServiceUtil.getAttendance(attendanceId);
+	
+	attendanceYear = String.valueOf(attendance.getAttendanceYear());
+	attendanceMonth = String.valueOf(attendance.getAttendanceMonth());
 }
 %>
 
 <portlet:actionURL var="editUserActionURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-	<portlet:param name="<%=ActionRequest.ACTION_NAME %>" value="editAttendance" />
-	<portlet:param name="attendanceId" value="<%=String.valueOf(attendanceId) %>" />
-	<portlet:param name="cmd" value="<%= cmd %>" />
-	<c:if test='<%= !cmd.equals(Constants.ADD) %>'>
-		<portlet:param name="mvcPath" value="/html/attendance/view.jsp" />
-	</c:if>
-	<c:if test='<%= cmd.equals(Constants.EDIT) %>'>
-		<portlet:param name="basicId" value="<%=String.valueOf(basicId) %>" />
-		<portlet:param name="mvcPath" value="/html/attendance/edit_attendance.jsp" />
-	</c:if>
+	<portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="editAttendance" />
+	<portlet:param name="mvcPath" value="/html/attendance/view.jsp" />
+	<portlet:param name="tabs" value="tab1" />
 	<portlet:param name="redirect" value="<%= PortalUtil.getCurrentURL(request) %>" />
 </portlet:actionURL>
 
-<portlet:renderURL var="backURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
-	<portlet:param name="mvcPath" value="/html/attendance/view.jsp" />
-</portlet:renderURL>
-
-<liferay-ui:header
-	backURL="<%= backURL.toString() %>"
-	title='<%= (basicInformation == null) ? "考勤信息登记" : "员工信息： " + basicInformation.getName() %>'
-/>
-
 <aui:form action="<%= editUserActionURL.toString() %>" method="post" name="fm">
-	<div style="overflow:hidden;">
-		<aui:fieldset cssClass="span5">
-			<c:if test='<%= Validator.isNotNull(basicList) %>'>
-				<aui:select label="选择员工" name="basicId">
+	<aui:input type="hidden" name="attendanceId" value="<%= attendanceId %>" />
+	
+	<table>
+		<tr>
+			<td>
 				<% 
-					for(BasicInformation basic : basicList){
+				String changeYear = renderResponse.getNamespace()+"changeYear(this.value,'attendance');";
 				%>
-					<aui:option label="<%= basic.getName() %>" value="<%= basic.getId() %>" />
-				<%
+				
+				<aui:select name="attendanceYear" label="时间" style="width:70px;">
+					<% 
+					for(int j = IntranetUtil.getAttendanceYearStart(); j <= IntranetUtil.getCurYear(); j++){
+					%>
+						<aui:option label="<%= j %>" value="<%= j %>"  selected='<%= Boolean.parseBoolean(attendanceYear.equals(String.valueOf(j)) ? "true":"false") %>' />
+					<%
 					}
-				%>
+					%>
 				</aui:select>
-			</c:if>
-			<aui:select label="出勤年份" name="attendanceYear">
-			<% 
-			for(int i=2010;i<2015;i++){
-				if(attendance!=null&&attendance.getAttendanceYear()==i){
-				%>
-					<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-				<%			
-				}else{
-				%>
-					<aui:option label="<%= i %>" value="<%= i %>" />
-				<%
-				}
-			}
-			%>
-			</aui:select>
-			<aui:select label="出勤月份" name="attendanceMonthly">
-				<% 
-					for(int i=1;i<13;i++){
-						if(attendance!=null&&attendance.getAttendanceMonthly()==i){
-				%>
-						<aui:option label="<%= i %>" value="<%= i %>" selected="" />
-				<%			
-						}else{
-				%>
-						<aui:option label="<%= i %>" value="<%= i %>" />
-				<%
-						}
+			</td>
+			<td>
+				<aui:select name="attendanceMonth" label="&nbsp;" style="width:60px;" >
+					<%
+					int monthStart = IntranetUtil.getCurMonth() - 1;
+					if(monthStart < 0){
+						monthStart = 0;
 					}
-				%>
-			</aui:select>
-		</aui:fieldset>
-		<aui:fieldset cssClass="span5">
-			<aui:input name="actualAttendance" label="实出勤天数" value="<%=attendance!=null?attendance.getActualAttendance():OverTimeSum.SHOULDATTENDANCE %>" />
-			<aui:input name="shouldAttendance" label="应出勤天数" value="<%=OverTimeSum.SHOULDATTENDANCE %>"/>
-			<aui:button type="submit" value="保存" style="margin-top:23px;" />
-		</aui:fieldset>
-	</div>
+					
+					for(int j = monthStart; j <= IntranetUtil.getCurMonth(); j++){
+						String v = String.valueOf(j+1);
+						if(v.length() == 1){
+							v = "0" + v;
+						}
+					%>
+						<aui:option label="<%= v %>" value="<%= j %>" selected='<%= Boolean.parseBoolean(attendanceMonth.equals(String.valueOf(j)) ? "true":"false") %>' />
+					<%
+					}
+					%>
+				</aui:select>
+			</td>
+		</tr>
+	</table>
+		
+	<aui:input name="actualAttendance" label="实出勤天数" value="<%=attendance!=null?attendance.getActualAttendance():OverTimeSum.SHOULDATTENDANCE %>" />
+	<aui:input name="shouldAttendance" label="应出勤天数" value="<%=OverTimeSum.SHOULDATTENDANCE %>"/>
+	
+	<aui:button type="submit" value="保存" style="margin-top:23px;" />
 </aui:form>
 
-
+<aui:script>
+	var curYear = '<%= attendanceYear %>';
+	var curMonth = '<%= attendanceMonth %>';
+	
+	function <portlet:namespace />changeYear(yearValue,eleName){
+		var monthEle = document.getElementById('<portlet:namespace />'+eleName+'Month');
+		
+		if((curMonth - 1) < 0){
+			if(yearValue == (curYear - 1)){
+				monthEle.options.remove(0);
+				monthEle.add(new Option(12,11));
+			}
+		}
+	}
+</aui:script>

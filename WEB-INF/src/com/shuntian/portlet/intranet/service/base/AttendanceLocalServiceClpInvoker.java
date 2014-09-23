@@ -114,17 +114,15 @@ public class AttendanceLocalServiceClpInvoker {
 
 		_methodParameterTypes75 = new String[] { "java.lang.String" };
 
-		_methodName80 = "addAttendance";
+		_methodName80 = "editAttendance";
 
 		_methodParameterTypes80 = new String[] {
 				"long", "long", "long", "long", "double", "double"
 			};
 
-		_methodName81 = "updateAttendance";
+		_methodName81 = "updateAttendanceStatus";
 
-		_methodParameterTypes81 = new String[] {
-				"long", "long", "long", "long", "double", "double"
-			};
+		_methodParameterTypes81 = new String[] { "long", "int" };
 
 		_methodName82 = "findByUserId";
 
@@ -133,15 +131,15 @@ public class AttendanceLocalServiceClpInvoker {
 		_methodName83 = "search";
 
 		_methodParameterTypes83 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String"
+				"long", "long", "int", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String"
 			};
 
 		_methodName84 = "search";
 
 		_methodParameterTypes84 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "int", "int"
+				"long", "long", "int", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String", "int", "int"
 			};
 
 		_methodName85 = "findByY_M";
@@ -252,7 +250,7 @@ public class AttendanceLocalServiceClpInvoker {
 
 		if (_methodName80.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
-			AttendanceLocalServiceUtil.addAttendance(((Long)arguments[0]).longValue(),
+			AttendanceLocalServiceUtil.editAttendance(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				((Long)arguments[3]).longValue(),
@@ -264,12 +262,8 @@ public class AttendanceLocalServiceClpInvoker {
 
 		if (_methodName81.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
-			AttendanceLocalServiceUtil.updateAttendance(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				((Long)arguments[2]).longValue(),
-				((Long)arguments[3]).longValue(),
-				((Double)arguments[4]).doubleValue(),
-				((Double)arguments[5]).doubleValue());
+			AttendanceLocalServiceUtil.updateAttendanceStatus(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue());
 
 			return null;
 		}
@@ -283,18 +277,22 @@ public class AttendanceLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
 			return AttendanceLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
-				(java.lang.String)arguments[4]);
+				((Integer)arguments[2]).intValue(),
+				((Long)arguments[3]).longValue(),
+				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
+				(java.lang.String)arguments[6]);
 		}
 
 		if (_methodName84.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
 			return AttendanceLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
-				(java.lang.String)arguments[4],
-				((Integer)arguments[5]).intValue(),
-				((Integer)arguments[6]).intValue());
+				((Integer)arguments[2]).intValue(),
+				((Long)arguments[3]).longValue(),
+				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
+				(java.lang.String)arguments[6],
+				((Integer)arguments[7]).intValue(),
+				((Integer)arguments[8]).intValue());
 		}
 
 		if (_methodName85.equals(name) &&

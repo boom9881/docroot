@@ -240,7 +240,7 @@
 		<column name="shouldAttendance" type="double" />
 		<column name="actualAttendance" type="double" />
 		<column name="attendanceYear" type="long" />
-		<column name="attendanceMonthly" type="long" />
+		<column name="attendanceMonth" type="long" />
 		
 		<!-- Audit fields -->
 		<column name="status" type="int" />
@@ -262,7 +262,7 @@
 		<finder name="Y_M" return-type="Attendance">
 			<finder-column name="userId"/>
 			<finder-column name="attendanceYear"/>
-			<finder-column name="attendanceMonthly"/>
+			<finder-column name="attendanceMonth"/>
 		</finder>
 	</entity>
 	

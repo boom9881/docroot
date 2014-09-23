@@ -54,7 +54,7 @@ public class AttendanceWrapper implements Attendance, ModelWrapper<Attendance> {
 		attributes.put("shouldAttendance", getShouldAttendance());
 		attributes.put("actualAttendance", getActualAttendance());
 		attributes.put("attendanceYear", getAttendanceYear());
-		attributes.put("attendanceMonthly", getAttendanceMonthly());
+		attributes.put("attendanceMonth", getAttendanceMonth());
 		attributes.put("status", getStatus());
 		attributes.put("approver", getApprover());
 		attributes.put("createUserId", getCreateUserId());
@@ -97,10 +97,10 @@ public class AttendanceWrapper implements Attendance, ModelWrapper<Attendance> {
 			setAttendanceYear(attendanceYear);
 		}
 
-		Long attendanceMonthly = (Long)attributes.get("attendanceMonthly");
+		Long attendanceMonth = (Long)attributes.get("attendanceMonth");
 
-		if (attendanceMonthly != null) {
-			setAttendanceMonthly(attendanceMonthly);
+		if (attendanceMonth != null) {
+			setAttendanceMonth(attendanceMonth);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -283,23 +283,23 @@ public class AttendanceWrapper implements Attendance, ModelWrapper<Attendance> {
 	}
 
 	/**
-	* Returns the attendance monthly of this attendance.
+	* Returns the attendance month of this attendance.
 	*
-	* @return the attendance monthly of this attendance
+	* @return the attendance month of this attendance
 	*/
 	@Override
-	public long getAttendanceMonthly() {
-		return _attendance.getAttendanceMonthly();
+	public long getAttendanceMonth() {
+		return _attendance.getAttendanceMonth();
 	}
 
 	/**
-	* Sets the attendance monthly of this attendance.
+	* Sets the attendance month of this attendance.
 	*
-	* @param attendanceMonthly the attendance monthly of this attendance
+	* @param attendanceMonth the attendance month of this attendance
 	*/
 	@Override
-	public void setAttendanceMonthly(long attendanceMonthly) {
-		_attendance.setAttendanceMonthly(attendanceMonthly);
+	public void setAttendanceMonth(long attendanceMonth) {
+		_attendance.setAttendanceMonth(attendanceMonth);
 	}
 
 	/**

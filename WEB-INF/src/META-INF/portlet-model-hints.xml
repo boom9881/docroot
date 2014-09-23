@@ -7,7 +7,7 @@
 		<field name="shouldAttendance" type="double" />
 		<field name="actualAttendance" type="double" />
 		<field name="attendanceYear" type="long" />
-		<field name="attendanceMonthly" type="long" />
+		<field name="attendanceMonth" type="long" />
 		<field name="status" type="int" />
 		<field name="approver" type="long" />
 		<field name="createUserId" type="long" />

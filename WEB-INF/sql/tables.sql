@@ -4,7 +4,7 @@ create table Intranet_Attendance (
 	shouldAttendance DOUBLE,
 	actualAttendance DOUBLE,
 	attendanceYear LONG,
-	attendanceMonthly LONG,
+	attendanceMonth LONG,
 	status INTEGER,
 	approver LONG,
 	createUserId LONG,

@@ -1,5 +1,8 @@
+create index IX_B8C0615 on Intranet_Attendance (status);
+create index IX_355C144E on Intranet_Attendance (status, approver);
 create index IX_AD0B1F69 on Intranet_Attendance (userId);
 create index IX_EAA6EB8B on Intranet_Attendance (userId, attendanceMonthly);
+create index IX_3EF3F2C4 on Intranet_Attendance (userId, attendanceYear, attendanceMonth);
 create index IX_51E1B491 on Intranet_Attendance (userId, attendanceYear, attendanceMonthly);
 
 create index IX_416FE1F9 on Intranet_BasicInformation (isLeave);

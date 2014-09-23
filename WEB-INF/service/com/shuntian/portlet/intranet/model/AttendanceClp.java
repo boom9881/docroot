@@ -81,7 +81,7 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 		attributes.put("shouldAttendance", getShouldAttendance());
 		attributes.put("actualAttendance", getActualAttendance());
 		attributes.put("attendanceYear", getAttendanceYear());
-		attributes.put("attendanceMonthly", getAttendanceMonthly());
+		attributes.put("attendanceMonth", getAttendanceMonth());
 		attributes.put("status", getStatus());
 		attributes.put("approver", getApprover());
 		attributes.put("createUserId", getCreateUserId());
@@ -124,10 +124,10 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 			setAttendanceYear(attendanceYear);
 		}
 
-		Long attendanceMonthly = (Long)attributes.get("attendanceMonthly");
+		Long attendanceMonth = (Long)attributes.get("attendanceMonth");
 
-		if (attendanceMonthly != null) {
-			setAttendanceMonthly(attendanceMonthly);
+		if (attendanceMonth != null) {
+			setAttendanceMonth(attendanceMonth);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -295,22 +295,21 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 	}
 
 	@Override
-	public long getAttendanceMonthly() {
-		return _attendanceMonthly;
+	public long getAttendanceMonth() {
+		return _attendanceMonth;
 	}
 
 	@Override
-	public void setAttendanceMonthly(long attendanceMonthly) {
-		_attendanceMonthly = attendanceMonthly;
+	public void setAttendanceMonth(long attendanceMonth) {
+		_attendanceMonth = attendanceMonth;
 
 		if (_attendanceRemoteModel != null) {
 			try {
 				Class<?> clazz = _attendanceRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setAttendanceMonthly",
-						long.class);
+				Method method = clazz.getMethod("setAttendanceMonth", long.class);
 
-				method.invoke(_attendanceRemoteModel, attendanceMonthly);
+				method.invoke(_attendanceRemoteModel, attendanceMonth);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -552,7 +551,7 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 		clone.setShouldAttendance(getShouldAttendance());
 		clone.setActualAttendance(getActualAttendance());
 		clone.setAttendanceYear(getAttendanceYear());
-		clone.setAttendanceMonthly(getAttendanceMonthly());
+		clone.setAttendanceMonth(getAttendanceMonth());
 		clone.setStatus(getStatus());
 		clone.setApprover(getApprover());
 		clone.setCreateUserId(getCreateUserId());
@@ -619,8 +618,8 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 		sb.append(getActualAttendance());
 		sb.append(", attendanceYear=");
 		sb.append(getAttendanceYear());
-		sb.append(", attendanceMonthly=");
-		sb.append(getAttendanceMonthly());
+		sb.append(", attendanceMonth=");
+		sb.append(getAttendanceMonth());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append(", approver=");
@@ -667,8 +666,8 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 		sb.append(getAttendanceYear());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>attendanceMonthly</column-name><column-value><![CDATA[");
-		sb.append(getAttendanceMonthly());
+			"<column><column-name>attendanceMonth</column-name><column-value><![CDATA[");
+		sb.append(getAttendanceMonth());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
@@ -706,7 +705,7 @@ public class AttendanceClp extends BaseModelImpl<Attendance>
 	private double _shouldAttendance;
 	private double _actualAttendance;
 	private long _attendanceYear;
-	private long _attendanceMonthly;
+	private long _attendanceMonth;
 	private int _status;
 	private long _approver;
 	private long _createUserId;

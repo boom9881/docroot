@@ -115,17 +115,15 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
-		_methodName19 = "addAttendance";
+		_methodName19 = "editAttendance";
 
 		_methodParameterTypes19 = new String[] {
 				"long", "long", "long", "long", "double", "double"
 			};
 
-		_methodName20 = "updateAttendance";
+		_methodName20 = "updateAttendanceStatus";
 
-		_methodParameterTypes20 = new String[] {
-				"long", "long", "long", "long", "double", "double"
-			};
+		_methodParameterTypes20 = new String[] { "long", "int" };
 
 		_methodName21 = "findByUserId";
 
@@ -134,15 +132,15 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		_methodName22 = "search";
 
 		_methodParameterTypes22 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String"
+				"long", "long", "int", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String"
 			};
 
 		_methodName23 = "search";
 
 		_methodParameterTypes23 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "int", "int"
+				"long", "long", "int", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String", "int", "int"
 			};
 
 		_methodName24 = "findByY_M";
@@ -699,20 +697,22 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 	}
 
 	@Override
-	public void addAttendance(long userId, long basicId, long attendanceYear,
-		long attendanceMonthly, double actualAttendance, double shouldAttendance)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void editAttendance(long userId, long attendanceId,
+		long attendanceYear, long attendanceMonth, double actualAttendance,
+		double shouldAttendance)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName19,
 				_methodParameterTypes19,
 				new Object[] {
 					userId,
 					
-				basicId,
+				attendanceId,
 					
 				attendanceYear,
 					
-				attendanceMonthly,
+				attendanceMonth,
 					
 				actualAttendance,
 					
@@ -721,6 +721,10 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
@@ -737,27 +741,12 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 	}
 
 	@Override
-	public void updateAttendance(long userId, long attendanceId,
-		long attendanceYear, long attendanceMonthly, double actualAttendance,
-		double shouldAttendance)
+	public void updateAttendanceStatus(long id, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20,
-				new Object[] {
-					userId,
-					
-				attendanceId,
-					
-				attendanceYear,
-					
-				attendanceMonthly,
-					
-				actualAttendance,
-					
-				shouldAttendance
-				});
+				_methodParameterTypes20, new Object[] { id, status });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -815,9 +804,9 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 	}
 
 	@Override
-	public int search(long departmentId, long searchUserId,
-		java.lang.String attendanceYear, java.lang.String attendanceMonth,
-		java.lang.String name)
+	public int search(long departmentId, long searchUserId, int status,
+		long approver, java.lang.String attendanceYear,
+		java.lang.String attendanceMonth, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -828,6 +817,10 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 						departmentId,
 						
 					searchUserId,
+						
+					status,
+						
+					approver,
 						
 					ClpSerializer.translateInput(attendanceYear),
 						
@@ -857,9 +850,10 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 
 	@Override
 	public java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
-		long departmentId, long searchUserId, java.lang.String attendanceYear,
-		java.lang.String attendanceMonth, java.lang.String name, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		long departmentId, long searchUserId, int status, long approver,
+		java.lang.String attendanceYear, java.lang.String attendanceMonth,
+		java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -869,6 +863,10 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 						departmentId,
 						
 					searchUserId,
+						
+					status,
+						
+					approver,
 						
 					ClpSerializer.translateInput(attendanceYear),
 						
@@ -902,7 +900,7 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 
 	@Override
 	public com.shuntian.portlet.intranet.model.Attendance findByY_M(
-		long userId, long attendanceYear, long attendanceMonthly)
+		long userId, long attendanceYear, long attendanceMonth)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchAttendanceException {
 		Object returnObj = null;
@@ -910,7 +908,7 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName24,
 					_methodParameterTypes24,
-					new Object[] { userId, attendanceYear, attendanceMonthly });
+					new Object[] { userId, attendanceYear, attendanceMonth });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

@@ -16,7 +16,7 @@
 			<basic name="shouldAttendance" />
 			<basic name="actualAttendance" />
 			<basic name="attendanceYear" />
-			<basic name="attendanceMonthly" />
+			<basic name="attendanceMonth" />
 			<basic name="status" />
 			<basic name="approver" />
 			<basic name="createUserId" />

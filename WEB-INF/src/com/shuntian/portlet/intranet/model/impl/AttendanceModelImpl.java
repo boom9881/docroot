@@ -66,7 +66,7 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 			{ "shouldAttendance", Types.DOUBLE },
 			{ "actualAttendance", Types.DOUBLE },
 			{ "attendanceYear", Types.BIGINT },
-			{ "attendanceMonthly", Types.BIGINT },
+			{ "attendanceMonth", Types.BIGINT },
 			{ "status", Types.INTEGER },
 			{ "approver", Types.BIGINT },
 			{ "createUserId", Types.BIGINT },
@@ -74,7 +74,7 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 			{ "modifiedUserId", Types.BIGINT },
 			{ "modifiedDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Intranet_Attendance (id_ LONG not null primary key,userId LONG,shouldAttendance DOUBLE,actualAttendance DOUBLE,attendanceYear LONG,attendanceMonthly LONG,status INTEGER,approver LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Intranet_Attendance (id_ LONG not null primary key,userId LONG,shouldAttendance DOUBLE,actualAttendance DOUBLE,attendanceYear LONG,attendanceMonth LONG,status INTEGER,approver LONG,createUserId LONG,createDate DATE null,modifiedUserId LONG,modifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Intranet_Attendance";
 	public static final String ORDER_BY_JPQL = " ORDER BY attendance.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY Intranet_Attendance.createDate DESC";
@@ -90,7 +90,7 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.shuntian.portlet.intranet.model.Attendance"),
 			true);
-	public static long ATTENDANCEMONTHLY_COLUMN_BITMASK = 1L;
+	public static long ATTENDANCEMONTH_COLUMN_BITMASK = 1L;
 	public static long ATTENDANCEYEAR_COLUMN_BITMASK = 2L;
 	public static long USERID_COLUMN_BITMASK = 4L;
 	public static long CREATEDATE_COLUMN_BITMASK = 8L;
@@ -139,7 +139,7 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 		attributes.put("shouldAttendance", getShouldAttendance());
 		attributes.put("actualAttendance", getActualAttendance());
 		attributes.put("attendanceYear", getAttendanceYear());
-		attributes.put("attendanceMonthly", getAttendanceMonthly());
+		attributes.put("attendanceMonth", getAttendanceMonth());
 		attributes.put("status", getStatus());
 		attributes.put("approver", getApprover());
 		attributes.put("createUserId", getCreateUserId());
@@ -182,10 +182,10 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 			setAttendanceYear(attendanceYear);
 		}
 
-		Long attendanceMonthly = (Long)attributes.get("attendanceMonthly");
+		Long attendanceMonth = (Long)attributes.get("attendanceMonth");
 
-		if (attendanceMonthly != null) {
-			setAttendanceMonthly(attendanceMonthly);
+		if (attendanceMonth != null) {
+			setAttendanceMonth(attendanceMonth);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -310,25 +310,25 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 	}
 
 	@Override
-	public long getAttendanceMonthly() {
-		return _attendanceMonthly;
+	public long getAttendanceMonth() {
+		return _attendanceMonth;
 	}
 
 	@Override
-	public void setAttendanceMonthly(long attendanceMonthly) {
-		_columnBitmask |= ATTENDANCEMONTHLY_COLUMN_BITMASK;
+	public void setAttendanceMonth(long attendanceMonth) {
+		_columnBitmask |= ATTENDANCEMONTH_COLUMN_BITMASK;
 
-		if (!_setOriginalAttendanceMonthly) {
-			_setOriginalAttendanceMonthly = true;
+		if (!_setOriginalAttendanceMonth) {
+			_setOriginalAttendanceMonth = true;
 
-			_originalAttendanceMonthly = _attendanceMonthly;
+			_originalAttendanceMonth = _attendanceMonth;
 		}
 
-		_attendanceMonthly = attendanceMonthly;
+		_attendanceMonth = attendanceMonth;
 	}
 
-	public long getOriginalAttendanceMonthly() {
-		return _originalAttendanceMonthly;
+	public long getOriginalAttendanceMonth() {
+		return _originalAttendanceMonth;
 	}
 
 	@Override
@@ -451,7 +451,7 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 		attendanceImpl.setShouldAttendance(getShouldAttendance());
 		attendanceImpl.setActualAttendance(getActualAttendance());
 		attendanceImpl.setAttendanceYear(getAttendanceYear());
-		attendanceImpl.setAttendanceMonthly(getAttendanceMonthly());
+		attendanceImpl.setAttendanceMonth(getAttendanceMonth());
 		attendanceImpl.setStatus(getStatus());
 		attendanceImpl.setApprover(getApprover());
 		attendanceImpl.setCreateUserId(getCreateUserId());
@@ -518,9 +518,9 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 
 		attendanceModelImpl._setOriginalAttendanceYear = false;
 
-		attendanceModelImpl._originalAttendanceMonthly = attendanceModelImpl._attendanceMonthly;
+		attendanceModelImpl._originalAttendanceMonth = attendanceModelImpl._attendanceMonth;
 
-		attendanceModelImpl._setOriginalAttendanceMonthly = false;
+		attendanceModelImpl._setOriginalAttendanceMonth = false;
 
 		attendanceModelImpl._columnBitmask = 0;
 	}
@@ -539,7 +539,7 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 
 		attendanceCacheModel.attendanceYear = getAttendanceYear();
 
-		attendanceCacheModel.attendanceMonthly = getAttendanceMonthly();
+		attendanceCacheModel.attendanceMonth = getAttendanceMonth();
 
 		attendanceCacheModel.status = getStatus();
 
@@ -584,8 +584,8 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 		sb.append(getActualAttendance());
 		sb.append(", attendanceYear=");
 		sb.append(getAttendanceYear());
-		sb.append(", attendanceMonthly=");
-		sb.append(getAttendanceMonthly());
+		sb.append(", attendanceMonth=");
+		sb.append(getAttendanceMonth());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append(", approver=");
@@ -632,8 +632,8 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 		sb.append(getAttendanceYear());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>attendanceMonthly</column-name><column-value><![CDATA[");
-		sb.append(getAttendanceMonthly());
+			"<column><column-name>attendanceMonth</column-name><column-value><![CDATA[");
+		sb.append(getAttendanceMonth());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
@@ -679,9 +679,9 @@ public class AttendanceModelImpl extends BaseModelImpl<Attendance>
 	private long _attendanceYear;
 	private long _originalAttendanceYear;
 	private boolean _setOriginalAttendanceYear;
-	private long _attendanceMonthly;
-	private long _originalAttendanceMonthly;
-	private boolean _setOriginalAttendanceMonthly;
+	private long _attendanceMonth;
+	private long _originalAttendanceMonth;
+	private boolean _setOriginalAttendanceMonth;
 	private int _status;
 	private long _approver;
 	private long _createUserId;

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.shuntian.portlet.intranet.NoSuchAttendanceException;
 import com.shuntian.portlet.intranet.model.Attendance;
+import com.shuntian.portlet.intranet.model.BasicInformation;
 import com.shuntian.portlet.intranet.service.base.AttendanceLocalServiceBaseImpl;
 
 /**
@@ -44,38 +45,49 @@ import com.shuntian.portlet.intranet.service.base.AttendanceLocalServiceBaseImpl
  * @see com.shuntian.portlet.intranet.service.AttendanceLocalServiceUtil
  */
 public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
-	public void addAttendance(long userId, long basicId, long attendanceYear,
-			long attendanceMonthly, double actualAttendance,
-			double shouldAttendance) throws SystemException {
 
-		long id = counterLocalService.increment();
+	public void editAttendance(long userId, long attendanceId,
+			long attendanceYear, long attendanceMonth, double actualAttendance,
+			double shouldAttendance) throws SystemException, PortalException {
 
-		Attendance attendance = attendanceLocalService.createAttendance(id);
+		Attendance attendance = null;
 
-		attendance.setUserId(basicId);
+		try {
+			attendance = attendanceLocalService.getAttendance(attendanceId);
+		} catch (NoSuchAttendanceException nsae) {
+			attendance = attendanceLocalService
+					.createAttendance(counterLocalService.increment());
+
+			attendance.setCreateUserId(userId);
+			attendance.setCreateDate(new Date());
+		}
+
+		BasicInformation bi = basicInformationPersistence.findByUserId(userId);
+
+		long approver = departmentPersistence.findByPrimaryKey(
+				bi.getDepartmentId()).getLeader();
+
+		attendance.setUserId(bi.getId());
 		attendance.setActualAttendance(actualAttendance);
 		attendance.setAttendanceYear(attendanceYear);
-		attendance.setAttendanceMonthly(attendanceMonthly);
+		attendance.setAttendanceMonth(attendanceMonth);
 		attendance.setShouldAttendance(shouldAttendance);
-		attendance.setCreateUserId(userId);
-		attendance.setCreateDate(new Date());
+		attendance.setStatus(0);
+		attendance.setApprover(approver);
+		attendance.setModifiedUserId(userId);
+		attendance.setModifiedDate(new Date());
+
 		attendanceLocalService.updateAttendance(attendance);
 	}
 
-	public void updateAttendance(long userId, long attendanceId,
-			long attendanceYear, long attendanceMonthly,
-			double actualAttendance, double shouldAttendance)
-			throws SystemException, PortalException {
-		Attendance attendance = attendanceLocalService
-				.getAttendance(attendanceId);
+	public void updateAttendanceStatus(long id, int status)
+			throws PortalException, SystemException {
 
-		attendance.setActualAttendance(actualAttendance);
-		attendance.setAttendanceYear(attendanceYear);
-		attendance.setAttendanceMonthly(attendanceMonthly);
-		attendance.setShouldAttendance(shouldAttendance);
-		attendance.setModifiedUserId(userId);
-		attendance.setModifiedDate(new Date());
-		attendanceLocalService.updateAttendance(attendance);
+		Attendance attendance = attendancePersistence.findByPrimaryKey(id);
+
+		attendance.setStatus(status);
+
+		attendancePersistence.update(attendance);
 	}
 
 	public List<Attendance> findByUserId(long userId) throws SystemException,
@@ -83,25 +95,31 @@ public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
 		return attendancePersistence.findByUserId(userId);
 	}
 
-	public int search(long departmentId, long searchUserId,
-			String attendanceYear, String attendanceMonth, String name)
-			throws SystemException {
+	public int search(long departmentId, long searchUserId, int status,
+			long approver, String attendanceYear, String attendanceMonth,
+			String name) throws SystemException {
 
-		return attendanceFinder.search(departmentId, searchUserId,
-				attendanceYear, attendanceMonth, name);
+		return attendanceFinder.search(departmentId, searchUserId, status,
+				approver, attendanceYear, attendanceMonth, name);
 	}
 
 	public List<Map<String, String>> search(long departmentId,
-			long searchUserId, String attendanceYear, String attendanceMonth,
-			String name, int start, int end) throws SystemException {
+			long searchUserId, int status, long approver,
+			String attendanceYear, String attendanceMonth, String name,
+			int start, int end) throws SystemException {
 
-		return attendanceFinder.search(departmentId, searchUserId,
-				attendanceYear, attendanceMonth, name, start, end);
+		return attendanceFinder.search(departmentId, searchUserId, status,
+				approver, attendanceYear, attendanceMonth, name, start, end);
 	}
 
-	public Attendance findByY_M(long userId,long attendanceYear, long attendanceMonthly)
-			throws SystemException, NoSuchAttendanceException {
-		return attendancePersistence.findByY_M(userId,attendanceYear, attendanceMonthly);
+	public Attendance findByY_M(long userId, long attendanceYear,
+			long attendanceMonthly) throws SystemException {
+		try {
+			return attendancePersistence.findByY_M(userId, attendanceYear,
+					attendanceMonthly);
+		} catch (NoSuchAttendanceException nsae) {
+			return null;
+		}
 	}
 
 }

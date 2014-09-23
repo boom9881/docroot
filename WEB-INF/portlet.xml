@@ -151,6 +151,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.attendance.Language</resource-bundle>
 		<portlet-info>
 			<title>attendance</title>
 			<short-title>attendance</short-title>

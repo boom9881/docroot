@@ -286,22 +286,20 @@ public class AttendanceLocalServiceWrapper implements AttendanceLocalService,
 	}
 
 	@Override
-	public void addAttendance(long userId, long basicId, long attendanceYear,
-		long attendanceMonthly, double actualAttendance, double shouldAttendance)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_attendanceLocalService.addAttendance(userId, basicId, attendanceYear,
-			attendanceMonthly, actualAttendance, shouldAttendance);
-	}
-
-	@Override
-	public void updateAttendance(long userId, long attendanceId,
-		long attendanceYear, long attendanceMonthly, double actualAttendance,
+	public void editAttendance(long userId, long attendanceId,
+		long attendanceYear, long attendanceMonth, double actualAttendance,
 		double shouldAttendance)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_attendanceLocalService.updateAttendance(userId, attendanceId,
-			attendanceYear, attendanceMonthly, actualAttendance,
-			shouldAttendance);
+		_attendanceLocalService.editAttendance(userId, attendanceId,
+			attendanceYear, attendanceMonth, actualAttendance, shouldAttendance);
+	}
+
+	@Override
+	public void updateAttendanceStatus(long id, int status)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_attendanceLocalService.updateAttendanceStatus(id, status);
 	}
 
 	@Override
@@ -313,30 +311,31 @@ public class AttendanceLocalServiceWrapper implements AttendanceLocalService,
 	}
 
 	@Override
-	public int search(long departmentId, long searchUserId,
-		java.lang.String attendanceYear, java.lang.String attendanceMonth,
-		java.lang.String name)
+	public int search(long departmentId, long searchUserId, int status,
+		long approver, java.lang.String attendanceYear,
+		java.lang.String attendanceMonth, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _attendanceLocalService.search(departmentId, searchUserId,
-			attendanceYear, attendanceMonth, name);
+			status, approver, attendanceYear, attendanceMonth, name);
 	}
 
 	@Override
 	public java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
-		long departmentId, long searchUserId, java.lang.String attendanceYear,
-		java.lang.String attendanceMonth, java.lang.String name, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		long departmentId, long searchUserId, int status, long approver,
+		java.lang.String attendanceYear, java.lang.String attendanceMonth,
+		java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _attendanceLocalService.search(departmentId, searchUserId,
-			attendanceYear, attendanceMonth, name, start, end);
+			status, approver, attendanceYear, attendanceMonth, name, start, end);
 	}
 
 	@Override
 	public com.shuntian.portlet.intranet.model.Attendance findByY_M(
-		long userId, long attendanceYear, long attendanceMonthly)
+		long userId, long attendanceYear, long attendanceMonth)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchAttendanceException {
 		return _attendanceLocalService.findByY_M(userId, attendanceYear,
-			attendanceMonthly);
+			attendanceMonth);
 	}
 
 	/**

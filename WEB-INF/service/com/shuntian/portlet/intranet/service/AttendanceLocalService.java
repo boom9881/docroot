@@ -247,13 +247,13 @@ public interface AttendanceLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public void addAttendance(long userId, long basicId, long attendanceYear,
-		long attendanceMonthly, double actualAttendance, double shouldAttendance)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public void updateAttendance(long userId, long attendanceId,
-		long attendanceYear, long attendanceMonthly, double actualAttendance,
+	public void editAttendance(long userId, long attendanceId,
+		long attendanceYear, long attendanceMonth, double actualAttendance,
 		double shouldAttendance)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void updateAttendanceStatus(long id, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -263,19 +263,20 @@ public interface AttendanceLocalService extends BaseLocalService,
 			com.shuntian.portlet.intranet.NoSuchAttendanceException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int search(long departmentId, long searchUserId,
-		java.lang.String attendanceYear, java.lang.String attendanceMonth,
-		java.lang.String name)
+	public int search(long departmentId, long searchUserId, int status,
+		long approver, java.lang.String attendanceYear,
+		java.lang.String attendanceMonth, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
-		long departmentId, long searchUserId, java.lang.String attendanceYear,
-		java.lang.String attendanceMonth, java.lang.String name, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		long departmentId, long searchUserId, int status, long approver,
+		java.lang.String attendanceYear, java.lang.String attendanceMonth,
+		java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.shuntian.portlet.intranet.model.Attendance findByY_M(
-		long userId, long attendanceYear, long attendanceMonthly)
+		long userId, long attendanceYear, long attendanceMonth)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.shuntian.portlet.intranet.NoSuchAttendanceException;
 }

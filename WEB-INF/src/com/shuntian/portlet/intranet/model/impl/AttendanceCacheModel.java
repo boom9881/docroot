@@ -49,8 +49,8 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 		sb.append(actualAttendance);
 		sb.append(", attendanceYear=");
 		sb.append(attendanceYear);
-		sb.append(", attendanceMonthly=");
-		sb.append(attendanceMonthly);
+		sb.append(", attendanceMonth=");
+		sb.append(attendanceMonth);
 		sb.append(", status=");
 		sb.append(status);
 		sb.append(", approver=");
@@ -77,7 +77,7 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 		attendanceImpl.setShouldAttendance(shouldAttendance);
 		attendanceImpl.setActualAttendance(actualAttendance);
 		attendanceImpl.setAttendanceYear(attendanceYear);
-		attendanceImpl.setAttendanceMonthly(attendanceMonthly);
+		attendanceImpl.setAttendanceMonth(attendanceMonth);
 		attendanceImpl.setStatus(status);
 		attendanceImpl.setApprover(approver);
 		attendanceImpl.setCreateUserId(createUserId);
@@ -110,7 +110,7 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 		shouldAttendance = objectInput.readDouble();
 		actualAttendance = objectInput.readDouble();
 		attendanceYear = objectInput.readLong();
-		attendanceMonthly = objectInput.readLong();
+		attendanceMonth = objectInput.readLong();
 		status = objectInput.readInt();
 		approver = objectInput.readLong();
 		createUserId = objectInput.readLong();
@@ -127,7 +127,7 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 		objectOutput.writeDouble(shouldAttendance);
 		objectOutput.writeDouble(actualAttendance);
 		objectOutput.writeLong(attendanceYear);
-		objectOutput.writeLong(attendanceMonthly);
+		objectOutput.writeLong(attendanceMonth);
 		objectOutput.writeInt(status);
 		objectOutput.writeLong(approver);
 		objectOutput.writeLong(createUserId);
@@ -141,7 +141,7 @@ public class AttendanceCacheModel implements CacheModel<Attendance>,
 	public double shouldAttendance;
 	public double actualAttendance;
 	public long attendanceYear;
-	public long attendanceMonthly;
+	public long attendanceMonth;
 	public int status;
 	public long approver;
 	public long createUserId;

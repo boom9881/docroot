@@ -21,9 +21,9 @@ import com.shuntian.portlet.intranet.model.Attendance;
 public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 		implements AttendanceFinder {
 
-	public int search(long departmentId, long searchUserId,
-			String attendanceYear, String attendanceMonth, String name)
-			throws SystemException {
+	public int search(long departmentId, long searchUserId, int status,
+			long approver, String attendanceYear, String attendanceMonth,
+			String name) throws SystemException {
 
 		Session session = null;
 
@@ -36,7 +36,7 @@ public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 				sql.append(" att.attendanceYear = ? and ");
 			}
 			if (Validator.isNotNull(attendanceMonth)) {
-				sql.append(" att.attendanceMonthly = ? and ");
+				sql.append(" att.attendanceMonth = ? and ");
 			}
 			if (Validator.isNotNull(departmentId)) {
 				sql.append(" bi.departmentId = ? and ");
@@ -46,6 +46,12 @@ public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 			}
 			if (Validator.isNotNull(searchUserId)) {
 				sql.append(" bi.userId = ? and ");
+			}
+			if(Validator.isNotNull(status)){
+				sql.append(" att.status = ? and ");
+			}
+			if(Validator.isNotNull(approver)){
+				sql.append(" att.approver = ? and ");
 			}
 			sql.append(" 1 = 1");
 
@@ -70,6 +76,12 @@ public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 			if (Validator.isNotNull(searchUserId)) {
 				qPos.add(searchUserId);
 			}
+			if(Validator.isNotNull(status)){
+				qPos.add(status);
+			}
+			if(Validator.isNotNull(approver)){
+				qPos.add(approver);
+			}
 
 			int count = 0;
 
@@ -93,8 +105,9 @@ public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 	}
 
 	public List<Map<String, String>> search(long departmentId,
-			long searchUserId, String attendanceYear, String attendanceMonth,
-			String name, int start, int end) throws SystemException {
+			long searchUserId, int status, long approver,
+			String attendanceYear, String attendanceMonth, String name,
+			int start, int end) throws SystemException {
 
 		Session session = null;
 
@@ -103,7 +116,7 @@ public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 
 			StringBuffer sql = new StringBuffer(
 					"SELECT att.id_,att.shouldAttendance,");
-			sql.append("att.actualAttendance,att.attendanceYear,att.attendanceMonthly,bi.`name`,");
+			sql.append("att.actualAttendance,att.attendanceYear,att.attendanceMonth,bi.`name`,");
 			sql.append("dep.`name` AS dn,bi.id_ ");
 			sql.append("FROM intranet_attendance att LEFT JOIN intranet_basicinformation bi ON att.userId = bi.id_ ");
 			sql.append("LEFT JOIN intranet_department dep ON bi.departmentId = dep.id_ WHERE ");
@@ -111,7 +124,7 @@ public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 				sql.append(" att.attendanceYear = ? and ");
 			}
 			if (Validator.isNotNull(attendanceMonth)) {
-				sql.append(" att.attendanceMonthly = ? and ");
+				sql.append(" att.attendanceMonth = ? and ");
 			}
 			if (Validator.isNotNull(departmentId)) {
 				sql.append(" bi.departmentId = ? and ");
@@ -121,6 +134,12 @@ public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 			}
 			if (Validator.isNotNull(searchUserId)) {
 				sql.append(" bi.userId = ? and ");
+			}
+			if(Validator.isNotNull(status)){
+				sql.append(" att.status = ? and ");
+			}
+			if(Validator.isNotNull(approver)){
+				sql.append(" att.approver = ? and ");
 			}
 			sql.append(" 1 = 1");
 
@@ -142,6 +161,12 @@ public class AttendanceFinderImpl extends BasePersistenceImpl<Attendance>
 			}
 			if (Validator.isNotNull(searchUserId)) {
 				qPos.add(searchUserId);
+			}
+			if(Validator.isNotNull(status)){
+				qPos.add(status);
+			}
+			if(Validator.isNotNull(approver)){
+				qPos.add(approver);
 			}
 
 			List<Map<String, String>> result = new ArrayList<Map<String, String>>();

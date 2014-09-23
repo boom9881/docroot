@@ -135,15 +135,15 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 		_methodName23 = "search";
 
 		_methodParameterTypes23 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String"
+				"long", "long", "int", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String"
 			};
 
 		_methodName24 = "search";
 
 		_methodParameterTypes24 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "int", "int"
+				"long", "long", "int", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String", "int", "int"
 			};
 	}
 
@@ -828,9 +828,9 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 	}
 
 	@Override
-	public int search(long departmentId, long searchUserId,
-		java.lang.String searchYear, java.lang.String searchMonth,
-		java.lang.String name)
+	public int search(long departmentId, long searchUserId, int status,
+		long approver, java.lang.String searchYear,
+		java.lang.String searchMonth, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -841,6 +841,10 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 						departmentId,
 						
 					searchUserId,
+						
+					status,
+						
+					approver,
 						
 					ClpSerializer.translateInput(searchYear),
 						
@@ -870,8 +874,9 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 
 	@Override
 	public java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
-		long departmentId, long searchUserId, java.lang.String searchYear,
-		java.lang.String searchMonth, java.lang.String name, int start, int end)
+		long departmentId, long searchUserId, int status, long approver,
+		java.lang.String searchYear, java.lang.String searchMonth,
+		java.lang.String name, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -882,6 +887,10 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 						departmentId,
 						
 					searchUserId,
+						
+					status,
+						
+					approver,
 						
 					ClpSerializer.translateInput(searchYear),
 						

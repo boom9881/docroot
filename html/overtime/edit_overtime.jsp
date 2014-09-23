@@ -26,6 +26,11 @@ if(Validator.isNotNull(overtimeId)){
 	<portlet:param name="redirect" value="<%= PortalUtil.getCurrentURL(request) %>" />
 </portlet:actionURL>
 
+<liferay-ui:error key="dhst.intranet.ot.rep" message="不能重复添加加班。" />
+<liferay-ui:error key="dhst.intranet.ot.uot.number" message="平常加班只能是数字。" />
+<liferay-ui:error key="dhst.intranet.ot.rot.number" message="周末加班只能是数字。" />
+<liferay-ui:error key="dhst.intranet.ot.lot.number" message="法定加班只能是数字。" />
+
 <aui:form action="<%= editActionURL.toString() %>" method="post" name="fm">
 	<table>
 		<tr>

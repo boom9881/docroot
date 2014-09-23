@@ -16,7 +16,7 @@ String tab = ParamUtil.getString(request, "tabs", "attTab1");
 	<c:when test='<%= tab.equals("attTab1") %>'>
 		<liferay-util:include page="/html/overtime/edit_overtime.jsp"  servletContext="<%= application %>" />
 	</c:when>
-	<c:when test='<%= tab.equals("attTab3") %>'>
+	<c:when test='<%= tab.equals("attTab2") %>'>
 		<liferay-util:include page="/html/overtime/my_overtime.jsp"  servletContext="<%= application %>" />
 	</c:when>
 </c:choose>

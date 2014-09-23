@@ -69,8 +69,6 @@ for (int i = 0; i < results.size(); i++) {
 </portlet:renderURL>
 
 <aui:form action="<%= searchRenderURL.toString() %>" method="post" name="fm">
-	<liferay-ui:tabs names="attTab31,attTab32" value="<%= tab3 %>" url="<%= tabs3URL.toString() %>" param="tabs3" />
-	
 	<table>
 		<tr>
 			<td>
@@ -87,6 +85,8 @@ for (int i = 0; i < results.size(); i++) {
 			</td>
 		</tr>
 	</table>
-
+	
+	<liferay-ui:tabs names="attTab31,attTab32" value="<%= tab3 %>" url="<%= tabs3URL.toString() %>" param="tabs3" />
+	
 	<liferay-ui:search-iterator searchContainer="<%= searchContainer%>" />
 </aui:form>

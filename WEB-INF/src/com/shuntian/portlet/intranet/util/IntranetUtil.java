@@ -42,4 +42,6 @@ public class IntranetUtil {
 
 	public static final int STATUS_0 = 0;// 发起、正在处理的
 	public static final int STATUS_1 = 1;// 处理完成的
+
+	public static final String DEFAULT_ZERO = "0";
 }

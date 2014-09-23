@@ -315,21 +315,22 @@ public class OvertimeLocalServiceWrapper implements OvertimeLocalService,
 	}
 
 	@Override
-	public int search(long departmentId, long searchUserId,
-		java.lang.String searchYear, java.lang.String searchMonth,
-		java.lang.String name)
+	public int search(long departmentId, long searchUserId, int status,
+		long approver, java.lang.String searchYear,
+		java.lang.String searchMonth, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _overtimeLocalService.search(departmentId, searchUserId,
-			searchYear, searchMonth, name);
+		return _overtimeLocalService.search(departmentId, searchUserId, status,
+			approver, searchYear, searchMonth, name);
 	}
 
 	@Override
 	public java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
-		long departmentId, long searchUserId, java.lang.String searchYear,
-		java.lang.String searchMonth, java.lang.String name, int start, int end)
+		long departmentId, long searchUserId, int status, long approver,
+		java.lang.String searchYear, java.lang.String searchMonth,
+		java.lang.String name, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _overtimeLocalService.search(departmentId, searchUserId,
-			searchYear, searchMonth, name, start, end);
+		return _overtimeLocalService.search(departmentId, searchUserId, status,
+			approver, searchYear, searchMonth, name, start, end);
 	}
 
 	/**

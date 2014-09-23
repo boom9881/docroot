@@ -21,8 +21,9 @@ import com.shuntian.portlet.intranet.model.Overtime;
 public class OvertimeFinderImpl extends BasePersistenceImpl<Overtime> implements
 		OvertimeFinder {
 
-	public int search(long departmentId, long searchUserId, String searchYear,
-			String searchMonth, String name) throws SystemException {
+	public int search(long departmentId, long searchUserId, int status,
+			long approver, String searchYear, String searchMonth, String name)
+			throws SystemException {
 
 		Session session = null;
 
@@ -39,7 +40,6 @@ public class OvertimeFinderImpl extends BasePersistenceImpl<Overtime> implements
 			if (Validator.isNotNull(searchMonth)) {
 				sql.append(" ot.overtimeMonthly = ? and ");
 			}
-
 			if (Validator.isNotNull(departmentId)) {
 				sql.append(" bi.departmentId = ? and ");
 			}
@@ -48,6 +48,12 @@ public class OvertimeFinderImpl extends BasePersistenceImpl<Overtime> implements
 			}
 			if (Validator.isNotNull(searchUserId)) {
 				sql.append(" bi.userId = ? and ");
+			}
+			if (Validator.isNotNull(status)) {
+				sql.append(" ot.status = ? and ");
+			}
+			if (Validator.isNotNull(approver)) {
+				sql.append(" ot.approver = ? and ");
 			}
 			sql.append(" 1 = 1");
 
@@ -72,6 +78,12 @@ public class OvertimeFinderImpl extends BasePersistenceImpl<Overtime> implements
 			if (Validator.isNotNull(searchUserId)) {
 				qPos.add(searchUserId);
 			}
+			if (Validator.isNotNull(status)) {
+				qPos.add(status);
+			}
+			if (Validator.isNotNull(approver)) {
+				qPos.add(approver);
+			}
 
 			int count = 0;
 
@@ -95,8 +107,9 @@ public class OvertimeFinderImpl extends BasePersistenceImpl<Overtime> implements
 	}
 
 	public List<Map<String, String>> search(long departmentId,
-			long searchUserId, String searchYear, String searchMonth,
-			String name, int start, int end) throws SystemException {
+			long searchUserId, int status, long approver, String searchYear,
+			String searchMonth, String name, int start, int end)
+			throws SystemException {
 
 		Session session = null;
 
@@ -123,6 +136,12 @@ public class OvertimeFinderImpl extends BasePersistenceImpl<Overtime> implements
 			if (Validator.isNotNull(searchUserId)) {
 				sql.append(" bi.userId = ? and ");
 			}
+			if (Validator.isNotNull(status)) {
+				sql.append(" ot.status = ? and ");
+			}
+			if (Validator.isNotNull(approver)) {
+				sql.append(" ot.approver = ? and ");
+			}
 			sql.append(" 1 = 1");
 
 			SQLQuery q = session.createSQLQuery(sql.toString());
@@ -143,6 +162,12 @@ public class OvertimeFinderImpl extends BasePersistenceImpl<Overtime> implements
 			}
 			if (Validator.isNotNull(searchUserId)) {
 				qPos.add(searchUserId);
+			}
+			if (Validator.isNotNull(status)) {
+				qPos.add(status);
+			}
+			if (Validator.isNotNull(approver)) {
+				qPos.add(approver);
 			}
 
 			List<Map<String, String>> result = new ArrayList<Map<String, String>>();

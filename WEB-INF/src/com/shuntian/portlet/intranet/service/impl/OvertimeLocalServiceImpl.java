@@ -115,18 +115,20 @@ public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
 		}
 	}
 
-	public int search(long departmentId, long searchUserId, String searchYear,
-			String searchMonth, String name) throws SystemException {
+	public int search(long departmentId, long searchUserId, int status,
+			long approver, String searchYear, String searchMonth, String name)
+			throws SystemException {
 
-		return overtimeFinder.search(departmentId, searchUserId, searchYear,
-				searchMonth, name);
+		return overtimeFinder.search(departmentId, searchUserId, status,
+				approver, searchYear, searchMonth, name);
 	}
 
 	public List<Map<String, String>> search(long departmentId,
-			long searchUserId, String searchYear, String searchMonth,
-			String name, int start, int end) throws SystemException {
+			long searchUserId, int status, long approver, String searchYear,
+			String searchMonth, String name, int start, int end)
+			throws SystemException {
 
-		return overtimeFinder.search(departmentId, searchUserId, searchYear,
-				searchMonth, name, start, end);
+		return overtimeFinder.search(departmentId, searchUserId, status,
+				approver, searchYear, searchMonth, name, start, end);
 	}
 }

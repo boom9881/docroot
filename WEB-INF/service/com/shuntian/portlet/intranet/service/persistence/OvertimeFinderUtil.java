@@ -21,22 +21,23 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  * @author Brian Wing Shun Chan
  */
 public class OvertimeFinderUtil {
-	public static int search(long departmentId, long searchUserId,
-		java.lang.String searchYear, java.lang.String searchMonth,
-		java.lang.String name)
+	public static int search(long departmentId, long searchUserId, int status,
+		long approver, java.lang.String searchYear,
+		java.lang.String searchMonth, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
-				   .search(departmentId, searchUserId, searchYear, searchMonth,
-			name);
+				   .search(departmentId, searchUserId, status, approver,
+			searchYear, searchMonth, name);
 	}
 
 	public static java.util.List<java.util.Map<java.lang.String, java.lang.String>> search(
-		long departmentId, long searchUserId, java.lang.String searchYear,
-		java.lang.String searchMonth, java.lang.String name, int start, int end)
+		long departmentId, long searchUserId, int status, long approver,
+		java.lang.String searchYear, java.lang.String searchMonth,
+		java.lang.String name, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
-				   .search(departmentId, searchUserId, searchYear, searchMonth,
-			name, start, end);
+				   .search(departmentId, searchUserId, status, approver,
+			searchYear, searchMonth, name, start, end);
 	}
 
 	public static OvertimeFinder getFinder() {

@@ -135,15 +135,15 @@ public class OvertimeLocalServiceClpInvoker {
 		_methodName84 = "search";
 
 		_methodParameterTypes84 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String"
+				"long", "long", "int", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String"
 			};
 
 		_methodName85 = "search";
 
 		_methodParameterTypes85 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "int", "int"
+				"long", "long", "int", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String", "int", "int"
 			};
 	}
 
@@ -285,18 +285,22 @@ public class OvertimeLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
 			return OvertimeLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
-				(java.lang.String)arguments[4]);
+				((Integer)arguments[2]).intValue(),
+				((Long)arguments[3]).longValue(),
+				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
+				(java.lang.String)arguments[6]);
 		}
 
 		if (_methodName85.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
 			return OvertimeLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
-				(java.lang.String)arguments[4],
-				((Integer)arguments[5]).intValue(),
-				((Integer)arguments[6]).intValue());
+				((Integer)arguments[2]).intValue(),
+				((Long)arguments[3]).longValue(),
+				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
+				(java.lang.String)arguments[6],
+				((Integer)arguments[7]).intValue(),
+				((Integer)arguments[8]).intValue());
 		}
 
 		throw new UnsupportedOperationException();

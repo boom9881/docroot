@@ -13,7 +13,7 @@ String searchAttendanceMonth = ParamUtil.getString(request, "searchAttendanceMon
 PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setWindowState(WindowState.MAXIMIZED);
 portletURL.setParameter("mvcPath","/html/attendance/view.jsp");
-portletURL.setParameter("tabs","attTab3");
+portletURL.setParameter("tabs","attTab2");
 portletURL.setParameter("tabs3",tab3);
 portletURL.setParameter("searchAttendanceYear",searchAttendanceYear);
 portletURL.setParameter("searchAttendanceMonth",searchAttendanceMonth);
@@ -60,7 +60,7 @@ for (int i = 0; i < results.size(); i++) {
 
 <portlet:renderURL var="tabs3URL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
 	<portlet:param name="mvcPath" value="/html/attendance/view.jsp" />
-	<portlet:param name="tabs" value="attTab3" />
+	<portlet:param name="tabs" value="attTab2" />
 </portlet:renderURL>
 
 <portlet:renderURL var="searchRenderURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >

@@ -77,8 +77,8 @@ if(Validator.isNotNull(attendanceId)){
 			</td>
 		</tr>
 	</table>
-	
-	<aui:input name="shouldAttendance" label="应出勤天数" value="<%=OverTimeSum.SHOULDATTENDANCE %>" disabled="true"/>
+	<aui:input type="hidden" name="shouldAttendance" value="<%= OverTimeSum.SHOULDATTENDANCE %>" />
+	<aui:input name="sa" label="应出勤天数" value="<%= OverTimeSum.SHOULDATTENDANCE %>" disabled="true" />
 	<aui:input name="actualAttendance" label="实出勤天数" value="<%=attendance!=null?attendance.getActualAttendance():OverTimeSum.SHOULDATTENDANCE %>" />
 	
 	<aui:button type="submit" value="保存" style="margin-top:23px;" />

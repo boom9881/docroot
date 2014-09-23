@@ -7,10 +7,14 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.shuntian.portlet.intranet.NoSuchAttendanceException;
+import com.shuntian.portlet.intranet.model.BasicInformation;
 import com.shuntian.portlet.intranet.service.AttendanceLocalServiceUtil;
+import com.shuntian.portlet.intranet.service.BasicInformationLocalServiceUtil;
 
 public class AttendancePortlet extends MVCPortlet {
 
@@ -34,7 +38,7 @@ public class AttendancePortlet extends MVCPortlet {
 				"shouldAttendance");
 
 		validatorAttendance(actionRequest, userId, attendanceYear,
-				attendanceMonth, actualAttendance, shouldAttendance);
+				attendanceMonth, actualAttendance);
 
 		if (SessionErrors.isEmpty(actionRequest)) {
 			AttendanceLocalServiceUtil.editAttendance(userId, attendanceId,
@@ -65,9 +69,27 @@ public class AttendancePortlet extends MVCPortlet {
 
 	private void validatorAttendance(ActionRequest actionRequest, long userId,
 			String attendanceYear, String attendanceMonth,
-			String actualAttendance, String shouldAttendance) {
+			String actualAttendance) throws NoSuchAttendanceException,
+			NumberFormatException, SystemException {
 
-		AttendanceLocalServiceUtil.findByY_M(userId, attendanceYear,
-				attendanceMonth);
+		try {
+			BasicInformation bi = BasicInformationLocalServiceUtil
+					.findByUserId(userId);
+
+			if (Validator.isNotNull(AttendanceLocalServiceUtil.findByY_M(
+					bi.getId(), Long.parseLong(attendanceYear),
+					Long.parseLong(attendanceMonth)))) {
+				SessionErrors
+						.add(actionRequest, "dhst.intranet.attendance.rep");
+			}
+		} catch (PortalException e) {
+		}
+
+		try {
+			Double.parseDouble(actualAttendance);
+		} catch (NumberFormatException nfe) {
+			SessionErrors.add(actionRequest,
+					"dhst.intranet.attendance.ad.number");
+		}
 	}
 }

@@ -116,10 +116,6 @@
 			<name>view-template</name>
 			<value>/html/overtime/view.jsp</value>
 		</init-param>
-		<init-param>
-			<name>copy-request-parameters</name>
-			<value>true</value>
-		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
@@ -150,10 +146,6 @@
 		<init-param>
 			<name>view-template</name>
 			<value>/html/attendance/view.jsp</value>
-		</init-param>
-		<init-param>
-			<name>copy-request-parameters</name>
-			<value>true</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -186,10 +178,6 @@
 		<init-param>
 			<name>view-template</name>
 			<value>/html/wages/view.jsp</value>
-		</init-param>
-		<init-param>
-			<name>copy-request-parameters</name>
-			<value>true</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>

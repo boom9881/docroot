@@ -20,12 +20,20 @@ if(Validator.isNotNull(attendanceId)){
 }
 %>
 
+<portlet:renderURL var="redirectURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+	<portlet:param name="mvcPath" value="/html/attendance/view.jsp" />
+	<portlet:param name="tabs" value="attTab1" />
+</portlet:renderURL>
+
 <portlet:actionURL var="editUserActionURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 	<portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="editAttendance" />
 	<portlet:param name="mvcPath" value="/html/attendance/view.jsp" />
-	<portlet:param name="tabs" value="tab1" />
-	<portlet:param name="redirect" value="<%= PortalUtil.getCurrentURL(request) %>" />
+	<portlet:param name="tabs" value="attTab1" />
+	<portlet:param name="redirect" value="<%= redirectURL.toString() %>" />
 </portlet:actionURL>
+
+<liferay-ui:error key="dhst.intranet.attendance.rep" message="不能重复添加考勤。" />
+<liferay-ui:error key="dhst.intranet.attendance.ad.number" message="实际出勤天数只能是数字。" />
 
 <aui:form action="<%= editUserActionURL.toString() %>" method="post" name="fm">
 	<aui:input type="hidden" name="attendanceId" value="<%= attendanceId %>" />
@@ -69,9 +77,9 @@ if(Validator.isNotNull(attendanceId)){
 			</td>
 		</tr>
 	</table>
-		
+	
+	<aui:input name="shouldAttendance" label="应出勤天数" value="<%=OverTimeSum.SHOULDATTENDANCE %>" disabled="true"/>
 	<aui:input name="actualAttendance" label="实出勤天数" value="<%=attendance!=null?attendance.getActualAttendance():OverTimeSum.SHOULDATTENDANCE %>" />
-	<aui:input name="shouldAttendance" label="应出勤天数" value="<%=OverTimeSum.SHOULDATTENDANCE %>"/>
 	
 	<aui:button type="submit" value="保存" style="margin-top:23px;" />
 </aui:form>

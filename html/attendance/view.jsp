@@ -20,6 +20,6 @@ String tab = ParamUtil.getString(request, "tabs", "attTab2");
 		<liferay-util:include page="/html/attendance/process_attendance.jsp"  servletContext="<%= application %>" />
 	</c:when>
 	<c:when test='<%= tab.equals("attTab3") %>'>
-		4
+		<liferay-util:include page="/html/attendance/my_attendance.jsp"  servletContext="<%= application %>" />
 	</c:when>
 </c:choose>

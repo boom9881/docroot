@@ -49,8 +49,7 @@ for (int i = 0; i < results.size(); i++) {
 	row.addText(map.get("name"));
 	
 	row.addText(map.get("dep"));
-	
-	row.addText(map.get("year")+"/"+map.get("month"));
+	row.addText(map.get("year")+"-"+(Integer.parseInt(map.get("month"))+1));
 	
 	String usuallyOvertime = map.get("usuallyOvertime");
 	String restOvertime = map.get("restOvertime");
@@ -64,6 +63,8 @@ for (int i = 0; i < results.size(); i++) {
 	
 	row.addText(OverTimeSum.sum(usuallyOvertime, restOvertime, legalOvertime));
 		
+	row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/overtime/action.jsp");
+	
 	resultRows.add(row);
 }
 %>

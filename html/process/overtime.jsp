@@ -42,14 +42,14 @@ for (int i = 0; i < results.size(); i++) {
 
 	ResultRow row = new ResultRow(map,map.get("id"), i);
 
-	row.setParameter("className", "attendance");
-	row.setParameter("tabs", "attTab1");
+	row.setParameter("className", "overtime");
+	row.setParameter("tabs", "attTab2");
 	
 	row.addText(map.get("name"));
 	
 	row.addText(map.get("dep"));
 	
-	row.addText(map.get("year")+"-"+map.get("month"));
+	row.addText(map.get("year")+"-"+(Integer.parseInt(map.get("month"))+1));
 	
 	String usuallyOvertime = map.get("usuallyOvertime");
 	String restOvertime = map.get("restOvertime");

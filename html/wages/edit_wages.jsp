@@ -82,7 +82,7 @@ if(cmd.equals(Constants.PREVIEW)){
 				row.addText(String.valueOf(df.format(OverTimeSum.getSocialCompanyBearPart(extInformation))));
 				row.addText(String.valueOf(df.format(OverTimeSum.getSocialIndividualsBearPart(extInformation))));
 				row.addText(String.valueOf(df.format(OverTimeSum.getTaxableIncome(extInformation, overtimeWages))));
-				row.addText(String.valueOf(df.format(OverTimeSum.getTaxRate(extInformation, overtimeWages))));
+				row.addText(String.valueOf(OverTimeSum.getTaxRate(extInformation, overtimeWages))+"%");
 				row.addText(String.valueOf(df.format(OverTimeSum.getTaxes(extInformation, overtimeWages))));
 				row.addText(String.valueOf(df.format(OverTimeSum.getRealWages(extInformation, overtimeWages))));
 			}else{
@@ -123,7 +123,7 @@ if(cmd.equals(Constants.PREVIEW)){
 	<table>
 		<tr>
 			<td width="145px">
-				<aui:select label="加班年份" name="distributionYear" style="width:120px;margin-right:10px;">
+				<aui:select label="工资年份" name="distributionYear" style="width:120px;margin-right:10px;">
 				<% 
 				for(int i=2012;i<2015;i++){
 					%>
@@ -134,7 +134,7 @@ if(cmd.equals(Constants.PREVIEW)){
 				</aui:select> 
 			</td>
 			<td width="145px">
-				<aui:select label="加班月份" name="distributionMonth" style="width:120px;margin-right:10px;">
+				<aui:select label="工资月份" name="distributionMonth" style="width:120px;margin-right:10px;">
 				<% 
 					for(int i=1;i<13;i++){
 				%>

@@ -14,7 +14,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -247,11 +246,6 @@ public class SatffPortlet extends MVCPortlet {
 		int[] edusIndexes = StringUtil.split(edusIndexesString, 0);
 
 		for (int edusIndex : edusIndexes) {
-			// String edusIndexValue = String.valueOf(edusIndex);
-			// if (edusIndexValue.equals("0")) {
-			// edusIndexValue = StringPool.BLANK;
-			// }
-
 			long eduId = ParamUtil.getLong(request, "eduId" + edusIndex);
 			String startTimeYear = ParamUtil.getString(request,
 					"eStartTimeYear" + edusIndex);
@@ -317,11 +311,6 @@ public class SatffPortlet extends MVCPortlet {
 		int[] worksIndexes = StringUtil.split(worksIndexesString, 0);
 
 		for (int worksIndex : worksIndexes) {
-			// String worksIndexValue = String.valueOf(worksIndex);
-			// if (worksIndexValue.equals("0")) {
-			// worksIndexValue = StringPool.BLANK;
-			// }
-
 			long workId = ParamUtil.getLong(request, "workId" + worksIndex);
 			String startTimeYear = ParamUtil.getString(request,
 					"weStartTimeYear" + worksIndex);
@@ -390,11 +379,6 @@ public class SatffPortlet extends MVCPortlet {
 		int[] frsIndexes = StringUtil.split(frsIndexesString, 0);
 
 		for (int frsIndex : frsIndexes) {
-			// String frsIndexValue = String.valueOf(frsIndex);
-			// if (frsIndexValue.equals("0")) {
-			// frsIndexValue = StringPool.BLANK;
-			// }
-
 			long frId = ParamUtil.getLong(request, "frId" + frsIndex);
 			String name = ParamUtil.getString(request, "frName" + frsIndex);
 			String workUnit = ParamUtil.getString(request, "frWorkUnit"

@@ -3,8 +3,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%
-int userRole = OverTimeSum.isSatff(themeDisplay.getUserId());// 1=hr;2=satff
-
 long biId = ParamUtil.getLong(request, "biId");
 long userId = ParamUtil.getLong(request, "userId");
 
@@ -30,7 +28,7 @@ if(Validator.isNotNull(basicInformation)){
 	mainSections = "basic_information,password,staff_information,education,work_experience,family_relationship".split(",");
 }
 
-if(userRole == 2){
+if(portletName.equals("individual_info")){
 	mainSections = "basic_information,education,work_experience,family_relationship".split(",");
 	
 	if(Validator.isNotNull(basicInformation)){

@@ -24,74 +24,82 @@ import com.shuntian.portlet.intranet.service.WagesLocalServiceUtil;
 import com.shuntian.portlet.intranet.util.OverTimeSum;
 
 public class WagesPortlet extends MVCPortlet {
+
 	public void editWages(ActionRequest actionRequest,
-			ActionResponse actionResponse) throws SystemException, PortalException {
-		
-		long distributionYear = ParamUtil.getLong(actionRequest, "distributionYear");
-		long distributionMonth = ParamUtil.getLong(actionRequest, "distributionMonth");
-		
-		List<Wages> wageList = WagesLocalServiceUtil.findByY_M(distributionYear, distributionMonth);
-		
-		if(wageList.size() == 0){
-			List<BasicInformation> biList = BasicInformationLocalServiceUtil.getBasicInformations(0, BasicInformationLocalServiceUtil.getBasicInformationsCount());
+			ActionResponse actionResponse) throws SystemException,
+			PortalException {
+
+		long distributionYear = ParamUtil.getLong(actionRequest,
+				"distributionYear");
+		long distributionMonth = ParamUtil.getLong(actionRequest,
+				"distributionMonth");
+
+		List<Wages> wageList = WagesLocalServiceUtil.findByY_M(
+				distributionYear, distributionMonth);
+
+		if (wageList.size() == 0) {
+			List<BasicInformation> biList = BasicInformationLocalServiceUtil
+					.getBasicInformations(0, BasicInformationLocalServiceUtil
+							.getBasicInformationsCount());
 			for (BasicInformation basicInformation : biList) {
 				long userId = basicInformation.getUserId();
-				long attendanceId = 0;
-				long overtimeId = 0;
-				
-				ExtInformation extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
-				Wages wages = WagesLocalServiceUtil.createWages(CounterLocalServiceUtil.increment());
-				Attendance attendance = AttendanceLocalServiceUtil.findByY_M(basicInformation.getId(), distributionYear, distributionMonth);
-				Overtime overtime = OvertimeLocalServiceUtil.findByY_M(basicInformation.getId(), distributionYear, distributionMonth);
-				
-				if(Validator.isNotNull(attendance)){
-					attendanceId = attendance.getId();
+
+				Wages wages = WagesLocalServiceUtil
+						.createWages(CounterLocalServiceUtil.increment());
+
+				ExtInformation extInformation = ExtInformationLocalServiceUtil
+						.findByUserId(userId);
+				Attendance attendance = AttendanceLocalServiceUtil.findByY_M(
+						basicInformation.getId(), distributionYear,
+						distributionMonth);
+				Overtime overtime = OvertimeLocalServiceUtil.findByY_M(
+						basicInformation.getId(), distributionYear,
+						distributionMonth);
+
+				if (Validator.isNull(attendance.getShouldAttendance())) {
+					wages.setAttendance(attendance.getShouldAttendance());
+				} else {
+					wages.setAttendance(21.75);
 				}
-				if(Validator.isNotNull(overtime)){
-					overtimeId = overtime.getId();
-				}
-				
+				wages.setRealAttendance(attendance.getActualAttendance());
+
+				double basePay = OverTimeSum.getBasePay(extInformation,
+						attendance);
+				double performanceSalary = OverTimeSum.getPerformanceSalary(
+						extInformation, attendance);
+
+				wages.setBasePay(basePay);
+				wages.setOvertimeWages(OverTimeSum.getOvertimeWages(
+						extInformation, attendance, overtime));
+				wages.setPerformanceScores(OverTimeSum.getPerformanceScores());
+				wages.setPerformanceSalary(performanceSalary);
+				wages.setAllowance(OverTimeSum.getAllowance());
+				wages.setTotalWages(OverTimeSum.getTotalWages(basePay,
+						performanceSalary, wages.getOvertimeWages()));
+				wages.setSocialCompanyBearPart(OverTimeSum
+						.getSocialCompanyBearPart(extInformation));
+				wages.setSocialIndividualsBearPart(OverTimeSum
+						.getSocialIndividualsBearPart(extInformation));
+				wages.setTaxableIncome(OverTimeSum.getTaxableIncome(
+						extInformation, wages.getOvertimeWages()));
+				wages.setTaxRate(OverTimeSum.getTaxRate(extInformation,
+						wages.getOvertimeWages()));
+				wages.setTaxes(OverTimeSum.getTaxes(extInformation,
+						wages.getOvertimeWages()));
+				wages.setRealWages(OverTimeSum.getRealWages(extInformation,
+						wages.getOvertimeWages()));
+
 				wages.setUserId(basicInformation.getId());
 				wages.setWageName(basicInformation.getName());
 				wages.setDistributionMonth(distributionMonth);
 				wages.setDistributionYear(distributionYear);
-				//wages.setEntryDate(new Date());
-				//wages.getDepartureDate()
+				// wages.setEntryDate(new Date());
+				// wages.getDepartureDate()
 				wages.setUserWage(extInformation.getBasicWage());
 				wages.setUserPerformance(extInformation.getOtherWage());
-				wages.setUserTotalWage(extInformation.getBasicWage()+extInformation.getOtherWage());
-				if(Validator.isNotNull(attendance)){
-					wages.setAttendance(attendance.getShouldAttendance());
-					wages.setRealAttendance(attendance.getActualAttendance());
-					wages.setBasePay(OverTimeSum.getBasePay(userId, attendanceId));
-					wages.setOvertimeWages(OverTimeSum.getOvertimeWages(userId, attendanceId, overtimeId));
-					wages.setPerformanceScores(OverTimeSum.getPerformanceScores());
-					wages.setPerformanceSalary(OverTimeSum.getPerformanceSalary(userId, attendanceId));
-					wages.setAllowance(OverTimeSum.getAllowance());
-					wages.setTotalWages(OverTimeSum.getTotalWages(OverTimeSum.getBasePay(userId, attendanceId), OverTimeSum.getPerformanceSalary(userId, attendanceId),wages.getOvertimeWages()));
-					wages.setSocialCompanyBearPart(OverTimeSum.getSocialCompanyBearPart(userId, attendanceId, overtimeId));
-					wages.setSocialIndividualsBearPart(OverTimeSum.getSocialIndividualsBearPart(userId, attendanceId));
-					wages.setTaxableIncome(OverTimeSum.getTaxableIncome(userId, attendanceId,wages.getOvertimeWages()));
-					wages.setTaxRate(OverTimeSum.getTaxRate(userId, attendanceId,wages.getOvertimeWages()));
-					wages.setTaxes(OverTimeSum.getTaxes(userId, attendanceId,wages.getOvertimeWages()));
-					wages.setRealWages(OverTimeSum.getRealWages(userId, attendanceId,wages.getOvertimeWages()));
-				}else{
-					wages.setAttendance(21.75);
-					wages.setRealAttendance(0);
-					wages.setBasePay(0);
-					wages.setOvertimeWages(0);
-					wages.setPerformanceScores(0);
-					wages.setPerformanceSalary(0);
-					wages.setAllowance(0);
-					wages.setTotalWages(0);
-					wages.setSocialCompanyBearPart(0);
-					wages.setSocialIndividualsBearPart(0);
-					wages.setTaxableIncome(0);
-					wages.setTaxRate(0);
-					wages.setTaxes(0);
-					wages.setRealWages(0);
-				}
-				
+				wages.setUserTotalWage(extInformation.getBasicWage()
+						+ extInformation.getOtherWage());
+
 				WagesLocalServiceUtil.updateWages(wages);
 			}
 		}

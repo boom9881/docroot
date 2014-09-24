@@ -59,21 +59,21 @@ else {
 
 		FamilyRelationship fr = frs.get(i);
 	%>
- 		
+ 		<%--
 		<aui:model-context bean="<%= fr %>" model="<%= FamilyRelationship.class %>" />
-		
+		--%>
 		<div class="lfr-form-row lfr-form-row-inline">
 			<div class="row-fields">
 				<aui:input name='<%= "frId" + frsIndex %>' type="hidden" value="<%= fr.getId() %>" />
 				
 				<aui:fieldset cssClass="span5">
-					<aui:input name="frName" label="姓名" value="<%= fr.getFrName() %>" />
-					<aui:input name="frContactPhone" label="联系电话" value="<%= fr.getFrContactPhone() %>" />
-					<aui:input name="frWorkUnit" label="工作单位" value="<%= fr.getFrWorkUnit() %>" />
+					<aui:input name='<%= "frName" + frsIndex %>' label="姓名" value="<%= fr.getFrName() %>" />
+					<aui:input name='<%= "frContactPhone" + frsIndex %>' label="联系电话" value="<%= fr.getFrContactPhone() %>" />
+					<aui:input name='<%= "frWorkUnit" + frsIndex %>' label="工作单位" value="<%= fr.getFrWorkUnit() %>" />
 				</aui:fieldset>
 				<aui:fieldset cssClass="span5">
-					<aui:input name="frRelationship" label="与本人关系" value="<%= fr.getFrRelationship() %>" />
-					<aui:input name="frOnceJob" label="担任职务" value="<%= fr.getFrOnceJob() %>" />
+					<aui:input name='<%= "frRelationship" + frsIndex %>' label="与本人关系" value="<%= fr.getFrRelationship() %>" />
+					<aui:input name='<%= "frOnceJob" + frsIndex %>' label="担任职务" value="<%= fr.getFrOnceJob() %>" />
 				</aui:fieldset>
 			</div>
 		</div>

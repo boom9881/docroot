@@ -6,6 +6,7 @@
 int ys = ParamUtil.getInteger(request, "year_start", Integer.parseInt(PropsUtil.get("dhst.intranet.date.year.start")));
 int ye = ParamUtil.getInteger(request, "year_end", Integer.parseInt(PropsUtil.get("dhst.intranet.date.year.end")));
 
+String index = ParamUtil.getString(request, "index", StringPool.BLANK);
 String name = ParamUtil.getString(request, "name");
 String label = ParamUtil.getString(request, "label");
 boolean showDay = ParamUtil.getBoolean(request, "showDay", false);
@@ -20,7 +21,7 @@ String dayValue = ParamUtil.getString(request, "dayValue");
 <table>
 	<tr>
 		<td>
-			<aui:select name='<%= name + "Year" %>' label="<%= label %>" style="width:70px;">
+			<aui:select name='<%= name + "Year" + index %>' label="<%= label %>" style="width:70px;">
 				<% 
 				for(int j = ys; j <= ye; j++){
 				%>
@@ -34,7 +35,7 @@ String dayValue = ParamUtil.getString(request, "dayValue");
 			<% 
 			String changeMonth = renderResponse.getNamespace()+"changeMonth(this.value,'"+name+"');";
 			%>
-			<aui:select name='<%= name + "Month" %>' label="&nbsp;" style="width:60px;" onChange="<%= changeMonth %>">
+			<aui:select name='<%= name + "Month" + index %>' label="&nbsp;" style="width:60px;" onChange="<%= changeMonth %>">
 				<c:if test='<%= showMonthEmpty %>'>
 					<aui:option label="所有" value="" />
 				</c:if>
@@ -53,7 +54,7 @@ String dayValue = ParamUtil.getString(request, "dayValue");
 		</td>
 		<c:if test='<%= showDay %>'>
 			<td>
-				<aui:select name='<%= name + "Day" %>' label="&nbsp;" style="width:50px;">
+				<aui:select name='<%= name + "Day" + index %>' label="&nbsp;" style="width:50px;">
 					<% 
 					for(int j = 1; j < 31; j++){
 						String v = String.valueOf(j);

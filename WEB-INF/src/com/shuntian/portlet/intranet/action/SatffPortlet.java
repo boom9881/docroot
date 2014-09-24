@@ -247,28 +247,28 @@ public class SatffPortlet extends MVCPortlet {
 		int[] edusIndexes = StringUtil.split(edusIndexesString, 0);
 
 		for (int edusIndex : edusIndexes) {
-			String edusIndexValue = String.valueOf(edusIndex);
-			if (edusIndexValue.equals("0")) {
-				edusIndexValue = StringPool.BLANK;
-			}
+			// String edusIndexValue = String.valueOf(edusIndex);
+			// if (edusIndexValue.equals("0")) {
+			// edusIndexValue = StringPool.BLANK;
+			// }
 
-			long eduId = ParamUtil.getLong(request, "eduId" + edusIndexValue);
+			long eduId = ParamUtil.getLong(request, "eduId" + edusIndex);
 			String startTimeYear = ParamUtil.getString(request,
-					"eStartTimeYear" + edusIndexValue);
+					"eStartTimeYear" + edusIndex);
 			String startTimeMonth = ParamUtil.getString(request,
-					"eStartTimeMonth" + edusIndexValue);
+					"eStartTimeMonth" + edusIndex);
 			String stopTimeYear = ParamUtil.getString(request, "eStopTimeYear"
-					+ edusIndexValue);
+					+ edusIndex);
 			String stopTimeMonth = ParamUtil.getString(request,
-					"eStopTimeMonth" + edusIndexValue);
+					"eStopTimeMonth" + edusIndex);
 			String university = ParamUtil.getString(request, "eUniversity"
-					+ edusIndexValue);
+					+ edusIndex);
 			String witness = ParamUtil.getString(request, "eWitness"
-					+ edusIndexValue);
+					+ edusIndex);
 			String professional = ParamUtil.getString(request, "eProfessional"
-					+ edusIndexValue);
+					+ edusIndex);
 			String contactPhone = ParamUtil.getString(request, "eContactPhone"
-					+ edusIndexValue);
+					+ edusIndex);
 
 			if (Validator.isNull(university) && Validator.isNull(professional)
 					&& Validator.isNull(witness)
@@ -317,29 +317,28 @@ public class SatffPortlet extends MVCPortlet {
 		int[] worksIndexes = StringUtil.split(worksIndexesString, 0);
 
 		for (int worksIndex : worksIndexes) {
-			String worksIndexValue = String.valueOf(worksIndex);
-			if (worksIndexValue.equals("0")) {
-				worksIndexValue = StringPool.BLANK;
-			}
+			// String worksIndexValue = String.valueOf(worksIndex);
+			// if (worksIndexValue.equals("0")) {
+			// worksIndexValue = StringPool.BLANK;
+			// }
 
-			long workId = ParamUtil
-					.getLong(request, "workId" + worksIndexValue);
+			long workId = ParamUtil.getLong(request, "workId" + worksIndex);
 			String startTimeYear = ParamUtil.getString(request,
-					"weStartTimeYear" + worksIndexValue);
+					"weStartTimeYear" + worksIndex);
 			String startTimeMonth = ParamUtil.getString(request,
-					"weStartTimeMonth" + worksIndexValue);
+					"weStartTimeMonth" + worksIndex);
 			String stopTimeYear = ParamUtil.getString(request, "weStopTimeYear"
-					+ worksIndexValue);
+					+ worksIndex);
 			String stopTimeMonth = ParamUtil.getString(request,
-					"weStopTimeMonth" + worksIndexValue);
+					"weStopTimeMonth" + worksIndex);
 			String workUnit = ParamUtil.getString(request, "weWorkUnit"
-					+ worksIndexValue);
+					+ worksIndex);
 			String witness = ParamUtil.getString(request, "weWitness"
-					+ worksIndexValue);
+					+ worksIndex);
 			String onceJob = ParamUtil.getString(request, "weOnceJob"
-					+ worksIndexValue);
+					+ worksIndex);
 			String contactPhone = ParamUtil.getString(request, "weContactPhone"
-					+ worksIndexValue);
+					+ worksIndex);
 
 			if (Validator.isNull(workUnit) && Validator.isNull(witness)
 					&& Validator.isNull(onceJob)
@@ -391,22 +390,21 @@ public class SatffPortlet extends MVCPortlet {
 		int[] frsIndexes = StringUtil.split(frsIndexesString, 0);
 
 		for (int frsIndex : frsIndexes) {
-			String frsIndexValue = String.valueOf(frsIndex);
-			if (frsIndexValue.equals("0")) {
-				frsIndexValue = StringPool.BLANK;
-			}
+			// String frsIndexValue = String.valueOf(frsIndex);
+			// if (frsIndexValue.equals("0")) {
+			// frsIndexValue = StringPool.BLANK;
+			// }
 
-			long frId = ParamUtil.getLong(request, "frId" + frsIndexValue);
-			String name = ParamUtil
-					.getString(request, "frName" + frsIndexValue);
+			long frId = ParamUtil.getLong(request, "frId" + frsIndex);
+			String name = ParamUtil.getString(request, "frName" + frsIndex);
 			String workUnit = ParamUtil.getString(request, "frWorkUnit"
-					+ frsIndexValue);
+					+ frsIndex);
 			String contactPhone = ParamUtil.getString(request, "frContactPhone"
-					+ frsIndexValue);
+					+ frsIndex);
 			String relationship = ParamUtil.getString(request, "frRelationship"
-					+ frsIndexValue);
+					+ frsIndex);
 			String onceJob = ParamUtil.getString(request, "frOnceJob"
-					+ frsIndexValue);
+					+ frsIndex);
 
 			if (Validator.isNull(workUnit) && Validator.isNull(name)
 					&& Validator.isNull(onceJob)

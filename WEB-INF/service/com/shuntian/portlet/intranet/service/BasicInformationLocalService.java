@@ -267,6 +267,13 @@ public interface BasicInformationLocalService extends BaseLocalService,
 		boolean isLeave)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public int countByIsLeave(boolean isLeave)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByIsLeave(
+		boolean isLeave, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public com.shuntian.portlet.intranet.model.BasicInformation findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 

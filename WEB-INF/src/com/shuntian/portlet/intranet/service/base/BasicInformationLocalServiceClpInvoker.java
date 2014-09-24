@@ -133,27 +133,35 @@ public class BasicInformationLocalServiceClpInvoker {
 
 		_methodParameterTypes82 = new String[] { "boolean" };
 
-		_methodName83 = "findByUserId";
+		_methodName83 = "countByIsLeave";
 
-		_methodParameterTypes83 = new String[] { "long" };
+		_methodParameterTypes83 = new String[] { "boolean" };
 
-		_methodName84 = "countByDepAndName";
+		_methodName84 = "findByIsLeave";
 
-		_methodParameterTypes84 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes84 = new String[] { "boolean", "int", "int" };
 
-		_methodName85 = "findByDepAndName";
+		_methodName85 = "findByUserId";
 
-		_methodParameterTypes85 = new String[] {
+		_methodParameterTypes85 = new String[] { "long" };
+
+		_methodName86 = "countByDepAndName";
+
+		_methodParameterTypes86 = new String[] { "long", "java.lang.String" };
+
+		_methodName87 = "findByDepAndName";
+
+		_methodParameterTypes87 = new String[] {
 				"long", "java.lang.String", "int", "int"
 			};
 
-		_methodName86 = "findListByUserId";
+		_methodName88 = "findListByUserId";
 
-		_methodParameterTypes86 = new String[] { "long" };
+		_methodParameterTypes88 = new String[] { "long" };
 
-		_methodName87 = "countByListUserId";
+		_methodName89 = "countByListUserId";
 
-		_methodParameterTypes87 = new String[] { "long" };
+		_methodParameterTypes89 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -289,30 +297,42 @@ public class BasicInformationLocalServiceClpInvoker {
 
 		if (_methodName83.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
-			return BasicInformationLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
+			return BasicInformationLocalServiceUtil.countByIsLeave(((Boolean)arguments[0]).booleanValue());
 		}
 
 		if (_methodName84.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
-			return BasicInformationLocalServiceUtil.countByDepAndName(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+			return BasicInformationLocalServiceUtil.findByIsLeave(((Boolean)arguments[0]).booleanValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName85.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
+			return BasicInformationLocalServiceUtil.findByUserId(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName86.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
+			return BasicInformationLocalServiceUtil.countByDepAndName(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
+		}
+
+		if (_methodName87.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes87, parameterTypes)) {
 			return BasicInformationLocalServiceUtil.findByDepAndName(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName86.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
+		if (_methodName88.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes88, parameterTypes)) {
 			return BasicInformationLocalServiceUtil.findListByUserId(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName87.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes87, parameterTypes)) {
+		if (_methodName89.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes89, parameterTypes)) {
 			return BasicInformationLocalServiceUtil.countByListUserId(((Long)arguments[0]).longValue());
 		}
 
@@ -371,4 +391,8 @@ public class BasicInformationLocalServiceClpInvoker {
 	private String[] _methodParameterTypes86;
 	private String _methodName87;
 	private String[] _methodParameterTypes87;
+	private String _methodName88;
+	private String[] _methodParameterTypes88;
+	private String _methodName89;
+	private String[] _methodParameterTypes89;
 }

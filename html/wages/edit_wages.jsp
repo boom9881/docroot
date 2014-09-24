@@ -2,46 +2,48 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%
-	DecimalFormat df = new DecimalFormat("0.00");
-	boolean isAttIdNull = false;
-	
-	long distributionYear = ParamUtil.getLong(request, "distributionYear");
-	long distributionMonth = ParamUtil.getLong(request, "distributionMonth");
-	
-	String cmd = ParamUtil.getString(request, "cmd","");
-	
-	PortletURL detailURL = renderResponse.createRenderURL();
-	detailURL.setWindowState(WindowState.MAXIMIZED);
-	detailURL.setParameter("mvcPath","/html/wages/edit_wages.jsp");
-	
-	List headerNames = new ArrayList();
-	headerNames.add("姓名");
-	headerNames.add("发工资月份");
-	//headerNames.add("入职日期");
-	//headerNames.add("离职日期");
-	headerNames.add("基本工资");
-	headerNames.add("绩效工资");
-	headerNames.add("工资小计");
-	headerNames.add("应出勤(天）");
-	headerNames.add("实出勤(天）");
-	headerNames.add("应发基本工资");
-	headerNames.add("绩效得分");
-	headerNames.add("应发绩效工资");
-	headerNames.add("应发工资合计");
-	headerNames.add("社保公司承担部分");
-	headerNames.add("社保个人承担部分");
-	headerNames.add("应纳税所得额");
-	headerNames.add("税率");
-	headerNames.add("税金");
-	headerNames.add("实发工资");
+DecimalFormat df = new DecimalFormat("0.00");
+boolean isAttIdNull = false;
 
-	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, detailURL,headerNames, "没有工资信息被显示。");
-	
-	int total = BasicInformationLocalServiceUtil.getBasicInformationsCount();
+long distributionYear = ParamUtil.getLong(request, "distributionYear");
+long distributionMonth = ParamUtil.getLong(request, "distributionMonth");
+
+boolean isDone = false;
+String cmd = ParamUtil.getString(request, "cmd",StringPool.BLANK);
+
+PortletURL detailURL = renderResponse.createRenderURL();
+detailURL.setWindowState(WindowState.MAXIMIZED);
+detailURL.setParameter("mvcPath","/html/wages/edit_wages.jsp");
+
+List headerNames = new ArrayList();
+headerNames.add("姓名");
+headerNames.add("发工资月份");
+//headerNames.add("入职日期");
+//headerNames.add("离职日期");
+headerNames.add("基本工资");
+headerNames.add("绩效工资");
+headerNames.add("工资小计");
+headerNames.add("应出勤(天）");
+headerNames.add("实出勤(天）");
+headerNames.add("应发基本工资");
+headerNames.add("绩效得分");
+headerNames.add("应发绩效工资");
+headerNames.add("应发工资合计");
+headerNames.add("社保公司承担部分");
+headerNames.add("社保个人承担部分");
+headerNames.add("应纳税所得额");
+headerNames.add("税率");
+headerNames.add("税金");
+headerNames.add("实发工资");
+
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,SearchContainer.DEFAULT_CUR_PARAM, 10, detailURL,headerNames, "没有工资信息被显示。");
+
+if(cmd.equals(Constants.PREVIEW)){
+	int total = BasicInformationLocalServiceUtil.countByIsLeave(false);
 	
 	searchContainer.setTotal(total);
 	
-	List results = BasicInformationLocalServiceUtil.getBasicInformations(searchContainer.getStart(), searchContainer.getEnd());
+	List results = BasicInformationLocalServiceUtil.findByIsLeave(false, searchContainer.getStart(), searchContainer.getEnd());
 	
 	searchContainer.setResults(results);
 	
@@ -49,66 +51,63 @@
 	List<Wages> wageList = WagesLocalServiceUtil.findByY_M(distributionYear, distributionMonth);
 
 	if(wageList.size() == 0){
-		if(cmd.equals(Constants.PREVIEW)){
-			for (int i = 0; i < results.size(); i++) {
-				BasicInformation basicInformation = (BasicInformation) results.get(i);
+		for (int i = 0; i < results.size(); i++) {
+			BasicInformation basicInformation = (BasicInformation) results.get(i);
+			
+			ResultRow row = new ResultRow(basicInformation,basicInformation.getId(), i);
+			
+			long userId = basicInformation.getUserId();
+						
+			ExtInformation extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
+			Attendance attendance = AttendanceLocalServiceUtil.findByY_M(basicInformation.getId(), distributionYear, distributionMonth);
+			Overtime overtime = OvertimeLocalServiceUtil.findByY_M(basicInformation.getId(), distributionYear, distributionMonth);
+			
+			row.addText(basicInformation.getName());
+			row.addText(String.valueOf(distributionYear+"-"+(distributionMonth+1)));
+			row.addText(String.valueOf(df.format(extInformation.getBasicWage())));
+			row.addText(String.valueOf(df.format(extInformation.getOtherWage())));
+			row.addText(String.valueOf(df.format(extInformation.getBasicWage()+extInformation.getOtherWage())));
+			
+			if(Validator.isNotNull(attendance)){
+				double basePay = OverTimeSum.getBasePay(extInformation, attendance);
+				double performanceSalary = OverTimeSum.getPerformanceSalary(extInformation, attendance);
+				double overtimeWages = OverTimeSum.getOvertimeWages(extInformation, attendance, overtime);
 				
-				ResultRow row = new ResultRow(basicInformation,basicInformation.getId(), i);
-				
-				long userId = basicInformation.getUserId();
-				long attendanceId = 0;
-				long overtimeId = 0;	
-							
-				ExtInformation extInformation = ExtInformationLocalServiceUtil.findByUserId(userId);
-				Attendance attendance = AttendanceLocalServiceUtil.findByY_M(basicInformation.getId(), distributionYear, distributionMonth);
-				Overtime overtime = OvertimeLocalServiceUtil.findByY_M(basicInformation.getId(), distributionYear, distributionMonth);
-				
-				if(Validator.isNotNull(attendance)){
-					attendanceId = attendance.getId();
-				}
-				if(Validator.isNotNull(overtime)){
-					overtimeId = overtime.getId();
-				}
-				
-				row.addText(basicInformation.getName());
-				row.addText(String.valueOf(distributionYear+"-"+(distributionMonth+1)));
-				row.addText(String.valueOf(df.format(extInformation.getBasicWage())));
-				row.addText(String.valueOf(df.format(extInformation.getOtherWage())));
-				row.addText(String.valueOf(df.format(extInformation.getBasicWage()+extInformation.getOtherWage())));
-				
-				if(Validator.isNotNull(attendance)){
-					row.addText(String.valueOf(attendance.getShouldAttendance()));
-					row.addText(String.valueOf(attendance.getActualAttendance()));
-					row.addText(String.valueOf(df.format(OverTimeSum.getBasePay(userId, attendanceId))));
-					row.addText(String.valueOf(df.format(OverTimeSum.getPerformanceScores())));
-					row.addText(String.valueOf(df.format(OverTimeSum.getPerformanceSalary(userId, attendanceId))));
-					row.addText(String.valueOf(df.format(OverTimeSum.getTotalWages(OverTimeSum.getBasePay(userId, attendanceId), OverTimeSum.getPerformanceSalary(userId, attendanceId),OverTimeSum.getOvertimeWages(userId, attendanceId, overtimeId)))));
-					row.addText(String.valueOf(df.format(OverTimeSum.getSocialCompanyBearPart(userId, attendanceId, overtimeId))));
-					row.addText(String.valueOf(df.format(OverTimeSum.getSocialIndividualsBearPart(userId, attendanceId))));
-					row.addText(String.valueOf(df.format(OverTimeSum.getTaxableIncome(userId, attendanceId,OverTimeSum.getOvertimeWages(userId, attendanceId, overtimeId)))));
-					row.addText(String.valueOf(df.format(OverTimeSum.getTaxRate(userId, attendanceId,OverTimeSum.getOvertimeWages(userId, attendanceId, overtimeId)))));
-					row.addText(String.valueOf(df.format(OverTimeSum.getTaxes(userId, attendanceId,OverTimeSum.getOvertimeWages(userId, attendanceId, overtimeId)))));
-					row.addText(String.valueOf(df.format(OverTimeSum.getRealWages(userId, attendanceId,OverTimeSum.getOvertimeWages(userId, attendanceId, overtimeId)))));
-				}else{
-					row.addText("--");
-					row.addText("--");
-					row.addText("--");
-					row.addText("--");
-					row.addText("--");
-					row.addText("--");
-					row.addText("--");
-					row.addText("--");
-					row.addText("--");
-					row.addText("--");
-					row.addText("--");
-					row.addText("--");
-				}
-				
-				resultRows.add(row);
-			}	
-		}
+				row.addText(String.valueOf(attendance.getShouldAttendance()));
+				row.addText(String.valueOf(attendance.getActualAttendance()));
+				row.addText(String.valueOf(df.format(basePay)));
+				row.addText(String.valueOf(df.format(OverTimeSum.getPerformanceScores())));
+				row.addText(String.valueOf(df.format(performanceSalary)));
+				row.addText(String.valueOf(df.format(OverTimeSum.getTotalWages(basePay, performanceSalary, overtimeWages))));
+				row.addText(String.valueOf(df.format(OverTimeSum.getSocialCompanyBearPart(extInformation))));
+				row.addText(String.valueOf(df.format(OverTimeSum.getSocialIndividualsBearPart(extInformation))));
+				row.addText(String.valueOf(df.format(OverTimeSum.getTaxableIncome(extInformation, overtimeWages))));
+				row.addText(String.valueOf(df.format(OverTimeSum.getTaxRate(extInformation, overtimeWages))));
+				row.addText(String.valueOf(df.format(OverTimeSum.getTaxes(extInformation, overtimeWages))));
+				row.addText(String.valueOf(df.format(OverTimeSum.getRealWages(extInformation, overtimeWages))));
+			}else{
+				row.addText("--");
+				row.addText("--");
+				row.addText("--");
+				row.addText("--");
+				row.addText("--");
+				row.addText("--");
+				row.addText("--");
+				row.addText("--");
+				row.addText("--");
+				row.addText("--");
+				row.addText("--");
+				row.addText("--");
+			}
+			
+			resultRows.add(row);
+		}	
+	}else{
+		isDone = true;
 	}
+}
 %>
+
 <portlet:actionURL var="editUserActionURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 	<portlet:param name="<%=ActionRequest.ACTION_NAME %>" value="editWages" />
 	<portlet:param name="mvcPath" value="/html/wages/view.jsp" />
@@ -156,14 +155,14 @@
 		</tr>
 	</table>
 	
-	<c:if test='<%= wageList.size() == 0 %>'>
+	<c:if test='<%= !isDone %>'>
 		<c:if test='<%= cmd.equals(Constants.PREVIEW)%>'>
-			<liferay-ui:search-iterator searchContainer="<%=searchContainer%>" />	
+			<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />	
 			<br/>
 			<aui:button type="submit" value="保存" />
 		</c:if>
 	</c:if>
-	<c:if test='<%= wageList.size() != 0 %>'>
+	<c:if test='<%= isDone %>'>
 		该月工资已生成
 	</c:if>
 </aui:form>

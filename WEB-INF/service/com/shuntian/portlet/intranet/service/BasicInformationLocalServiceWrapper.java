@@ -319,6 +319,19 @@ public class BasicInformationLocalServiceWrapper
 	}
 
 	@Override
+	public int countByIsLeave(boolean isLeave)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _basicInformationLocalService.countByIsLeave(isLeave);
+	}
+
+	@Override
+	public java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByIsLeave(
+		boolean isLeave, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _basicInformationLocalService.findByIsLeave(isLeave, start, end);
+	}
+
+	@Override
 	public com.shuntian.portlet.intranet.model.BasicInformation findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return _basicInformationLocalService.findByUserId(userId);

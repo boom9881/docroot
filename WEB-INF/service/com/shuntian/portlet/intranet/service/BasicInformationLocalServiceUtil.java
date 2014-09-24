@@ -302,6 +302,17 @@ public class BasicInformationLocalServiceUtil {
 		return getService().findByIsLeave(isLeave);
 	}
 
+	public static int countByIsLeave(boolean isLeave)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().countByIsLeave(isLeave);
+	}
+
+	public static java.util.List<com.shuntian.portlet.intranet.model.BasicInformation> findByIsLeave(
+		boolean isLeave, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().findByIsLeave(isLeave, start, end);
+	}
+
 	public static com.shuntian.portlet.intranet.model.BasicInformation findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().findByUserId(userId);

@@ -172,6 +172,21 @@ public class BasicInformationLocalServiceImpl extends
 			return basicInformationPersistence.findByIsLeave(0);
 	}
 
+	public int countByIsLeave(boolean isLeave) throws SystemException {
+		if (isLeave)
+			return basicInformationPersistence.countByIsLeave(1);
+		else
+			return basicInformationPersistence.countByIsLeave(0);
+	}
+
+	public List<BasicInformation> findByIsLeave(boolean isLeave, int start,
+			int end) throws SystemException {
+		if (isLeave)
+			return basicInformationPersistence.findByIsLeave(1, start, end);
+		else
+			return basicInformationPersistence.findByIsLeave(0, start, end);
+	}
+
 	public BasicInformation findByUserId(long userId) throws SystemException {
 		BasicInformation basicInformation = null;
 

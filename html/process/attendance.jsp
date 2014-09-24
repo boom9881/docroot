@@ -12,7 +12,7 @@ portletURL.setWindowState(WindowState.MAXIMIZED);
 portletURL.setParameter("mvcPath","/html/process/view.jsp");
 portletURL.setParameter("tabs","attTab1");
 portletURL.setParameter("searchName",searchName);
-portletURL.setParameter("searchDepId",String.valueOf(searchDepId));
+portletURL.setParameter("searchDep",String.valueOf(searchDepId));
 
 List headerNames = new ArrayList();
 headerNames.add("姓名");
@@ -38,7 +38,10 @@ for (int i = 0; i < results.size(); i++) {
 	Map<String,String> obj = (Map<String,String>) results.get(i);
 
 	ResultRow row = new ResultRow(obj,obj.get("id"), i);
-
+	
+	row.setParameter("className", "attendance");
+	row.setParameter("tabs", "attTab1");
+	
 	row.addText(obj.get("name"));
 	
 	row.addText(obj.get("department"));

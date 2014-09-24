@@ -56,12 +56,13 @@ public class WagesPortlet extends MVCPortlet {
 						basicInformation.getId(), distributionYear,
 						distributionMonth);
 
-				if (Validator.isNull(attendance.getShouldAttendance())) {
+				if (Validator.isNotNull(attendance)) {
 					wages.setAttendance(attendance.getShouldAttendance());
+					wages.setRealAttendance(attendance.getActualAttendance());
 				} else {
 					wages.setAttendance(21.75);
+					wages.setRealAttendance(0);
 				}
-				wages.setRealAttendance(attendance.getActualAttendance());
 
 				double basePay = OverTimeSum.getBasePay(extInformation,
 						attendance);
@@ -81,13 +82,14 @@ public class WagesPortlet extends MVCPortlet {
 				wages.setSocialIndividualsBearPart(OverTimeSum
 						.getSocialIndividualsBearPart(extInformation));
 				wages.setTaxableIncome(OverTimeSum.getTaxableIncome(
-						extInformation, wages.getOvertimeWages()));
+						extInformation, basePay, performanceSalary,
+						wages.getOvertimeWages()));
 				wages.setTaxRate(OverTimeSum.getTaxRate(extInformation,
-						wages.getOvertimeWages()));
-				wages.setTaxes(OverTimeSum.getTaxes(extInformation,
-						wages.getOvertimeWages()));
+						basePay, performanceSalary, wages.getOvertimeWages()));
+				wages.setTaxes(OverTimeSum.getTaxes(extInformation, basePay,
+						performanceSalary, wages.getOvertimeWages()));
 				wages.setRealWages(OverTimeSum.getRealWages(extInformation,
-						wages.getOvertimeWages()));
+						basePay, performanceSalary, wages.getOvertimeWages()));
 
 				wages.setUserId(basicInformation.getId());
 				wages.setWageName(basicInformation.getName());

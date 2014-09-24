@@ -81,10 +81,10 @@ if(cmd.equals(Constants.PREVIEW)){
 				row.addText(String.valueOf(df.format(OverTimeSum.getTotalWages(basePay, performanceSalary, overtimeWages))));
 				row.addText(String.valueOf(df.format(OverTimeSum.getSocialCompanyBearPart(extInformation))));
 				row.addText(String.valueOf(df.format(OverTimeSum.getSocialIndividualsBearPart(extInformation))));
-				row.addText(String.valueOf(df.format(OverTimeSum.getTaxableIncome(extInformation, overtimeWages))));
-				row.addText(String.valueOf(OverTimeSum.getTaxRate(extInformation, overtimeWages))+"%");
-				row.addText(String.valueOf(df.format(OverTimeSum.getTaxes(extInformation, overtimeWages))));
-				row.addText(String.valueOf(df.format(OverTimeSum.getRealWages(extInformation, overtimeWages))));
+				row.addText(String.valueOf(df.format(OverTimeSum.getTaxableIncome(extInformation,basePay,performanceSalary, overtimeWages))));
+				row.addText(String.valueOf(OverTimeSum.getTaxRate(extInformation,basePay,performanceSalary, overtimeWages))+"%");
+				row.addText(String.valueOf(df.format(OverTimeSum.getTaxes(extInformation,basePay,performanceSalary, overtimeWages))));
+				row.addText(String.valueOf(df.format(OverTimeSum.getRealWages(extInformation,basePay,performanceSalary,overtimeWages))));
 			}else{
 				row.addText("--");
 				row.addText("--");
@@ -120,6 +120,7 @@ if(cmd.equals(Constants.PREVIEW)){
 </portlet:renderURL>
 
 <aui:form action="<%= editUserActionURL.toString() %>" method="post" name="fm">
+	<aui:input type="hidden" value="<%=cmd %>" name="cmd"/>
 	<table>
 		<tr>
 			<td width="145px">

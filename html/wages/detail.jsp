@@ -57,7 +57,7 @@ title.append("工资信息详细");
 		</td>
 		<td>
 			纳税额:<%= df.format(wage.getTaxableIncome())%><br/>
-			税率:<%= df.format(wage.getTaxRate())%><br/>
+			税率:<%= String.valueOf(wage.getTaxRate())+"%"%><br/>
 			税金:<%= df.format(wage.getTaxes())%>
 		</td>
 		<td><%= df.format(wage.getRealWages())%></td>

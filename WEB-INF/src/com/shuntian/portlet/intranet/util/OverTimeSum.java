@@ -106,29 +106,43 @@ public class OverTimeSum {
 	}
 
 	public static double getTaxableIncome(ExtInformation extInformation,
-			double overtimeWages) throws PortalException, SystemException {
+			double basicWage, double preWage, double overtimeWages)
+			throws PortalException, SystemException {
 
-		return getTotalWages(extInformation.getBasicWage(),
-				extInformation.getOtherWage(), overtimeWages)
+		double taxableIncome = getTotalWages(basicWage, preWage, overtimeWages)
 				- getSocialIndividualsBearPart(extInformation) - getAllowance();
+
+		if (taxableIncome < 0) {
+			return 0;
+		} else {
+			return taxableIncome;
+		}
+
 	}
 
 	public static int getTaxRate(ExtInformation extInformation,
-			double overtimeWages) throws PortalException, SystemException {
+			double basicWage, double preWage, double overtimeWages)
+			throws PortalException, SystemException {
 
-		if (getTaxableIncome(extInformation, overtimeWages) > 83500) {
+		if (getTaxableIncome(extInformation, basicWage, preWage, overtimeWages) > 83500) {
 			return 45;
-		} else if (getTaxableIncome(extInformation, overtimeWages) >= 58500) {
+		} else if (getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages) >= 58500) {
 			return 35;
-		} else if (getTaxableIncome(extInformation, overtimeWages) >= 38500) {
+		} else if (getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages) >= 38500) {
 			return 30;
-		} else if (getTaxableIncome(extInformation, overtimeWages) >= 12500) {
+		} else if (getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages) >= 12500) {
 			return 25;
-		} else if (getTaxableIncome(extInformation, overtimeWages) >= 8000) {
+		} else if (getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages) >= 8000) {
 			return 20;
-		} else if (getTaxableIncome(extInformation, overtimeWages) >= 5000) {
+		} else if (getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages) >= 5000) {
 			return 10;
-		} else if (getTaxableIncome(extInformation, overtimeWages) >= 3500) {
+		} else if (getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages) >= 3500) {
 			return 3;
 		}
 
@@ -136,31 +150,55 @@ public class OverTimeSum {
 	}
 
 	public static double getTaxes(ExtInformation extInformation,
-			double overtimeWages) throws PortalException, SystemException {
+			double basicWage, double preWage, double overtimeWages)
+			throws PortalException, SystemException {
 
-		if ((getTaxableIncome(extInformation, overtimeWages) - 3500) >= 80000) {
-			return (getTaxableIncome(extInformation, overtimeWages) - 3500) * 0.45 - 13505;
-		} else if ((getTaxableIncome(extInformation, overtimeWages) - 3500) >= 55000) {
-			return (getTaxableIncome(extInformation, overtimeWages) - 3500) * 0.35 - 5505;
-		} else if ((getTaxableIncome(extInformation, overtimeWages) - 3500) >= 35000) {
-			return (getTaxableIncome(extInformation, overtimeWages) - 3500) * 0.3 - 2755;
-		} else if ((getTaxableIncome(extInformation, overtimeWages) - 3500) >= 9000) {
-			return (getTaxableIncome(extInformation, overtimeWages) - 3500) * 0.25 - 1005;
-		} else if ((getTaxableIncome(extInformation, overtimeWages) - 3500) >= 4500) {
-			return (getTaxableIncome(extInformation, overtimeWages) - 3500) * 0.2 - 555;
-		} else if ((getTaxableIncome(extInformation, overtimeWages) - 3500) >= 1500) {
-			return (getTaxableIncome(extInformation, overtimeWages) - 3500) * 0.1 - 105;
-		} else if ((getTaxableIncome(extInformation, overtimeWages) - 3500) >= 0) {
-			return (getTaxableIncome(extInformation, overtimeWages) - 3500) * 0.03;
+		if ((getTaxableIncome(extInformation, basicWage, preWage, overtimeWages) - 3500) >= 80000) {
+			return (getTaxableIncome(extInformation, basicWage, preWage,
+					overtimeWages) - 3500) * 0.45 - 13505;
+		} else if ((getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages) - 3500) >= 55000) {
+			return (getTaxableIncome(extInformation, basicWage, preWage,
+					overtimeWages) - 3500) * 0.35 - 5505;
+		} else if ((getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages) - 3500) >= 35000) {
+			return (getTaxableIncome(extInformation, basicWage, preWage,
+					overtimeWages) - 3500) * 0.3 - 2755;
+		} else if ((getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages) - 3500) >= 9000) {
+			return (getTaxableIncome(extInformation, basicWage, preWage,
+					overtimeWages) - 3500) * 0.25 - 1005;
+		} else if ((getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages) - 3500) >= 4500) {
+			return (getTaxableIncome(extInformation, basicWage, preWage,
+					overtimeWages) - 3500) * 0.2 - 555;
+		} else if ((getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages) - 3500) >= 1500) {
+			return (getTaxableIncome(extInformation, basicWage, preWage,
+					overtimeWages) - 3500) * 0.1 - 105;
+		} else if ((getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages) - 3500) >= 0) {
+			return (getTaxableIncome(extInformation, basicWage, preWage,
+					overtimeWages) - 3500) * 0.03;
 		}
 
 		return 0;
 	}
 
 	public static double getRealWages(ExtInformation extInformation,
-			double overtimeWages) throws PortalException, SystemException {
-		return getTaxableIncome(extInformation, overtimeWages)
-				- getTaxes(extInformation, overtimeWages);
+			double basicWage, double preWage, double overtimeWages)
+			throws PortalException, SystemException {
+
+		double realWages = getTaxableIncome(extInformation, basicWage, preWage,
+				overtimeWages)
+				- getTaxes(extInformation, basicWage, preWage, overtimeWages);
+
+		if (realWages < 0) {
+			return 0;
+		} else {
+			return realWages;
+		}
+
 	}
 
 	public static final double SHOULDATTENDANCE = 21.75;

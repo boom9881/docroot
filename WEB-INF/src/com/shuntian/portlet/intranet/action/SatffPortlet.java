@@ -50,7 +50,7 @@ public class SatffPortlet extends MVCPortlet {
 		String newPassword2 = ParamUtil.getString(request, "newPassword2");
 		String portletName = ParamUtil.getString(request, "portletName");
 
-		BasicInformation bi = getBasicInformation(request);
+		BasicInformation bi = getBasicInformation(request, portletName);
 		ExtInformation ei = null;
 		if (!portletName.equals("individual_info")) {
 			ei = getExtInformation(request);
@@ -96,7 +96,8 @@ public class SatffPortlet extends MVCPortlet {
 	// BasicInformationLocalServiceUtil.deleteBasicInformation(id);
 	// }
 
-	private BasicInformation getBasicInformation(ActionRequest request) {
+	private BasicInformation getBasicInformation(ActionRequest request,
+			String portletName) {
 		int sex = ParamUtil.getInteger(request, "sex");
 		int birthDateYear = ParamUtil.getInteger(request, "birthDateYear");
 		int birthDateMonth = ParamUtil.getInteger(request, "birthDateMonth");
@@ -131,7 +132,8 @@ public class SatffPortlet extends MVCPortlet {
 
 		BasicInformation bi = new BasicInformationImpl();
 		bi.setSex(sex);
-		bi.setDepartmentId(departmentId);
+		if (!portletName.equals("individual_info"))
+			bi.setDepartmentId(departmentId);
 		bi.setName(name);
 		bi.setNation(nation);
 		bi.setMaritalStatus(maritalStatus);

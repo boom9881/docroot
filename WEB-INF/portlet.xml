@@ -38,6 +38,42 @@
 	</portlet>
 	
 	<portlet>
+		<portlet-name>individual_wages</portlet-name>
+		<display-name>Individual Wages</display-name>
+		<portlet-class>com.shuntian.portlet.intranet.action.WagesPortlet</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/html/process/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>copy-request-parameters</name>
+			<value>true</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<resource-bundle>content.iw.Language</resource-bundle>
+		<portlet-info>
+			<title>Individual Wages</title>
+			<short-title>Individual Wages</short-title>
+			<keywords>Individual Wages</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	
+	<portlet>
 		<portlet-name>department</portlet-name>
 		<display-name>Department</display-name>
 		<portlet-class>com.shuntian.portlet.intranet.action.DepartmentPortlet</portlet-class>
@@ -53,6 +89,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.department.Language</resource-bundle>
 		<portlet-info>
 			<title>Department</title>
 			<short-title>Department</short-title>
@@ -88,7 +125,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
-		<resource-bundle>content.satff.Language</resource-bundle>
+		<resource-bundle>content.individual.Language</resource-bundle>
 		<portlet-info>
 			<title>Individual Information</title>
 			<short-title>Individual Information</short-title>
@@ -232,6 +269,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.wages.Language</resource-bundle>
 		<portlet-info>
 			<title>wages</title>
 			<short-title>wages</short-title>

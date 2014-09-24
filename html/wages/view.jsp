@@ -6,16 +6,13 @@
 DecimalFormat df = new DecimalFormat("0.00");
 
 long userId = themeDisplay.getUserId();
-
-int userRole = OverTimeSum.isSatff(userId);
-
 long searchUserId = 0;
 long searchDepId = ParamUtil.getLong(request, "searchDep");
 String searchWagesYear = ParamUtil.getString(request, "searchWagesYear");
 String searchWagesMonth = ParamUtil.getString(request, "searchWagesMonth");
 String searchName = ParamUtil.getString(request, "searchName");
 
-if(userRole == 2){
+if(portletName.equals("individual_wages")){
 	searchUserId = userId;
 }
 
@@ -28,8 +25,10 @@ portletURL.setParameter("searchWagesMonth",searchWagesMonth);
 portletURL.setParameter("searchName",searchName);
 
 List headerNames = new ArrayList();
-headerNames.add("姓名");
-headerNames.add("发工资月份");
+if(!portletName.equals("individual_wages")){
+	headerNames.add("姓名");
+}
+headerNames.add("时间");
 //headerNames.add("入职日期");
 //headerNames.add("离职日期");
 //headerNames.add("基本工资");
@@ -65,9 +64,11 @@ for (int i = 0; i < results.size(); i++) {
 	Map<String, String> map = results.get(i);
 	
 	ResultRow row = new ResultRow(map,map.get("id"), i);
-
-	row.addText(map.get("name"));
-	row.addText(map.get("distributionYear")+"年"+(Long.parseLong(map.get("distributionMonth").toString())+1)+"月");
+	
+	if(!portletName.equals("individual_wages")){
+		row.addText(map.get("name"));
+	}
+	row.addText(map.get("distributionYear")+"-"+(Long.parseLong(map.get("distributionMonth").toString())+1));
 	//row.addText(sdf.format(wages.getEntryDate()));
 	//row.addText(wages.getDepartureDate()!=null?sdf.format(wages.getDepartureDate()):StringPool.BLANK);
 	//row.addText(String.valueOf(df.format(wages.getUserWage())));
@@ -113,7 +114,7 @@ for (int i = 0; i < results.size(); i++) {
 					<liferay-util:param name="year_end" value="<%= String.valueOf(IntranetUtil.getCurYear()) %>" />
 				</liferay-util:include>
 			</td>
-			<c:if test='<%= userRole == 1 %>'>
+			<c:if test='<%= !portletName.equals("individual_wages") %>'>
 				<td>
 					<aui:select label="部门" name="searchDep" style="width:120px;margin-right:10px;">
 						<aui:option label="所有" value="" />
@@ -136,7 +137,7 @@ for (int i = 0; i < results.size(); i++) {
 			<td>
 				<div style="margin-bottom:12px;">
 					<aui:button type="submit" value="搜索" />
-					<c:if test='<%= userRole == 1 %>'>
+					<c:if test='<%= !portletName.equals("individual_wages") %>'>
 						<%
 						String addURL = renderResponse.getNamespace()+"generateWages('"+addWagestURL.toString()+"');";
 						%>

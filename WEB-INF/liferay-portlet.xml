@@ -12,6 +12,10 @@
 	</portlet>
 	
 	<portlet>
+		<portlet-name>individual_wages</portlet-name>
+	</portlet>
+	
+	<portlet>
 		<portlet-name>process</portlet-name>
 	</portlet>
 	

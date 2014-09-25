@@ -302,6 +302,12 @@ public class OvertimeLocalServiceUtil {
 		return getService().findByY_M(userId, overtimeYear, overtimeMonthly);
 	}
 
+	public static int countByU_Y_M(long userId, long overtimeYear,
+		long overtimeMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().countByU_Y_M(userId, overtimeYear, overtimeMonthly);
+	}
+
 	public static int search(long departmentId, long searchUserId, int status,
 		long approver, java.lang.String searchYear,
 		java.lang.String searchMonth, java.lang.String name)

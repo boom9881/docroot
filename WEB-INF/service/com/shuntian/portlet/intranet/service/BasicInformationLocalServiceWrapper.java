@@ -289,8 +289,9 @@ public class BasicInformationLocalServiceWrapper
 	}
 
 	@Override
-	public void editStaff(long companyId, long id, long userId, long curUserId,
-		java.lang.String newPassword1, java.lang.String newPassword2,
+	public void editStaff(long companyId, java.lang.String portletName,
+		long id, long userId, long curUserId, java.lang.String newPassword1,
+		java.lang.String newPassword2,
 		com.shuntian.portlet.intranet.model.BasicInformation bi,
 		com.shuntian.portlet.intranet.model.ExtInformation ei,
 		java.util.List<com.shuntian.portlet.intranet.model.Education> edus,
@@ -299,9 +300,9 @@ public class BasicInformationLocalServiceWrapper
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_basicInformationLocalService.editStaff(companyId, id, userId,
-			curUserId, newPassword1, newPassword2, bi, ei, edus, wes, frs,
-			serviceContext);
+		_basicInformationLocalService.editStaff(companyId, portletName, id,
+			userId, curUserId, newPassword1, newPassword2, bi, ei, edus, wes,
+			frs, serviceContext);
 	}
 
 	@Override

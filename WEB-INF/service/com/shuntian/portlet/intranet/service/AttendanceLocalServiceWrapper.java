@@ -337,6 +337,14 @@ public class AttendanceLocalServiceWrapper implements AttendanceLocalService,
 			attendanceMonthly);
 	}
 
+	@Override
+	public int countByU_Y_M(long userId, long attendanceYear,
+		long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _attendanceLocalService.countByU_Y_M(userId, attendanceYear,
+			attendanceMonthly);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

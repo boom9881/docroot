@@ -74,9 +74,9 @@ public class AttendancePortlet extends MVCPortlet {
 			BasicInformation bi = BasicInformationLocalServiceUtil
 					.findByUserId(userId);
 
-			if (Validator.isNotNull(AttendanceLocalServiceUtil.findByY_M(
-					bi.getId(), Long.parseLong(attendanceYear),
-					Long.parseLong(attendanceMonth)))) {
+			if (AttendanceLocalServiceUtil.countByU_Y_M(bi.getId(),
+					Long.parseLong(attendanceYear),
+					Long.parseLong(attendanceMonth)) > 0) {
 				SessionErrors
 						.add(actionRequest, "dhst.intranet.attendance.rep");
 			}

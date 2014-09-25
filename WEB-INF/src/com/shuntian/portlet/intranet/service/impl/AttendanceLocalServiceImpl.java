@@ -122,4 +122,10 @@ public class AttendanceLocalServiceImpl extends AttendanceLocalServiceBaseImpl {
 		}
 	}
 
+	public int countByU_Y_M(long userId, long attendanceYear,
+			long attendanceMonthly) throws SystemException {
+
+		return attendancePersistence.countByU_Y_M(userId, attendanceYear,
+				attendanceMonthly);
+	}
 }

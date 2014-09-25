@@ -132,16 +132,20 @@ public class OvertimeLocalServiceClpInvoker {
 
 		_methodParameterTypes83 = new String[] { "long", "long", "long" };
 
-		_methodName84 = "search";
+		_methodName84 = "countByU_Y_M";
 
-		_methodParameterTypes84 = new String[] {
-				"long", "long", "int", "long", "java.lang.String",
-				"java.lang.String", "java.lang.String"
-			};
+		_methodParameterTypes84 = new String[] { "long", "long", "long" };
 
 		_methodName85 = "search";
 
 		_methodParameterTypes85 = new String[] {
+				"long", "long", "int", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String"
+			};
+
+		_methodName86 = "search";
+
+		_methodParameterTypes86 = new String[] {
 				"long", "long", "int", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "int", "int"
 			};
@@ -283,6 +287,13 @@ public class OvertimeLocalServiceClpInvoker {
 
 		if (_methodName84.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
+			return OvertimeLocalServiceUtil.countByU_Y_M(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue());
+		}
+
+		if (_methodName85.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
 			return OvertimeLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -291,8 +302,8 @@ public class OvertimeLocalServiceClpInvoker {
 				(java.lang.String)arguments[6]);
 		}
 
-		if (_methodName85.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
+		if (_methodName86.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
 			return OvertimeLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -354,4 +365,6 @@ public class OvertimeLocalServiceClpInvoker {
 	private String[] _methodParameterTypes84;
 	private String _methodName85;
 	private String[] _methodParameterTypes85;
+	private String _methodName86;
+	private String[] _methodParameterTypes86;
 }

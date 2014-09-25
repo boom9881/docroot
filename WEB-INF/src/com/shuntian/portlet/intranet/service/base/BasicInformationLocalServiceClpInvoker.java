@@ -117,8 +117,8 @@ public class BasicInformationLocalServiceClpInvoker {
 		_methodName80 = "editStaff";
 
 		_methodParameterTypes80 = new String[] {
-				"long", "long", "long", "long", "java.lang.String",
-				"java.lang.String",
+				"long", "java.lang.String", "long", "long", "long",
+				"java.lang.String", "java.lang.String",
 				"com.shuntian.portlet.intranet.model.BasicInformation",
 				"com.shuntian.portlet.intranet.model.ExtInformation",
 				"java.util.List", "java.util.List", "java.util.List",
@@ -268,16 +268,17 @@ public class BasicInformationLocalServiceClpInvoker {
 		if (_methodName80.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
 			BasicInformationLocalServiceUtil.editStaff(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[1],
 				((Long)arguments[2]).longValue(),
 				((Long)arguments[3]).longValue(),
-				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
-				(com.shuntian.portlet.intranet.model.BasicInformation)arguments[6],
-				(com.shuntian.portlet.intranet.model.ExtInformation)arguments[7],
-				(java.util.List<com.shuntian.portlet.intranet.model.Education>)arguments[8],
-				(java.util.List<com.shuntian.portlet.intranet.model.WorkExperience>)arguments[9],
-				(java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship>)arguments[10],
-				(com.liferay.portal.service.ServiceContext)arguments[11]);
+				((Long)arguments[4]).longValue(),
+				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
+				(com.shuntian.portlet.intranet.model.BasicInformation)arguments[7],
+				(com.shuntian.portlet.intranet.model.ExtInformation)arguments[8],
+				(java.util.List<com.shuntian.portlet.intranet.model.Education>)arguments[9],
+				(java.util.List<com.shuntian.portlet.intranet.model.WorkExperience>)arguments[10],
+				(java.util.List<com.shuntian.portlet.intranet.model.FamilyRelationship>)arguments[11],
+				(com.liferay.portal.service.ServiceContext)arguments[12]);
 
 			return null;
 		}

@@ -66,9 +66,9 @@ public class SatffPortlet extends MVCPortlet {
 						.getInstance(BasicInformation.class.getName(), request);
 
 				BasicInformationLocalServiceUtil.editStaff(
-						themeDisplay.getCompanyId(), biId, userId, curUserId,
-						newPassword1, newPassword2, bi, ei, edus, wes, frs,
-						serviceContext);
+						themeDisplay.getCompanyId(), portletName, biId, userId,
+						curUserId, newPassword1, newPassword2, bi, ei, edus,
+						wes, frs, serviceContext);
 			} catch (Exception e) {
 				if (e instanceof DuplicateUserEmailAddressException
 						|| e instanceof UserEmailAddressException) {
@@ -131,8 +131,7 @@ public class SatffPortlet extends MVCPortlet {
 
 		BasicInformation bi = new BasicInformationImpl();
 		bi.setSex(sex);
-		if (!portletName.equals("individual_info"))
-			bi.setDepartmentId(departmentId);
+		bi.setDepartmentId(departmentId);
 		bi.setName(name);
 		bi.setNation(nation);
 		bi.setMaritalStatus(maritalStatus);

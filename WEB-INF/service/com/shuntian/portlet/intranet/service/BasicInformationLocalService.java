@@ -248,8 +248,9 @@ public interface BasicInformationLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public void editStaff(long companyId, long id, long userId, long curUserId,
-		java.lang.String newPassword1, java.lang.String newPassword2,
+	public void editStaff(long companyId, java.lang.String portletName,
+		long id, long userId, long curUserId, java.lang.String newPassword1,
+		java.lang.String newPassword2,
 		com.shuntian.portlet.intranet.model.BasicInformation bi,
 		com.shuntian.portlet.intranet.model.ExtInformation ei,
 		java.util.List<com.shuntian.portlet.intranet.model.Education> edus,

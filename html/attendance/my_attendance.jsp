@@ -66,6 +66,7 @@ for (int i = 0; i < results.size(); i++) {
 <portlet:renderURL var="searchRenderURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
 	<portlet:param name="mvcPath" value="/html/attendance/view.jsp" />
 	<portlet:param name="tabs" value="attTab2" />
+	<portlet:param name="tabs3" value="<%= tab3 %>" />
 </portlet:renderURL>
 
 <aui:form action="<%= searchRenderURL.toString() %>" method="post" name="fm">

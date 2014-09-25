@@ -145,6 +145,10 @@ public class AttendanceLocalServiceClpInvoker {
 		_methodName85 = "findByY_M";
 
 		_methodParameterTypes85 = new String[] { "long", "long", "long" };
+
+		_methodName86 = "countByU_Y_M";
+
+		_methodParameterTypes86 = new String[] { "long", "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -302,6 +306,13 @@ public class AttendanceLocalServiceClpInvoker {
 				((Long)arguments[2]).longValue());
 		}
 
+		if (_methodName86.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
+			return AttendanceLocalServiceUtil.countByU_Y_M(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -353,4 +364,6 @@ public class AttendanceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes84;
 	private String _methodName85;
 	private String[] _methodParameterTypes85;
+	private String _methodName86;
+	private String[] _methodParameterTypes86;
 }

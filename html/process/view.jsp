@@ -13,7 +13,7 @@ String tab = ParamUtil.getString(request, "tabs", "attTab1");
 </portlet:renderURL>
 
 <portlet:renderURL var="searchRenderURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
-	<portlet:param name="mvcPath" value="/html/attendance/view.jsp" />
+	<portlet:param name="mvcPath" value="/html/process/view.jsp" />
 	<portlet:param name="tabs" value="<%= tab %>" />
 </portlet:renderURL>
 

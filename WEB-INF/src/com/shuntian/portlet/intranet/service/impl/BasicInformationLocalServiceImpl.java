@@ -61,9 +61,10 @@ import com.shuntian.portlet.intranet.util.ProperiesUtil;
 public class BasicInformationLocalServiceImpl extends
 		BasicInformationLocalServiceBaseImpl {
 
-	public void editStaff(long companyId, long id, long userId, long curUserId,
-			String newPassword1, String newPassword2, BasicInformation bi,
-			ExtInformation ei, List<Education> edus, List<WorkExperience> wes,
+	public void editStaff(long companyId, String portletName, long id,
+			long userId, long curUserId, String newPassword1,
+			String newPassword2, BasicInformation bi, ExtInformation ei,
+			List<Education> edus, List<WorkExperience> wes,
 			List<FamilyRelationship> frs, ServiceContext serviceContext)
 			throws SystemException, PortalException {
 
@@ -124,7 +125,8 @@ public class BasicInformationLocalServiceImpl extends
 		model.setEmergencyContact(bi.getEmergencyContact());
 		model.setEmergencyContactPhone(bi.getEmergencyContactPhone());
 		model.setEmergencyContactRelation(bi.getEmergencyContactRelation());
-		model.setDepartmentId(bi.getDepartmentId());
+		if (!portletName.equals("individual_info"))
+			model.setDepartmentId(bi.getDepartmentId());
 		model.setIsLeave(zero);
 
 		Date now = new Date();

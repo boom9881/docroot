@@ -322,6 +322,13 @@ public class AttendanceLocalServiceUtil {
 		return getService().findByY_M(userId, attendanceYear, attendanceMonthly);
 	}
 
+	public static int countByU_Y_M(long userId, long attendanceYear,
+		long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .countByU_Y_M(userId, attendanceYear, attendanceMonthly);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

@@ -132,16 +132,20 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 
 		_methodParameterTypes22 = new String[] { "long", "long", "long" };
 
-		_methodName23 = "search";
+		_methodName23 = "countByU_Y_M";
 
-		_methodParameterTypes23 = new String[] {
-				"long", "long", "int", "long", "java.lang.String",
-				"java.lang.String", "java.lang.String"
-			};
+		_methodParameterTypes23 = new String[] { "long", "long", "long" };
 
 		_methodName24 = "search";
 
 		_methodParameterTypes24 = new String[] {
+				"long", "long", "int", "long", "java.lang.String",
+				"java.lang.String", "java.lang.String"
+			};
+
+		_methodName25 = "search";
+
+		_methodParameterTypes25 = new String[] {
 				"long", "long", "int", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "int", "int"
 			};
@@ -828,6 +832,35 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 	}
 
 	@Override
+	public int countByU_Y_M(long userId, long overtimeYear, long overtimeMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
+					new Object[] { userId, overtimeYear, overtimeMonthly });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
 	public int search(long departmentId, long searchUserId, int status,
 		long approver, java.lang.String searchYear,
 		java.lang.String searchMonth, java.lang.String name)
@@ -835,8 +868,8 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] {
 						departmentId,
 						
@@ -881,8 +914,8 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						departmentId,
 						
@@ -971,4 +1004,6 @@ public class OvertimeLocalServiceClp implements OvertimeLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
 }

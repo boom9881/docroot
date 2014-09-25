@@ -263,6 +263,9 @@ public interface OvertimeLocalService extends BaseLocalService,
 		long overtimeYear, long overtimeMonthly)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public int countByU_Y_M(long userId, long overtimeYear, long overtimeMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int search(long departmentId, long searchUserId, int status,
 		long approver, java.lang.String searchYear,

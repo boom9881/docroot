@@ -361,6 +361,92 @@ public class AttendanceUtil {
 	}
 
 	/**
+	* Returns the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; or throws a {@link com.shuntian.portlet.intranet.NoSuchAttendanceException} if it could not be found.
+	*
+	* @param userId the user ID
+	* @param attendanceYear the attendance year
+	* @param attendanceMonth the attendance month
+	* @return the matching attendance
+	* @throws com.shuntian.portlet.intranet.NoSuchAttendanceException if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance findByU_Y_M(
+		long userId, long attendanceYear, long attendanceMonth)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return getPersistence()
+				   .findByU_Y_M(userId, attendanceYear, attendanceMonth);
+	}
+
+	/**
+	* Returns the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user ID
+	* @param attendanceYear the attendance year
+	* @param attendanceMonth the attendance month
+	* @return the matching attendance, or <code>null</code> if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance fetchByU_Y_M(
+		long userId, long attendanceYear, long attendanceMonth)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByU_Y_M(userId, attendanceYear, attendanceMonth);
+	}
+
+	/**
+	* Returns the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user ID
+	* @param attendanceYear the attendance year
+	* @param attendanceMonth the attendance month
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching attendance, or <code>null</code> if a matching attendance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance fetchByU_Y_M(
+		long userId, long attendanceYear, long attendanceMonth,
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByU_Y_M(userId, attendanceYear, attendanceMonth,
+			retrieveFromCache);
+	}
+
+	/**
+	* Removes the attendance where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param attendanceYear the attendance year
+	* @param attendanceMonth the attendance month
+	* @return the attendance that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.shuntian.portlet.intranet.model.Attendance removeByU_Y_M(
+		long userId, long attendanceYear, long attendanceMonth)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.shuntian.portlet.intranet.NoSuchAttendanceException {
+		return getPersistence()
+				   .removeByU_Y_M(userId, attendanceYear, attendanceMonth);
+	}
+
+	/**
+	* Returns the number of attendances where userId = &#63; and attendanceYear = &#63; and attendanceMonth = &#63;.
+	*
+	* @param userId the user ID
+	* @param attendanceYear the attendance year
+	* @param attendanceMonth the attendance month
+	* @return the number of matching attendances
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_Y_M(long userId, long attendanceYear,
+		long attendanceMonth)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByU_Y_M(userId, attendanceYear, attendanceMonth);
+	}
+
+	/**
 	* Caches the attendance in the entity cache if it is enabled.
 	*
 	* @param attendance the attendance

@@ -146,6 +146,10 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		_methodName24 = "findByY_M";
 
 		_methodParameterTypes24 = new String[] { "long", "long", "long" };
+
+		_methodName25 = "countByU_Y_M";
+
+		_methodParameterTypes25 = new String[] { "long", "long", "long" };
 	}
 
 	@Override
@@ -928,6 +932,36 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 		return (com.shuntian.portlet.intranet.model.Attendance)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public int countByU_Y_M(long userId, long attendanceYear,
+		long attendanceMonthly)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
+					new Object[] { userId, attendanceYear, attendanceMonthly });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -977,4 +1011,6 @@ public class AttendanceLocalServiceClp implements AttendanceLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
 }

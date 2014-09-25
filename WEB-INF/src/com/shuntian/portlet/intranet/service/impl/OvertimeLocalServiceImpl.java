@@ -115,6 +115,13 @@ public class OvertimeLocalServiceImpl extends OvertimeLocalServiceBaseImpl {
 		}
 	}
 
+	public int countByU_Y_M(long userId, long overtimeYear, long overtimeMonthly)
+			throws SystemException {
+
+		return overtimePersistence.countByU_Y_M(userId, overtimeYear,
+				overtimeMonthly);
+	}
+
 	public int search(long departmentId, long searchUserId, int status,
 			long approver, String searchYear, String searchMonth, String name)
 			throws SystemException {

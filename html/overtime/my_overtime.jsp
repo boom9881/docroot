@@ -62,8 +62,10 @@ for (int i = 0; i < results.size(); i++) {
 	row.addText(legalOvertime);
 	
 	row.addText(OverTimeSum.sum(usuallyOvertime, restOvertime, legalOvertime));
-		
-	row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/overtime/action.jsp");
+	
+	if(tab2.equals("attTab21")){
+		row.addJSP("left",SearchEntry.DEFAULT_VALIGN,"/html/overtime/action.jsp");
+	}
 	
 	resultRows.add(row);
 }
@@ -77,6 +79,7 @@ for (int i = 0; i < results.size(); i++) {
 <portlet:renderURL var="searchUserRenderURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" >
 	<portlet:param name="mvcPath" value="/html/overtime/view.jsp" />
 	<portlet:param name="tabs" value="attTab2" />
+	<portlet:param name="tabs2" value="<%= tab2 %>" />
 </portlet:renderURL>
 
 <aui:form action="<%= searchUserRenderURL.toString() %>" method="post" name="fm">

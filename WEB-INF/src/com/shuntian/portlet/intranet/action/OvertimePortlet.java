@@ -88,9 +88,11 @@ public class OvertimePortlet extends MVCPortlet {
 			BasicInformation bi = BasicInformationLocalServiceUtil
 					.findByUserId(userId);
 
-			if (OvertimeLocalServiceUtil.countByU_Y_M(bi.getId(),
+			int count = OvertimeLocalServiceUtil.countByU_Y_M(bi.getId(),
 					Long.parseLong(overtimeYear),
-					Long.parseLong(overtimeMonthly)) > 0) {
+					Long.parseLong(overtimeMonthly));
+			
+			if (count > 0) {
 				SessionErrors.add(actionRequest, "dhst.intranet.ot.rep");
 			}
 		} catch (SystemException e) {
